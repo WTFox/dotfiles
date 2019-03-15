@@ -1,0 +1,200 @@
+[alias]
+  ##
+  # Branches
+  ##
+  
+  # current branch
+  current-branch = !git rev-parse --abbrev-ref HEAD
+  cb = !git current-branch
+  
+  ##
+  # Checking out branches
+  ##
+  
+  # checkout bugfix branch
+  checkout-bugfix = !sh -c 'git checkout bugfix/$1 ${@:2}' -
+  cobf = !git checkout-bugfix
+  
+  # checkout feature branch
+  checkout-feature = !sh -c 'git checkout feature/$1 ${@:2}' -
+  cof = !git checkout-feature
+  
+  # checkout hotfix branch
+  checkout-hotfix = !sh -c 'git checkout hotfix/$1 ${@:2}' -
+  cohf = !git checkout-hotfix
+  
+  # checkout release branch
+  checkout-release = !sh -c 'git checkout release/$1 ${@:2}' -
+  cor = !git checkout-release
+  
+  # checkout tag as branch
+  checkout-tag = !sh -c 'git checkout -b tag/$1 $1 ${@:2}' -
+  ct = !git checkout-tag
+  
+  ##
+  # Committing files
+  ##
+  
+  # commit all files
+  commit-all = "!git add -A && git commit -a"
+  ca = !git commit-all
+
+  ##
+  # Comparing branches
+  ##
+
+  # non-merged commits in current branch not in a given branch
+  current-commits-not-in = !sh -c 'git lds --no-merges $(git cb) ^$1' -
+  ccni = !git current-commits-not-in
+
+  # non-merged commits in current branch that are not in dev
+  current-commits-not-in-dev = !git cnid $(git cb)
+  ccnid = !git current-commits-not-in-dev
+
+  # non-merged commits in current branch that are not in master
+  current-commits-not-in-master = !git cnim $(git cb)
+  ccnim = !git current-commits-not-in-master
+
+  # non-merged commits in branch ($1) but not in dev
+  commits-not-in-dev = !git lds --no-merges ^dev
+  cnid = !git commits-not-in-dev
+
+  # non-merged commits in branch ($1) but not in master
+  commits-not-in-master = !git lds --no-merges ^master
+  cnim = !git commits-not-in-master
+
+  # non-merged commits between current branch and target branch; both direction
+  commit-diff-against = "!f() { echo 'Commits in '$(git cb)' not in' $1':'; git ccni $1; echo '\nCommits in '$1' not in '$(git cb)':'; git lds --no-merges $1 ^$(git cb); }; f"
+  cda = !git commit-diff-against
+  
+  ##
+  # Comparing commits
+  ##
+  
+  # diff between last commit and its parent
+  diff-last-commit = diff --cached HEAD^
+  dlc = !git diff-last-commit
+
+  ##
+  # Creating branches
+  ##
+  
+  # create bugfix branch from local dev branch as bugfix/{ticketId}
+  bugfix-from-dev = !sh -c 'git checkout -b bugfix/$1 dev' -
+  bfd = !git bugfix-from-dev
+  
+  # create feature branch from current branch as feature/{ticketId}
+  feature-from-current = !sh -c 'git checkout -b feature/$1' -
+  ffc = !git feature-from-current
+  
+  # create feature branch from local dev branch as feature/{ticketId}
+  feature-from-dev = !sh -c 'git checkout -b feature/$1 dev' -
+  ffd = !git feature-from-dev
+  
+  # create hotfix branch from local dev branch as hotfix/{version}
+  hotfix-from-master = !sh -c 'git checkout -b hotfix/$1 master' -
+  hfm = !git hotfix-from-master
+  
+  # create release branch from local dev branch as release/{version}
+  release-from-dev = !sh -c 'git checkout -b release/$1 dev' -
+  rfd = !git release-from-dev
+  
+  ##
+  # Deleting branches
+  ##
+  
+  # delete all branches with dev or master in the name
+  cleanup-branches = "!f() { for i in $(git branch | grep -v -E \"dev|master\" | sed s/^..//); do git branch -D $i; done; }; f"
+  cub = !git cleanup-branches
+  
+  # dry run delete all branches with dev or master in the name
+  dry-run-cleanup-branches = "!f() { for i in $(git branch | grep -v -E \"dev|master\" | sed s/^..//); do echo git branch -D $i; done; }; f"
+  drcub = !git dry-run-cleanup-branches
+  
+  # prune all remotes
+  prune-all = !git remote | xargs -n 1 git remote prune
+  
+  ##
+  # Finding files
+  ##
+
+  # find files in codebase
+  find = "!git ls-files | grep -i"
+
+  ##
+  # Git shortcuts
+  ##
+
+  br = branch
+  ci = commit
+  co = checkout
+  st = status
+
+  ##
+  # Logs
+  ##
+
+  # list one-line commits showing dates
+  lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s\\ %C(blue)[a:%an\\ c:%cn]" --decorate --date=short
+
+  # list commits showing changed files
+  ll = !git ls --numstat
+
+  # list commits in short form
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [a:%an\\ c:%cn]" --decorate
+
+  ##
+  # Meta
+  ##
+
+  # list all aliases
+  list-aliases = "!git config -l | grep alias | cut -c 7-"
+  la = !git list-aliases
+
+  ##
+  # Reloading branches
+  ##
+  
+  reload-branch = !sh -c 'git fetch && git checkout master && git branch -D $1 && git co $1' -
+  rb = !git reload-branch
+
+  ##
+  # Tags
+  ##
+  
+  # latest tag name
+  latest-tag-name = !git describe --tags `git rev-list --tags --max-count=1`
+  ltn = !git latest-tag-name
+  
+  # list tags by create date
+  tag-create-dates = log --date-order --pretty=format:"%ai%Cred%d" --simplify-by-decoration --tags
+  tcd = !git tag-create-dates
+
+  ##
+  # Workflow
+  ##
+
+  # oldest-ancestor from a given branch
+  oldest-ancestor = !sh -c 'git log --pretty=format:%H $(git cb) ^$1 | tail -1' -
+  oa = !git oldest-ancestor
+
+  # default all pulls to fast-forward only (no merge commit)
+  pull = pull --ff-only
+
+  # reset all branch commits starting from oldest-ancestor from a given branch
+  reset-all-commits = "!sh -c 'git reset $(git oa $1)^; git log -1' -"
+  rac = !git reset-all-commits
+  
+  # squash all branch commits starting from oldest-ancestor
+  squash-all-commits = !sh -c 'git reset $(git oa $1)^ && git ca' -
+  sac = !git squash-all-commits
+
+  trello = "!f() { card=$(basename $1); open /opt/homebrew-cask/Caskroom/google-chrome/latest/Google\\ Chrome.app https://trello.com/c/$card; }; f" #branch
+
+  # commit with a message generated from Jira
+  commit-from-jira = "!f() { git commit -e -m \"$(CB=$(git cb); if [[ $(dirname "$CB") = "." ]]; then echo ""; else cfj $(basename "$CB"); fi)\" ${@:2}; }; f"
+  cfj = !git commit-from-jira
+
+  # commit all with a message generated from Jira
+  commit-all-from-jira = "!f() { git add -A && git cfj ${@:1}; }; f"
+  cafj = !git commit-all-from-jira
