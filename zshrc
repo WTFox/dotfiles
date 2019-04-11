@@ -53,7 +53,8 @@ COMPLETION_WAITING_DOTS="true"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Activate plugins
-plugins=(git git-extras tmux osx extract virtualenvwrapper zsh-completions)
+plugins=(git git-extras tmux osx extract)
+# zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -68,7 +69,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
 else
-  export EDITOR='vim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -142,7 +143,7 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # virtualenvs
 export WORKON_HOME=~/.envs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+# source /usr/local/bin/virtualenvwrapper.sh
 
 # pyenv 
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -180,6 +181,7 @@ then
 fi
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Pure
 autoload -U promptinit; promptinit
