@@ -227,11 +227,11 @@ nmap <silent> <leader>j <Plug>(ale_next_wrap)
 " Looks
 set t_Co=256
 
-colorscheme one
+colorscheme palenight
 
 " Dark Theme 2
 set background=dark
-let g:airline_theme = 'onedark'
+let g:airline_theme = 'ayu_dark'
 
 " Light Theme
 " set background=light

@@ -141,7 +141,8 @@
   ll = !git ls --numstat
 
   # list commits in short form
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [a:%an\\ c:%cn]" --decorate
+  # ls = log --graph --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [a:%an\\ c:%cn]" --decorate
+  ls = log --graph --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%<(50,trunc)%s%Cblue\\ [a:%an]"--decorate
 
   ##
   # Meta
