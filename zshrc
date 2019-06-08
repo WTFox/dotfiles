@@ -90,7 +90,7 @@ alias cls=clear
 alias gissues="ghi list --mine -P --reverse --filter assigned"
 alias howdoi="howdoi -n 5 -c"
 # Stopwatch
-alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+alias timer="/usr/bin/time -p $@"
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 # IP addresses
@@ -157,6 +157,9 @@ export PATH=/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
+# PIPX
+export PATH=/Users/afox/.local/bin/:$PATH
+
 # simpler find
 f() { find . -iname "*$1*"; }
 
@@ -187,3 +190,6 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 autoload -U promptinit; promptinit
 prompt pure
 
+
+# added by pipx (https://github.com/pipxproject/pipx)
+export PATH="/Users/afox/.local/bin:$PATH"
