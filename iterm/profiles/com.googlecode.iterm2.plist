@@ -1053,6 +1053,14 @@
 	</dict>
 	<key>Default Bookmark Guid</key>
 	<string>FE392661-1745-4305-A7A9-8E367109C958</string>
+	<key>DimBackgroundWindows</key>
+	<false/>
+	<key>HideActivityIndicator</key>
+	<false/>
+	<key>HideScrollbar</key>
+	<true/>
+	<key>HideTab</key>
+	<true/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>LoadPrefsFromCustomFolder</key>
@@ -1125,9 +1133,9 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 126 606 469 0 0 2560 1440 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>1327 873 928 394 0 0 2560 1440 </string>
+	<string>1327 969 770 429 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1697 1440 0 0 2560 1440 </string>
+	<string>0 737 1277 703 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>233 131 945 527 0 0 1280 800 </string>
 	<key>New Bookmarks</key>
@@ -2663,8 +2671,18 @@
 	<date>2019-06-08T05:01:35Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>ShowNewOutputIndicator</key>
+	<true/>
+	<key>SmartPlacement</key>
+	<true/>
 	<key>TabStyle</key>
 	<integer>1</integer>
+	<key>TabStyleWithAutomaticOption</key>
+	<integer>0</integer>
+	<key>TabViewType</key>
+	<integer>0</integer>
+	<key>UseBorder</key>
+	<true/>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>findMode_iTerm</key>
