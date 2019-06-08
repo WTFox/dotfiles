@@ -7,34 +7,35 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'w0rp/ale'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-commentary'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi',
-Plug 'sbdchd/neoformat'
-Plug 'mxw/vim-jsx'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'pangloss/vim-javascript'
-Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
-Plug 'elzr/vim-json'
+Plug 'arcticicestudio/nord-vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'elzr/vim-json'
+Plug 'godlygeek/tabular'
+Plug 'jelera/vim-javascript-syntax'
 Plug 'jremmen/vim-ripgrep'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'jreybert/vimagit'
 Plug 'kshenoy/vim-signature'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'sbdchd/neoformat'
+Plug 'scrooloose/nerdtree'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-rhubarb'
+Plug 'w0rp/ale'
+Plug 'zchee/deoplete-jedi',
 
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'rakr/vim-one'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'joshdick/onedark.vim'
-Plug 'vim-airline/vim-airline'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'rakr/vim-one'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
 
 " Improved syntax highlighting
 Plug 'sheerun/vim-polyglot'
@@ -227,11 +228,16 @@ nmap <silent> <leader>j <Plug>(ale_next_wrap)
 " Looks
 set t_Co=256
 
-colorscheme palenight
+colorscheme nord
+let g:nord_cursor_line_number_background = 1
+let g:nord_uniform_status_lines = 1
+let g:nord_uniform_diff_background = 1
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
 
 " Dark Theme 2
-set background=dark
-let g:airline_theme = 'ayu_dark'
+" set background=dark
+" let g:airline_theme = 'minimalist'
 
 " Light Theme
 " set background=light

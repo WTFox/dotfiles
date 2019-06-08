@@ -131,7 +131,7 @@ alias vim="nvim"
 alias n.="nvim ."
 alias rm="trash"
 alias tldr="tldr -t ocean"
-
+alias tmux="TERM=xterm-256color tmux -2"
 alias df='df -H'
 alias du='du -ch'
 alias ducks='du -cksh * | sort -rh | head -11'
