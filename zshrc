@@ -84,7 +84,7 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshconfig="code ~/.zshrc"
 alias git=hub
 alias cls=clear
 alias gissues="ghi list --mine -P --reverse --filter assigned"
@@ -136,6 +136,7 @@ alias df='df -H'
 alias du='du -ch'
 alias ducks='du -cksh * | sort -rh | head -11'
 alias ls='exa -F --header --git'
+alias dc='docker-compose'
 
 # create directories and cd to the first one
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -193,3 +194,7 @@ prompt pure
 
 # added by pipx (https://github.com/pipxproject/pipx)
 export PATH="/Users/afox/.local/bin:$PATH"
+
+# Go
+export GOPATH=$HOME/dev/go
+export PATH=$PATH:$GOPATH/bin
