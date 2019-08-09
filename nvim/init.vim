@@ -36,6 +36,7 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'rakr/vim-one'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
+Plug 'ayu-theme/ayu-vim'
 
 " Improved syntax highlighting
 Plug 'sheerun/vim-polyglot'
@@ -228,7 +229,13 @@ nmap <silent> <leader>j <Plug>(ale_next_wrap)
 " Looks
 set t_Co=256
 
-colorscheme nord
+set termguicolors     " enable true colors support
+let ayucolor="light"  " for light version of theme
+let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
+
+" colorscheme nord
 " let g:nord_cursor_line_number_background = 1
 " let g:nord_uniform_status_lines = 1
 " let g:nord_uniform_diff_background = 1
