@@ -101,9 +101,6 @@ nnoremap gk k
 " More logical cut
 nnoremap Y y$
 
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-
 " map jj to esc
 imap jj <Esc>
 
