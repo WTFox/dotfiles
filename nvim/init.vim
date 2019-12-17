@@ -227,10 +227,7 @@ nmap <silent> <leader>j <Plug>(ale_next_wrap)
 set t_Co=256
 
 set termguicolors     " enable true colors support
-let ayucolor="light"  " for light version of theme
-let ayucolor="mirage" " for mirage version of theme
-let ayucolor="dark"   " for dark version of theme
-colorscheme ayu
+colorscheme palenight
 
 " colorscheme nord
 " let g:nord_cursor_line_number_background = 1
