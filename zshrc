@@ -137,6 +137,7 @@ alias du='du -ch'
 alias ducks='du -cksh * | sort -rh | head -11'
 alias ls='exa -F --header --git'
 alias dc='docker-compose'
+alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 
 # create directories and cd to the first one
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -174,9 +175,17 @@ function find_non_ascii() {
     ggrep --color='auto' -P -n "[^\x00-\x7F]" $1
 }
 
-if [ -e ~/.workrc.sh ]
+function run() {
+    number=$1
+    shift
+    for n in $(seq $number); do
+      $@
+    done
+}
+
+if [ -e ~/.workrc ]
 then
-    source ~/.workrc.sh
+    source ~/.workrc
 fi
 
 if [ -e ~/.myrc.sh ]
@@ -198,3 +207,7 @@ export PATH="/Users/afox/.local/bin:$PATH"
 # Go
 export GOPATH=$HOME/dev/go
 export PATH=$PATH:$GOPATH/bin
+
+export PYTHONBREAKPOINT=ipdb.set_trace
+
+archey
