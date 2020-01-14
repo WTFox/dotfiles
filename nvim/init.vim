@@ -2,8 +2,8 @@ set encoding=utf-8
 
 " Setup Python for Neovim
 " ---------------------------------------------------------
-let g:python_host_prog = '/usr/local/bin/python3'
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/usr/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
 
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -229,12 +229,12 @@ set t_Co=256
 set termguicolors     " enable true colors support
 colorscheme palenight
 
-" colorscheme nord
-" let g:nord_cursor_line_number_background = 1
-" let g:nord_uniform_status_lines = 1
-" let g:nord_uniform_diff_background = 1
-" let g:nord_italic = 1
-" let g:nord_italic_comments = 1
+"colorscheme nord
+"let g:nord_cursor_line_number_background = 1
+"let g:nord_uniform_status_lines = 1
+"let g:nord_uniform_diff_background = 1
+"let g:nord_italic = 1
+"let g:nord_italic_comments = 1
 
 " Dark Theme 2
 " set background=dark

@@ -2506,7 +2506,7 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>410 381 620 392 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>101 231 615 510 0 0 2560 1417 </string>
+	<string>32 104 804 464 0 0 2560 1440 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -2725,7 +2725,7 @@
 				<real>1</real>
 			</dict>
 			<key>BM Growl</key>
-			<true/>
+			<false/>
 			<key>Background Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -2757,7 +2757,9 @@
 			<key>Blinking Cursor</key>
 			<true/>
 			<key>Blur</key>
-			<false/>
+			<true/>
+			<key>Blur Radius</key>
+			<real>10.263527125634516</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -3632,7 +3634,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.079306789340101519</real>
+			<real>0.17330068210659899</real>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -5395,7 +5397,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>7ED7CE23-7AC4-4026-AD1D-B9977E12A999</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>85</integer>
+	<integer>123</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -6138,6 +6140,7 @@
 	</dict>
 	<key>NoSyncSearchHistory2</key>
 	<array>
+		<string>description</string>
 		<string>exclude</string>
 		<string>done</string>
 		<string>parasite</string>
@@ -6198,7 +6201,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-12-17T18:32:27Z</date>
+	<date>2020-01-13T15:50:12Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUSkippedVersion</key>
@@ -6222,7 +6225,7 @@
 	<key>TabStyle</key>
 	<integer>1</integer>
 	<key>TabStyleWithAutomaticOption</key>
-	<integer>6</integer>
+	<integer>5</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>TmuxUsesDedicatedProfile</key>
