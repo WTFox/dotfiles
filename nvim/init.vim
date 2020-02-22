@@ -59,7 +59,7 @@ set incsearch
 set ignorecase
 set smartcase
 
-set guifont=Dank\ Mono:s14
+set guifont=Cascadia\ Code:s14
 
 " Refresh file on focus
 set autoread
@@ -226,15 +226,15 @@ nmap <silent> <leader>j <Plug>(ale_next_wrap)
 " Looks
 set t_Co=256
 
-set termguicolors     " enable true colors support
-colorscheme palenight
+" set termguicolors     " enable true colors support
+" colorscheme palenight
 
-"colorscheme nord
-"let g:nord_cursor_line_number_background = 1
-"let g:nord_uniform_status_lines = 1
-"let g:nord_uniform_diff_background = 1
-"let g:nord_italic = 1
-"let g:nord_italic_comments = 1
+colorscheme nord
+let g:nord_cursor_line_number_background = 1
+let g:nord_uniform_status_lines = 1
+let g:nord_uniform_diff_background = 1
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
 
 " Dark Theme 2
 " set background=dark

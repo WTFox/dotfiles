@@ -53,7 +53,7 @@ COMPLETION_WAITING_DOTS="true"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Activate plugins
-plugins=(git git-extras tmux osx extract)
+plugins=(git git-extras tmux osx extract vscode brew ripgrep golang)
 # zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
@@ -125,6 +125,7 @@ alias gap="git add -p"
 alias now='date +"%T"'
 alias nowdate='date +"%Y-%m-%d"'
 alias gds="git diff --stat"
+alias gst="git status --short --branch"
 alias gpr="git pull-request -F ~/.git-commit-template.txt -e"
 alias bc="bc -l"
 alias vim="nvim"
@@ -171,7 +172,7 @@ function upsearch () {
 }
 
 function find_non_ascii() {
-    ggrep --color='auto' -P -n "[^\x00-\x7F]" $1
+    cat $1 | rg -Upoe "[^\x00-\x7F]"
 }
 
 function run() {
