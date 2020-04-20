@@ -53,7 +53,7 @@ COMPLETION_WAITING_DOTS="true"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Activate plugins
-plugins=(git git-extras tmux osx extract vscode brew ripgrep golang)
+plugins=(git git-extras tmux osx extract vscode brew ripgrep golang pipenv django)
 # zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
@@ -147,7 +147,7 @@ export WORKON_HOME=~/.envs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 # source /usr/local/bin/virtualenvwrapper.sh
 
-# pyenv 
+# pyenv
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
@@ -183,6 +183,10 @@ function run() {
     done
 }
 
+function b64decode() {
+    base64 -d -i <(echo "$1")
+}
+
 if [ -e ~/.workrc ]
 then
     source ~/.workrc
@@ -196,13 +200,11 @@ fi
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-# Pure
-autoload -U promptinit; promptinit
-prompt pure
-
+# added by Snowflake SnowSQL installer v1.0
+export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
 
 # added by pipx (https://github.com/pipxproject/pipx)
-export PATH="/Users/afox/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Go
 export GOPATH=$HOME/dev/go
@@ -212,5 +214,8 @@ export PYTHONBREAKPOINT=ipdb.set_trace
 
 eval "$(direnv hook zsh)"
 
+# Pure
+autoload -U promptinit; promptinit
+prompt pure
 
 archey
