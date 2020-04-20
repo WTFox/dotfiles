@@ -210,4 +210,7 @@ export PATH=$PATH:$GOPATH/bin
 
 export PYTHONBREAKPOINT=ipdb.set_trace
 
+eval "$(direnv hook zsh)"
+
+
 archey
