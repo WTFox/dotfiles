@@ -145,12 +145,12 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # virtualenvs
 export WORKON_HOME=~/.envs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-# source /usr/local/bin/virtualenvwrapper.sh
 
 # pyenv
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+eval "$(pyenv virtualenv-init -)"
+eval "$(direnv hook zsh)"
 
 # postgres
 export PATH=/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH
@@ -187,6 +187,10 @@ function b64decode() {
     base64 -d -i <(echo "$1")
 }
 
+function toggleOnCall() {
+  particle function call xmas-lights toggleOnCall
+}
+
 if [ -e ~/.workrc ]
 then
     source ~/.workrc
@@ -211,8 +215,6 @@ export GOPATH=$HOME/dev/go
 export PATH=$PATH:$GOPATH/bin
 
 export PYTHONBREAKPOINT=ipdb.set_trace
-
-eval "$(direnv hook zsh)"
 
 # Pure
 autoload -U promptinit; promptinit
