@@ -188,7 +188,7 @@ function b64decode() {
 }
 
 function toggleOnCall() {
-  particle function call xmas-lights toggleOnCall
+  particle function call p1 toggleOnCall
 }
 
 if [ -e ~/.workrc ]
