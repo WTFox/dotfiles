@@ -227,7 +227,9 @@ nmap <silent> <leader>j <Plug>(ale_next_wrap)
 set t_Co=256
 
 set termguicolors     " enable true colors support
-colorscheme palenight
+let ayucolor="mirage"
+colorscheme ayu
+
 
 " colorscheme nord
 " let g:nord_cursor_line_number_background = 1
