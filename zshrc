@@ -207,7 +207,7 @@ export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
 export PATH="$HOME/.local/bin:$PATH"
 
 # Go
-export GOPATH=$HOME/dev/go
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 export PYTHONBREAKPOINT=ipdb.set_trace
