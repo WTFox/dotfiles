@@ -139,6 +139,7 @@ alias ls='exa -F --header --git'
 alias dc='docker-compose'
 alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 alias s3ls='aws s3 ls --summarize --human-readable'
+alias gti='(scream &); git'
 
 # create directories and cd to the first one
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -190,6 +191,10 @@ function b64decode() {
 
 function toggleOnCall() {
   particle function call p1 toggleOnCall
+}
+
+function scream() {
+    afplay -v 1.5 ~/dotfiles/audio/goat-scream.mp3
 }
 
 if [ -e ~/.workrc ]
