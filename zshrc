@@ -138,6 +138,7 @@ alias ducks='du -cksh * | sort -rh | head -11'
 alias ls='exa -F --header --git'
 alias dc='docker-compose'
 alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
+alias s3ls='aws s3 ls --summarize --human-readable'
 
 # create directories and cd to the first one
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -207,12 +208,9 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # added by Snowflake SnowSQL installer v1.0
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
 
-# added by pipx (https://github.com/pipxproject/pipx)
-export PATH="$HOME/.local/bin:$PATH"
-
 # Go
 export GOPATH=$HOME/dev/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin:/Users/anthonyfox/.dotnet/tools
 
 export PYTHONBREAKPOINT=ipdb.set_trace
 
