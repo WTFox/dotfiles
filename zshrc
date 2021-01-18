@@ -140,6 +140,7 @@ alias dc='docker-compose'
 alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 alias s3ls='aws s3 ls --summarize --human-readable'
 alias gti='(scream &); git'
+alias ubuntu="docker run -it -w '/entrypoint/' -v $(pwd):/entrypoint ubuntu:latest"
 
 # create directories and cd to the first one
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
