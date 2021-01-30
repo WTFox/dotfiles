@@ -163,7 +163,7 @@ export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
 # PIPX
-export PATH=/Users/afox/.local/bin/:$PATH
+export PATH=$HOME/.local/bin/:$PATH
 
 # simpler find
 f() { find . -iname "*$1*"; }
