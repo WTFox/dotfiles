@@ -138,6 +138,9 @@ alias ducks='du -cksh * | sort -rh | head -11'
 alias ls='exa -F --header --git'
 alias dc='docker-compose'
 alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
+alias s3ls='aws s3 ls --summarize --human-readable'
+alias gti='(scream &); git'
+alias ubuntu="docker run -it -w '/entrypoint/' -v $(pwd):/entrypoint ubuntu:latest"
 
 # create directories and cd to the first one
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -191,6 +194,10 @@ function toggleOnCall() {
   particle function call p1 toggleOnCall
 }
 
+function scream() {
+    afplay -v 1.5 ~/dotfiles/audio/goat-scream.mp3
+}
+
 if [ -e ~/.workrc ]
 then
     source ~/.workrc
@@ -207,12 +214,9 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # added by Snowflake SnowSQL installer v1.0
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
 
-# added by pipx (https://github.com/pipxproject/pipx)
-export PATH="$HOME/.local/bin:$PATH"
-
 # Go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export GOPATH=$HOME/dev/go
+export PATH=$PATH:$GOPATH/bin:$HOME/.dotnet/tools
 
 export PYTHONBREAKPOINT=ipdb.set_trace
 
