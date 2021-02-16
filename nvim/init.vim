@@ -43,7 +43,7 @@ Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
-let mapleader="\<SPACE>"
+let mapleader="\<Space>"
 set showmatch           " Show matching brackets.
 set number              " Show the line numbers on the left side.
 set formatoptions+=o    " Continue comment marker in new lines.
@@ -59,14 +59,14 @@ set incsearch
 set ignorecase
 set smartcase
 
-set guifont=Cascadia\ Code:s14
+set guifont=MonoLisa:s16
 
 " Refresh file on focus
 set autoread
 au FocusGained * :checktime
 
 " Prevents inserting two spaces after punctuation on a join (J)
-set nojoinspaces        
+set nojoinspaces
 
 " More natural splits
 set splitbelow          " Horizontal split below current.
@@ -89,9 +89,6 @@ set smartcase           " ... unless the query has capital letters.
 " set gdefault            " Use 'g' flag by default with :s/foo/bar/.
 set magic               " Use 'magic' patterns (extended regular expressions).
 
-" Use ; for commands instead of :
-nnoremap ; :
-
 " move by row, not by line (with reverse mappings)
 nnoremap j gj
 nnoremap k gk
@@ -103,6 +100,7 @@ nnoremap Y y$
 
 " map jj to esc
 imap jj <Esc>
+imap jk <Esc>
 
 " Easier moving of code blocks
 vnoremap < <gv  " better indentation
@@ -125,6 +123,7 @@ nnoremap Q @q
 
 " Clear highlighting
 nnoremap <silent> c/ :nohlsearch<CR>
+vnoremap <silent> c/ <Esc>
 
 " Search and Replace
 nmap <Leader>s :%s//g<Left><Left>
@@ -154,7 +153,7 @@ nnoremap <silent> <leader>q :bp<CR>
 nnoremap <silent> <leader>e :bn<CR>
 nnoremap <silent> <leader>x :bd<CR>
 
-" Close all buffers 
+" Close all buffers
 nnoremap <silent> <leader>bd :%bd<CR>
 
 " CtrlP Custom ignore
