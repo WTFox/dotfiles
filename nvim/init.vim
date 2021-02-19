@@ -148,6 +148,8 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+imap <c-h> <Nop>
+
 " buffer previous/next shortcuts
 nnoremap <silent> <leader>q :bp<CR>
 nnoremap <silent> <leader>e :bn<CR>
