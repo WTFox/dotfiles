@@ -2,8 +2,8 @@ set encoding=utf-8
 
 " Setup Python for Neovim
 " ---------------------------------------------------------
-let g:python_host_prog = '/usr/bin/python3'
-let g:python3_host_prog = '/usr/bin/python3'
+let g:python_host_prog = '/Users/anthonyfox/.pyenv/shims/python3'
+let g:python3_host_prog = '/Users/anthonyfox/.pyenv/shims/python3'
 
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -29,6 +29,7 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-rhubarb'
 Plug 'w0rp/ale'
 Plug 'zchee/deoplete-jedi',
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'joshdick/onedark.vim'
@@ -269,3 +270,28 @@ hi Comment cterm=italic
 hi Type    cterm=italic
 
 abbr breakpoint import ipdb; ipdb.set_trace(context=10)<esc>0
+
+"Golang
+au FileType go set noexpandtab
+au FileType go set shiftwidth=4
+au FileType go set softtabstop=4
+au FileType go set tabstop=4
+
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+
+let g:go_auto_sameids = 1
+
+let g:go_fmt_command = "goimports"
+
+" Error and warning signs.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+
+let g:airline#extensions#ale#enabled = 1
