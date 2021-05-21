@@ -30,6 +30,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'w0rp/ale'
 Plug 'zchee/deoplete-jedi',
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
 
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'joshdick/onedark.vim'
@@ -95,6 +97,9 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
+
+" semicolon as command
+" nnoremap ; :
 
 " More logical cut
 nnoremap Y y$
