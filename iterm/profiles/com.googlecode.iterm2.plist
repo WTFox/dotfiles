@@ -3194,9 +3194,9 @@
 			<key>Blinking Cursor</key>
 			<true/>
 			<key>Blur</key>
-			<false/>
+			<true/>
 			<key>Blur Radius</key>
-			<real>30</real>
+			<real>12.614679171954315</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -4034,7 +4034,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.81382257296954319</real>
+			<real>0.83980607550761421</real>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
