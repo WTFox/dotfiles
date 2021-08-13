@@ -193,12 +193,25 @@ function toggleOnCall() {
   particle function call p1 toggleOnCall
 }
 
+function micLightsOn() {
+  particle function call p2 digitalWrite D3=HIGH
+}
+
+function micLightsOff() {
+  particle function call p2 digitalWrite D3=LOW
+}
+
 function scream() {
     afplay -v 1.5 ~/dotfiles/audio/goat-scream.mp3
 }
 
 function ubuntu(){
   docker run -it -w '/entrypoint/' -v "$(pwd)":/entrypoint ubuntu:latest
+}
+
+function restartCameraProcess() {
+    sudo killall VDCAssistant
+    sudo killall AppleCameraAssistant
 }
 
 if [ -e ~/.workrc ]
@@ -222,6 +235,7 @@ export GOPATH=$HOME/dev/go
 export PATH=$PATH:$GOPATH/bin:$HOME/.dotnet/tools
 
 export PYTHONBREAKPOINT=ipdb.set_trace
+export PATH=$HOME/bin:$PATH
 
 # Pure
 autoload -U promptinit; promptinit

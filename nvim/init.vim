@@ -7,48 +7,47 @@ let g:python3_host_prog = '/Users/anthonyfox/.pyenv/shims/python3'
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'airblade/vim-gitgutter'
 Plug 'arcticicestudio/nord-vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'godlygeek/tabular'
 Plug 'jelera/vim-javascript-syntax'
+Plug 'joshdick/onedark.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'jreybert/vimagit'
 Plug 'kshenoy/vim-signature'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
+Plug 'rakr/vim-one'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-rhubarb'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'zchee/deoplete-jedi',
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'camspiers/animate.vim'
-Plug 'camspiers/lens.vim'
-
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'joshdick/onedark.vim'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'rakr/vim-one'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-airline/vim-airline'
-Plug 'ayu-theme/ayu-vim'
-
-" Improved syntax highlighting
-Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
 let mapleader="\<Space>"
 set showmatch           " Show matching brackets.
-set number              " Show the line numbers on the left side.
+" set number              " Show the line numbers on the left side.
+set number relativenumber
 set formatoptions+=o    " Continue comment marker in new lines.
 set expandtab           " Insert spaces when TAB is pressed.
 set tabstop=4           " Render TABs using this many spaces.
@@ -234,8 +233,8 @@ nmap <silent> <leader>j <Plug>(ale_next_wrap)
 set t_Co=256
 
 set termguicolors     " enable true colors support
-let ayucolor="mirage"
-colorscheme ayu
+" let ayucolor="mirage"
+colorscheme dracula
 
 
 " colorscheme nord
