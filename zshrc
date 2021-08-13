@@ -241,4 +241,4 @@ export PATH=$HOME/bin:$PATH
 autoload -U promptinit; promptinit
 prompt pure
 
-archey
+archey -o
