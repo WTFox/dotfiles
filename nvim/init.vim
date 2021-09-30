@@ -153,6 +153,8 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+map <c-l> zt 5k 5j
+
 imap <c-h> <Nop>
 
 " buffer previous/next shortcuts
@@ -233,8 +235,8 @@ nmap <silent> <leader>j <Plug>(ale_next_wrap)
 set t_Co=256
 
 set termguicolors     " enable true colors support
-" let ayucolor="mirage"
-colorscheme dracula
+let ayucolor="mirage"
+colorscheme ayu
 
 
 " colorscheme nord
