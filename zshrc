@@ -1,5 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/bin:/usr/local/sbin:~/bin:$PATH
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
@@ -53,7 +51,7 @@ COMPLETION_WAITING_DOTS="true"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Activate plugins
-plugins=(git git-extras tmux osx extract vscode brew ripgrep golang pipenv django)
+plugins=(git git-extras tmux osx extract vscode brew ripgrep golang pipenv)
 # zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
