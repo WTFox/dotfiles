@@ -212,6 +212,23 @@ function restartCameraProcess() {
     sudo killall AppleCameraAssistant
 }
 
+function start_screen_share() {
+    nohup vlc \
+    --no-video-deco \
+    --no-embedded-video \
+    --screen-fps=20 \
+    --screen-top=25 \
+    --screen-left=574 \
+    --screen-width=2300 \
+    --screen-height=1415 \
+    screen:// \
+    &
+}
+
+function stop_screen_share() {
+    killall VLC
+}
+
 if [ -e ~/.workrc ]
 then
     source ~/.workrc
