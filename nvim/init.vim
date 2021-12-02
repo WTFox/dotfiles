@@ -8,12 +8,9 @@ let g:python3_host_prog = '/Users/anthonyfox/.pyenv/shims/python3'
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'airblade/vim-gitgutter'
 Plug 'arcticicestudio/nord-vim'
 Plug 'ayu-theme/ayu-vim'
-Plug 'camspiers/animate.vim'
-Plug 'camspiers/lens.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'drewtempelmeyer/palenight.vim'
@@ -40,7 +37,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
-Plug 'zchee/deoplete-jedi',
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -153,8 +150,6 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-map <c-l> zt 5k 5j
-
 imap <c-h> <Nop>
 
 " buffer previous/next shortcuts
@@ -205,9 +200,6 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-
-" Use deoplete for autocompletion
-let g:deoplete#enable_at_startup = 1
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*','scp://.*']
 
@@ -301,3 +293,7 @@ let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
 
 let g:airline#extensions#ale#enabled = 1
+
+if filereadable(expand('~/.config/nvim/coc.vim'))
+    so ~/.config/nvim/coc.vim
+endif
