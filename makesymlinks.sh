@@ -7,10 +7,10 @@
 ########## Variables
 
 # dotfiles directory
-dir=~/dotfiles                    
+dir=~/dotfiles
 
-# old dotfiles backup directory    
-olddir=~/dotfiles_old             
+# old dotfiles backup directory
+olddir=~/dotfiles_old
 
 # list of files/folders to symlink in homedir
 files="bashrc zshrc psqlrc gitaliases gitignore gitconfig tmux.conf tmux.conf.local omnisharp git-commit-template.txt"
@@ -24,7 +24,7 @@ echo "...done"
 
 # change to the dotfiles directory
 echo "Changing to the $dir directory"
-cd $dir
+cd $dir || exit
 echo "...done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
@@ -42,6 +42,7 @@ ln -s ~/dotfiles/omnisharp.json ~/.omnisharp/omnisharp.json
 # nvim
 mkdir -p ~/.config/nvim/
 ln -s $dir/nvim/init.vim ~/.config/nvim/init.vim
+ln -s $dir/nvim/coc.vim ~/.config/nvim/coc.vim
 
 # pgcli
 mkdir -p ~/.config/pgcli/
