@@ -11,6 +11,7 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'airblade/vim-gitgutter'
 Plug 'arcticicestudio/nord-vim'
 Plug 'ayu-theme/ayu-vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'drewtempelmeyer/palenight.vim'
@@ -230,6 +231,10 @@ set termguicolors     " enable true colors support
 let ayucolor="mirage"
 colorscheme ayu
 
+" colorscheme palenight
+
+" colorscheme tokyonight
+" let tokyonight_style="storm"
 
 " colorscheme nord
 " let g:nord_cursor_line_number_background = 1
