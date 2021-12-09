@@ -252,8 +252,12 @@ export PATH=$PATH:$GOPATH/bin:$HOME/.dotnet/tools
 export PYTHONBREAKPOINT=ipdb.set_trace
 export PATH=$HOME/bin:$PATH
 
+# Starship.rs
+# eval "$(starship init zsh)"
+
 # Pure
 autoload -U promptinit; promptinit
 prompt pure
 
 archey -o
+
