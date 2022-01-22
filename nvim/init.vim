@@ -229,14 +229,13 @@ set t_Co=256
 
 set termguicolors     " enable true colors support
 let ayucolor="mirage"
-colorscheme ayu
+let tokyonight_style="storm"
 
-" colorscheme palenight
-
+" colorscheme ayu
+colorscheme palenight
 " colorscheme tokyonight
-" let tokyonight_style="storm"
-
 " colorscheme nord
+
 " let g:nord_cursor_line_number_background = 1
 " let g:nord_uniform_status_lines = 1
 " let g:nord_uniform_diff_background = 1
