@@ -231,8 +231,8 @@ set termguicolors     " enable true colors support
 let ayucolor="mirage"
 let tokyonight_style="storm"
 
-" colorscheme ayu
-colorscheme palenight
+colorscheme ayu
+" colorscheme palenight
 " colorscheme tokyonight
 " colorscheme nord
 
