@@ -51,7 +51,7 @@ COMPLETION_WAITING_DOTS="true"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Activate plugins
-plugins=(git git-extras tmux macos extract vscode brew ripgrep golang pipenv nvm)
+plugins=(git git-extras tmux macos extract vscode brew ripgrep golang pipenv)
 # zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
@@ -218,12 +218,14 @@ function start_screen_share() {
     --no-embedded-video \
     --screen-fps=20 \
     --screen-top=25 \
-    --screen-left=574 \
+    --screen-left=1140 \
     --screen-width=2300 \
     --screen-height=1415 \
     screen:// \
     &
 }
+
+# --screen-left=574 \ # for middle-third
 
 function stop_screen_share() {
     killall VLC
@@ -258,27 +260,6 @@ export PATH=$HOME/bin:$PATH
 # Pure
 autoload -U promptinit; promptinit
 prompt pure
-
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
 
 archey -o
 
