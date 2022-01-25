@@ -3072,7 +3072,7 @@
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>1320 744 799 448 0 0 3440 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 729 1138 711 0 0 3440 1440 </string>
+	<string>172 90 3094 1278 0 0 3440 1440 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -6146,13 +6146,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.93321198225021362</real>
+				<real>0.45098039507865906</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.93339759111404419</real>
+				<real>0.40392157435417175</real>
 				<key>Red Component</key>
-				<real>0.93324452638626099</real>
+				<real>0.36078432202339172</real>
 			</dict>
 			<key>Character Encoding</key>
 			<integer>4</integer>
@@ -6167,7 +6167,7 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.0</real>
+				<real>0.40000000596046448</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
@@ -6193,13 +6193,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.24313725531101227</real>
+				<real>0.29803922772407532</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.17647059261798859</real>
+				<real>0.24313725531101227</real>
 				<key>Red Component</key>
-				<real>0.16078431904315948</real>
+				<real>0.21568627655506134</real>
 			</dict>
 			<key>Cursor Type</key>
 			<integer>1</integer>
@@ -7043,7 +7043,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>97804E4E-A588-442B-B01A-1E8973556442</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>193</integer>
+	<integer>194</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
