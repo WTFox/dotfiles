@@ -1,3 +1,4 @@
+
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
@@ -51,8 +52,7 @@ COMPLETION_WAITING_DOTS="true"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Activate plugins
-plugins=(git git-extras tmux macos extract vscode brew ripgrep golang pipenv)
-# zsh-completions)
+plugins=(git git-extras tmux macos extract vscode brew ripgrep golang pipenv zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -262,4 +262,3 @@ autoload -U promptinit; promptinit
 prompt pure
 
 archey -o
-
