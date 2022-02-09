@@ -47,3 +47,7 @@ ln -s $dir/nvim/coc.vim ~/.config/nvim/coc.vim
 # pgcli
 mkdir -p ~/.config/pgcli/
 ln -s $dir/pgcli/config ~/.config/pgcli/config
+
+# karabiner elements
+mkdir -p ~/.config/karabiner/
+ln -sf $dir/karabiner.json ~/.config/karabiner/karabiner.json
