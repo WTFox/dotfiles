@@ -133,7 +133,7 @@ alias tmux="TERM=xterm-256color tmux -2"
 alias df='df -H'
 alias du='du -ch'
 alias ducks='du -cksh * | sort -rh | head -11'
-alias ls='exa -F --header --git'
+alias ls='exa -F --header --git --icons'
 alias dc='docker-compose'
 alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 alias s3ls='aws s3 ls --summarize --human-readable'
