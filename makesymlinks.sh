@@ -40,9 +40,7 @@ echo "Creating link to Omnisharp for C# linting"
 ln -s ~/dotfiles/omnisharp.json ~/.omnisharp/omnisharp.json
 
 # nvim
-mkdir -p ~/.config/nvim/
-ln -s $dir/nvim/init.vim ~/.config/nvim/init.vim
-ln -s $dir/nvim/coc.vim ~/.config/nvim/coc.vim
+ln -s $dir/nvim/ ~/.config/
 
 # pgcli
 mkdir -p ~/.config/pgcli/

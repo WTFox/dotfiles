@@ -6,3 +6,5 @@ backup/*
 .vscode/
 .DS_Store
 tags*
+nvim/plugged/
+nvim/autoload/
