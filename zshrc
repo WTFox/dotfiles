@@ -261,8 +261,6 @@ export PATH=$PATH:$GOPATH/bin:$HOME/.dotnet/tools
 export PYTHONBREAKPOINT=ipdb.set_trace
 export PATH=$HOME/bin:$PATH
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/p10k.zsh.
 [[ ! -f ~/dotfiles/p10k.zsh ]] || source ~/dotfiles/p10k.zsh
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
