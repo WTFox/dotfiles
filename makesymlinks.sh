@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bin/bash
 ############################
 # .make.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
@@ -41,6 +41,9 @@ ln -s ~/dotfiles/omnisharp.json ~/.omnisharp/omnisharp.json
 
 # nvim
 ln -s $dir/nvim/ ~/.config/
+
+# hammerspoon
+ln -s $dir/hammerspoon ~/.hammerspoon
 
 # pgcli
 mkdir -p ~/.config/pgcli/
