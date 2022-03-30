@@ -9,7 +9,7 @@ local function open_app(name)
 end
 
 --- quick open applications
-hs.hotkey.bind('rightctrl', "Z", open_app("Visual Studio Code"))
-hs.hotkey.bind('rightctrl', "X", open_app("iTerm"))
-hs.hotkey.bind('rightctrl', "C", open_app("Brave Browser"))
-hs.hotkey.bind('rightctrl', "M", open_app("Google Meet"))
+hs.hotkey.bind({'alt', 'shift'}, "Z", open_app("Visual Studio Code"))
+hs.hotkey.bind({'alt', 'shift'}, "X", open_app("iTerm"))
+hs.hotkey.bind({'alt', 'shift'}, "C", open_app("Brave Browser"))
+hs.hotkey.bind({'alt', 'shift'}, "M", open_app("Google Meet"))
