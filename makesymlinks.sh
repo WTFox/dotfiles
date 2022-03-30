@@ -43,12 +43,12 @@ ln -s ~/dotfiles/omnisharp.json ~/.omnisharp/omnisharp.json
 ln -s $dir/nvim/ ~/.config/
 
 # hammerspoon
-ln -s $dir/hammerspoon ~/.hammerspoon
+mkdir ~/.hammerspoon/
+ln -s $dir/hammerspoon/init.lua ~/.hammerspoon/
 
 # pgcli
 mkdir -p ~/.config/pgcli/
 ln -s $dir/pgcli/config ~/.config/pgcli/config
 
 # karabiner elements
-mkdir -p ~/.config/karabiner/
-ln -sf $dir/karabiner.json ~/.config/karabiner/karabiner.json
+ln -s $dir/karabiner/ ~/.config/
