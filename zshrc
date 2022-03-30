@@ -238,6 +238,10 @@ function stop_screen_share() {
     killall VLC
 }
 
+function howto() {
+  cht.sh $@ | bat --paging 'always'
+}
+
 if [ -e ~/.workrc ]
 then
     source ~/.workrc
