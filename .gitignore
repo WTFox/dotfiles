@@ -8,3 +8,4 @@ backup/*
 tags*
 nvim/plugged/
 nvim/autoload/
+.cache/
