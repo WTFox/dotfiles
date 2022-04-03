@@ -89,7 +89,7 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="code ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
 alias git=hub
 alias cls=clear
 alias gissues="ghi list --mine -P --reverse --filter assigned"
