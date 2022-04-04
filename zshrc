@@ -133,8 +133,6 @@ alias gds="git diff --stat"
 alias gst="git status --short --branch"
 alias gpr="git pull-request -F ~/.git-commit-template.txt -e"
 alias bc="bc -l"
-alias vim="nvim"
-alias n.="nvim ."
 alias rm="trash"
 alias tmux="TERM=xterm-256color tmux -2"
 alias df='df -H'
@@ -145,6 +143,8 @@ alias dc='docker-compose'
 alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 alias s3ls='aws s3 ls --summarize --human-readable'
 alias gti='(scream &); git'
+alias vim="lvim"
+alias n.="lvim ."
 
 # create directories and cd to the first one
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -240,6 +240,10 @@ function stop_screen_share() {
 
 function howto() {
   cht.sh $@ | bat --paging 'always'
+}
+
+function install_lvim() {
+  bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 }
 
 if [ -e ~/.workrc ]
