@@ -6,22 +6,19 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
 vim.opt.guifont = "MonoLisa"
 
 -- general
+lvim.leader = "space"
+lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "catppuccin"
 lvim.transparent_window = true
-
--- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader = "space"
--- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
@@ -53,16 +50,26 @@ lvim.builtin.which_key.mappings["t"] = {
   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
 }
 
--- TODO: User Config for predefined plugins
+-- User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.alpha.active = true
-lvim.builtin.alpha.mode = "dashboard"
+
+-- general plugins
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
+
+-- dashboard (alpha)
+lvim.builtin.alpha.active = true
+lvim.builtin.alpha.mode = "dashboard"
+
+-- file explorer
+lvim.builtin.nvimtree.setup.view.side = "right"
+lvim.builtin.nvimtree.git_hl = true
 lvim.builtin.nvimtree.show_icons.git = 1
 
--- if you don't want all the parsers change this to a table of the ones you want
+-- syntax highlighting
+-- provided by treesitter
+lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
@@ -79,21 +86,14 @@ lvim.builtin.treesitter.ensure_installed = {
   "yaml",
 }
 
-lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
-
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "black", filetypes = { "python" } },
   { command = "isort", filetypes = { "python" } },
   {
-    -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "prettier",
-    ---@usage arguments to pass to the formatter
-    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
     extra_args = { "--print-with", "100" },
-    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
     filetypes = { "typescript", "typescriptreact" },
   },
 }
@@ -103,15 +103,11 @@ local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   { command = "flake8", filetypes = { "python" } },
   {
-    -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "shellcheck",
-    ---@usage arguments to pass to the formatter
-    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
     extra_args = { "--severity", "warning" },
   },
   {
     command = "codespell",
-    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
     filetypes = { "javascript", "python" },
   },
 }
@@ -119,8 +115,11 @@ linters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
+    -- themes
     {"folke/tokyonight.nvim"},
     {"catppuccin/nvim"},
+
+    -- plugins
     {
       "folke/trouble.nvim",
       cmd = "TroubleToggle",
