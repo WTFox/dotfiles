@@ -10,11 +10,13 @@ an executable
 
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
+vim.opt.guifont = "MonoLisa"
 
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "catppuccin"
+lvim.transparent_window = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -113,6 +115,7 @@ linters.setup {
     filetypes = { "javascript", "python" },
   },
 }
+
 
 -- Additional Plugins
 lvim.plugins = {
