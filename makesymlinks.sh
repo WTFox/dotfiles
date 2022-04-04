@@ -13,7 +13,7 @@ dir=~/dotfiles
 olddir=~/dotfiles_old
 
 # list of files/folders to symlink in homedir
-files="bashrc zshrc p10k.zsh psqlrc gitaliases gitignore gitconfig tmux.conf tmux.conf.local omnisharp git-commit-template.txt vscode.vim"
+files="bashrc zshrc p10k.zsh psqlrc gitaliases gitignore gitconfig tmux.conf tmux.conf.local vscode.vim"
 
 ##########
 
@@ -35,12 +35,9 @@ for file in $files; do
     ln -sf $dir/$file ~/.$file
 done
 
-# copy over omnisharp
-echo "Creating link to Omnisharp for C# linting"
-ln -s ~/dotfiles/omnisharp.json ~/.omnisharp/omnisharp.json
-
-# nvim
-ln -s $dir/nvim/ ~/.config/
+# lvim
+mkdir -p ~/.config/lvim/
+ln -s $dir/lvim-config.lua ~/.config/lvim/config.lua
 
 # hammerspoon
 mkdir ~/.hammerspoon/
