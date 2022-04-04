@@ -1,4 +1,5 @@
-# Push changes up to GH
+#! /bin/bash
+
 if [[ $(git status -s) ]] 
 then
     echo "Pushing new changes up"

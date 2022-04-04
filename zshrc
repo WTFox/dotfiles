@@ -74,7 +74,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
 else
-  export EDITOR='nvim'
+  export EDITOR='lvim'
 fi
 
 # Compilation flags
