@@ -59,7 +59,7 @@ COMPLETION_WAITING_DOTS="true"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Activate plugins
-plugins=(git git-extras tmux macos extract vscode brew ripgrep golang pipenv zsh-autosuggestions)
+plugins=(git git-extras tmux macos extract vscode brew ripgrep golang pipenv zsh-autosuggestions fzf)
 
 source $ZSH/oh-my-zsh.sh
 
