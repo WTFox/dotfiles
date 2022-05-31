@@ -1,0 +1,23 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$golang\
+$command_duration\
+$line_break\
+$status\
+$shell\
+$character"""
+
+[git_branch]
+format = "[$branch]($style) "
+truncation_length = 14
+truncation_symbol = "…"
+
+[directory]
+truncation_length = 8
+truncation_symbol = "…/"
+truncate_to_repo = false

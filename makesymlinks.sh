@@ -23,6 +23,8 @@ for file in $files; do
     ln -sf $dir/$file ~/.$file
 done
 
+ln -sf $dir/starship.toml ~/.config/
+
 # lvim
 mkdir -p ~/.config/lvim/
 ln -s $dir/lvim-config.lua ~/.config/lvim/config.lua

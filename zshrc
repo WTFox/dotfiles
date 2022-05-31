@@ -1,48 +1,9 @@
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-
-# Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME=""
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.  # HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
+ZSH_THEME="robbyrussell"
 DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -51,17 +12,10 @@ COMPLETION_WAITING_DOTS="true"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Activate plugins
-plugins=(git git-extras tmux macos extract vscode brew ripgrep golang pipenv zsh-autosuggestions fzf)
-
+plugins=(git git-extras tmux macos extract vscode brew golang pipenv zsh-autosuggestions fzf)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
@@ -69,18 +23,7 @@ else
   export EDITOR='lvim'
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
+# Aliases
 alias zshconfig="vim ~/.zshrc"
 alias git=hub
 alias cls=clear
@@ -137,6 +80,7 @@ alias s3ls='aws s3 ls --summarize --human-readable'
 alias gti='(scream &); git'
 alias vim="lvim"
 alias n.="lvim ."
+alias loadnvm=". /usr/local/opt/nvm/nvm.sh"
 
 # create directories and cd to the first one
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -156,7 +100,6 @@ export PATH=/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH
 
 #NVM
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
 
 # PIPX
 export PATH=$HOME/.local/bin/:$PATH
@@ -164,26 +107,8 @@ export PATH=$HOME/.local/bin/:$PATH
 # simpler find
 f() { find . -iname "*$1*"; }
 
-# search up for a file
-function upsearch () {
-    found=$(test / == "$PWD" && return || test -e "$1" && echo "$PWD" && return || cd .. && upsearch "$1")
-    echo $found
-}
-
 function find_non_ascii() {
     cat $1 | rg -Upoe "[^\x00-\x7F]"
-}
-
-function run() {
-    number=$1
-    shift
-    for n in $(seq $number); do
-      $@
-    done
-}
-
-function b64decode() {
-    base64 -d -i <(echo "$1")
 }
 
 function toggleOnCall() {
@@ -198,17 +123,8 @@ function micLightsOff() {
   particle function call p2 digitalWrite D3=LOW
 }
 
-function scream() {
-    afplay -v 1.5 ~/dotfiles/audio/goat-scream.mp3
-}
-
 function ubuntu(){
   docker run -it -w '/entrypoint/' -v "$(pwd)":/entrypoint ubuntu:latest
-}
-
-function restartCameraProcess() {
-    sudo killall VDCAssistant
-    sudo killall AppleCameraAssistant
 }
 
 function start_screen_share() {
@@ -224,14 +140,8 @@ function start_screen_share() {
     &
 }
 
-# --screen-left=574 \ # for middle-third
-
 function stop_screen_share() {
     killall VLC
-}
-
-function howto() {
-  cht.sh $@ | bat --paging 'always'
 }
 
 function install_lvim() {
@@ -241,15 +151,8 @@ function install_lvim() {
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-# added by Snowflake SnowSQL installer v1.0
-export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
-
-# Go
 export GOPATH=$HOME/dev/go
-export PATH=$PATH:$GOPATH/bin:$HOME/.dotnet/tools
-
 export PYTHONBREAKPOINT=ipdb.set_trace
-export PATH=$HOME/bin:$PATH
 
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
@@ -259,6 +162,8 @@ export PATH=$HOME/bin:$PATH
 export FZF_DEFAULT_OPTS='--color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export PATH=$PATH:$GOPATH/bin:$HOME/.dotnet/tools
+export PATH=$HOME/bin:$PATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 if [ -e ~/.workrc ]
@@ -271,6 +176,4 @@ then
     source ~/.myrc.sh
 fi
 
-# pure
-autoload -U promptinit; promptinit
-prompt pure
+eval "$(starship init zsh)"
