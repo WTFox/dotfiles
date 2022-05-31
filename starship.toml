@@ -15,9 +15,19 @@ $character"""
 [git_branch]
 format = "[$branch]($style) "
 truncation_length = 14
-truncation_symbol = "…"
+truncation_symbol = "..."
+style = 'purple'
 
 [directory]
 truncation_length = 8
-truncation_symbol = "…/"
+truncation_symbol = ".../"
 truncate_to_repo = false
+style = 'cyan'
+
+[python]
+format = '[\(python $version\)]($style)'
+style = 'dimmed'
+
+[golang]
+format = '[\(go $version\)]($style)'
+style = 'dimmed'
