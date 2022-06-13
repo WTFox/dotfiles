@@ -10,15 +10,20 @@ an executable
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
 vim.opt.guifont = "MonoLisa"
+vim.opt.linebreak = true
 
 -- general
 lvim.leader = "space"
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "catppuccin"
 lvim.transparent_window = true
+
+lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["j"] = "gj"
+lvim.keys.normal_mode["k"] = "gk"
+lvim.keys.normal_mode["gj"] = "j"
+lvim.keys.normal_mode["gk"] = "k"
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
