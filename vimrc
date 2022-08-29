@@ -40,4 +40,4 @@ vnoremap > >gv  " better indentation
 nnoremap <silent> <leader>h :nohlsearch<CR>
 nnoremap <silent> L :bn<CR>
 nnoremap <silent> H :bp<CR>
-nnoremap <silent> <leader>bd :%bd<CR>
+nnoremap <silent> <leader>c :bd<CR>
