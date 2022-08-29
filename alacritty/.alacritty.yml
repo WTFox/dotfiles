@@ -330,6 +330,13 @@ color_schemes:
 
 colors: *macchiato
 
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
+
 font:
   normal:
     family: "FiraCode Nerd Font"
@@ -344,6 +351,12 @@ window:
 
 cursor:
   style: Block
+
+selection:
+  # This string contains all characters that are used as separators for
+  # "semantic words" in Alacritty.
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: true
 
 key_bindings:
   - { key: V,         mods: Control|Shift, action: Paste                       }
@@ -362,5 +375,6 @@ key_bindings:
   - { key: PageDown,  mods: None,          action: ScrollPageDown, mode: ~Alt  }
   - { key: Home,      mods: Shift,         action: ScrollToTop,    mode: ~Alt  }
   - { key: End,       mods: Shift,         action: ScrollToBottom, mode: ~Alt  }
-
+  - { key: F,         mods: Alt,           chars: "\x1bf"                       }
+  - { key: B,         mods: Alt,           chars: "\x1bb"                       }
 
