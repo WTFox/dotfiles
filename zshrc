@@ -20,7 +20,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
 else
-  export EDITOR='lvim'
+  export EDITOR='nvim'
 fi
 
 # Aliases
@@ -78,8 +78,8 @@ alias dc='docker-compose'
 alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 alias s3ls='aws s3 ls --summarize --human-readable'
 alias gti='(scream &); git'
-alias vim="lvim"
-alias n.="lvim ."
+alias vim="nvim"
+alias n.="nvim ."
 alias loadnvm=". /usr/local/opt/nvm/nvm.sh"
 
 # create directories and cd to the first one
@@ -175,5 +175,9 @@ if [ -e ~/.myrc.sh ]
 then
     source ~/.myrc.sh
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 eval "$(starship init zsh)"

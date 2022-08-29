@@ -25,10 +25,6 @@ done
 
 ln -sf $dir/starship.toml ~/.config/
 
-# lvim
-mkdir -p ~/.config/lvim/
-ln -s $dir/lvim-config.lua ~/.config/lvim/config.lua
-
 # hammerspoon
 mkdir ~/.hammerspoon/
 ln -s $dir/hammerspoon/init.lua ~/.hammerspoon/
@@ -39,3 +35,6 @@ ln -s $dir/pgcli/config ~/.config/pgcli/config
 
 # karabiner elements
 ln -s $dir/karabiner/ ~/.config/
+
+# nvim
+ln -s $dir/nvim/ ~/.config/
