@@ -37,6 +37,7 @@ nmap <C-l> <C-w>l
 
 vnoremap < <gv  " better indentation
 vnoremap > >gv  " better indentation
+
 nnoremap <silent> <leader>h :nohlsearch<CR>
 nnoremap <silent> L :bn<CR>
 nnoremap <silent> H :bp<CR>

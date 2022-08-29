@@ -4,8 +4,7 @@ backup/*
 .ropeproject/
 .idea/
 .vscode/
-.DS_Store
+
+nvim/.config/nvim/plugged/
+
 tags*
-nvim/plugged/
-nvim/autoload/
-.cache/
