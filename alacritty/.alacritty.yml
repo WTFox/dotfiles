@@ -348,6 +348,9 @@ font:
 
 window:
   opacity: 0.98
+  dimensions:
+      columns: 80
+      lines: 20
 
 cursor:
   style: Block
