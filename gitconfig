@@ -7,7 +7,7 @@
 	token = !security find-internet-password -a wtfox -s github.com -l 'ghi token' -w
 [core]
 	excludesfile = ~/.gitignore
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta | less --tabs=4 -RFX
 	editor = vi
 [include]
     path = ~/.gitaliases
@@ -40,6 +40,6 @@
 [difftool]
   prompt = false
 [diff]
-  tool = vimdiff
+  tool = delta
 [init]
 	defaultBranch = main
