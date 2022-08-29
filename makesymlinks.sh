@@ -10,7 +10,7 @@
 dir=~/dotfiles
 
 # list of files/folders to symlink in homedir
-files="bashrc zshrc p10k.zsh psqlrc gitaliases gitignore gitconfig tmux.conf tmux.conf.local vscode.vim prettierrc"
+files="bashrc zshrc p10k.zsh psqlrc gitaliases gitignore gitconfig tmux.conf tmux.conf.local prettierrc vimrc"
 
 ##########
 
