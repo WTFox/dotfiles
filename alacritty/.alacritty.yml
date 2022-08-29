@@ -330,12 +330,12 @@ color_schemes:
 
 colors: *macchiato
 
-shell:
-  program: /bin/zsh
-  args:
-    - -l
-    - -c
-    - "tmux attach || tmux"
+# shell:
+#   program: /bin/zsh
+#   args:
+#     - -l
+#     - -c
+#     - "tmux attach || tmux"
 
 font:
   normal:
@@ -375,6 +375,6 @@ key_bindings:
   - { key: PageDown,  mods: None,          action: ScrollPageDown, mode: ~Alt  }
   - { key: Home,      mods: Shift,         action: ScrollToTop,    mode: ~Alt  }
   - { key: End,       mods: Shift,         action: ScrollToBottom, mode: ~Alt  }
-  - { key: F,         mods: Alt,           chars: "\x1bf"                       }
-  - { key: B,         mods: Alt,           chars: "\x1bb"                       }
-
+  - { key: F,         mods: Alt,           chars: "\x1bf"                      }
+  - { key: B,         mods: Alt,           chars: "\x1bb"                      }
+  - { key: D,         mods: Alt,           chars: "\x1bd"                      }
