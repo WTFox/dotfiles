@@ -339,7 +339,7 @@ colors: *macchiato
 
 font:
   normal:
-    family: "FiraCode Nerd Font"
+    family: "MonoLisaCustom Nerd Font"
   size: 16.0
   offset:
     x: 1

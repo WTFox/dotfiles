@@ -8,3 +8,4 @@ backup/*
 nvim/.config/nvim/plugged/
 
 tags*
+.DS_Store
