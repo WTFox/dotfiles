@@ -36,6 +36,9 @@ local options = {
 }
 
 vim.opt.shortmess:append "c"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevelstart=1
 
 for k, v in pairs(options) do
   vim.opt[k] = v
