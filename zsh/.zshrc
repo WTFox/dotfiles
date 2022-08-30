@@ -25,10 +25,7 @@ fi
 
 # Aliases
 alias zshconfig="vim ~/.zshrc"
-alias git=hub
 alias cls=clear
-alias gissues="ghi list --mine -P --reverse --filter assigned"
-alias howdoi="howdoi -n 5 -c"
 # Stopwatch
 alias timer="/usr/bin/time -p $@"
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
@@ -66,7 +63,6 @@ alias now='date +"%T"'
 alias nowdate='date +"%Y-%m-%d"'
 alias gds="git diff --stat"
 alias gst="git status --short --branch"
-alias gpr="git pull-request -F ~/.git-commit-template.txt -e"
 alias bc="bc -l"
 alias rm="trash"
 alias tmux="TERM=xterm-256color tmux -2"
@@ -78,6 +74,7 @@ alias dc='docker-compose'
 alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 alias s3ls='aws s3 ls --summarize --human-readable'
 alias gti='(scream &); git'
+
 alias vim="nvim"
 alias n.="nvim ."
 alias loadnvm=". /usr/local/opt/nvm/nvm.sh"
@@ -103,9 +100,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # PIPX
 export PATH=$HOME/.local/bin/:$PATH
-
-# simpler find
-f() { find . -iname "*$1*"; }
 
 function find_non_ascii() {
     cat $1 | rg -Upoe "[^\x00-\x7F]"
