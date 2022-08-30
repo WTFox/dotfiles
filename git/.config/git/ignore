@@ -1,0 +1,15 @@
+haters/*
+
+vim/*
+backup/*
+.ropeproject/
+.idea/
+.vscode/
+.venv/
+venv/
+
+**/nvim/plugged/*
+
+tags*
+.DS_Store
+
