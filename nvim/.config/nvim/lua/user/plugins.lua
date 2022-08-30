@@ -89,6 +89,8 @@ return packer.startup(function(use)
 		commit = "518e27589c0463af15463c9d675c65e464efc2fe",
 	})
 
+  use('JoosepAlviste/nvim-ts-context-commentstring')
+
 	-- Git
 	use("lewis6991/gitsigns.nvim")
 
