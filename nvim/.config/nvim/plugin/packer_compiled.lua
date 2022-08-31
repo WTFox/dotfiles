@@ -179,6 +179,11 @@ _G.packer_plugins = {
     path = "/Users/anthonyfox/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-surround"] = {
+    loaded = true,
+    path = "/Users/anthonyfox/.local/share/nvim/site/pack/packer/start/nvim-surround",
+    url = "https://github.com/kylechui/nvim-surround"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/Users/anthonyfox/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
