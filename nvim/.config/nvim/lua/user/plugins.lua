@@ -84,12 +84,12 @@ return packer.startup(function(use)
 	use({ "nvim-telescope/telescope.nvim", commit = "d96eaa914aab6cfc4adccb34af421bdd496468b0" })
 
 	-- Treesitter
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		commit = "518e27589c0463af15463c9d675c65e464efc2fe",
-	})
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+	}
 
-  use('JoosepAlviste/nvim-ts-context-commentstring')
+	use('JoosepAlviste/nvim-ts-context-commentstring')
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
