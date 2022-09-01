@@ -15,7 +15,7 @@
     path = ~/.gitaliases
 
 [diff]
-  tool = diff-so-fancy
+	tool = diff-so-fancy
 
 [init]
 	defaultBranch = main
