@@ -339,7 +339,7 @@ colors: *mocha
 
 font:
   normal:
-    family: "MonoLisaCustom Nerd Font"
+    family: "MonoLisa Nerd Font Mono"
   size: 16.0
   offset:
     x: 1

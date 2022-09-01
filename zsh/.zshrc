@@ -9,10 +9,8 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Activate plugins
-plugins=(git git-extras tmux macos extract vscode brew golang pipenv zsh-autosuggestions fzf)
+plugins=(git git-extras tmux macos extract vscode brew golang pipenv zsh-autosuggestions zsh-syntax-highlighting fzf)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -69,7 +67,7 @@ alias tmux="TERM=xterm-256color tmux -2"
 alias df='df -H'
 alias du='du -ch'
 alias ducks='du -cksh * | sort -rh | head -11'
-alias ls='exa -F --header --git --icons'
+alias ls='exa -F --header --icons'
 alias dc='docker-compose'
 alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 alias s3ls='aws s3 ls --summarize --human-readable'
@@ -87,6 +85,7 @@ export WORKON_HOME=~/.envs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 
 # pyenv
+export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
@@ -142,7 +141,6 @@ function install_lvim() {
   bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 }
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 export GOPATH=$HOME/dev/go
