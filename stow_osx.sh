@@ -5,7 +5,7 @@ stow \
   audio/ \
   bashrc/ \
   direnv/ \
-  fzf/ \
+  fzf_mac/ \
   git/ \
   hammerspoon/ \
   karabiner/ \
