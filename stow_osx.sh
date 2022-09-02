@@ -5,6 +5,7 @@ stow \
   audio/ \
   bashrc/ \
   direnv/ \
+  fzf/ \
   git/ \
   hammerspoon/ \
   karabiner/ \
@@ -15,4 +16,4 @@ stow \
   starship/ \
   tmux/ \
   vscode-vim/ \
-  zsh/ \
+  zsh_mac/ \
