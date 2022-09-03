@@ -1,13 +1,10 @@
 [user]
 	name = A. Fox
 	email = anthonyfox1988@gmail.com
-  username = wtfox
+	username = wtfox
 
 [github]
 	user = wtfox
-
-[ghi]
-	token = !security find-internet-password -a wtfox -s github.com -l 'ghi token' -w
 
 [core]
 	excludesfile = ~/.config/git/ignore
@@ -18,7 +15,10 @@
     path = ~/.gitaliases
 
 [diff]
-  tool = diff-so-fancy
-  
+	tool = diff-so-fancy
+
 [init]
 	defaultBranch = main
+
+[credential "https://github.com"]
+	helper = !/usr/bin/gh auth git-credential
