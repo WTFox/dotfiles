@@ -9,6 +9,7 @@ stow \
   git/ \
   hammerspoon/ \
   karabiner/ \
+  kitty/ \
   nvim/ \
   pgcli/ \
   prettier/ \

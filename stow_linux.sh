@@ -5,6 +5,7 @@ stow \
   audio/ \
   bashrc/ \
   direnv/ \
+  kitty/ \
   git/ \
   nvim/ \
   pgcli/ \
