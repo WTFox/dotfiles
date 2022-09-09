@@ -13,3 +13,5 @@ nvim/.config/nvim/plugin/packer_compiled.lua
 
 pgcli/.config/pgcli/history
 pgcli/.config/pgcli/log
+
+tmux-client-*.log
