@@ -10,3 +10,6 @@ nvim/.config/nvim/plugged/
 tags*
 .DS_Store
 nvim/.config/nvim/plugin/packer_compiled.lua
+
+pgcli/.config/pgcli/history
+pgcli/.config/pgcli/log
