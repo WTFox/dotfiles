@@ -2,7 +2,6 @@
 	name = A. Fox
 	email = anthonyfox1988@gmail.com
 	username = wtfox
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxV9td+vCLb28BAbizeTvI41RrkN4xyqDy1UlAv63Rz
 
 [github]
 	user = wtfox
@@ -24,11 +23,5 @@
 [credential "https://github.com"]
 	helper = !/usr/bin/gh auth git-credential
 
-[gpg]
-	format = ssh
-
-[gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-
-[commit]
-  gpgsign = true
+[includeIf "gitdir:/Users"]
+    path = ~/.gitconfig-macos
