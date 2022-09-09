@@ -11,9 +11,6 @@
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	editor = nvim
 
-[include]
-    path = ~/.gitaliases
-
 [diff]
 	tool = diff-so-fancy
 
@@ -23,5 +20,8 @@
 [credential "https://github.com"]
 	helper = !/usr/bin/gh auth git-credential
 
-[includeIf "gitdir:/Users"]
+[includeIf "gitdir:/Users/"]
     path = ~/.gitconfig-macos
+
+[include]
+    path = ~/.gitaliases
