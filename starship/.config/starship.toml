@@ -3,31 +3,44 @@ $username\
 $hostname\
 $directory\
 $git_branch\
+$git_state\
 $git_status\
-$python\
-$golang\
-$command_duration\
+$cmd_duration\
 $line_break\
-$status\
-$shell\
+$python\
 $character"""
 
-[git_branch]
-format = "[$branch]($style) "
-truncation_length = 14
-truncation_symbol = "..."
-style = 'purple'
-
 [directory]
-truncation_length = 8
-truncation_symbol = ".../"
-truncate_to_repo = false
-style = 'cyan'
+style = "blue"
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vicmd_symbol = "[❮](green)"
+
+[git_branch]
+format = "[$branch]($style)"
+style = "bright-black"
+
+[git_status]
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
 
 [python]
-format = '[\(python $version\)]($style)'
-style = 'dimmed'
-
-[golang]
-format = '[\(go $version\)]($style)'
-style = 'dimmed'
+format = "[$virtualenv]($style) "
+style = "bright-black"
