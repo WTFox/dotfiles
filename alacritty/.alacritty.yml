@@ -349,6 +349,9 @@ font:
 window:
   title: "[ mainframe ]"
   opacity: 0.98
+  padding:
+    x: 10
+    y: 0
   dimensions:
       columns: 80
       lines: 20
