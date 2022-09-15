@@ -30,9 +30,11 @@ vim.cmd([[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
 
-  " augroup _lsp
-  "   autocmd!
-  "   " on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-  "   autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
-  " augroup end
+  augroup _lsp
+    autocmd!
+    " <= 0.7
+    " autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
+    " 0.8+
+    autocmd BufWritePre * lua vim.lsp.buf.format()
+  augroup end
 ]])

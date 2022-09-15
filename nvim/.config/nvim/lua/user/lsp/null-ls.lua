@@ -10,14 +10,19 @@ local diagnostics = null_ls.builtins.diagnostics
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local lsp_formatting = function(bufnr)
-    -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+    -- <= 0.7
     --[[ vim.lsp.buf.formatting_sync() ]]
-    vim.lsp.buf.format({
-        filter = function(client)
-            return client.name == "null-ls"
-        end,
-        bufnr = bufnr,
-    })
+
+    -- 0.8+
+    vim.lsp.buf.format({ bufnr = bufnr })
+
+    -- always use null-ls
+    --[[ vim.lsp.buf.format({ ]]
+    --[[     filter = function(client) ]]
+    --[[         return client.name == "null-ls" ]]
+    --[[     end, ]]
+    --[[     bufnr = bufnr, ]]
+    --[[ }) ]]
 end
 
 null_ls.setup({

@@ -22,6 +22,10 @@ vim.g.maplocalleader = " "
 -- Misc
 keymap("n", "<C-s>", ":w!<CR>", opts)
 
+-- Git
+keymap("n", "]g", ":lua require 'gitsigns'.next_hunk()<CR>", opts)
+keymap("n", "[g", ":lua require 'gitsigns'.prev_hunk()<CR>", opts)
+
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
