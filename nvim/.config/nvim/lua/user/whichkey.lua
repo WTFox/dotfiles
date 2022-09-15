@@ -139,7 +139,7 @@ local mappings = {
       "<cmd>Telescope lsp_workspace_diagnostics<cr>",
       "Workspace Diagnostics",
     },
-    f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
     j = {
@@ -172,6 +172,14 @@ local mappings = {
   },
 
   t = {
+    name = "Test",
+    t = { "<cmd>TestNearest<cr>", "Test Nearest" },
+    f = { "<cmd>TestFile<cr>", "Test File" },
+    s = { "<cmd>TestSuite<cr>", "Test Suite" },
+    v = { "<cmd>TestVisit<cr>", "Test Visit" },
+  },
+
+  T = {
     name = "Terminal",
     n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
     u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
