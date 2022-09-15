@@ -73,9 +73,12 @@ alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 alias s3ls='aws s3 ls --summarize --human-readable'
 alias gti='(scream &); git'
 
+alias nvim="~/nvim/bin/nvim"
 alias vim="nvim"
 alias n.="nvim ."
 alias loadnvm=". /usr/local/opt/nvm/nvm.sh"
+
+bindkey -s ^f "tmux-sessionizer\n"
 
 # create directories and cd to the first one
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -135,6 +138,12 @@ function start_screen_share() {
 
 function stop_screen_share() {
     killall VLC
+}
+
+function install_nvim() {
+  curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
+  tar xzf nvim.tar.gz
+  echo "all done"
 }
 
 function install_lvim() {

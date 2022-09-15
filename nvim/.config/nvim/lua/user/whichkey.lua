@@ -126,6 +126,13 @@ local mappings = {
       "<cmd>Gitsigns diffthis HEAD<cr>",
       "Diff",
     },
+    P = { name = "Diffview",
+      o = { "<cmd>DiffviewOpen main -- .<cr>", "DiffViewOpen" },
+      t = { "<cmd>DiffviewToggleFiles<cr>", "DiffviewToggleFiles" },
+      c = { "<cmd>DiffviewClose<cr>", "DiffViewClose" },
+      r = { "<cmd>DiffviewRefresh<cr>", "DiffviewRefresh" },
+      f = { "<cmd>DiffviewFileHistory<cr>", "DiffviewFileHistory" },
+    }
   },
 
   l = {

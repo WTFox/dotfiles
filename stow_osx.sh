@@ -4,6 +4,7 @@ stow \
   alacritty/ \
   audio/ \
   bashrc/ \
+  bin/ \
   direnv/ \
   fzf_mac/ \
   git/ \

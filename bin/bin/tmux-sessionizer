@@ -1,0 +1,15 @@
+#!/bin/bash
+
+session=$(find ~ ~/dev -mindepth 1 -maxdepth 1 -type d | fzf)
+session_name=$(basename "$session" | tr . _)
+
+if ! tmux has-session -t "$session_name" 2> /dev/null; then
+  TERM=xterm-256color tmux -2 new-session -s "$session_name" -c "$session" -d
+fi
+
+if [ ! "$TMUX" ]; then
+  TERM=xterm-256color tmux -2 attach-session -t "$session_name"
+else
+  TERM=xterm-256color tmux -2 switch-client -t "$session_name"
+fi
+

@@ -21,6 +21,7 @@ vim.g.maplocalleader = " "
 -- Normal --
 -- Misc
 keymap("n", "<C-s>", ":w!<CR>", opts)
+keymap("n", "<C-f>", ":silent !tmux neww tmux-sessionizer<CR>", opts)
 
 -- Git
 keymap("n", "]g", ":lua require 'gitsigns'.next_hunk()<CR>", opts)
