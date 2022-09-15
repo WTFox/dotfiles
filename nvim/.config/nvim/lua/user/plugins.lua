@@ -99,13 +99,14 @@ return packer.startup(function(use)
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
   })
+
   -- Git
   use("lewis6991/gitsigns.nvim")
+  -- Diffview
+  use({ 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' })
 
   -- Test runner
   use("klen/nvim-test")
-
-  use({ 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' })
 
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

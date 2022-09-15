@@ -9,27 +9,10 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local lsp_formatting = function(bufnr)
-    -- <= 0.7
-    --[[ vim.lsp.buf.formatting_sync() ]]
-
-    -- 0.8+
-    vim.lsp.buf.format({ bufnr = bufnr })
-
-    -- always use null-ls
-    --[[ vim.lsp.buf.format({ ]]
-    --[[     filter = function(client) ]]
-    --[[         return client.name == "null-ls" ]]
-    --[[     end, ]]
-    --[[     bufnr = bufnr, ]]
-    --[[ }) ]]
-end
-
 null_ls.setup({
   debug = false,
   sources = {
     diagnostics.flake8,
-    diagnostics.mypy,
     diagnostics.shellcheck,
     diagnostics.write_good,
     formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
@@ -44,7 +27,7 @@ null_ls.setup({
         group = augroup,
         buffer = bufnr,
         callback = function()
-          lsp_formatting(bufnr)
+          vim.lsp.buf.format({ bufnr = bufnr })
         end,
       })
     end

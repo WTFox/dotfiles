@@ -20,6 +20,7 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Misc
+keymap("n", ";", ":", opts)
 keymap("n", "<C-s>", ":w!<CR>", opts)
 keymap("n", "<C-f>", ":silent !tmux neww tmux-sessionizer<CR>", opts)
 

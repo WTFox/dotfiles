@@ -20,6 +20,13 @@ vim.cmd([[
     au BufReadPost *.mdx set syntax=markdown
   augroup end
 
+  " augroup _python
+  "   autocmd!
+  "   au BufReadPost *.py set syntax=python
+  "   silent! autocmd BufWritePost *.py !black -q %
+  "   redraw!
+  " augroup end
+
   augroup _auto_resize
     autocmd!
     autocmd VimResized * tabdo wincmd =
@@ -32,9 +39,6 @@ vim.cmd([[
 
   augroup _lsp
     autocmd!
-    " <= 0.7
-    " autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
-    " 0.8+
     autocmd BufWritePre * lua vim.lsp.buf.format()
   augroup end
 ]])
