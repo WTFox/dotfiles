@@ -73,7 +73,7 @@ alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 alias s3ls='aws s3 ls --summarize --human-readable'
 alias gti='(scream &); git'
 
-alias nvim="~/bin/nvim"
+alias nvim="~/bin/nvim-macos/bin/nvim"
 alias vim="nvim"
 alias n.="nvim ."
 alias loadnvm=". /usr/local/opt/nvm/nvm.sh"
@@ -144,7 +144,6 @@ function install_nvim() {
   pushd ~/bin
   curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
   tar xzf nvim-macos.tar.gz
-  ln -s nvim-macos/bin/nvim nvim
   echo "nvim installed!"
   popd
 }
