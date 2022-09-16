@@ -181,6 +181,7 @@ local mappings = {
   t = {
     name = "Test",
     t = { "<cmd>TestNearest<cr>", "Test Nearest" },
+    l = { "<cmd>TestLast<cr>", "Test Last" },
     f = { "<cmd>TestFile<cr>", "Test File" },
     s = { "<cmd>TestSuite<cr>", "Test Suite" },
     v = { "<cmd>TestVisit<cr>", "Test Visit" },
