@@ -40,78 +40,67 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
-  use("wbthomason/packer.nvim")
-  use("nvim-lua/plenary.nvim")
-  use("windwp/nvim-autopairs")
-  use("numToStr/Comment.nvim")
-  use("kyazdani42/nvim-web-devicons")
-  use("kyazdani42/nvim-tree.lua")
+  use { "wbthomason/packer.nvim" }
+  use { "nvim-lua/plenary.nvim" }
+  use { "windwp/nvim-autopairs" }
+  use { "numToStr/Comment.nvim" }
+  use { "kyazdani42/nvim-web-devicons" }
+  use { "kyazdani42/nvim-tree.lua" }
   use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
-  use("moll/vim-bbye")
-  use("nvim-lualine/lualine.nvim")
-  use("akinsho/toggleterm.nvim")
-  use("ahmedkhalf/project.nvim")
-  use("lewis6991/impatient.nvim")
-  use("lukas-reineke/indent-blankline.nvim")
-  use("goolord/alpha-nvim")
-  use("folke/which-key.nvim")
-  use("github/copilot.vim")
-
-  -- Colorschemes
-  use({ "folke/tokyonight.nvim" })
-  use("lunarvim/darkplus.nvim")
-  use("catppuccin/nvim")
-  use { "EdenEast/nightfox.nvim" }
-  use { "morhetz/gruvbox" }
-
-  -- cmp plugins
-  use({ "hrsh7th/nvim-cmp" })
-  use({ "hrsh7th/cmp-buffer" })
-  use({ "hrsh7th/cmp-path" })
-  use({ "saadparwaiz1/cmp_luasnip" })
-  use({ "hrsh7th/cmp-nvim-lsp" })
-  use({ "hrsh7th/cmp-nvim-lua" })
-
-  -- snippets
-  use({ "L3MON4D3/LuaSnip" })
-  use({ "rafamadriz/friendly-snippets" })
-
-  -- LSP
-  use({ "neovim/nvim-lspconfig" })
-  use({ "williamboman/nvim-lsp-installer" })
-  use({ "jose-elias-alvarez/null-ls.nvim" })
-
-  -- Telescope
+  use { "moll/vim-bbye" }
+  use { "nvim-lualine/lualine.nvim" }
+  use { "akinsho/toggleterm.nvim" }
+  use { "lewis6991/impatient.nvim" }
+  use { "lukas-reineke/indent-blankline.nvim" }
+  use { "goolord/alpha-nvim" }
+  use { "folke/which-key.nvim" }
+  use { "github/copilot.vim" }
+  use { "klen/nvim-test" }
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
+  use {
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+  }
+
+  -- Colorschemes
+  use { "folke/tokyonight.nvim" }
+  use { "lunarvim/darkplus.nvim" }
+  use { "catppuccin/nvim" }
+  use { "EdenEast/nightfox.nvim" }
+  use { "morhetz/gruvbox" }
+
+  -- cmp plugins
+  use { "hrsh7th/nvim-cmp" }
+  use { "hrsh7th/cmp-buffer" }
+  use { "hrsh7th/cmp-path" }
+  use { "saadparwaiz1/cmp_luasnip" }
+  use { "hrsh7th/cmp-nvim-lsp" }
+  use { "hrsh7th/cmp-nvim-lua" }
+
+  -- snippets
+  use { "L3MON4D3/LuaSnip" }
+  use { "rafamadriz/friendly-snippets" }
+
+  -- LSP
+  use { "neovim/nvim-lspconfig" }
+  use { "williamboman/nvim-lsp-installer" }
+  use { "jose-elias-alvarez/null-ls.nvim" }
+  use { "simrat39/rust-tools.nvim" }
+
   -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
-  use('nvim-treesitter/nvim-treesitter-context')
-
-  use('JoosepAlviste/nvim-ts-context-commentstring')
-
-  -- Vim Surround
-  use({
-    "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-  })
+  use { 'nvim-treesitter/nvim-treesitter-context' }
+  use { 'JoosepAlviste/nvim-ts-context-commentstring' }
 
   -- Git
-  use("lewis6991/gitsigns.nvim")
-  -- Diffview
-  use({ 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' })
-
-  -- Test runner
-  use("klen/nvim-test")
-
-  -- Rust
-  use("simrat39/rust-tools.nvim")
+  use { "lewis6991/gitsigns.nvim" }
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
