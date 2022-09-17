@@ -62,10 +62,13 @@ alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 alias s3ls='aws s3 ls --summarize --human-readable'
 alias gti='(scream &); git'
 
+alias nvim="~/bin/nvim.appimage"
 alias vim="nvim"
 alias n.="nvim ."
 alias zshconfig="vim ~/.zshrc"
 alias loadnvm=". /usr/local/opt/nvm/nvm.sh"
+
+bindkey -s ^f "tmux-sessionizer\n"
 
 # create directories and cd to the first one
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -124,6 +127,13 @@ function stop_screen_share() {
     killall VLC
 }
 
+function install_nvim() {
+  pushd ~/bin
+  curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+  chmod u+x nvim.appimage 
+  echo "nvim installed!"
+  popd
+}
 
 export GOPATH=$HOME/dev/go
 export PYTHONBREAKPOINT=ipdb.set_trace
@@ -147,14 +157,15 @@ then
     source ~/.myrc.sh
 fi
 
+
 export NVM_DIR="$HOME/.nvm"
 function load_nvm() {
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
 
-setxkbmap -option "ctrl:nocaps"
+# setxkbmap -option "ctrl:nocaps"
 
-export PATH="$PATH:$HOME/bin" 
+export PATH="$PATH:$HOME/bin:$HOME/.cargo/bin" 
 
 eval "$(starship init zsh)"
