@@ -339,7 +339,18 @@ colors: *mocha
 
 font:
   normal:
+    # family: "mononoki Nerd Font"
+    # family: "FiraCode Nerd Font"
+    # family: "JetbrainsMono Nerd Font"
+    # family: "CaskaydiaCove Nerd Font"
+    # family: "Hack Nerd Font"
+
     family: "MonoLisa Nerd Font Mono"
+    style: "Light"
+    
+    # family: "OperatorMono Nerd Font Mono"
+    # style: "Book"
+
   size: 16.0
   offset:
     x: 1
