@@ -102,6 +102,9 @@ return packer.startup(function(use)
   use { "lewis6991/gitsigns.nvim" }
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
+  -- Code Runner
+  use { 'CRAG666/code_runner.nvim', requires = 'nvim-lua/plenary.nvim' }
+
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
     require("packer").sync()
