@@ -148,6 +148,11 @@ function install_nvim() {
   popd
 }
 
+function install_rust() {
+  sudo curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  rustup +nightly component add rust-analyzer-preview
+}
+
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 export GOPATH=$HOME/dev/go
