@@ -19,6 +19,7 @@ null_ls.setup({
     formatting.black,
     formatting.gofmt,
     formatting.isort,
+    formatting.rustfmt,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then

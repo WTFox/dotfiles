@@ -110,6 +110,9 @@ return packer.startup(function(use)
   -- Test runner
   use("klen/nvim-test")
 
+  -- Rust
+  use("simrat39/rust-tools.nvim")
+
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
     require("packer").sync()
