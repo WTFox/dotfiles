@@ -140,6 +140,10 @@ function install_rust() {
   rustup +nightly component add rust-analyzer-preview
 }
 
+function mount_Goodz() {
+  sudo mount -t drvfs Z: /mnt/Goodz/
+}
+
 export GOPATH=$HOME/dev/go
 export PYTHONBREAKPOINT=ipdb.set_trace
 
