@@ -16,3 +16,6 @@ hs.hotkey.bind({}, 'pageup', function()
   hs.eventtap.keyStroke({ "cmd" }, "e", 200)
 end
 )
+
+
+hs.loadSpoon('ControlEscape'):start()
