@@ -186,6 +186,6 @@ function load_nvm() {
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 }
 
-export PATH="$PATH:$HOME/bin:$HOME/.cargo/bin" 
+export PATH="$PATH:$HOME/bin:$HOME/.cargo/bin:$HOME/.cargo/env" 
 
 eval "$(starship init zsh)"

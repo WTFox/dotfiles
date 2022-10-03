@@ -175,6 +175,6 @@ function load_nvm() {
 
 # setxkbmap -option "ctrl:nocaps"
 
-export PATH="$PATH:$HOME/bin:$HOME/.cargo/bin" 
+export PATH="$PATH:$HOME/bin:$HOME/.cargo/bin:$HOME/.cargo/env" 
 
 eval "$(starship init zsh)"

@@ -64,13 +64,14 @@ return packer.startup(function(use)
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
   }
+  use { "xiyaowong/nvim-transparent" }
 
   -- Colorschemes
   use { "folke/tokyonight.nvim" }
   use { "lunarvim/darkplus.nvim" }
   use { "catppuccin/nvim" }
   use { "EdenEast/nightfox.nvim" }
-  use { "morhetz/gruvbox" }
+  use { "luisiacc/gruvbox-baby" }
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp" }
