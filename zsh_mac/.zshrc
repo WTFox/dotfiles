@@ -189,3 +189,6 @@ function load_nvm() {
 export PATH="$PATH:$HOME/bin:$HOME/.cargo/bin:$HOME/.cargo/env" 
 
 eval "$(starship init zsh)"
+
+# Created by `pipx` on 2022-10-13 15:49:51
+export PATH="$PATH:/Users/anthonyfox/Library/Python/3.10/bin"
