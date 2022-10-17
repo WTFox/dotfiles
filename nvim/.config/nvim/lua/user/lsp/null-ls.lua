@@ -15,7 +15,7 @@ null_ls.setup({
     diagnostics.flake8,
     diagnostics.shellcheck,
     diagnostics.write_good,
-    formatting.prettier.with({ extra_args = { "--no-semi" } }),
+    formatting.prettier,
     formatting.black,
     formatting.gofmt,
     formatting.isort,
