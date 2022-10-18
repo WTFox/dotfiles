@@ -167,6 +167,14 @@ local mappings = {
       "Workspace Symbols",
     },
   },
+
+  m = {
+    name = "Misc",
+    c = { "<cmd>Copilot enable<CR>", "Enable Copilot" },
+    C = { "<cmd>Copilot disable<CR>", "Disable Copilot" },
+    t = { "<cmd>TransparentToggle<CR>", "Toggle Transparency" },
+  },
+
   s = {
     name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
