@@ -65,6 +65,7 @@ return packer.startup(function(use)
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
   }
   use { "xiyaowong/nvim-transparent" }
+  use { "ThePrimeagen/harpoon" }
 
   -- Colorschemes
   use { "folke/tokyonight.nvim" }

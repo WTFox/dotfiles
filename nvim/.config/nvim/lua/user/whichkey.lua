@@ -94,10 +94,16 @@ local mappings = {
     "Find files",
   },
   ["F"] = { "<cmd>Telescope live_grep<cr>", "Find Text" },
-  ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["r"] = { "<cmd>RunCode<cr>", "Run Code" },
 
   p = {
+    name = "Harpoon",
+    m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Marks" },
+    --[[ m = { "<cmd>Telescope harpoon marks<CR>", "Marks" }, ]]
+    a = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "Add Mark" },
+  },
+
+  P = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
     i = { "<cmd>PackerInstall<cr>", "Install" },
