@@ -99,7 +99,7 @@ local mappings = {
   p = {
     name = "Harpoon",
     m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Marks" },
-    --[[ m = { "<cmd>Telescope harpoon marks<CR>", "Marks" }, ]]
+    o = { "<cmd>Telescope harpoon marks<CR>", "Marks" },
     a = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "Add Mark" },
   },
 
