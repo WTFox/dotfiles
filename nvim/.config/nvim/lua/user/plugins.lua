@@ -66,6 +66,7 @@ return packer.startup(function(use)
   }
   use { "xiyaowong/nvim-transparent" }
   use { "ThePrimeagen/harpoon" }
+  use { "ThePrimeagen/refactoring.nvim" }
 
   -- Colorschemes
   use { "folke/tokyonight.nvim" }
