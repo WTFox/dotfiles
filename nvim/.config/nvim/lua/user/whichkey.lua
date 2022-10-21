@@ -118,7 +118,6 @@ local mappings = {
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
     l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-    B = { "<cmd>Git blame<cr>", "Blame file" },
     p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
     r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
     R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
@@ -133,6 +132,14 @@ local mappings = {
     d = {
       "<cmd>Gitsigns diffthis HEAD<cr>",
       "Diff",
+    },
+
+    f = {
+      name = "Fugitive",
+      b = { "<cmd>Git blame<cr>", "Blame file" },
+      s = { "<cmd>tab :Git<cr>", "Status" },
+      m = { "<cmd>Gvdiffsplit!<cr>", "3-way merge tool" },
+      M = { "<cmd>Gvdiffsplit<cr>", "2-way merge tool" },
     },
 
     P = { name = "Diffview",
