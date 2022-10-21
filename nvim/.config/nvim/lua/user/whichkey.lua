@@ -118,6 +118,7 @@ local mappings = {
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
     l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
+    B = { "<cmd>Git blame<cr>", "Blame file" },
     p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
     r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
     R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
@@ -133,6 +134,7 @@ local mappings = {
       "<cmd>Gitsigns diffthis HEAD<cr>",
       "Diff",
     },
+
     P = { name = "Diffview",
       o = { "<cmd>DiffviewOpen main -- .<cr>", "DiffViewOpen" },
       t = { "<cmd>DiffviewToggleFiles<cr>", "DiffviewToggleFiles" },
