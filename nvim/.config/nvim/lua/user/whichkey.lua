@@ -114,7 +114,7 @@ local mappings = {
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
 
-  r = { "<cmd>RunCode<cr>", "Run Code" },
+  r = { "<cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", "Refactor" },
 
   p = {
     name = "Harpoon",
@@ -190,6 +190,7 @@ local mappings = {
     c = { "<cmd>Copilot enable<CR>", "Enable Copilot" },
     C = { "<cmd>Copilot disable<CR>", "Disable Copilot" },
     t = { "<cmd>TransparentToggle<CR>", "Toggle Transparency" },
+    r = { "<cmd>RunCode<cr>", "Run Code" },
   },
 
   t = {
