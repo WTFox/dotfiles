@@ -84,7 +84,7 @@ local mappings = {
   q = { "<cmd>q!<CR>", "Quit" },
   c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 
-  f = {
+  s = {
     name = "Search ...",
 
     -- files
@@ -93,6 +93,12 @@ local mappings = {
 
     -- text
     t = { "<cmd>Telescope live_grep<cr>", "Text" },
+
+    -- symbol
+    s = {
+      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+      "Workspace Symbols",
+    },
 
     -- misc
     b = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = true})<cr>",
