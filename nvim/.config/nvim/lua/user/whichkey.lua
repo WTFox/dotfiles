@@ -93,6 +93,8 @@ local mappings = {
 
     -- text
     t = { "<cmd>Telescope live_grep<cr>", "Text" },
+    T = { "<cmd>lua require('telescope.builtin').live_grep({additional_args = function() return { '--hidden' } end})<cr>",
+      "Text (hidden=true" },
 
     -- symbol
     s = {

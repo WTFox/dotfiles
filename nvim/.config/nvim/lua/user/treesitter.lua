@@ -10,5 +10,6 @@ configs.setup({
   },
   highlight = {
     enable = true,
+    disable = { 'help' }
   }
 })
