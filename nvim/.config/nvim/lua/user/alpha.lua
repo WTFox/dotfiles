@@ -22,7 +22,7 @@ theme.buttons.val = {
   { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
   { type = "padding", val = 1 },
   dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
-  dashboard.button("F", "  Find text", ":Telescope live_grep <CR>"),
+  dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
   dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
   dashboard.button("c", "  Configuration", ":e $MYVIMRC<CR>"),
   dashboard.button("r", "  Reload Config", ":source $MYVIMRC<CR>"),

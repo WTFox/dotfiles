@@ -20,6 +20,7 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Misc
+keymap("n", "c/", ":nohls<CR>", opts)
 keymap("n", "<C-s>", ":w!<CR>", opts)
 keymap("n", "<C-f>", ":silent !tmux neww tmux-sessionizer<CR>", opts)
 
@@ -52,7 +53,7 @@ keymap("n", "Q", ":qa!<CR>", opts)
 
 -- Insert --
 -- Press jk fast to exit insert mode
-keymap("i", "jk", "<ESC>", opts)
+--[[ keymap("i", "jk", "<ESC>", opts) ]]
 
 -- Visual --
 -- Stay in indent mode
