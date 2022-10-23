@@ -8,7 +8,7 @@ local fortune = require("alpha.fortune")
 
 local function info_string()
   local total_plugins = vim.fn.len(vim.fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
-  local datetime = os.date(" %m-%d-%Y   %H:%M:%S")
+  local datetime = os.date(" %m/%d/%Y   %I:%M")
   local version = vim.version()
   local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
 
