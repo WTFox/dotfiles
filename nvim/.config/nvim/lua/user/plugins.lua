@@ -109,6 +109,9 @@ return packer.startup(function(use)
   -- Code Runner
   use { 'CRAG666/code_runner.nvim', requires = 'nvim-lua/plenary.nvim' }
 
+  -- New things
+  use { 'windwp/nvim-projectconfig' }
+
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
     require("packer").sync()

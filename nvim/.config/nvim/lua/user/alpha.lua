@@ -4,9 +4,9 @@ if not status_ok then
 end
 
 local dashboard = require("alpha.themes.dashboard")
-local theme = require("alpha.themes.theta")
+local fortune = require("alpha.fortune")
 
-theme.header.val = {
+dashboard.section.header.val = {
   [[⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
   [[⠀⠀⠀⠀⠀⠀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀]],
   [[⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀]],
@@ -18,15 +18,16 @@ theme.header.val = {
   [[⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠁⠁⠁⠉⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠁⠉⠉⠈⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠁⠁⠁⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
 }
 
-theme.buttons.val = {
-  { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
-  { type = "padding", val = 1 },
+dashboard.section.buttons.val = {
   dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
   dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
   dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+  dashboard.button("pc", "  Project Config", ":EditProjectConfig<CR>"),
   dashboard.button("c", "  Configuration", ":e $MYVIMRC<CR>"),
   dashboard.button("r", "  Reload Config", ":source $MYVIMRC<CR>"),
   dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 }
 
-alpha.setup(theme.config)
+dashboard.section.footer.val = fortune()
+
+alpha.setup(dashboard.config)
