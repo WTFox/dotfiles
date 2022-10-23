@@ -6,6 +6,15 @@ end
 local dashboard = require("alpha.themes.dashboard")
 local fortune = require("alpha.fortune")
 
+local function info_string()
+  local total_plugins = vim.fn.len(vim.fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
+  local datetime = os.date(" %m-%d-%Y   %H:%M:%S")
+  local version = vim.version()
+  local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
+
+  return datetime .. "   " .. total_plugins .. " plugins" .. nvim_version_info
+end
+
 dashboard.section.header.val = {
   [[⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
   [[⠀⠀⠀⠀⠀⠀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀]],
@@ -16,9 +25,6 @@ dashboard.section.header.val = {
   [[⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣏⣼⣌⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣰⣆⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣏⣼⣌⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀]],
   [[⠀⠀⠀⠀⠀⠀⠉⠉⢿⣿⣿⣿⣿⣿⣿⡏⠉⠁⠀⠀⠀⠀⠀⠀⠀⠉⠉⢹⣿⣿⣿⣿⣿⣿⡏⠉⠉⠀⠀⠀⠀⠀⠀⠀⠉⠉⣿⣿⣿⣿⣿⣿⣿⡏⠉⠁⠀⠀⠀⠀⠀⠀]],
   [[⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠁⠁⠁⠉⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠁⠉⠉⠈⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠁⠁⠁⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
-  [[                                                              ]],
-  [[                                                              ]],
-  [[                            neovim                            ]],
 }
 
 dashboard.section.buttons.val = {
@@ -31,14 +37,20 @@ dashboard.section.buttons.val = {
   dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 }
 dashboard.section.buttons.opts.spacing = 0
+
 dashboard.section.footer.val = fortune()
+
 
 dashboard.config.layout = {
   dashboard.section.header,
+  { type = "padding", val = 2 },
+  { type = "text", val = "neovim", opts = { position = "center" } },
+  { type = "text", val = info_string(), opts = { position = "center" } },
   { type = "padding", val = 2 },
   dashboard.section.buttons,
   { type = "padding", val = 2 },
   dashboard.section.footer,
 }
+
 
 alpha.setup(dashboard.config)
