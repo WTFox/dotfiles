@@ -16,6 +16,9 @@ dashboard.section.header.val = {
   [[⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣏⣼⣌⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣰⣆⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣏⣼⣌⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀]],
   [[⠀⠀⠀⠀⠀⠀⠉⠉⢿⣿⣿⣿⣿⣿⣿⡏⠉⠁⠀⠀⠀⠀⠀⠀⠀⠉⠉⢹⣿⣿⣿⣿⣿⣿⡏⠉⠉⠀⠀⠀⠀⠀⠀⠀⠉⠉⣿⣿⣿⣿⣿⣿⣿⡏⠉⠁⠀⠀⠀⠀⠀⠀]],
   [[⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠁⠁⠁⠉⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠁⠉⠉⠈⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠁⠁⠁⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
+  [[                                                              ]],
+  [[                                                              ]],
+  [[                            neovim                            ]],
 }
 
 dashboard.section.buttons.val = {
@@ -27,7 +30,15 @@ dashboard.section.buttons.val = {
   dashboard.button("r", "  Reload Config", ":source $MYVIMRC<CR>"),
   dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 }
-
+dashboard.section.buttons.opts.spacing = 0
 dashboard.section.footer.val = fortune()
+
+dashboard.config.layout = {
+  dashboard.section.header,
+  { type = "padding", val = 2 },
+  dashboard.section.buttons,
+  { type = "padding", val = 2 },
+  dashboard.section.footer,
+}
 
 alpha.setup(dashboard.config)
