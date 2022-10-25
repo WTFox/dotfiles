@@ -359,7 +359,7 @@ font:
 
 window:
   title: "[ mainframe ]"
-  opacity: 0.98
+  opacity: 1
   padding:
     x: 10
     y: 0
