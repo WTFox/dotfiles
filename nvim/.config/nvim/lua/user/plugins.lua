@@ -46,7 +46,13 @@ return packer.startup(function(use)
   use { "numToStr/Comment.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
   use { "kyazdani42/nvim-tree.lua" }
-  use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
+  use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons', after = "catppuccin",
+    config = function()
+      require("bufferline").setup {
+        highlights = require("catppuccin.groups.integrations.bufferline").get()
+      }
+    end
+  }
   use { "moll/vim-bbye" }
   use { "nvim-lualine/lualine.nvim" }
   use { "akinsho/toggleterm.nvim" }
@@ -64,14 +70,22 @@ return packer.startup(function(use)
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
   }
-  use { "xiyaowong/nvim-transparent" }
   use { "ThePrimeagen/harpoon" }
   use { "ThePrimeagen/refactoring.nvim" }
 
   -- Colorschemes
+  -- default
+  use { "catppuccin/nvim",
+    as = "catppuccin",
+    config = function()
+      require("catppuccin").setup {
+        flavour = "mocha"
+      }
+      vim.api.nvim_command "colorscheme catppuccin-mocha"
+    end
+  }
   use { "folke/tokyonight.nvim" }
   use { "lunarvim/darkplus.nvim" }
-  use { "catppuccin/nvim" }
   use { "EdenEast/nightfox.nvim" }
   use { "luisiacc/gruvbox-baby" }
 
