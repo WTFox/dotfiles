@@ -103,8 +103,7 @@ local mappings = {
     },
 
     -- misc
-    b = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = true})<cr>",
-      "Buffers" },
+    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
@@ -189,7 +188,6 @@ local mappings = {
     name = "Misc",
     c = { "<cmd>Copilot enable<CR>", "Enable Copilot" },
     C = { "<cmd>Copilot disable<CR>", "Disable Copilot" },
-    t = { "<cmd>TransparentToggle<CR>", "Toggle Transparency" },
     r = { "<cmd>RunCode<cr>", "Run Code" },
   },
 
