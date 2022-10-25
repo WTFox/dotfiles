@@ -351,7 +351,7 @@ font:
     # family: "OperatorMono Nerd Font Mono"
     # style: "Book"
 
-  size: 16.0
+  size: 14.0
   offset:
     x: 1
     y: 1
