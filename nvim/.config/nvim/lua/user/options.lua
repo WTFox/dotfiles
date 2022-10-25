@@ -33,8 +33,6 @@ local options = {
   wrap           = false, -- display lines as one long line
   scrolloff      = 5, -- is one of my fav
   sidescrolloff  = 5,
-  foldmethod     = 'expr',
-  foldexpr       = 'nvim_treesitter#foldexpr()',
 }
 
 vim.opt.shortmess:append "c"

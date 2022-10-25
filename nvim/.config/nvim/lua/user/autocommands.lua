@@ -5,8 +5,6 @@ vim.cmd([[
     autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
     autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
-    " auto unfold
-    autocmd BufWinEnter,BufReadPost,FileReadPost * normal zR
   augroup end
 
   augroup _git
