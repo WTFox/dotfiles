@@ -92,7 +92,7 @@ local mappings = {
     F = { "<cmd>Telescope find_files hidden=true<cr>", "Files (hidden=true)" },
 
     -- text
-    t = { "<cmd>Telescope live_grep<cr>", "Text" },
+    t = { "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Text" },
     T = { "<cmd>lua require('telescope.builtin').live_grep({additional_args = function() return { '--hidden' } end})<cr>",
       "Text (hidden=true" },
 

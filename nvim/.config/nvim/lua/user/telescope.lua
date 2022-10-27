@@ -91,6 +91,15 @@ telescope.setup {
     -- extension_name = {
     --   extension_config_key = value,
     -- }
-    -- please take a look at the readme of the extension you want to configure
+    live_grep_args = {
+      auto_quoting = true, -- enable/disable auto-quoting
+      -- override default mappings
+      default_mappings = {},
+      mappings = {}
+      -- ... also accepts theme settings, for example:
+      -- theme = "dropdown", -- use dropdown theme
+      -- theme = { }, -- use own theme spec
+      -- layout_config = { mirror=true }, -- mirror preview pane
+    } -- please take a look at the readme of the extension you want to configure
   },
 }
