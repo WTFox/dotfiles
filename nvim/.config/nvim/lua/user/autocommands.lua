@@ -7,6 +7,8 @@ vim.cmd([[
     autocmd FileType qf set nobuflisted
     autocmd InsertEnter * :set norelativenumber
     autocmd InsertLeave * :set relativenumber 
+    " auto reload files after switching git branches
+    autocmd BufEnter * checktime 
   augroup end
 
   augroup _git

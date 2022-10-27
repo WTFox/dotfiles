@@ -1,5 +1,4 @@
 local options = {
-  autoread      = true, -- autoreload on checkout?
   backup        = false, -- creates a backup file
   cc            = "120", -- vertical column at 120 chars
   clipboard     = "unnamedplus", -- allows neovim to access the system clipboard
