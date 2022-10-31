@@ -74,8 +74,8 @@ lualine.setup({
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = { branch, diagnostics },
-    lualine_b = { mode },
+    lualine_a = { mode },
+    lualine_b = { branch, diagnostics },
     lualine_c = {},
     lualine_x = { diff, filetype },
     lualine_y = { location },
