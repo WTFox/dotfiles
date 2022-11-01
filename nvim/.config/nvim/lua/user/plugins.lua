@@ -131,7 +131,12 @@ return packer.startup(function(use)
   use { 'CRAG666/code_runner.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   use { 'windwp/nvim-projectconfig' }
-  use { "xiyaowong/nvim-transparent" }
+  use { 'xiyaowong/nvim-transparent' }
+  use { 'norcalli/nvim-colorizer.lua',
+    config = function()
+      require("colorizer").setup()
+    end
+  }
 
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
