@@ -330,13 +330,6 @@ color_schemes:
 
 colors: *mocha
 
-shell:
-  program: /bin/zsh
-  args:
-    - -l
-    - -c
-    - "TERM=xterm-256color tmux -2 attach || TERM=xterm-256color tmux -2"
-
 font:
   normal:
     # family: "mononoki Nerd Font"
@@ -347,7 +340,7 @@ font:
 
     family: "MonoLisa Nerd Font Mono"
     style: "Light"
-    
+
     # family: "OperatorMono Nerd Font Mono"
     # style: "Book"
 
