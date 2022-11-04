@@ -192,3 +192,5 @@ eval "$(starship init zsh)"
 
 # Created by `pipx` on 2022-10-13 15:49:51
 export PATH="$PATH:/Users/anthonyfox/Library/Python/3.10/bin"
+
+  . /usr/local/opt/asdf/libexec/asdf.sh

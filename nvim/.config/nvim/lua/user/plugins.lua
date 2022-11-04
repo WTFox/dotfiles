@@ -126,12 +126,22 @@ return packer.startup(function(use)
   use { "lewis6991/gitsigns.nvim" }
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'tpope/vim-fugitive' }
+  use {
+    'ldelossa/gh.nvim',
+    requires = { { 'ldelossa/litee.nvim' } },
+    config = function()
+      require('litee.lib').setup()
+      require('litee.gh').setup()
+    end
+  }
 
-  -- Code Runner
   use { 'CRAG666/code_runner.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   use { 'windwp/nvim-projectconfig' }
+
   use { 'xiyaowong/nvim-transparent' }
+
+  -- Highlight hex colors found in text. i.e.#fff, #000, or #4ef
   use { 'norcalli/nvim-colorizer.lua',
     config = function()
       require("colorizer").setup()
