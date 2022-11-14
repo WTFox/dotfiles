@@ -148,6 +148,12 @@ return packer.startup(function(use)
     end
   }
 
+  use { "ray-x/lsp_signature.nvim",
+    config = function()
+      require('lsp_signature').setup()
+    end
+  }
+
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
     require("packer").sync()
