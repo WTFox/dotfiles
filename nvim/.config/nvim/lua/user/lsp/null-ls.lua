@@ -12,13 +12,16 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
   debug = false,
   sources = {
+    diagnostics.eslint,
     diagnostics.flake8,
+    diagnostics.pylint,
     diagnostics.shellcheck,
+    diagnostics.staticcheck,
     diagnostics.write_good,
-    formatting.prettier,
     formatting.black,
     formatting.gofmt,
     formatting.isort,
+    formatting.prettier,
     formatting.rustfmt,
   },
   on_attach = function(client, bufnr)
