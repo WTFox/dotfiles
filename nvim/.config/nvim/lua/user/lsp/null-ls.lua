@@ -17,7 +17,6 @@ null_ls.setup({
     diagnostics.pylint,
     diagnostics.shellcheck,
     diagnostics.staticcheck,
-    diagnostics.write_good,
     formatting.black,
     formatting.gofmt,
     formatting.isort,
