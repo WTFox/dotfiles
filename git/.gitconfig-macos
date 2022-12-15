@@ -1,3 +1,6 @@
+[core]
+	editor = ~/nvim/bin/nvim
+
 [user]
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxV9td+vCLb28BAbizeTvI41RrkN4xyqDy1UlAv63Rz
 
