@@ -13,11 +13,15 @@ font:
     # family: "CaskaydiaCove Nerd Font"
     # family: "Hack Nerd Font"
 
-    family: "MonoLisa Nerd Font Mono"
-    style: "Light"
+    family: "MonoLisa Nerd Font"
+    style: "Regular"
 
     # family: "OperatorMono Nerd Font Mono"
     # style: "Book"
+
+  italic:
+    family: "MonoLisa Nerd Font"
+    style: "Regular Italic"
 
   size: 16.0
   offset:
