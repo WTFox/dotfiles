@@ -2,13 +2,19 @@
 # ----- K I T T Y   C O N F I G ----- #
 # ----------------------------------- #
 
+shell_integration no-cursor
+
+# --- macos settings
+macos_thicken_font 1
+macos_option_as_alt yes
+
 # ----- window settings ----- #
 
-remember_window_size      yes
-initial_window_width      640
-initial_window_height     400
+# remember_window_size      yes
+# initial_window_width      640
+# initial_window_height     400
 
-window_padding_width        12 24 0 24
+# window_padding_width        12 24 0 24
 placement_strategy          center
 resize_in_steps             yes
 hide_window_decorations     titlebar-only
@@ -30,41 +36,29 @@ touch_scroll_multiplier     1.0
 tab_bar_min_tabs            1
 tab_bar_edge                bottom
 tab_bar_style               powerline 
-tab_powerline_style         angled 
-tab_title_template          {title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}
+tab_powerline_style         slanted
+tab_title_template          {' :{}:'.format(num_windows) if num_windows > 1 else ''}{title}
 
 
 # ----- cursor settings ----- #
 
-cursor_shape                 block
+cursor_shape block
 
 # ----- font settings ----- #
 
-font_family      MonoLisa Nerd Font Mono
-bold_font        auto
-italic_font      auto
-bold_italic_font auto
-
-font_size 18
+font_size 16
+font_family MonoLisa Nerd Font
+font_features MonoLisa Nerd Font +ss02 +liga +zero +calt
 
 active_tab_font_style        bold
 inactive_tab_font_style      normal
 
 
-# ----- colour settings ----- #
-
-
 # ----- keyboard shortcuts ----- #
 
-# colours
-# | keys                    | action
-# map cmd+shift+1               set_colors --configured ~/.config/kitty/themes/latte.conf
-# map cmd+shift+2               set_colors --configured ~/.config/kitty/themes/macchiato.conf
 
 # tabs
 # | keys                    | action
-map cmd+shift+k               next_tab
-map cmd+shift+h               previous_tab
 map cmd+1                     goto_tab 1
 map cmd+2                     goto_tab 2
 map cmd+3                     goto_tab 3
@@ -77,18 +71,23 @@ map cmd+9                     goto_tab 9
 
 # splits
 # | keys                    | action
-map ctrl+s>z                  toggle_layout stack
-map ctrl+s>-                  launch --location=hsplit --cwd=current
-map ctrl+s>|                  launch --location=vsplit --cwd=current
-map ctrl+s>d                  detach_window ask
-map ctrl+s>h                  neighboring_window left
-map ctrl+s>l                  neighboring_window right
-map ctrl+s>k                  neighboring_window up
-map ctrl+s>j                  neighboring_window down
-map ctrl+s>ctrl+k             move_window up
-map ctrl+s>ctrl+h             move_window left
-map ctrl+s>ctrl+l             move_window right
-map ctrl+s>ctrl+j             move_window down
-map ctrl+s>ctrl+r             start_resizing_window
-map ctrl+s>r                  layout_action rotate
-map ctrl+s>w                  close_window
+map ctrl+b>z                  toggle_layout stack
+map ctrl+b>-                  launch --location=hsplit --cwd=current
+map ctrl+b>|                  launch --location=vsplit --cwd=current
+map ctrl+b>d                  detach_window ask
+map ctrl+b>h                  neighboring_window left
+map ctrl+b>l                  neighboring_window right
+map ctrl+b>k                  neighboring_window up
+map ctrl+b>j                  neighboring_window down
+map ctrl+b>ctrl+k             move_window up
+map ctrl+b>ctrl+h             move_window left
+map ctrl+b>ctrl+l             move_window right
+map ctrl+b>ctrl+j             move_window down
+map ctrl+b>ctrl+r             start_resizing_window
+map ctrl+b>r                  layout_action rotate
+map ctrl+b>w                  close_window
+
+# BEGIN_KITTY_THEME
+# Catppuccin-Mocha
+include current-theme.conf
+# END_KITTY_THEME
