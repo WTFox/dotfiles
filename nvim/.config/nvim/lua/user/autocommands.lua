@@ -10,7 +10,7 @@ vim.cmd([[
     " auto reload files after switching git branches
     autocmd BufEnter * checktime 
 
-    autocmd BufReadPost,FileReadPost * normal zR
+    autocmd BufWinEnter,BufEnter,BufReadPost,FileReadPost * normal zR
   augroup end
 
   augroup _git
