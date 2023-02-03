@@ -77,6 +77,7 @@ alias vim="nvim"
 alias n.="nvim ."
 alias loadnvm=". /usr/local/opt/nvm/nvm.sh"
 alias d="kitty +kitten diff"
+alias icat="kitty +kitten icat"
 
 bindkey -s ^f "tmux-sessionizer\n"
 
