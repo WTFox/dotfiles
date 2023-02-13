@@ -5,8 +5,8 @@ backup/*
 .ropeproject/
 .idea/
 .vscode/
-.venv/
-venv/
+.venv*/
+venv*/
 
 **/nvim/plugged/*
 
