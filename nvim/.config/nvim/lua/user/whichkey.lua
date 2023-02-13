@@ -221,6 +221,15 @@ local mappings = {
     u = { "<cmd>PackerUpdate<cr>", "Update" },
   },
 
+  x = {
+    name = "Trouble",
+    x = { "<cmd>TroubleToggle<cr>", "Toggle" },
+    w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace"},
+    d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document"},
+    l = { "<cmd>TroubleToggle loclist<cr>", "LocList"},
+    q = { "<cmd>TroubleToggle quickfix<cr>", "QuickFix"},
+    r = { "<cmd>TroubleToggle lsp_references<cr>", "LSP References"},
+  }
 }
 
 which_key.setup(setup)

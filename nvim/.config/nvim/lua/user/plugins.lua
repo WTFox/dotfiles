@@ -153,6 +153,10 @@ return packer.startup(function(use)
       require('lsp_signature').setup()
     end
   }
+  use {
+    "folke/trouble.nvim",
+    requires = "nvim-tree/nvim-web-devicons"
+  }
 
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
