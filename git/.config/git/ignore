@@ -13,3 +13,4 @@ venv*/
 tags*
 .DS_Store
 
+pyrightconfig.json
