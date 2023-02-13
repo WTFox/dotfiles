@@ -15,6 +15,7 @@ stow \
   pgcli/ \
   prettier/ \
   psql/ \
+  pylint/ \
   starship/ \
   tmux/ \
   vscode-vim/ \
