@@ -95,6 +95,11 @@ return packer.startup(function(use)
   use { "lunarvim/darkplus.nvim" }
   use { "EdenEast/nightfox.nvim" }
   use { "luisiacc/gruvbox-baby" }
+  use {
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
+    priority = 1000,
+  }
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp" }
@@ -156,6 +161,17 @@ return packer.startup(function(use)
   use {
     "folke/trouble.nvim",
     requires = "nvim-tree/nvim-web-devicons"
+  }
+
+  use {
+    'stevearc/aerial.nvim',
+    config = function() require('aerial').setup() end
+  }
+
+  use{ 'anuvyklack/pretty-fold.nvim',
+    config = function()
+      require('pretty-fold').setup()
+    end
   }
 
   -- Put this at the end after all plugins
