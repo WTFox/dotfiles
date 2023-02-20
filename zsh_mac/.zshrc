@@ -10,7 +10,10 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # Activate plugins
-plugins=(git git-extras tmux macos extract vscode brew golang pipenv zsh-autosuggestions zsh-syntax-highlighting fzf)
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
+plugins=(zsh-nvm git git-extras tmux macos extract vscode brew golang pipenv zsh-autosuggestions zsh-syntax-highlighting fzf)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -182,10 +185,6 @@ then
 fi
 
 export NVM_DIR="$HOME/.nvm"
-function load_nvm() {
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-}
 
 export PATH="$PATH:$HOME/bin:$HOME/.cargo/bin:$HOME/.cargo/env" 
 

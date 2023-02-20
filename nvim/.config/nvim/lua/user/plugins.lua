@@ -78,7 +78,6 @@ return packer.startup(function(use)
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
   }
   use { "ThePrimeagen/harpoon" }
-  use { "ThePrimeagen/refactoring.nvim" }
 
   -- Colorschemes
   -- default
@@ -131,20 +130,10 @@ return packer.startup(function(use)
   use { "lewis6991/gitsigns.nvim" }
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'tpope/vim-fugitive' }
-  use {
-    'ldelossa/gh.nvim',
-    requires = { { 'ldelossa/litee.nvim' } },
-    config = function()
-      require('litee.lib').setup()
-      require('litee.gh').setup()
-    end
-  }
 
   use { 'CRAG666/code_runner.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   use { 'windwp/nvim-projectconfig' }
-
-  use { 'xiyaowong/nvim-transparent' }
 
   -- Highlight hex colors found in text. i.e.#fff, #000, or #4ef
   use { 'norcalli/nvim-colorizer.lua',
@@ -153,11 +142,6 @@ return packer.startup(function(use)
     end
   }
 
-  use { "ray-x/lsp_signature.nvim",
-    config = function()
-      require('lsp_signature').setup()
-    end
-  }
   use {
     "folke/trouble.nvim",
     requires = "nvim-tree/nvim-web-devicons"
@@ -173,6 +157,19 @@ return packer.startup(function(use)
       require('pretty-fold').setup()
     end
   }
+  
+  use({
+
+    "folke/noice.nvim",
+    requires = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+      }
+  })
 
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
