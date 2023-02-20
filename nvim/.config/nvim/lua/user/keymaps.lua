@@ -23,7 +23,6 @@ keymap("n", "k", "gk", opts)
 
 keymap("n", "c/", ":nohls<CR>", opts)
 keymap("n", "<C-s>", ":w!<CR>", opts)
-keymap("n", "<C-f>", ":silent !tmux neww tmux-sessionizer<CR>", opts)
 
 -- Git
 keymap("n", "]g", ":lua require 'gitsigns'.next_hunk()<CR>", opts)

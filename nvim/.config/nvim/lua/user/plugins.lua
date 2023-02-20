@@ -147,19 +147,27 @@ return packer.startup(function(use)
     requires = "nvim-tree/nvim-web-devicons"
   }
 
-  use {
-    'stevearc/aerial.nvim',
-    config = function() require('aerial').setup() end
-  }
+  --[[ use { ]]
+  --[[   'stevearc/aerial.nvim', ]]
+  --[[   config = function() require('aerial').setup() end ]]
+  --[[ } ]]
 
-  use{ 'anuvyklack/pretty-fold.nvim',
+  use {
+    "anuvyklack/pretty-fold.nvim",
     config = function()
       require('pretty-fold').setup()
     end
   }
-  
-  use({
 
+  use {
+    "ggandor/flit.nvim",
+    requires = "ggandor/leap.nvim",
+    config = function()
+      require('flit').setup()
+    end
+  }
+
+  use {
     "folke/noice.nvim",
     requires = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -169,7 +177,7 @@ return packer.startup(function(use)
       --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
       }
-  })
+  }
 
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
