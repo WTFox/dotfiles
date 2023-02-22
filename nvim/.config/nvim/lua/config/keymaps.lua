@@ -1,9 +1,9 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+-- keymaps are automatically loaded on the verylazy event
+-- default keymaps that are always set: https://github.com/lazyvim/lazyvim/blob/main/lua/lazyvim/config/keymaps.lua
+-- add any additional keymaps here
 vim.keymap.set(
   "n",
   "<leader>sx",
   require("telescope.builtin").resume,
-  { noremap = true, silent = true, desc = "Resume" }
+  { noremap = true, silent = true, desc = "resume" }
 )
