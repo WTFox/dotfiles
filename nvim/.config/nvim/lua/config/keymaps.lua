@@ -14,7 +14,10 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>a", ":Alpha<cr>", { noremap = true, silent = true, desc = "dashboard" })
 
 -- next quickfix item
-vim.keymap.set("n", "<leader>]", ":cnext<cr>zz", { noremap = true, silent = true, desc = "next quickfix" })
+vim.keymap.set("n", "]q", ":cnext<cr>zz", { noremap = true, silent = true, desc = "next quickfix" })
 
 -- prev quickfix item
-vim.keymap.set("n", "<leader>[", ":cprev<cr>zz", { noremap = true, silent = true, desc = "prev quickfix" })
+vim.keymap.set("n", "[q", ":cprev<cr>zz", { noremap = true, silent = true, desc = "prev quickfix" })
+
+-- Open copilot panel
+vim.keymap.set("n", "<M-.>", ":Copilot panel<cr>", { noremap = true, silent = true, desc = "copilot panel" })
