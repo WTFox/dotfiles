@@ -3,8 +3,8 @@ return {
   { "ellisonleao/gruvbox.nvim" },
   {
     "folke/tokyonight.nvim",
-    lazy = true,
-    opts = { style = "moon" },
+    opts = { style = "night" },
+    lazy = false,
   },
   { "lunarvim/darkplus.nvim" },
   { "catppuccin/nvim", lazy = true, name = "catppuccin" },
