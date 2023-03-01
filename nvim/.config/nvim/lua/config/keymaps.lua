@@ -19,8 +19,5 @@ vim.keymap.set("n", "]q", ":cnext<cr>zz", { noremap = true, silent = true, desc 
 -- prev quickfix item
 vim.keymap.set("n", "[q", ":cprev<cr>zz", { noremap = true, silent = true, desc = "prev quickfix" })
 
--- Open copilot panel
-vim.keymap.set("n", "<M-.>", ":Copilot panel<cr>", { noremap = true, silent = true, desc = "copilot panel" })
-
 -- Toggle ZenMode
 vim.keymap.set("n", "<leader>uz", ":ZenMode<cr>", { noremap = true, silent = true, desc = "Zen" })

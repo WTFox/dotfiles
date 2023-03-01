@@ -5,3 +5,5 @@ require("nvim-test.runners.pytest"):setup({
     "--dbdriver=redshift_connector",
   },
 })
+
+require("lazyvim.plugins.lsp.format").toggle()
