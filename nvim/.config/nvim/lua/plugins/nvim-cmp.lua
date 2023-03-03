@@ -37,7 +37,6 @@ return {
         { name = "buffer" },
         { name = "path" },
         { name = "emoji" },
-        { name = "copilot", group_index = 2 },
       }),
       formatting = {
         format = function(_, item)
