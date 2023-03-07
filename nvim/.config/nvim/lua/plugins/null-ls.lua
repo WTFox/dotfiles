@@ -7,6 +7,7 @@ return {
     return {
       sources = {
         -- nls.builtins.formatting.prettierd,
+        nls.builtins.diagnostics.ruff,
         nls.builtins.formatting.stylua,
         nls.builtins.formatting.black,
         nls.builtins.formatting.sqlformat,
