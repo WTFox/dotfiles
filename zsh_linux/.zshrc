@@ -61,12 +61,12 @@ alias dc='docker-compose'
 alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 alias s3ls='aws s3 ls --summarize --human-readable'
 alias gti='(scream &); git'
-
 alias nvim="~/bin/nvim.appimage"
 alias vim="nvim"
 alias n.="nvim ."
 alias zshconfig="vim ~/.zshrc"
 alias loadnvm=". /usr/local/opt/nvm/nvm.sh"
+alias exp="/mnt/c/Windows/explorer.exe"
 
 bindkey -s ^f "tmux-sessionizer\n"
 
@@ -176,5 +176,6 @@ function load_nvm() {
 # setxkbmap -option "ctrl:nocaps"
 
 export PATH="$PATH:$HOME/bin:$HOME/.cargo/bin:$HOME/.cargo/env" 
+export PATH=`echo $PATH | tr ':' '\n' | grep -v /mnt/ | tr '\n' ':'`
 
 eval "$(starship init zsh)"
