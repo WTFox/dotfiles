@@ -1,4 +1,6 @@
 [alias]
+  dt = "! args=$@; shift $#; ~/bin/nvim-macos/bin/nvim -c \"DiffviewOpen $args\""
+
   ##
   # Branches
   ##
