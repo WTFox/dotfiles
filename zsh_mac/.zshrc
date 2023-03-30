@@ -79,11 +79,10 @@ alias nvim="~/bin/nvim-macos/bin/nvim"
 alias vim="nvim"
 alias n.="nvim ."
 alias loadnvm=". /usr/local/opt/nvm/nvm.sh"
-alias d="kitty +kitten diff"
+alias diff="kitty +kitten diff"
 alias icat="kitty +kitten icat"
-alias tldr="tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr"
+alias gg="lazygit"
 
-bindkey -s ^f "tmux-sessionizer\n"
 
 # create directories and cd to the first one
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -108,24 +107,8 @@ export NVM_DIR="$HOME/.nvm"
 # PIPX
 export PATH=$HOME/.local/bin/:$PATH
 
-function ghpr() {
-  GH_FORCE_TTY=100% gh pr list | fzf --ansi --preview 'GH_FORCE_TTY=100% gh pr view {1}' --preview-window down --header-lines 3 | awk '{print $1}' | xargs gh pr checkout
-}
-
 function find_non_ascii() {
     cat $1 | rg -Upoe "[^\x00-\x7F]"
-}
-
-function toggleOnCall() {
-  particle function call p1 toggleOnCall
-}
-
-function micLightsOn() {
-  particle function call p2 digitalWrite D3=HIGH
-}
-
-function micLightsOff() {
-  particle function call p2 digitalWrite D3=LOW
 }
 
 function ubuntu(){
