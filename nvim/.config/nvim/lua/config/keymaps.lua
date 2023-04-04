@@ -14,6 +14,9 @@ vim.keymap.set("n", "[q", ":cprev<cr>zz", { noremap = true, silent = true, desc 
 -- Toggle ZenMode
 vim.keymap.set("n", "<leader>uz", ":ZenMode<cr>", { noremap = true, silent = true, desc = "Zen" })
 
+-- Flote notes
+vim.keymap.set("n", "<leader>n", "<cmd>Flote<cr>", { noremap = true, silent = true, desc = "Notes" })
+
 -- use dynamic workspace symbols
 vim.keymap.set("n", "<leader>sS", function()
   local telescope = require("telescope.builtin")

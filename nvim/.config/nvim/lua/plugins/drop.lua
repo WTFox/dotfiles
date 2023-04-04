@@ -1,6 +1,7 @@
 return {
   "folke/drop.nvim",
   event = "VimEnter",
+  enabled = false,
   config = function()
     require("drop").setup({
       --@type DropTheme|string
