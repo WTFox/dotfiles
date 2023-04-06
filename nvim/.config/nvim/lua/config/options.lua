@@ -4,3 +4,6 @@
 
 -- adds filename to top right of buffer
 -- vim.opt.winbar = "%=%m %f"
+
+-- disables conceal
+vim.opt.conceallevel = 0

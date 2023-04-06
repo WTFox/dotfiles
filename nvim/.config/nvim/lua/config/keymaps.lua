@@ -2,23 +2,28 @@
 -- default keymaps that are always set: https://github.com/lazyvim/lazyvim/blob/main/lua/lazyvim/config/keymaps.lua
 -- add any additional keymaps here
 
+local map = vim.keymap.set
+
 -- toggle dashboard (alpha)
-vim.keymap.set("n", "<leader>a", ":Alpha<cr>", { noremap = true, silent = true, desc = "dashboard" })
+map("n", "<leader>a", ":Alpha<cr>", { noremap = true, silent = true, desc = "dashboard" })
 
 -- next quickfix item
-vim.keymap.set("n", "]q", ":cnext<cr>zz", { noremap = true, silent = true, desc = "next quickfix" })
+map("n", "]q", ":cnext<cr>zz", { noremap = true, silent = true, desc = "next quickfix" })
 
 -- prev quickfix item
-vim.keymap.set("n", "[q", ":cprev<cr>zz", { noremap = true, silent = true, desc = "prev quickfix" })
+map("n", "[q", ":cprev<cr>zz", { noremap = true, silent = true, desc = "prev quickfix" })
 
 -- Toggle ZenMode
-vim.keymap.set("n", "<leader>uz", ":ZenMode<cr>", { noremap = true, silent = true, desc = "Zen" })
+map("n", "<leader>uz", ":ZenMode<cr>", { noremap = true, silent = true, desc = "Zen" })
 
 -- Flote notes
-vim.keymap.set("n", "<leader>n", "<cmd>Flote<cr>", { noremap = true, silent = true, desc = "Notes" })
+map("n", "<leader>n", "<cmd>Flote<cr>", { noremap = true, silent = true, desc = "Notes" })
 
 -- use dynamic workspace symbols
-vim.keymap.set("n", "<leader>sS", function()
+map("n", "<leader>sS", function()
   local telescope = require("telescope.builtin")
   telescope.lsp_dynamic_workspace_symbols()
 end, { noremap = true, silent = true, desc = "workspace symbols" })
+
+-- open diffview
+map("n", "<leader>gd", ":DiffviewOpen<cr>", { noremap = true, silent = true, desc = "diffview" })
