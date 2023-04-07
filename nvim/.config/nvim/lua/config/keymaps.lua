@@ -26,4 +26,5 @@ map("n", "<leader>sS", function()
 end, { noremap = true, silent = true, desc = "workspace symbols" })
 
 -- open diffview
-map("n", "<leader>gd", ":DiffviewOpen<cr>", { noremap = true, silent = true, desc = "diffview" })
+map("n", "<leader>gd", ":DiffviewOpen main<cr>", { noremap = true, silent = true, desc = "DiffView (main)" })
+map("n", "<leader>gD", ":DiffviewOpen<cr>", { noremap = true, silent = true, desc = "DiffView" })
