@@ -4,27 +4,8 @@
 
 local map = vim.keymap.set
 
--- toggle dashboard (alpha)
-map("n", "<leader>a", ":Alpha<cr>", { noremap = true, silent = true, desc = "dashboard" })
-
 -- next quickfix item
 map("n", "]q", ":cnext<cr>zz", { noremap = true, silent = true, desc = "next quickfix" })
 
 -- prev quickfix item
 map("n", "[q", ":cprev<cr>zz", { noremap = true, silent = true, desc = "prev quickfix" })
-
--- Toggle ZenMode
-map("n", "<leader>uz", ":ZenMode<cr>", { noremap = true, silent = true, desc = "Zen" })
-
--- Flote notes
-map("n", "<leader>n", "<cmd>Flote<cr>", { noremap = true, silent = true, desc = "Notes" })
-
--- use dynamic workspace symbols
-map("n", "<leader>sS", function()
-  local telescope = require("telescope.builtin")
-  telescope.lsp_dynamic_workspace_symbols()
-end, { noremap = true, silent = true, desc = "workspace symbols" })
-
--- open diffview
-map("n", "<leader>gd", ":DiffviewOpen main<cr>", { noremap = true, silent = true, desc = "DiffView (main)" })
-map("n", "<leader>gD", ":DiffviewOpen<cr>", { noremap = true, silent = true, desc = "DiffView" })

@@ -1,22 +1,15 @@
-require("nvim-test.runners.pytest"):setup({
-  args = {
-    "--create-db",
-    "--nomigrations",
-    "--ignore=node_modules",
-  },
-  env = {
-    ENVIRONMENT = "dev",
-    DB_DEFAULT_HOST = "localhost",
-  },
-})
+require("neotest").setup({
+  adapters = {
+    require("neotest-python")({
+      dap = { justMyCode = false },
+      args = { "--create-db", "--nomigrations", "--ignore=node_modules" },
+      runner = "pytest",
+      python = "venv/bin/python",
+    }),
 
-require("nvim-test.runners.jest"):setup({
-  command = "~/dev/health/node_modules/.bin/jest",
-  args = {
-    "--config=jest.config.js",
+    require("neotest-jest")({
+      command = "~/dev/health/node_modules/.bin/jest",
+      args = { "--config=jest.config.js" },
+    }),
   },
-  env = {
-    ENVIRONMENT = "dev",
-  },
-  working_directory = "~/dev/health",
 })

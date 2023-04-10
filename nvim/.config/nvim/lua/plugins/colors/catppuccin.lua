@@ -41,10 +41,16 @@ return {
     integrations = {
       cmp = true,
       gitsigns = true,
+      neotest = true,
       nvimtree = true,
       telescope = true,
       notify = true,
       mini = true,
+      barbecue = {
+        dim_dirname = true,
+        bold_basename = true,
+        dim_context = false,
+      },
       -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
   },
