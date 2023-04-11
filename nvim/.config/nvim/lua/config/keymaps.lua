@@ -9,3 +9,6 @@ map("n", "]q", ":cnext<cr>zz", { noremap = true, silent = true, desc = "next qui
 
 -- prev quickfix item
 map("n", "[q", ":cprev<cr>zz", { noremap = true, silent = true, desc = "prev quickfix" })
+
+-- quick window quit
+map("n", "<leader>qw", ":q<cr>", { noremap = true, silent = true, desc = "quit window" })

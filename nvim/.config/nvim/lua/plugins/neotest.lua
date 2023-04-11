@@ -1,5 +1,6 @@
 return {
   "nvim-neotest/neotest",
+  enabled = true,
   dependencies = {
     "nvim-neotest/neotest-python",
     "haydenmeade/neotest-jest",
@@ -29,32 +30,6 @@ return {
         enabled = true,
         open = "botright split | resize 15",
       },
-      summary = {
-        animated = true,
-        enabled = true,
-        expand_errors = true,
-        follow = true,
-        mappings = {
-          attach = "a",
-          clear_marked = "M",
-          clear_target = "T",
-          debug = "d",
-          debug_marked = "D",
-          expand = { "<CR>", "<2-LeftMouse>" },
-          expand_all = "e",
-          jumpto = "o",
-          mark = { "m", "<space>" },
-          next_failed = "J",
-          output = "O",
-          prev_failed = "K",
-          run = "r",
-          run_marked = "R",
-          short = "O",
-          stop = "u",
-          target = "t",
-        },
-        open = "botright vsplit | vertical resize 50",
-      },
     })
   end,
   keys = {
@@ -63,7 +38,6 @@ return {
     { "<leader>tl", "<cmd>lua require('neotest').run.run_last({strategy = 'dap'})<cr>", desc = "Debug Last" },
     { "<leader>td", "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", desc = "Debug Nearest" },
     { "<leader>to", "<cmd>lua require('neotest').output.open({ enter = true })<cr>", desc = "Output" },
-    -- { "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Summary" },
     {
       "<leader>ts",
       function()
@@ -75,12 +49,5 @@ return {
       end,
       desc = "Summary",
     },
-    {
-      "<leader>tNF",
-      "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
-      desc = "Debug File",
-    },
-    { "<leader>tNa", "<cmd>lua require('neotest').run.attach()<cr>", desc = "Attach" },
-    { "<leader>tNs", "<cmd>lua require('neotest').run.stop()<cr>", desc = "Stop" },
   },
 }

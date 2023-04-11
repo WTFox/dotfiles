@@ -1,15 +1,29 @@
 require("neotest").setup({
+  quickfix = {
+    enabled = false,
+  },
+  output = {
+    enabled = true,
+    open_on_run = true,
+  },
+  output_panel = {
+    enabled = true,
+    open = "botright split | resize 15",
+  },
   adapters = {
     require("neotest-python")({
-      dap = { justMyCode = false },
-      args = { "--create-db", "--nomigrations", "--ignore=node_modules" },
-      runner = "pytest",
-      python = "venv/bin/python",
+      args = {
+        "--create-db",
+        "--nomigrations",
+        "--ignore=node_modules",
+      },
     }),
-
     require("neotest-jest")({
       command = "~/dev/health/node_modules/.bin/jest",
-      args = { "--config=jest.config.js" },
+      args = {
+        "--config=jest.config.js",
+      },
+      working_directory = "~/dev/health",
     }),
   },
 })

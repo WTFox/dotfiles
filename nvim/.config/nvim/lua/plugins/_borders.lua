@@ -1,5 +1,4 @@
 local border_style = "rounded"
-
 return {
   {
     "nvim-cmp",
@@ -50,6 +49,19 @@ return {
     opts = {
       window_style = "minimal",
       window_border = "single",
+    },
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    opts = {
+      float_opts = {
+        border = "curved",
+        winblend = 0,
+        highlights = {
+          border = "Normal",
+          background = "Normal",
+        },
+      },
     },
   },
 }
