@@ -1,1 +1,0 @@
-return { "lunarvim/darkplus.nvim" }
