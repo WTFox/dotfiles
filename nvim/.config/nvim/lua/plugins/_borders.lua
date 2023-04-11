@@ -45,4 +45,11 @@ return {
       presets = { lsp_doc_border = true },
     },
   },
+  {
+    "JellyApple102/flote.nvim",
+    opts = {
+      window_style = "minimal",
+      window_border = "single",
+    },
+  },
 }
