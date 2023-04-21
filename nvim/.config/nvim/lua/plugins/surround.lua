@@ -13,7 +13,4 @@ return {
     },
     search_method = "cover_or_next",
   },
-  config = function(_, opts)
-    require("mini.surround").setup(opts)
-  end,
 }
