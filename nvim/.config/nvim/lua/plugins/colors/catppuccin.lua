@@ -16,11 +16,11 @@ return {
       shade = "dark",
       percentage = 1,
     },
-    no_italic = false, -- Force no italic
+    no_italic = true, -- Force no italic
     no_bold = false, -- Force no bold
     styles = {
-      comments = { "italic" },
-      conditionals = { "italic" },
+      comments = {},
+      conditionals = {},
       loops = {},
       functions = {},
       keywords = {},
