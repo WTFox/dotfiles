@@ -11,10 +11,12 @@ return {
   {
     "williamboman/mason.nvim",
     opts = {
-      ensure_installed = { "clangd" },
+      ensure_installed = { "arduino", "clangd" },
     },
   },
   {
     "edKotinsky/Arduino.nvim",
+    lazy = true,
+    ft = { "ino", "arduino" },
   },
 }
