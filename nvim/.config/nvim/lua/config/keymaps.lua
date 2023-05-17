@@ -12,3 +12,6 @@ map("n", "[q", ":cprev<cr>zz", { noremap = true, silent = true, desc = "prev qui
 
 -- quick window quit
 map("n", "<leader>qw", ":q<cr>", { noremap = true, silent = true, desc = "quit window" })
+
+-- leader backspace to delete buffer
+map("n", "<leader><bs>", ":bd<cr>", { noremap = true, silent = true, desc = "delete buffer" })
