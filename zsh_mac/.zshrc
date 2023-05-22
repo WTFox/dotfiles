@@ -145,6 +145,8 @@ function install_rust() {
   rustup +nightly component add rust-analyzer-preview
 }
 
+function gi() { curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;}
+
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 export GOPATH=$HOME/dev/go
