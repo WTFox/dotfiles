@@ -5,9 +5,8 @@ DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 
 plugins=(git macos extract golang zsh-autosuggestions zsh-syntax-highlighting fzf)
-source $ZSH/oh-my-zsh.sh
-
 fpath=(/usr/local/share/zsh-completions $fpath)
+source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.zsh_exports ] && source ~/.zsh_exports
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
