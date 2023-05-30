@@ -6,7 +6,7 @@ stow \
 	bashrc/ \
 	bin/ \
 	direnv/ \
-	fzf_mac/ \
+	fzf/ \
 	git/ \
 	hammerspoon/ \
 	karabiner/ \
