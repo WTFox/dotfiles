@@ -8,6 +8,7 @@ fi
 
 # personal bins
 export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin/nvim-macos/bin/:$PATH
 
 # fzf
 # set catppuccin theme for fzf

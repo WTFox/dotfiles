@@ -15,3 +15,18 @@ map("n", "<leader>qw", ":q<cr>", { noremap = true, silent = true, desc = "quit w
 
 -- leader backspace to delete buffer
 map("n", "<leader><bs>", ":bd<cr>", { noremap = true, silent = true, desc = "delete buffer" })
+
+-- enter in normal mode to change word
+map("n", "<cr>", "ciw")
+
+-- resume telescope after exiting
+map("n", ";", "<cmd>lua require('telescope.builtin').resume(require('telescope.themes').get_ivy({}))<cr>")
+
+-- tab to next buffer
+-- shift tab to previous buffer
+map("n", "<Tab>", ":bnext<cr>")
+map("n", "<S-Tab>", ":bprevious<cr>")
+
+-- move line up and down
+map("v", "J", ":m '>+1<CR>gv==kgvo<esc>=kgvo", { desc = "move highlighted text down" })
+map("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text up" })

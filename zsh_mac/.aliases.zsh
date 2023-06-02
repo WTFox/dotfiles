@@ -41,7 +41,6 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup
 
 # == Text Editors ==
 alias n.="nvim ."
-alias nvim="~/bin/nvim-macos/bin/nvim"
 alias vim="nvim"
 alias zshconfig="nvim ~/.zshrc"
 

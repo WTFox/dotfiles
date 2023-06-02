@@ -8,9 +8,9 @@ plugins=(git macos extract golang zsh-autosuggestions zsh-syntax-highlighting fz
 fpath=(/usr/local/share/zsh-completions $fpath)
 source $ZSH/oh-my-zsh.sh
 
-[ -f ~/.zsh_exports ] && source ~/.zsh_exports
-[ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
-[ -f ~/.zsh_functions ] && source ~/.zsh_functions
+[ -f ~/.exports.zsh ] && source ~/.exports.zsh
+[ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
+[ -f ~/.functions.zsh ] && source ~/.functions.zsh
 [ -f ~/.personal.zsh ] && source ~/.personal.zsh
 [ -f ~/.work.zsh ] && source ~/.work.zsh
 
