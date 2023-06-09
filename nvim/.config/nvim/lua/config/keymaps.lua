@@ -33,3 +33,6 @@ map("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text u
 
 -- in toggleterm insert, ctrl + l should send clear<cr>
 map("t", "<c-l>", "clear<cr>", { noremap = true, silent = true })
+
+-- capital Q to quit
+map("n", "Q", "<esc>:q<cr>", { noremap = true, silent = true })
