@@ -20,4 +20,7 @@ return {
       },
     })
   end,
+  keys = {
+    { "<leader>Ts", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Split Terminal" },
+  },
 }
