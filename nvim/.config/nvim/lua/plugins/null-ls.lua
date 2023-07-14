@@ -5,7 +5,6 @@ return {
   opts = {
     sources = {
       -- nls.builtins.formatting.prettierd,
-      nls.builtins.diagnostics.ruff,
       nls.builtins.diagnostics.mypy,
       nls.builtins.formatting.stylua,
       nls.builtins.formatting.black,

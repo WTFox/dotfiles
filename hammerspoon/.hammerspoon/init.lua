@@ -3,5 +3,5 @@ hs.loadSpoon("ControlEscape"):start() -- remaps caps lock to escape when pressed
 
 MASH = { "⌥", "⌃" }
 
-require("grid")
+-- require("grid")
 require("apps")
