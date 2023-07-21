@@ -53,3 +53,8 @@ alias ducks='du -cksh * | sort -rh | head -11'
 alias path='echo -e ${PATH//:/\\n}'  # Print each PATH entry on a separate line
 alias ql='qlmanage -p "$@" 2> /dev/null' # 'Quick look' on Mac OS
 alias reload="exec $SHELL -l"
+
+
+# == Fun ==
+alias scream="afplay -v 0.2 ~/audio/goat-scream.mp3"
+alias attenzione="afplay -v 0.2 ~/audio/attenzione.mp3"
