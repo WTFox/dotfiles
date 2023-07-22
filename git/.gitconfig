@@ -8,6 +8,7 @@
 
 [core]
 	excludesfile = ~/.config/git/ignore
+	editor = nvim
 	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [diff]
@@ -22,3 +23,9 @@
 [include]
     path = ~/.gitaliases
 
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.29.0/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.29.0/bin/gh auth git-credential
