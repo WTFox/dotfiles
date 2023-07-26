@@ -17,15 +17,11 @@
 [init]
 	defaultBranch = main
 
-[includeIf "gitdir:/Users/"]
-    path = ~/.gitconfig-macos
-
 [include]
     path = ~/.gitaliases
 
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/local/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/local/bin/gh auth git-credential
+[includeIf "gitdir:/Users/"]
+    path = ~/.gitconfig-macos
+
+[includeIf "gitdir:/home/"]
+    path = ~/.gitconfig-linux

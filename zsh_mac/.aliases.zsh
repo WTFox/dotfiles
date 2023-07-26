@@ -7,6 +7,7 @@ alias nowdate='date +"%Y-%m-%d"'
 
 # == Docker ==
 alias dc='docker-compose'
+alias dd='lazydocker'
 
 # == Git ==
 alias gap="git add -p"
