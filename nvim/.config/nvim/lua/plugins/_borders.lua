@@ -1,4 +1,5 @@
-local border_style = "rounded"
+local BORDER_STYLE = "rounded"
+
 return {
   {
     "nvim-cmp",
@@ -6,36 +7,36 @@ return {
       local bordered = require("cmp.config.window").bordered
       return vim.tbl_deep_extend("force", opts, {
         window = {
-          completion = bordered(border_style),
-          documentation = bordered(border_style),
+          completion = bordered(BORDER_STYLE),
+          documentation = bordered(BORDER_STYLE),
         },
       })
     end,
   },
   {
     "which-key.nvim",
-    opts = { window = { border = border_style } },
+    opts = { window = { border = BORDER_STYLE } },
   },
   {
     "gitsigns.nvim",
-    opts = { preview_config = { border = border_style } },
+    opts = { preview_config = { border = BORDER_STYLE } },
   },
   {
     "nvim-lspconfig",
     opts = function(_, opts)
       -- Set LspInfo border
-      require("lspconfig.ui.windows").default_options.border = border_style
+      require("lspconfig.ui.windows").default_options.border = BORDER_STYLE
       return opts
     end,
   },
   {
     "null-ls.nvim",
-    opts = { border = border_style },
+    opts = { border = BORDER_STYLE },
   },
   {
     "mason.nvim",
     opts = {
-      ui = { border = border_style },
+      ui = { border = BORDER_STYLE },
     },
   },
   {
