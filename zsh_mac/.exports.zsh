@@ -28,9 +28,6 @@ export PATH=/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH
 # pipx
 export PATH=$HOME/.local/bin/:$PATH
 
-# python
-export PATH="/usr/local/opt/python/libexec/bin:~/Library/Python/3.11/bin/:$PATH"
-
 # ruby
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
