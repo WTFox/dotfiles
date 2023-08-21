@@ -8,36 +8,36 @@ return {
       light = "latte",
       dark = "mocha",
     },
-    transparent_background = false,
-    show_end_of_buffer = false, -- show the '~' characters after the end of buffers
-    term_colors = false,
-    dim_inactive = {
-      enabled = false,
-      shade = "dark",
-      percentage = 1,
-    },
-    no_italic = true, -- Force no italic
-    no_bold = false, -- Force no bold
-    styles = {
-      comments = {},
-      conditionals = {},
-      loops = {},
-      functions = {},
-      keywords = {},
-      strings = {},
-      variables = {},
-      numbers = {},
-      booleans = {},
-      properties = {},
-      types = {},
-      operators = {},
-    },
+    -- transparent_background = false,
+    -- show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+    -- term_colors = false,
+    -- dim_inactive = {
+    --   enabled = false,
+    --   shade = "dark",
+    --   percentage = 1,
+    -- },
+    -- no_italic = true, -- Force no italic
+    -- no_bold = false, -- Force no bold
+    -- styles = {
+    --   comments = {},
+    --   conditionals = {},
+    --   loops = {},
+    --   functions = {},
+    --   keywords = {},
+    --   strings = {},
+    --   variables = {},
+    --   numbers = {},
+    --   booleans = {},
+    --   properties = {},
+    --   types = {},
+    --   operators = {},
+    -- },
     color_overrides = {
       mocha = {
         base = "#11111B",
       },
     },
-    custom_highlights = {},
+    -- custom_highlights = {},
     integrations = {
       cmp = true,
       gitsigns = true,
