@@ -18,7 +18,7 @@ return {
     },
   },
   keys = {
-    { "<leader>R", "<cmd>RunCode<cr>", desc = "Run Code" },
+    { "<leader>r", "<cmd>RunCode<cr>", desc = "Run Code" },
     -- { "<leader>rf", "<cmd>RunFile<cr>", desc = "Run File" },
     -- { "<leader>rft", "<cmd>RunFile tab<cr>", desc = "Run File in Tab" },
     -- { "<leader>rp", "<cmd>RunProject<cr>", desc = "Run Project" },

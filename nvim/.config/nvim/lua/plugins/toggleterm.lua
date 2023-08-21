@@ -26,11 +26,6 @@ function LAZYDOCKER_TOGGLE()
   lazydocker:toggle()
 end
 
-local ranger = new_terminal("ranger", "float")
-function RANGER_TOGGLE()
-  ranger:toggle()
-end
-
 return {
   "akinsho/toggleterm.nvim",
   opts = {
@@ -44,6 +39,10 @@ return {
     float_opts = {
       border = "curved",
       winblend = 3,
+      highlights = {
+        border = "Normal",
+        background = "Normal",
+      },
     },
   },
   keys = {
