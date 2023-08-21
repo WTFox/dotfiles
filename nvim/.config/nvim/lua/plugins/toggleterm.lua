@@ -17,12 +17,12 @@ local new_terminal = function(cmd, direction)
 end
 
 local lazygit = new_terminal("lazygit", "float")
-function _lazygit_toggle()
+function LAZYGIT_TOGGLE()
   lazygit:toggle()
 end
 
 local lazydocker = new_terminal("lazydocker", "float")
-function _lazydocker_toggle()
+function LAZYDOCKER_TOGGLE()
   lazydocker:toggle()
 end
 
@@ -48,7 +48,7 @@ return {
   keys = {
     { "<C-/>", "<cmd>ToggleTerm<CR>", desc = "Floating Terminal" },
     { "<leader>Ts", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Split Terminal" },
-    { "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", desc = "LazyGit" },
-    { "<leader>dd", "<cmd>lua _lazydocker_toggle()<CR>", desc = "LazyDocker" },
+    { "<leader>gg", "<cmd>lua LAZYGIT_TOGGLE()<CR>", desc = "LazyGit" },
+    { "<leader>dd", "<cmd>lua LAZYDOCKER_TOGGLE()<CR>", desc = "LazyDocker" },
   },
 }
