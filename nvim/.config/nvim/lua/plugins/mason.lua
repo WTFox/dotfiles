@@ -3,15 +3,15 @@ return {
   opts = {
     ensure_installed = {
       -- golang
-      "gopls",
-      "revive",
+      -- "gopls",
+      -- "revive",
       -- lua
       "stylua",
       -- python
-      "black",
-      "debugpy",
-      "pylint",
-      "pyright",
+      -- "black",
+      -- "debugpy",
+      -- "pylint",
+      -- "pyright",
       -- shell
       "shellcheck",
       "shfmt",
@@ -19,10 +19,10 @@ return {
       "sqlls",
       "sqlfluff",
       -- rust
-      "rustfmt",
-      "rust-analyzer",
+      -- "rustfmt",
+      -- "rust-analyzer",
       -- typescript
-      "typescript-language-server",
+      -- "typescript-language-server",
     },
   },
 }
