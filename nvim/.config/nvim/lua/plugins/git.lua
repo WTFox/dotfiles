@@ -15,8 +15,9 @@ return {
     "sindrets/diffview.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     keys = {
-      { "<leader>gd", "<cmd>DiffviewOpen main<cr>", desc = "DiffView (main)" },
-      { "<leader>gD", "<cmd>DiffviewOpen<cr>", desc = "DiffView" },
+      { "<leader>gdd", "<cmd>DiffviewOpen<cr>", desc = "DiffView" },
+      { "<leader>gdm", "<cmd>DiffviewOpen main<cr>", desc = "DiffView (main)" },
+      { "<leader>gdM", "<cmd>DiffviewOpen master<cr>", desc = "DiffView (master)" },
     },
   },
 }

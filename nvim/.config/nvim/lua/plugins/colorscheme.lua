@@ -1,6 +1,16 @@
 return {
-  require("plugins.colors.catppuccin"),
-  require("plugins.colors.tokyonight"),
+  {
+    "catppuccin/nvim",
+    lazy = true,
+    name = "catppuccin",
+    opts = {
+      color_overrides = {
+        mocha = {
+          base = "#11111b",
+        },
+      },
+    },
+  },
   {
     "LazyVim/LazyVim",
     opts = {
