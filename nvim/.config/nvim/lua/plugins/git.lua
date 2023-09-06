@@ -14,10 +14,11 @@ local get_main_branch = function()
   return result:gsub("\n", "")
 end
 
-local main_branch = get_main_branch()
 return {
   {
     "tpope/vim-fugitive",
+    event = "VeryLazy",
+    dependencies = { "tpope/vim-rhubarb" },
     keys = {
       { "<leader>gb", "<cmd>Git blame<cr>", desc = "blame" },
     },
@@ -25,9 +26,21 @@ return {
   {
     "sindrets/diffview.nvim",
     dependencies = "nvim-lua/plenary.nvim",
+    event = "VeryLazy",
     keys = {
       { "<leader>gdd", "<cmd>DiffviewOpen<CR>", desc = "DiffView" },
-      { "<leader>gdm", "<cmd>DiffviewOpen " .. main_branch .. "<CR>", desc = "DiffView (" .. main_branch .. ")" },
+      {
+        "<leader>gdm",
+        function()
+          local branch = get_main_branch()
+          if branch == "" then
+            print("Could not get main branch")
+            return
+          end
+          vim.cmd("DiffviewOpen " .. branch)
+        end,
+        desc = "DiffView main branch",
+      },
     },
   },
 }

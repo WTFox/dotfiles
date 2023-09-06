@@ -1,22 +1,22 @@
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.offsetEncoding = { "utf-16" }
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.offsetEncoding = { "utf-16" }
 
 return {
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      capabilities = capabilities,
-    },
-  },
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = { "arduino", "clangd" },
-    },
-  },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     capabilities = capabilities,
+  --   },
+  -- },
+  -- {
+  --   "williamboman/mason.nvim",
+  --   opts = {
+  --     ensure_installed = { "arduino", "clangd" },
+  --   },
+  -- },
   {
     "edKotinsky/Arduino.nvim",
-    lazy = true,
+    event = "VeryLazy",
     ft = { "ino", "arduino" },
   },
 }
