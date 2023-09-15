@@ -6,7 +6,6 @@ require("which-key").register({
 
 return {
   "ThePrimeagen/harpoon",
-  lazy = false,
   config = function(_, opts)
     require("harpoon").setup(opts)
     require("telescope").load_extension("harpoon")
@@ -22,6 +21,6 @@ return {
       desc = "Add file to harpoon",
     },
     { "<leader>hh", "<CMD>lua require('harpoon.ui').toggle_quick_menu()<CR>", desc = "Open Harpoon Menu" },
-    { "<leader>ho", "<CMD>Telescope harpoon marks<CR>", desc = "Open Harpoon Marks" },
+    { "<leader>ho", "<CMD>Telescope harpoon marks<CR>", desc = "Open Harpoon Marks (Telescope)" },
   },
 }

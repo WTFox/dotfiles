@@ -2,7 +2,7 @@
   "Arduino.nvim": { "branch": "main", "commit": "1e986040861e77dd7107abfecc473c60ccd97d3f" },
   "LazyVim": { "branch": "main", "commit": "a72a84972d85e5bbc6b9d60a0983b37efef21b8a" },
   "LuaSnip": { "branch": "master", "commit": "ea7d7ea510c641c4f15042becd27f35b3e5b3c2b" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "0305d00d4e9fd9ed643432b488c51d8002e17c28" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "2a6a5d3e2bc8a5727b6d083d2920d12a392ed05b" },
   "alpha-nvim": { "branch": "main", "commit": "234822140b265ec4ba3203e3e0be0e0bb826dff5" },
   "bufferline.nvim": { "branch": "main", "commit": "9961d87bb3ec008213c46ba14b3f384a5f520eb5" },
   "catppuccin": { "branch": "main", "commit": "85e93601e0f0b48aa2c6bbfae4d0e9d7a1898280" },
