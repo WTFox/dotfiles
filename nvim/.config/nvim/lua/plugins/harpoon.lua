@@ -12,7 +12,6 @@ return {
   end,
   opts = {
     save_on_toggle = true,
-    tabline = true,
   },
   keys = {
     {
