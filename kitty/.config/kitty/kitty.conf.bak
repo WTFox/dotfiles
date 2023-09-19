@@ -2,14 +2,50 @@
 # ----- K I T T Y   C O N F I G ----- #
 # ----------------------------------- #
 
+# ----- font settings ----- #
+
+active_tab_font_style        normal
+inactive_tab_font_style      italic
+
+font_size 18
+
+# font_family MonoLisa
+# macos_thicken_font 1
+
+# font_family Operator Mono
+# macos_thicken_font 0
+
+# font_family Cascadia Mono
+# macos_thicken_font 0
+
+# font_family Fira Code
+# macos_thicken_font 1
+
+# font_family mononoki
+# macos_thicken_font 1
+
+font_family JetBrains Mono
+macos_thicken_font 1
+
+# font_family Comic Mono
+# macos_thicken_font 0
+
+# font_family Dank Mono
+# macos_thicken_font 1
+
+# ------------other
 shell_integration no-cursor
+
+# ------------ vim remote control
+allow_remote_control socket-only
+listen_on unix:/tmp/kitty
 
 # --- macos settings
 macos_option_as_alt yes
 
 # ----- window settings ----- #
 
-# remember_window_size      yes
+remember_window_size      yes
 # initial_window_width      640
 # initial_window_height     400
 
@@ -32,8 +68,6 @@ touch_scroll_multiplier     1.0
 
 # ----- tab bar settings ----- #
 
-active_tab_font_style        normal
-inactive_tab_font_style      italic
 tab_bar_min_tabs            1
 tab_bar_edge                top
 tab_bar_style               powerline
@@ -44,19 +78,6 @@ tab_title_template          {' :{}:'.format(num_windows) if num_windows > 1 else
 # ----- cursor settings ----- #
 
 cursor_shape block
-
-# ----- font settings ----- #
-
-font_size 18
-
-font_family Operator Mono
-macos_thicken_font 0
-
-# font_family MonoLisa
-# macos_thicken_font 1
-
-# font_family Dank Mono
-# macos_thicken_font 1
 
 ###########################################################
 # Symbols Nerd Font complete symbol_map
@@ -131,9 +152,9 @@ map ctrl+b>ctrl+l             move_window right
 map ctrl+b>ctrl+j             move_window down
 map ctrl+b>ctrl+r             start_resizing_window
 map ctrl+b>r                  layout_action rotate
-map ctrl+b>[                  kitten kitty_grab/grab.py
+map ctrl+b>enter              kitten kitty_grab/grab.py
 
 # BEGIN_KITTY_THEME
-# kanagawabones
+# Solarized Light
 include current-theme.conf
 # END_KITTY_THEME

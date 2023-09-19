@@ -1,5 +1,18 @@
 local BORDER_STYLE = "rounded"
 
+vim.diagnostic.config({
+  signs = true,
+  underline = true,
+  virtual_text = false,
+  virtual_lines = false,
+  update_in_insert = true,
+  float = {
+    header = false,
+    border = "rounded",
+    focusable = true,
+  },
+})
+
 return {
   {
     "nvim-cmp",

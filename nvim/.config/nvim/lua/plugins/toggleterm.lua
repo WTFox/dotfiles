@@ -1,30 +1,14 @@
-local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = nil
+local lazydocker = nil
 
-local new_terminal = function(cmd, direction)
-  return Terminal:new({
-    cmd = cmd,
-    direction = direction,
-    hidden = true,
-    float_opts = {
-      border = "curved",
-      winblend = 3,
-      highlights = {
-        border = "Normal",
-        background = "Normal",
-      },
-    },
-  })
-end
-
-local lazygit = new_terminal("lazygit", "float")
-function LAZYGIT_TOGGLE()
-  lazygit:toggle()
-end
-
-local lazydocker = new_terminal("lazydocker", "float")
-function LAZYDOCKER_TOGGLE()
-  lazydocker:toggle()
-end
+local float_opts = {
+  border = "curved",
+  winblend = 3,
+  highlights = {
+    border = "Normal",
+    background = "Normal",
+  },
+}
 
 return {
   "akinsho/toggleterm.nvim",
@@ -36,19 +20,40 @@ return {
     direction = "float",
     close_on_exit = true,
     shell = vim.o.shell,
-    float_opts = {
-      border = "curved",
-      winblend = 3,
-      highlights = {
-        border = "Normal",
-        background = "Normal",
-      },
-    },
+    float_opts = float_opts,
   },
   keys = {
     { "<C-/>", "<cmd>ToggleTerm<CR>", desc = "Floating Terminal" },
     { "<leader>Ts", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Split Terminal" },
-    { "<leader>gg", "<cmd>lua LAZYGIT_TOGGLE()<CR>", desc = "LazyGit" },
-    { "<leader>dd", "<cmd>lua LAZYDOCKER_TOGGLE()<CR>", desc = "LazyDocker" },
+    {
+      "<leader>gg",
+      function()
+        if lazygit == nil then
+          lazygit = require("toggleterm.terminal").Terminal:new({
+            cmd = "lazygit",
+            hidden = true,
+            direction = "float",
+            float_opts = float_opts,
+          })
+        end
+        lazygit:toggle()
+      end,
+      desc = "LazyGit",
+    },
+    {
+      "<leader>dd",
+      function()
+        if lazydocker == nil then
+          lazydocker = require("toggleterm.terminal").Terminal:new({
+            cmd = "lazydocker",
+            hidden = true,
+            direction = "float",
+            float_opts = float_opts,
+          })
+        end
+        lazydocker:toggle()
+      end,
+      desc = "LazyDocker",
+    },
   },
 }
