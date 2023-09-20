@@ -10,8 +10,7 @@ return {
     },
     mode = "term",
     focus = true,
-    startinsert = false,
-    insert_prefix = "",
+    startinsert = true,
     term = {
       position = "bot",
       size = 12,
