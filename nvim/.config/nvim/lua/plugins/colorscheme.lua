@@ -56,21 +56,6 @@ return {
     },
   },
   {
-    "rose-pine/neovim",
-    lazy = false,
-    name = "rose-pine",
-    opts = {},
-  },
-  {
-    "mcchrish/zenbones.nvim",
-    dependencies = { "rktjmp/lush.nvim" },
-  },
-  { "Mofiqul/vscode.nvim" },
-  {
-    "metalelf0/jellybeans-nvim",
-    dependencies = { "rktjmp/lush.nvim" },
-  },
-  {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "catppuccin",
