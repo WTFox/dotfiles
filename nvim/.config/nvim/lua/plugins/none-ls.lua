@@ -5,7 +5,7 @@ return {
     return {
       root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
       sources = {
-        nls.builtins.diagnostics.mypy,
+        -- nls.builtins.diagnostics.mypy,
         nls.builtins.diagnostics.flake8,
         nls.builtins.diagnostics.ruff,
         nls.builtins.diagnostics.tsc,

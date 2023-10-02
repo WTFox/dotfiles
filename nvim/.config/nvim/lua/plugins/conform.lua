@@ -5,8 +5,8 @@ return {
       lua = { "stylua" },
       fish = { "fish_indent" },
       sh = { "shfmt" },
-      python = { "isort", "black" },
-      javascript = { { "prettierd", "prettier" } },
+      python = { "isort", "black", "flake8" },
+      javascript = { { "prettierd", "prettier" }, "eslint" },
       -- for all
       ["*"] = { "codespell" },
       -- Use the "_" filetype to run formatters on filetypes that don't
