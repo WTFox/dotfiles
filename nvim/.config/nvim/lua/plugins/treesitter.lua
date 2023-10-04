@@ -17,7 +17,6 @@ return {
       "gomod",
       "gosum",
       "gowork",
-      "help",
       "html",
       "htmldjango",
       "http",
