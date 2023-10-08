@@ -2,7 +2,6 @@
 alias s3ls='aws s3 ls --summarize --human-readable'
 
 alias loadnvm=". /usr/local/opt/nvm/nvm.sh"
-alias exp="/mnt/c/Windows/explorer.exe"
 
 # == Date and Time ==
 alias now='date +"%T"'
@@ -27,6 +26,8 @@ if [[ ${WSL_DISTRO_NAME:-"False"} == "False" ]]; then
   alias kdiff="kitty +kitten diff"
   alias kicat="kitty +kitten icat"
   alias kssh="kitty +kitten ssh"
+else
+  alias exp="/mnt/c/Windows/explorer.exe"
 fi
 
 # == Networking ==
@@ -42,7 +43,7 @@ alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"  # Flush 
 alias ls="exa --icons --group-directories-first --git --color=always"
 
 # == Text Editors ==
-alias nvim="~/bin/nvim.appimage"
+alias nvim="~/bin/nvim-linux64/bin/nvim"
 alias n.="nvim ."
 alias vim="nvim"
 alias zshconfig="nvim ~/.zshrc"
@@ -56,6 +57,3 @@ alias ducks='du -cksh * | sort -rh | head -11'
 alias path='echo -e ${PATH//:/\\n}'  # Print each PATH entry on a separate line
 alias reload="exec $SHELL -l"
 
-# == Fun ==
-alias scream="afplay -v 0.2 ~/audio/goat-scream.mp3"
-alias attenzione="afplay -v 0.2 ~/audio/attenzione.mp3"

@@ -9,8 +9,8 @@ function load_nvm() {
 
 function install_nvim() {
   pushd ~/bin
-  curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
-  tar xzf nvim-macos.tar.gz
+  curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+  tar xzf nvim-linux64.tar.gz
   echo "nvim installed!"
   popd
 }
@@ -28,7 +28,7 @@ function profile_zsh() {
   for i in $(seq 1 10); do /usr/bin/time zsh -i -c exit; done;
 }
 
-function gi() { 
+function gi() {
   # echos a gitignore template to stdout
   # ex: https://www.toptal.com/developers/gitignore/api/<language>
   curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$1
