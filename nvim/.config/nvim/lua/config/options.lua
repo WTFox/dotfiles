@@ -7,3 +7,4 @@
 
 -- disables conceal
 vim.opt.conceallevel = 0
+vim.opt.laststatus = 2

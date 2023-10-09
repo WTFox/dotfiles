@@ -11,9 +11,7 @@ return {
       require("neotest-go")({
         args = { "-tags=integration" },
       }),
-      require("neotest-python")({
-        args = { "-m", "pytest" },
-      }),
+      require("neotest-python")({}),
       require("neotest-jest")({}),
       require("neotest-rust")({
         args = { "--no-capture" },
