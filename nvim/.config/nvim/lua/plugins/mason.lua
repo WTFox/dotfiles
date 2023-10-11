@@ -2,26 +2,26 @@ return {
   "williamboman/mason.nvim",
   opts = {
     ensure_installed = {
-      -- golang
+      ---- golang ----
       -- "gopls",
       -- "revive",
-      -- lua
+      ---- lua ----
       "stylua",
-      -- python
+      ---- python ----
       -- "black",
       -- "debugpy",
       -- "pylint",
       -- "pyright",
-      -- shell
+      ---- shell ----
       "shellcheck",
       "shfmt",
-      -- sql
+      ---- sql ----
       "sqlls",
       "sqlfluff",
-      -- rust
+      ---- rust ----
       -- "rustfmt",
       -- "rust-analyzer",
-      -- typescript
+      ---- typescript ----
       -- "typescript-language-server",
     },
   },
