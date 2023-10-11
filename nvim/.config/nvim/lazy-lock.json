@@ -19,6 +19,7 @@
   "flash.nvim": { "branch": "main", "commit": "6d76c5dee65181ab55cbdfb0760260e800d643f4" },
   "flote.nvim": { "branch": "main", "commit": "26edcdbd148f2950efc6ab22081e05165429edf4" },
   "friendly-snippets": { "branch": "main", "commit": "43727c2ff84240e55d4069ec3e6158d74cb534b6" },
+  "fzf": { "branch": "master", "commit": "a8f9432a3a10c33cfb0a375cc84bab3500dcc846" },
   "gitsigns.nvim": { "branch": "main", "commit": "ff01d34daaed72f271a8ffa088a7e839a60c640f" },
   "grapple.nvim": { "branch": "main", "commit": "ab274a3bfb674442d57fca05df866b71895853bc" },
   "indent-blankline.nvim": { "branch": "master", "commit": "1bee85e1789f61e5ee54e5a18f8fa193099dca99" },
