@@ -34,7 +34,7 @@ brew "docker-compose", link: false
 brew "docker-credential-helper-ecr"
 brew "duck"
 brew "entr"
-brew "exa"
+brew "eza"
 brew "exercism"
 brew "fd"
 brew "figlet"

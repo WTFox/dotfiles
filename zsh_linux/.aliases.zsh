@@ -40,7 +40,7 @@ alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"  # View HT
 
 # == System ==
 alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"  # Flush Directory Service cache
-alias ls="exa --icons --group-directories-first --git --color=always"
+alias ls="eza --icons --group-directories-first --git --color=always"
 
 # == Text Editors ==
 alias nvim="~/bin/nvim-linux64/bin/nvim"
