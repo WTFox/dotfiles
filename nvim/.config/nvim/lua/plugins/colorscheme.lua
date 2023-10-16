@@ -45,6 +45,7 @@ return {
           },
         },
       },
+      -- luacheck: ignore
       overrides = function(colors) -- add/modify highlights
         return {}
       end,
