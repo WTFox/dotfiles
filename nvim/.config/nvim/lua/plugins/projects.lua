@@ -19,6 +19,8 @@ return {
   {
     "windwp/nvim-projectconfig",
     opts = { silent = false },
+    lazy = false,
+    event = "VimEnter",
     keys = {
       { "<leader>pc", "<cmd>EditProjectConfig<cr>", desc = "Project Config" },
     },

@@ -5,13 +5,13 @@ return {
       lua = { "stylua" },
       fish = { "fish_indent" },
       sh = { "shfmt" },
-      python = { "isort", "black", "flake8" },
-      javascript = { { "prettierd", "prettier" }, "eslint" },
+      -- python = { "isort", "black", "flake8" },
+      -- javascript = { { "prettierd", "prettier" }, "eslint" },
       -- for all
-      ["*"] = { "codespell" },
+      -- ["*"] = { "codespell" },
       -- Use the "_" filetype to run formatters on filetypes that don't
       -- have other formatters configured.
-      ["_"] = { "trim_whitespace" },
+      -- ["_"] = { "trim_whitespace" },
     },
   },
 }
