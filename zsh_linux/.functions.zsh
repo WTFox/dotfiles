@@ -34,6 +34,11 @@ function gi() {
   curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$1
 }
 
-function ai() {
-  mods -f "$1" | glow
+function ya() {
+    tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+    yazi --cwd-file="$tmp"
+    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
 }
