@@ -7,4 +7,6 @@
 
 -- disables conceal
 vim.opt.conceallevel = 0
-vim.opt.laststatus = 2
+
+-- temp fix for lualine disappearing
+-- vim.opt.laststatus = 2

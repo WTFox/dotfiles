@@ -18,9 +18,12 @@ return {
   },
   {
     "windwp/nvim-projectconfig",
-    opts = { silent = false },
     lazy = false,
     event = "VimEnter",
+    opts = {
+      project_dir = "~/.config/LazyVim/projects/",
+      silent = false,
+    },
     keys = {
       { "<leader>pc", "<cmd>EditProjectConfig<cr>", desc = "Project Config" },
     },
