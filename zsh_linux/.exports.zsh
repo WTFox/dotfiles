@@ -24,3 +24,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 
 # rust
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/.cargo/env"
+
+# neovim
+export NVIM_APPNAME="LazyVim"
