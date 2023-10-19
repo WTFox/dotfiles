@@ -8,7 +8,6 @@ stow \
 	direnv/ \
 	kitty/ \
 	git/ \
-	LazyVim/ \
 	nvim/ \
 	pgcli/ \
 	prettier/ \

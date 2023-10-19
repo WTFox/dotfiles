@@ -1,4 +1,5 @@
 # User configuration
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
@@ -25,5 +26,3 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 # rust
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/.cargo/env"
 
-# neovim
-export NVIM_APPNAME="LazyVim"

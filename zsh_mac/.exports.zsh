@@ -1,4 +1,5 @@
 # User configuration
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
@@ -41,5 +42,3 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 # yarn
 export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
-# neovim
-export NVIM_APPNAME="LazyVim"

@@ -21,7 +21,6 @@ return {
     lazy = false,
     event = "VimEnter",
     opts = {
-      project_dir = "~/.config/LazyVim/projects/",
       silent = false,
     },
     keys = {

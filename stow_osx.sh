@@ -11,7 +11,6 @@ stow \
 	hammerspoon/ \
 	karabiner/ \
 	kitty/ \
-	LazyVim/ \
 	nvim/ \
 	pgcli/ \
 	prettier/ \
