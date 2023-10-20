@@ -54,6 +54,7 @@ alias cls=clear
 alias df='df -H'
 alias du='du -ch'
 alias ducks='du -cksh * | sort -rh | head -11'
+alias gdu="gdu-go"
 alias path='echo -e ${PATH//:/\\n}'  # Print each PATH entry on a separate line
 alias reload="exec $SHELL -l"
 
