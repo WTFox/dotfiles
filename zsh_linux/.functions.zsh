@@ -1,9 +1,15 @@
 function load_pyenv() {
+  if type pyenv > /dev/null 2>&1; then
+      return
+  fi
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
 }
 
 function load_nvm() {
+  if type nvm > /dev/null 2>&1; then
+      return
+  fi
   [ -s "$HOME/.nvm/nvm.sh" ] && \. "$HOME/.nvm/nvm.sh"
 }
 
