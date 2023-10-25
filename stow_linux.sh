@@ -1,7 +1,6 @@
 #!/bin/sh
 
 stow \
-	alacritty/ \
 	audio/ \
 	bashrc/ \
 	bin/ \
@@ -15,5 +14,4 @@ stow \
 	starship/ \
 	tmux/ \
 	vscode-vim/ \
-	zellij/ \
 	zsh_linux/
