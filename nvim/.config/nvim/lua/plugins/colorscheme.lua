@@ -4,9 +4,6 @@ return {
     name = "catppuccin",
     lazy = false,
     opts = {
-      integrations = {
-        trouble = false,
-      },
       color_overrides = {
         mocha = {
           base = "#11111b",
