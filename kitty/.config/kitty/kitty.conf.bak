@@ -6,32 +6,21 @@
 
 active_tab_font_style        normal
 inactive_tab_font_style      italic
+text_composition_strategy platform
 
-font_size 18
+font_size 16
 
-# font_family MonoLisa
-# macos_thicken_font 1
-
-# font_family Operator Mono
-# macos_thicken_font 0
-
+font_family MonoLisa
 # font_family Cascadia Mono
-# macos_thicken_font 0
-
 # font_family Fira Code
-# macos_thicken_font 1
-
 # font_family mononoki
-# macos_thicken_font 1
-
-font_family JetBrains Mono
-macos_thicken_font 1
-
+# font_family JetBrains Mono
 # font_family Comic Mono
-# macos_thicken_font 0
-
 # font_family Dank Mono
-# macos_thicken_font 1
+# font_family      Operator Mono Book
+# bold_font        Operator Mono Medium
+# italic_font      Operator Mono Book Italic
+# bold_italic_font Operator Mono Medium Italic
 
 # ------------other
 shell_integration no-cursor
@@ -72,7 +61,7 @@ tab_bar_min_tabs            1
 tab_bar_edge                top
 tab_bar_style               powerline
 tab_powerline_style         slanted
-tab_fade 0.25 0.5 0.75 1 
+tab_fade 0.25 0.5 0.75 1
 tab_title_template          {' :{}:'.format(num_windows) if num_windows > 1 else ''}{title}
 
 # ----- cursor settings ----- #
@@ -155,6 +144,6 @@ map ctrl+b>r                  layout_action rotate
 map ctrl+b>enter              kitten kitty_grab/grab.py
 
 # BEGIN_KITTY_THEME
-# kanagawabones
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME
