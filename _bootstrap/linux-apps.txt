@@ -1,0 +1,4 @@
+ripgrep
+jq
+bat
+tmux

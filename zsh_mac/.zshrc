@@ -16,5 +16,9 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export osType="mac"
+source $HOME/dotfiles/_bootstrap/os/common.sh
+source $HOME/dotfiles/_bootstrap/os/${osType}.sh
+
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"

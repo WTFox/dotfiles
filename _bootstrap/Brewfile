@@ -88,6 +88,7 @@ brew "tree"
 brew "watch"
 brew "wget"
 brew "xsv"
+brew "yazi"
 brew "yt-dlp"
 brew "zsh"
 brew "zsh-autosuggestions"
@@ -137,13 +138,3 @@ cask "spotify"
 cask "transmit"
 cask "visual-studio-code"
 
-mas "Amphetamine", id: 937984704
-mas "FocusList", id: 1086877679
-mas "Cursor Pro", id: 1447043133
-mas "Haze Over", id: 1497527363
-mas "Notability", id: 736189492
-mas "Numbers", id: 409203825
-mas "PiPifier", id: 1160374471
-mas "Slack", id: 803453959
-mas "The Unarchiver", id: 425424353
-mas "Tomato One", id: 907364780

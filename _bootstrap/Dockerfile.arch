@@ -1,0 +1,15 @@
+# Start from the latest Arch Linux base image
+FROM archlinux:latest
+
+# Update and install sudo and core utilities
+RUN pacman -Syu --noconfirm \
+  sudo \
+  coreutils \
+  curl \
+  && yes | pacman -Scc
+
+WORKDIR /bootstrap
+COPY . /bootstrap
+
+RUN chmod +x /bootstrap/bootstrap.sh
+ENTRYPOINT ["/bootstrap/bootstrap.sh"]
