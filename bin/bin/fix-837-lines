@@ -1,0 +1,26 @@
+#! /usr/bin/python3
+
+import sys
+
+
+def fix_lines(filename):
+    contents = []
+
+    with open(filename, "r") as f:
+        for line in f.readlines():
+            if line.endswith("~\n"):
+                contents.append(line)
+            else:
+                if "~" in line[:-1]:
+                    line = line.replace("~", "~\n")
+                    contents.append(line)
+
+    with open(f"{filename}-modified.edi", "w") as f:
+        f.writelines(contents)
+
+    return contents
+
+
+if __name__ == "__main__":
+    filename = sys.argv[1]
+    fix_lines(filename)

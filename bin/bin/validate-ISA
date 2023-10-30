@@ -1,0 +1,99 @@
+#! /usr/bin/python3
+
+import sys
+from dataclasses import dataclass
+
+
+@dataclass
+class FieldLength:
+    name: str
+    length: int
+
+
+FIELD_LENGTHS = [
+    FieldLength(name="authorization_information_qualifier", length=2),
+    FieldLength(name="authorization_information", length=10),
+    FieldLength(name="security_information_qualifier", length=2),
+    FieldLength(name="security_information", length=10),
+    FieldLength(name="interchange_id_qualifier_01", length=2),
+    FieldLength(name="interchange_sender_id", length=15),
+    FieldLength(name="interchange_id_qualifier_02", length=2),
+    FieldLength(name="interchange_receiver_id", length=15),
+    FieldLength(name="interchange_date", length=6),
+    FieldLength(name="interchange_time", length=4),
+    FieldLength(name="repetition_separator", length=1),
+    FieldLength(name="interchange_control_version", length=5),
+    FieldLength(name="interchange_control_number", length=9),
+    FieldLength(name="acknowledgement_requested", length=1),
+    FieldLength(name="usage_indicator", length=1),
+    FieldLength(name="component_element_separator", length=1),
+]
+
+
+def validate_ISA(isa_line):
+    """ Return true if ISA line is valid, else false.
+
+    A valid ISA looks like this:
+        ISA*00*..........*01*SECRET....*ZZ*SUBMITTERS.ID..*ZZ*YTH837.........*1410 31*1253*^*00501*000000905*1*T*:~
+    """
+
+    errors = []
+
+    sep = isa_line[3]
+    elements = isa_line.split(sep)
+
+    if not len(elements) == 17:
+        errors.append(f"Not enough elements, got {len(elements)}, expected 17")
+
+    elements[-1] = elements[-1].replace("~", "")
+
+    for i, el in enumerate(elements[1:]):
+        field = FIELD_LENGTHS[i]
+        if field.length != len(el):
+            errors.append(
+                f"{field.name}, index {i+2}, has invalid length of {len(el)}. Expecting {field.length}."
+            )
+
+    return errors
+
+
+def read_837_lines(filename):
+    contents = []
+
+    with open(filename, "r") as f:
+        for line in f.readlines():
+            if not line:
+                continue
+            if line.endswith("~\n"):
+                contents.append(line)
+            else:
+                if "~" in line[:-1]:
+                    line = line.replace("~", "~\n")
+                    contents.append(line)
+
+    if not contents[0].startswith("ISA"):
+        raise Exception("Invalid first line, must start with ISA")
+
+    return contents
+
+
+if __name__ == "__main__":
+    filename = sys.argv[1]
+    contents = read_837_lines(filename)
+    isa_line = contents[0]
+
+    print("Here's what we're working with:")
+    print()
+    print(isa_line)
+    print()
+
+    if len(isa_line) != 107:
+        print(f"Invalid length, needs to be 107. Got {len(isa_line)}")
+
+    isa_line_with_trimmed_terminator = contents[0].strip().replace("~", "")
+    errors = validate_ISA(isa_line_with_trimmed_terminator)
+    if not errors:
+        print("All good!")
+
+    for error in errors:
+        print(error)
