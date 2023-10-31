@@ -26,8 +26,8 @@ else
 	fi
 fi
 
-source os/common.sh
-source os/${osType}.sh
+source ./_bootstrap/os/common.sh
+source ./_bootstrap/os/${osType}.sh
 
 update_package_manager
 install_direnv
