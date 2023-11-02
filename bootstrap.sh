@@ -10,23 +10,8 @@ while true; do
 	kill -0 "$$" || exit
 done 2>/dev/null &
 
-osType=""
-if [[ "$OSTYPE" == "darwin"* ]]; then
-	osType="mac"
-elif [[ -e "/etc/arch-release" ]]; then
-	osType="arch"
-else
-	# Import variables from /etc/os-release
-	source /etc/os-release
-	if [[ "$ID" == "pop" ]] || [[ "$ID_LIKE" == "debian" ]]; then
-		osType="debian"
-	else
-		echo "Unsupported OS type."
-		exit 1
-	fi
-fi
-
 source ./_bootstrap/os/common.sh
+osType=$(get_os_type)
 source ./_bootstrap/os/${osType}.sh
 
 update_package_manager

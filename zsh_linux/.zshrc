@@ -16,5 +16,9 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+source $HOME/dotfiles/_bootstrap/os/common.sh
+osType=$(get_os_type)
+source $HOME/dotfiles/_bootstrap/os/${osType}.sh
+
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"

@@ -1,5 +1,23 @@
 #!/bin/bash
 
+get_os_type() {
+	osType=""
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		echo "mac"
+	elif [[ -e "/etc/arch-release" ]]; then
+		echo "arch"
+	else
+		# Import variables from /etc/os-release
+		source /etc/os-release
+		if [[ "$ID" == "pop" ]] || [[ "$ID_LIKE" == "debian" ]]; then
+			echo "debian"
+		else
+			echo "Unsupported OS type."
+			exit 1
+		fi
+	fi
+}
+
 install_pyenv_requirements() {
 	# overriden in os files
 	pass
