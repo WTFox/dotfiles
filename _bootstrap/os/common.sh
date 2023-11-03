@@ -106,6 +106,9 @@ install_rust() {
 	source "$HOME/.cargo/env"
 
 	# rust utilities
+	curl -LsSf https://get.nexte.st/latest/mac | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
+
+	# utilities written in rust
 	cargo install --locked --git https://github.com/sxyazi/yazi.git
 }
 
