@@ -64,8 +64,8 @@ return {
       event = "BufRead",
       config = true,
       keys = {
-        { "<leader>gp", "<cmd>Octo pr create<cr>", desc = "Create PR" },
-        { "<leader>go", "<cmd>!gh pr view --web<cr>", desc = "Open on github" },
+        { "<leader>gpc", "<cmd>Octo pr create<cr>", desc = "Create PR" },
+        { "<leader>gpo", "<cmd>!gh pr view --web<cr>", desc = "Open on github" },
       },
     },
   },
