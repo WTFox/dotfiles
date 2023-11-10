@@ -23,7 +23,7 @@ install_pyenv_requirements() {
 	pass
 }
 
-install_golang() {
+install_go() {
 	# overriden in os files
 	pass
 }
@@ -39,8 +39,16 @@ install_fonts() {
 }
 
 run_stow_script() {
-	cp ~/.bashrc ~/.bashrc.old
-	cp ~/.zshrc ~/.zshrc.old
+	potential_conflicts=(
+		"$HOME/.bashrc"
+		"$HOME/.zshrc"
+	)
+	for file in "${potential_conflicts[@]}"; do
+		if [[ -f "$file" ]]; then
+			mv "$file" "$file.old"
+		fi
+	done
+
 	if [[ "$osType" == "mac" ]]; then
 		./stow_mac.sh
 	else
@@ -111,7 +119,11 @@ install_rust() {
 	source "$HOME/.cargo/env"
 
 	# rust utilities
-	curl -LsSf https://get.nexte.st/latest/mac | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
+	if [[ "$osType" == "mac" ]]; then
+		curl -LsSf https://get.nexte.st/latest/mac | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
+	else
+		curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
+	fi
 
 	# utilities written in rust
 	cargo install --locked --git https://github.com/sxyazi/yazi.git

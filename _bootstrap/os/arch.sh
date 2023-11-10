@@ -44,3 +44,11 @@ install_apps() {
 install_pyenv_requirements() {
 	sudo pacman --noconfirm -S base-devel openssl libffi zlib bzip2 xz sqlite tk ncurses
 }
+
+install_fonts() {
+	pushd ~/dotfiles/fonts/ || exit
+	mkdir -p ~/.local/share/fonts
+	cp ~/dotfiles/fonts/*/*.ttf ~/.local/share/fonts/
+	cp ~/dotfiles/fonts/*/*.otf ~/.local/share/fonts/
+	popd || exit
+}

@@ -86,3 +86,11 @@ install_apps() {
 	# tpm for tmux
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
+
+install_fonts() {
+	pushd ~/dotfiles/fonts/ || exit
+	mkdir -p ~/.local/share/fonts
+	cp ~/dotfiles/fonts/*/*.ttf ~/.local/share/fonts/
+	cp ~/dotfiles/fonts/*/*.otf ~/.local/share/fonts/
+	popd || exit
+}

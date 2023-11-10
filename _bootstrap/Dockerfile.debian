@@ -10,8 +10,9 @@ RUN apt-get update && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-WORKDIR /bootstrap
-COPY . /bootstrap
+RUN mkdir /root/dotfiles
+WORKDIR /root/dotfiles
+COPY . /root/dotfiles
 
-RUN chmod +x /bootstrap/bootstrap.sh
-ENTRYPOINT ["/bootstrap/bootstrap.sh"]
+RUN chmod +x /root/dotfiles/bootstrap.sh
+ENTRYPOINT ["/root/dotfiles/bootstrap.sh"]
