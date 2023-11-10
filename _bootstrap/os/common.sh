@@ -33,6 +33,11 @@ install_apps() {
 	pass
 }
 
+install_fonts() {
+	# overriden in os files
+	pass
+}
+
 run_stow_script() {
 	cp ~/.bashrc ~/.bashrc.old
 	cp ~/.zshrc ~/.zshrc.old
