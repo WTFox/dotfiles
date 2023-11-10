@@ -24,14 +24,14 @@ return {
       -- Normal = {
       --   guibg = "<VALUE-HERE>",
       -- },
-      NormalFloat = {
-        -- link = 'Normal'
-        guibg = "#11111b",
-      },
-      FloatBorder = {
-        guifg = "#11111b",
-        guibg = "#11111b",
-      },
+      -- NormalFloat = {
+      --   -- link = 'Normal'
+      --   guibg = "#11111b",
+      -- },
+      -- FloatBorder = {
+      --   guifg = "#11111b",
+      --   guibg = "#11111b",
+      -- },
     },
     float_opts = float_opts,
   },
