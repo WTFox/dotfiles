@@ -20,6 +20,19 @@ return {
     direction = "float",
     close_on_exit = true,
     shell = vim.o.shell,
+    highlights = {
+      -- Normal = {
+      --   guibg = "<VALUE-HERE>",
+      -- },
+      NormalFloat = {
+        -- link = 'Normal'
+        guibg = "#11111b",
+      },
+      FloatBorder = {
+        guifg = "#11111b",
+        guibg = "#11111b",
+      },
+    },
     float_opts = float_opts,
   },
   keys = {
