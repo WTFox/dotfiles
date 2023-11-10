@@ -43,7 +43,7 @@ install_apps() {
 
 install_fonts() {
 	pushd ~/dotfiles/fonts/ || exit
-	ln -s ~/dotfiles/fonts/*/*.ttf ~/Library/Fonts/
-	ln -s ~/dotfiles/fonts/*/*.otf ~/Library/Fonts/
+	cp ~/dotfiles/fonts/*/*.ttf ~/Library/Fonts/
+	cp ~/dotfiles/fonts/*/*.otf ~/Library/Fonts/
 	popd || exit
 }
