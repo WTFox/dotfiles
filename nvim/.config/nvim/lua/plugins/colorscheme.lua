@@ -20,11 +20,11 @@ return {
     "rebelot/kanagawa.nvim",
     opts = {
       compile = false, -- enable compiling the colorscheme
-      undercurl = true, -- enable undercurls
+      undercurl = false, -- enable undercurls
       commentStyle = { italic = true },
       functionStyle = {},
       keywordStyle = { italic = false },
-      statementStyle = { bold = true },
+      statementStyle = { bold = false },
       typeStyle = {},
       transparent = false, -- do not set background color
       dimInactive = true, -- dim inactive window `:h hl-NormalNC`
