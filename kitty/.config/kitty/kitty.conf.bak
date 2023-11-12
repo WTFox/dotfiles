@@ -165,6 +165,6 @@ map ctrl+b>r                  layout_action rotate
 map ctrl+b>enter              kitten kitty_grab/grab.py
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# kanagawabones
 include current-theme.conf
 # END_KITTY_THEME

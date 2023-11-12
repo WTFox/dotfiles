@@ -5,9 +5,9 @@ return {
     lazy = false,
     opts = {
       color_overrides = {
-        -- mocha = {
-        --   base = "#11111b",
-        -- },
+        mocha = {
+          base = "#11111b",
+        },
       },
     },
   },
@@ -55,7 +55,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa",
+      colorscheme = "catppuccin",
     },
   },
 }
