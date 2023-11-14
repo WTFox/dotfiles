@@ -14,4 +14,5 @@ stow \
 	starship/ \
 	tmux/ \
 	vscode-vim/ \
+	yazi/ \
 	zsh_linux/
