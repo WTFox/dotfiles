@@ -37,8 +37,8 @@ return {
   },
   {
     "sindrets/diffview.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
-    event = "VeryLazy",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = "BufReadPre",
     keys = {
       { "<leader>gdd", "<cmd>DiffviewOpen<CR>", desc = "DiffView" },
       {
@@ -54,19 +54,19 @@ return {
         desc = "DiffView main branch",
       },
     },
-    {
-      "pwntester/octo.nvim",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim",
-        "nvim-tree/nvim-web-devicons",
-      },
-      event = "BufRead",
-      config = true,
-      keys = {
-        { "<leader>gpc", "<cmd>Octo pr create<cr>", desc = "Create PR" },
-        { "<leader>gpo", "<cmd>!gh pr view --web<cr>", desc = "Open on github" },
-      },
+  },
+  {
+    "pwntester/octo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    event = "BufRead",
+    config = true,
+    keys = {
+      { "<leader>gpc", "<cmd>Octo pr create<cr>", desc = "Create PR" },
+      { "<leader>gpo", "<cmd>!gh pr view --web<cr>", desc = "Open on github" },
     },
   },
 }
