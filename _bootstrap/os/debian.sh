@@ -2,7 +2,7 @@
 
 update_package_manager() {
 	sudo apt-get update
-	sudo apt-get -y install git curl wget coreutils
+	sudo apt-get -y install curl wget coreutils
 }
 
 install_zsh_and_oh_my_zsh() {
@@ -28,6 +28,10 @@ install_nvim() {
 	tar xzf nvim-linux64.tar.gz
 	echo "nvim installed!"
 	popd || exit
+}
+
+install_git_and_gh() {
+	sudo apt-get -y install git gh
 }
 
 install_pyenv_requirements() {

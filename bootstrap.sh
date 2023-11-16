@@ -15,13 +15,14 @@ osType=$(get_os_type)
 source ./_bootstrap/os/${osType}.sh
 
 update_package_manager
+install_git_and_gh
 install_direnv
 install_starship
 install_fzf
 install_stow
 run_stow_script
 install_zsh_and_oh_my_zsh
-instalL_python_and_pyenv
+install_python_and_pyenv
 install_node_and_nvm
 install_rust
 install_go

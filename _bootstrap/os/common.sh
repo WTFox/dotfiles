@@ -38,6 +38,11 @@ install_fonts() {
 	pass
 }
 
+install_git_and_gh() {
+	# overriden in os files
+	pass
+}
+
 run_stow_script() {
 	potential_conflicts=(
 		"$HOME/.bashrc"
@@ -67,7 +72,7 @@ install_fzf() {
 	~/.fzf/install --key-bindings --completion --no-update-rc
 }
 
-instalL_python_and_pyenv() {
+install_python_and_pyenv() {
 	install_pyenv_requirements
 	curl https://pyenv.run | zsh
 	export PYENV_ROOT="$HOME/.pyenv"
@@ -132,4 +137,5 @@ install_rust() {
 configure_git() {
 	gh auth login
 	gh auth setup-git
+	gh extension install github/gh-copilot
 }

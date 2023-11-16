@@ -41,6 +41,11 @@ install_apps() {
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
+install_git_and_gh() {
+	brew "github/gh/gh"
+	brew install git gh
+}
+
 install_fonts() {
 	pushd ~/dotfiles/fonts/ || exit
 	cp ~/dotfiles/fonts/*/*.ttf ~/Library/Fonts/

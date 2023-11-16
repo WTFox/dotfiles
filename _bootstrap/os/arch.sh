@@ -2,7 +2,11 @@
 
 update_package_manager() {
 	sudo pacman -Syu
-	sudo pacman --noconfirm -S git curl wget coreutils
+	sudo pacman --noconfirm -S curl wget coreutils
+}
+
+install_git_and_gh() {
+	sudo pacman --noconfirm -S git gh
 }
 
 install_zsh_and_oh_my_zsh() {
