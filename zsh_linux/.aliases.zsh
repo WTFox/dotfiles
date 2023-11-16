@@ -17,6 +17,7 @@ alias gds="git diff --stat"
 alias gg="lazygit"
 alias gst="git status --short --branch"
 alias gti='(scream &); git'
+alias "gh?"="gh copilot"
 
 # == Kitty ==
 # if platform is not wsl, set these aliases
