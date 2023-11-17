@@ -43,7 +43,7 @@ install_git_and_gh() {
 	pass
 }
 
-run_stow_script() {
+install_dotfiles() {
 	potential_conflicts=(
 		"$HOME/.bashrc"
 		"$HOME/.zshrc"
@@ -54,11 +54,7 @@ run_stow_script() {
 		fi
 	done
 
-	if [[ "$osType" == "mac" ]]; then
-		./stow_mac.sh
-	else
-		./stow_linux.sh
-	fi
+	./stow.sh
 }
 
 install_oh_my_zsh() {

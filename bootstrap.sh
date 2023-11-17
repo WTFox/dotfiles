@@ -20,7 +20,7 @@ install_direnv
 install_starship
 install_fzf
 install_stow
-run_stow_script
+install_dotfiles
 install_zsh_and_oh_my_zsh
 install_python_and_pyenv
 install_node_and_nvm

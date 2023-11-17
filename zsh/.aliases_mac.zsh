@@ -1,0 +1,16 @@
+# == macOS-Specific Aliases ==
+
+# == System ==
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"  # Lock the screen (when going AFK)
+alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"  # Flush Directory Service cache
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"  # Hide hidden files
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"  # Hide desktop files
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"  # Show hidden files
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"  # Show desktop files
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+
+# == Fun ==
+alias scream="afplay -v 0.2 ~/audio/goat-scream.mp3"
+alias attenzione="afplay -v 0.2 ~/audio/attenzione.mp3"
+alias gti='(scream &); git'
+

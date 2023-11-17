@@ -6,7 +6,7 @@ update_package_manager() {
 }
 
 install_git_and_gh() {
-	sudo pacman --noconfirm -S git gh
+	sudo pacman --noconfirm -S git github-cli
 }
 
 install_zsh_and_oh_my_zsh() {
