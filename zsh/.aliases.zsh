@@ -28,7 +28,6 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 alias ls="eza --icons --group-directories-first --git --color=always"
 
 # == Kitty ==
-alias kitty="kitty --single-instance"
 alias k="kitty"
 alias kdiff="kitty +kitten diff"
 alias kicat="kitty +kitten icat"
@@ -36,6 +35,8 @@ alias kssh="kitty +kitten ssh"
 
 # == Text Editors ==
 alias n.="nvim ."
+alias lazy_sync='nvim --headless "+Lazy! sync" +qa'
+alias lazy_restore='nvim --headless "+Lazy! restore" +qa'
 alias vim="nvim"
 alias zshconfig="nvim ~/.zshrc"
 
