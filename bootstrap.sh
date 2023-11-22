@@ -22,6 +22,7 @@ install_fzf
 install_stow
 install_dotfiles
 install_zsh_and_oh_my_zsh
+install_zoxide
 install_python_and_pyenv
 install_node_and_nvm
 install_rust
