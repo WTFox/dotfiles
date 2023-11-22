@@ -1,14 +1,22 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-  PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
+if [[ $OSTYPE == darwin* ]]; then
+  # brew path
+  fzf_path="/usr/local/opt/fzf/"
+else 
+  # linux standard path
+  fzf_path="/home/wtfox/.fzf/"
+fi
+
+if [[ ! "$PATH" == *fzf_path* ]]; then
+  export PATH="${PATH:+${PATH}:}${fzf_path}/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "${fzf_path}/shell/completion.zsh" 2> /dev/null
+
 
 # Key bindings
 # ------------
-source "/usr/local/opt/fzf/shell/key-bindings.zsh"
-bindkey -r ^t
+source "${fzf_path}/shell/key-bindings.zsh"
