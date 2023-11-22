@@ -58,13 +58,9 @@
   # Logs
   ##
 
-  ls = !tig
-
   # list one-line commits showing dates
   lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s\\ %C(blue)[a:%an\\ c:%cn]" --decorate --date=short
 
-  # list commits showing changed files
-  ll = !git ls --numstat
 
   ##
   # Tags
