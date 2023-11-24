@@ -25,7 +25,6 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"  # public IP addre
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 # == System ==
-alias ls="eza --icons --group-directories-first --git --color=always"
 
 # == Kitty ==
 alias k="kitty"
