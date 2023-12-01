@@ -1,0 +1,32 @@
+#! /usr/bin/env python3
+
+import boto3
+
+
+def list_sqs_queues():
+    session = boto3.Session()
+    sqs = session.client("sqs")
+    queues = sqs.list_queues()
+
+    if "QueueUrls" not in queues:
+        print("No SQS queues found.")
+        return
+
+    print(f"{'Queue Name':60} | {'Number of Messages':20}")
+    print("-" * 85)
+
+    c = []
+    for queue_url in queues["QueueUrls"]:
+        queue_name = queue_url.split("/")[-1]
+        attributes = sqs.get_queue_attributes(
+            QueueUrl=queue_url, AttributeNames=["ApproximateNumberOfMessages"]
+        )
+        num_messages = attributes["Attributes"]["ApproximateNumberOfMessages"]
+        c.append((queue_name, num_messages))
+
+    for queue_name, num_messages in sorted(c, key=lambda x: x[1], reverse=True):
+        print(f"{queue_name:60} | {num_messages:20}")
+
+
+if __name__ == "__main__":
+    list_sqs_queues()
