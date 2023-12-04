@@ -2,3 +2,4 @@ ripgrep
 jq
 bat
 tmux
+neofetch
