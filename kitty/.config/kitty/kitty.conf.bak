@@ -8,40 +8,22 @@ active_tab_font_style        normal
 inactive_tab_font_style      italic
 text_composition_strategy platform
 
-font_size 16
+font_size 15
 
-# font_family MonoLisa
-# font_family Fira Code
-# font_family mononoki
+# https://github.com/sainnhe/icursive-nerd-font/
+# font_family Cascursive
+
 # font_family JetBrains Mono
-# font_family Cascadia Code
+font_family MonoLisa
+# font_family mononoki
 # font_family Comic Mono
 # font_family Dank Mono
-
-# https://github.com/slavfox/Cozette/releases/tag/v.1.22.2
-# font_family Cozette
-
-# https://github.com/Anant-mishra1729/Operator-caska-Font
-# font_family Operator-caska
-# bold_font Operator-caskabold
 
 # font_family      Operator Mono Book
 # bold_font        Operator Mono Medium
 # italic_font      Operator Mono Book Italic
 # bold_italic_font Operator Mono Medium Italic
 
-# Github font family
-# font_family Monaspace Radon
-# font_family Monaspace Argon
-# font_family Monaspace Neon
-# font_family Monaspace Xenon
-# italic_font Monaspace Krypton
-# modify_font cell_height +3px
-# modify_font cell_width 95%
-# modify_font baseline -5px
-
-# https://github.com/sainnhe/icursive-nerd-font/
-font_family Cascursive
 
 # ------------other
 shell_integration no-cursor
@@ -165,6 +147,6 @@ map ctrl+b>r                  layout_action rotate
 map ctrl+b>enter              kitten kitty_grab/grab.py
 
 # BEGIN_KITTY_THEME
-# kanagawabones
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME

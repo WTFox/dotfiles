@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 local lazygit = nil
 local lazydocker = nil
 
