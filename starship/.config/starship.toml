@@ -6,8 +6,8 @@ $git_branch\
 $git_state\
 $git_status\
 $cmd_duration\
-$line_break\
 $python\
+$line_break\
 $character"""
 
 palette = "catppuccin_macchiato"
@@ -46,6 +46,9 @@ style = "bright-black"
 format = "[$duration]($style) "
 style = "yellow"
 
+[python]
+format = "[$virtualenv]($style) "
+style = "bright-black"
 
 # palette tables should be last in the config ⚓️
 [palettes.catppuccin_macchiato]
