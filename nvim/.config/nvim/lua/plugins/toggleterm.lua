@@ -36,7 +36,7 @@ return {
     float_opts = float_opts,
   },
   keys = {
-    { "<C-/>", "<cmd>ToggleTerm<CR>", desc = "Floating Terminal" },
+    { "<C-/>", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Floating Terminal" },
     { "<leader>Ts", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Split Terminal" },
     {
       "<leader>gg",
