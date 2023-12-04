@@ -69,8 +69,8 @@ return {
       },
       path_display = { "truncate" },
       winblend = 0,
-      border = {},
-      borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+      -- border = {},
+      -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     },
   },
 }

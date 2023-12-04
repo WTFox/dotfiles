@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 local BORDER_STYLE = "rounded"
 
 vim.diagnostic.config({
