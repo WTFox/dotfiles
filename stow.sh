@@ -10,6 +10,7 @@ directories_to_stow=(
 	"git/"
 	"kitty/"
 	"nvim/"
+	"neofetch/"
 	"pgcli/"
 	"prettier/"
 	"psql/"

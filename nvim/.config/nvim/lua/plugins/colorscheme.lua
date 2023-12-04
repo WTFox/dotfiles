@@ -4,6 +4,12 @@ return {
     name = "catppuccin",
     lazy = false,
     opts = {
+      integrations = {
+        telescope = {
+          enabled = true,
+          style = "nvchad",
+        },
+      },
       color_overrides = {
         mocha = {
           base = "#11111b",
