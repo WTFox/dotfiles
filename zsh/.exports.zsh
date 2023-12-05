@@ -7,6 +7,8 @@ else
   export EDITOR='nvim'
 fi
 
+export VISUAL='nvim'
+
 # local bins
 export PATH="$HOME/bin:$PATH"
 

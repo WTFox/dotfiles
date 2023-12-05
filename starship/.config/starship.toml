@@ -6,8 +6,8 @@ $git_branch\
 $git_state\
 $git_status\
 $cmd_duration\
-$python\
 $line_break\
+$python\
 $character"""
 
 palette = "catppuccin_macchiato"
