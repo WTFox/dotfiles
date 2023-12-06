@@ -38,17 +38,4 @@ eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 
 
-function update_neofetch_cache() {
-    local cache_file="$HOME/.cache/neofetch_output"
-    local update_interval=86400  # Update interval in seconds (e.g., 86400 for 1 day)
-
-    # Check if the cache file exists and is not too old
-    if [[ ! -f "$cache_file" || $(($(date +%s) - $(date +%s -r "$cache_file"))) -gt $update_interval ]]; then
-        neofetch > "$cache_file"
-    fi
-
-    cat "$cache_file"
-}
-
-
 update_neofetch_cache

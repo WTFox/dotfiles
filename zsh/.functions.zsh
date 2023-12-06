@@ -40,8 +40,32 @@ function update_neofetch_cache() {
     local cache_file="$HOME/.cache/neofetch_output"
     local update_interval=86400  # Update interval in seconds (e.g., 86400 for 1 day)
 
+    # Function to get the current timestamp in a cross-platform way
+    function current_timestamp() {
+        if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+            date +%s  # GNU/Linux
+        elif [[ "$OSTYPE" == "darwin"* ]]; then
+            date -j -f "%a %b %d %T %Z %Y" "$(date)" "+%s"  # macOS
+        else
+            echo "Unsupported OS"
+            exit 1
+        fi
+    }
+
+    # Function to get the last modification time of the cache file
+    function file_modification_timestamp() {
+        if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+            date +%s -r "$1"  # GNU/Linux
+        elif [[ "$OSTYPE" == "darwin"* ]]; then
+            stat -f "%m" "$1"  # macOS
+        else
+            echo "Unsupported OS"
+            exit 1
+        fi
+    }
+
     # Check if the cache file exists and is not too old
-    if [[ ! -f "$cache_file" || $(($(date +%s) - $(date +%s -r "$cache_file"))) -gt $update_interval ]]; then
+    if [[ ! -f "$cache_file" || $(( $(current_timestamp) - $(file_modification_timestamp "$cache_file") )) -gt $update_interval ]]; then
         neofetch > "$cache_file"
     fi
 
