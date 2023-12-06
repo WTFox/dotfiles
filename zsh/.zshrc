@@ -37,5 +37,4 @@ eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 
-
 update_neofetch_cache
