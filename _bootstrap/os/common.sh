@@ -90,11 +90,13 @@ install_python_and_pyenv() {
 	# get pipx in PATH
 	export PATH="$HOME/.local/bin:$PATH"
 
-	pipx install poetry
+	pipx install autoflake8
 	pipx install black
 	pipx install flake8
 	pipx install isort
 	pipx install mypy
+	pipx install pipdeptree
+	pipx install poetry
 }
 
 install_node_and_nvm() {
