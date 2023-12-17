@@ -75,28 +75,82 @@ install_zoxide() {
 }
 
 install_python_and_pyenv() {
+	local python_version=${1:-3.12.1}
+
+	# Install pyenv dependencies
 	install_pyenv_requirements
-	curl https://pyenv.run | zsh
+
+	# Install pyenv
+	if ! command -v pyenv >/dev/null; then
+		curl -s https://pyenv.run -o pyenv-installer.sh
+		# Optionally inspect the script here
+		zsh pyenv-installer.sh
+		rm pyenv-installer.sh
+	fi
+
 	export PYENV_ROOT="$HOME/.pyenv"
-	command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+	export PATH="$PYENV_ROOT/bin:$PATH"
 	eval "$(pyenv init -)"
-	pyenv install 3.12.0
-	pyenv global 3.12.0
 
-	python3 -m pip install --upgrade pip
-	python3 -m pip install --user pipx
-	python3 -m pipx ensurepath
+	if ! pyenv versions | grep -q $python_version; then
+		pyenv install $python_version
+	fi
+	pyenv global $python_version
 
-	# get pipx in PATH
-	export PATH="$HOME/.local/bin:$PATH"
+	# Create a virtual environment for pipx
+	pyenv virtualenv $python_version pipx-venv
+	pyenv activate pipx-venv
 
-	pipx install autoflake8
-	pipx install black
-	pipx install flake8
-	pipx install isort
-	pipx install mypy
-	pipx install pipdeptree
-	pipx install poetry
+	# Install pipx in the virtual environment
+	python -m pip install --upgrade pip
+	python -m pip install pipx
+	python -m pipx ensurepath
+
+	# Deactivate the virtual environment
+	pyenv deactivate
+
+	# Install utilities with pipx
+	local utilities=(
+		"autoflake8" "black" "flake8" "isort" "mypy" "pipdeptree" "poetry"
+		"httpie" "bandit" "pre-commit" "cookiecutter" "awscli" "glances"
+		"tox" "pgcli"
+	)
+	for utility in "${utilities[@]}"; do
+		if ! pipx list | grep -q $utility; then
+			pipx install $utility
+		fi
+	done
+
+	echo "Python setup completed. Please add '$HOME/.local/bin' to your PATH if not already done."
+}
+
+uninstall_python_and_pyenv() {
+	# Uninstall pipx utilities
+	local utilities=(
+		"autoflake8" "black" "flake8" "isort" "mypy" "pipdeptree" "poetry"
+		"httpie" "bandit" "pre-commit" "cookiecutter" "awscli" "glances"
+		"tox" "pgcli"
+	)
+	for utility in "${utilities[@]}"; do
+		if pipx list | grep -q $utility; then
+			pipx uninstall $utility
+		fi
+	done
+
+	# Uninstall Python versions installed via pyenv
+	if command -v pyenv >/dev/null; then
+		for version in $(pyenv versions --bare --skip-aliases); do
+			pyenv uninstall -f $version
+		done
+	fi
+
+	# Remove pyenv
+	rm -rf $HOME/.pyenv
+
+	# Optional: Remove pyenv from shell configuration
+	# Warning: This step may require manual intervention to safely edit .bashrc, .zshrc, etc.
+
+	echo "Python and related utilities have been uninstalled."
 }
 
 install_node_and_nvm() {
