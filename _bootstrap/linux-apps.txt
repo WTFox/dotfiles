@@ -3,3 +3,4 @@ jq
 bat
 tmux
 neofetch
+pipx

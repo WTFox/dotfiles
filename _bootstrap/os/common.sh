@@ -20,27 +20,27 @@ get_os_type() {
 
 install_pyenv_requirements() {
 	# overriden in os files
-	pass
+	:
 }
 
 install_go() {
 	# overriden in os files
-	pass
+	:
 }
 
 install_apps() {
 	# overriden in os files
-	pass
+	:
 }
 
 install_fonts() {
 	# overriden in os files
-	pass
+	:
 }
 
 install_git_and_gh() {
 	# overriden in os files
-	pass
+	:
 }
 
 install_dotfiles() {
@@ -95,31 +95,39 @@ install_python_and_pyenv() {
 	if ! pyenv versions | grep -q $python_version; then
 		pyenv install $python_version
 	fi
+
 	pyenv global $python_version
 
-	# Create a virtual environment for pipx
-	pyenv virtualenv $python_version pipx-venv
-	pyenv activate pipx-venv
+	if ! pipx --version >/dev/null; then
+		echo "pipx not found."
 
-	# Install pipx in the virtual environment
-	python -m pip install --upgrade pip
-	python -m pip install pipx
-	python -m pipx ensurepath
+	else
 
-	# Deactivate the virtual environment
-	pyenv deactivate
+		local utilities=(
+			"autoflake8"
+			"awscli"
+			"bandit"
+			"black"
+			"cookiecutter"
+			"flake8"
+			"httpie"
+			"isort"
+			"mypy"
+			"pgcli"
+			"pipdeptree"
+			"poetry"
+			"pre-commit"
+			"pylint"
+			"ruff"
+			"tox"
+		)
 
-	# Install utilities with pipx
-	local utilities=(
-		"autoflake8" "black" "flake8" "isort" "mypy" "pipdeptree" "poetry"
-		"httpie" "bandit" "pre-commit" "cookiecutter" "awscli" "glances"
-		"tox" "pgcli"
-	)
-	for utility in "${utilities[@]}"; do
-		if ! pipx list | grep -q $utility; then
-			pipx install $utility
-		fi
-	done
+		for utility in "${utilities[@]}"; do
+			if ! pipx list | grep -q $utility; then
+				pipx install $utility
+			fi
+		done
+	fi
 
 	echo "Python setup completed. Please add '$HOME/.local/bin' to your PATH if not already done."
 }
@@ -127,9 +135,22 @@ install_python_and_pyenv() {
 uninstall_python_and_pyenv() {
 	# Uninstall pipx utilities
 	local utilities=(
-		"autoflake8" "black" "flake8" "isort" "mypy" "pipdeptree" "poetry"
-		"httpie" "bandit" "pre-commit" "cookiecutter" "awscli" "glances"
-		"tox" "pgcli"
+		"autoflake8"
+		"awscli"
+		"bandit"
+		"black"
+		"cookiecutter"
+		"flake8"
+		"httpie"
+		"isort"
+		"mypy"
+		"pgcli"
+		"pipdeptree"
+		"poetry"
+		"pre-commit"
+		"pylint"
+		"ruff"
+		"tox"
 	)
 	for utility in "${utilities[@]}"; do
 		if pipx list | grep -q $utility; then
