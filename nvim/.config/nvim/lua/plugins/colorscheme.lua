@@ -10,11 +10,11 @@ return {
           style = "nvchad",
         },
       },
-      -- color_overrides = {
-      --   mocha = {
-      --     base = "#11111b",
-      --   },
-      -- },
+      color_overrides = {
+        mocha = {
+          base = "#11111b",
+        },
+      },
     },
   },
   {

@@ -11,7 +11,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        jedi_language_server = {},
+        pyright = {},
         ruff_lsp = {
           keys = {
             {
@@ -34,7 +34,7 @@ return {
         ruff_lsp = function()
           require("lazyvim.util").lsp.on_attach(function(client, _)
             if client.name == "ruff_lsp" then
-              -- Disable hover in favor of Jedi
+              -- Disable hover in favor of other
               client.server_capabilities.hoverProvider = false
             end
           end)
