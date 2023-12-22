@@ -12,5 +12,7 @@ RUN mkdir /root/dotfiles
 WORKDIR /root/dotfiles
 COPY . /root/dotfiles
 
-RUN chmod +x /root/dotfiles/bootstrap.sh
-ENTRYPOINT ["/root/dotfiles/bootstrap.sh"]
+RUN chmod +x /root/dotfiles/bootstrap.sh && \
+  /root/dotfiles/bootstrap.sh
+
+CMD ["/usr/bin/zsh"]

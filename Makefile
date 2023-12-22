@@ -1,12 +1,22 @@
-.PHONY: all
+.PHONY: all build-arch run-arch build-debian run-debian install-local clean test lint update shell
 
-arch:
+all: build-arch build-debian
+
+build-arch:
 	docker build -f _bootstrap/Dockerfile.arch -t arch-dev .
-	docker run -it --rm -v $(shell pwd):/home/developer arch-dev
 
-debian:
+build-debian:
 	docker build -f _bootstrap/Dockerfile.debian -t debian-dev .
-	docker run -it --rm -v $(shell pwd):/home/developer debian-dev
 
-install:
+run-arch:
+	docker run -it --rm -v $(shell pwd):/home/developer arch-dev /usr/bin/zsh
+
+run-debian:
+	docker run -it --rm -v $(shell pwd):/home/developer debian-dev /usr/bin/zsh
+
+install-local:
 	./bootstrap.sh
+
+clean:
+	docker rmi arch-dev debian-dev
+
