@@ -74,6 +74,10 @@ map("n", "<leader>dd", function()
   Util.terminal({ "lazydocker" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
 end, { desc = "LazyDocker" })
 
+map("n", "<leader>ub", function()
+  Util.toggle("background", false, { "light", "dark" })
+end, { desc = "Toggle Background" })
+
 -- yazi
 map("n", "<leader>yy", function()
   Util.terminal({ "yazi" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
