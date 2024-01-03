@@ -1,10 +1,5 @@
 local utils = require("utils")
 
-hs.hotkey.bind(MASH, "r", function()
-	hs.reload()
-	hs.notify.new({ title = "Hammerspoon", informativeText = "Config loaded" }):send()
-end)
-
 local prefix = { "ctrl" }
 local mappings = {
 	{ key = "`", app = "kitty" },
