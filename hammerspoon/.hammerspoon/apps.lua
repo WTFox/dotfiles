@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 hs.hotkey.bind(MASH, "r", function()
 	hs.reload()
 	hs.notify.new({ title = "Hammerspoon", informativeText = "Config loaded" }):send()
@@ -5,11 +7,18 @@ end)
 
 local prefix = { "ctrl" }
 local mappings = {
-	{ key = "1", app = "Brave Browser" },
-	{ key = "2", app = "Microsoft Outlook" },
-	{ key = "3", app = "zoom.us" },
 	{ key = "`", app = "kitty" },
 }
+
+if utils.onPersonalLaptop() then
+	table.insert(mappings, { key = "1", app = "Firefox" })
+	table.insert(mappings, { key = "2", app = "Discord" })
+	table.insert(mappings, { key = "3", app = "Spotify" })
+else
+	table.insert(mappings, { key = "1", app = "Brave Browser" })
+	table.insert(mappings, { key = "2", app = "Microsoft Outlook" })
+	table.insert(mappings, { key = "3", app = "zoom.us" })
+end
 
 local function toggleApplication(name)
 	local app = hs.application.find(name)
