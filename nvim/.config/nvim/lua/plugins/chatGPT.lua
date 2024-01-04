@@ -1,11 +1,14 @@
+local api_key_cmd = "op read op://Personal/OpenAI/apikey --no-newline"
+if vim.fn.executable("wsl.exe") == 1 then
+  api_key_cmd = ""
+end
+
 return {
   "jackMort/ChatGPT.nvim",
   event = "VeryLazy",
-  config = function()
-    require("chatgpt").setup({
-      api_key_cmd = "op read op://Personal/OpenAI/apikey --no-newline",
-    })
-  end,
+  opts = {
+    api_key_cmd = api_key_cmd,
+  },
   dependencies = {
     "MunifTanjim/nui.nvim",
     "nvim-lua/plenary.nvim",
