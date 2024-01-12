@@ -28,5 +28,11 @@ return {
     { "<leader>os", "<cmd>ChatGPTRun summarize<CR>", desc = "Summarize", mode = { "n", "v", "x" } },
     { "<leader>ob", "<cmd>ChatGPTRun fix_bugs<CR>", desc = "Fix Bugs", mode = { "n", "v", "x" } },
     { "<leader>ox", "<cmd>ChatGPTRun explain_code<CR>", desc = "Explain Code", mode = { "n", "v", "x" } },
+    {
+      "<leader>ol",
+      "<cmd>ChatGPTRun code_readability_analysis<CR>",
+      desc = "Code Readability Analysis",
+      mode = { "n", "v", "x" },
+    },
   },
 }
