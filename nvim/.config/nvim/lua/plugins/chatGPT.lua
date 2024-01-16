@@ -3,11 +3,20 @@ if vim.fn.executable("wsl.exe") == 1 then
   api_key_cmd = ""
 end
 
+local model = "gpt-4-1106-preview"
+
 return {
   "jackMort/ChatGPT.nvim",
   event = "VeryLazy",
   opts = {
     api_key_cmd = api_key_cmd,
+    openai_params = {
+      model = model,
+      max_tokens = 1000,
+    },
+    openai_edit_params = {
+      model = model,
+    },
   },
   dependencies = {
     "MunifTanjim/nui.nvim",
