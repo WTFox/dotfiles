@@ -4,6 +4,9 @@ return {
     name = "catppuccin",
     lazy = false,
     opts = {
+      -- no_italic = true,
+      -- no_bold = true,
+      -- no_underline = true,
       transparent_background = true,
       dim_inactive = {
         enabled = false,
