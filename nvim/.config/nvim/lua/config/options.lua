@@ -7,3 +7,6 @@
 
 -- disables conceal
 -- vim.opt.conceallevel = 0
+
+-- disable auto pairs
+vim.g.minipairs_disable = true

@@ -1,11 +1,13 @@
 local Utils = require("utils")
 
-local api_key_cmd = "op read op://Personal/OpenAI/apikey --no-newline"
-if Utils.is_wsl() then
+local model = "gpt-4-1106-preview"
+
+local api_key_cmd = ""
+if Utils.is_executable("op") then
+  api_key_cmd = "op read op://Personal/OpenAI/apikey --no-newline"
+else
   api_key_cmd = ""
 end
-
-local model = "gpt-4-1106-preview"
 
 return {
   "jackMort/ChatGPT.nvim",

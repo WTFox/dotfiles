@@ -1,3 +1,5 @@
+local Utils = require("utils")
+
 local get_main_branch = function()
   local handle = io.popen("git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@'")
   if not handle then
@@ -64,6 +66,9 @@ return {
     },
     event = "BufRead",
     config = true,
+    enabled = function()
+      return Utils.is_executable("gh")
+    end,
     keys = {
       { "<leader>gpc", "<cmd>Octo pr create<cr>", desc = "Create PR" },
       { "<leader>gpo", "<cmd>!gh pr view --web<cr>", desc = "Open on github" },
