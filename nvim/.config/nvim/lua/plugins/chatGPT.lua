@@ -1,5 +1,7 @@
+local Utils = require("utils")
+
 local api_key_cmd = "op read op://Personal/OpenAI/apikey --no-newline"
-if vim.fn.executable("wsl.exe") == 1 then
+if Utils.is_wsl() then
   api_key_cmd = ""
 end
 

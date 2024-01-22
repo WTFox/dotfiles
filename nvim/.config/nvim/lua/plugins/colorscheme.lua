@@ -1,3 +1,10 @@
+local Utils = require("utils")
+
+local transparent_background = false
+if Utils.is_wsl() then
+  transparent_background = true
+end
+
 return {
   {
     "catppuccin/nvim",
@@ -7,7 +14,7 @@ return {
       -- no_italic = true,
       -- no_bold = true,
       -- no_underline = true,
-      transparent_background = true,
+      transparent_background = transparent_background,
       dim_inactive = {
         enabled = false,
         shade = "dark",

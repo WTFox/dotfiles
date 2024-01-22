@@ -6,7 +6,4 @@
 -- vim.opt.winbar = "%=%m %f"
 
 -- disables conceal
-vim.opt.conceallevel = 0
-
--- temp fix for lualine disappearing
--- vim.opt.laststatus = 2
+-- vim.opt.conceallevel = 0
