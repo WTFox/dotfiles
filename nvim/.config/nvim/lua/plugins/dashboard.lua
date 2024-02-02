@@ -81,7 +81,7 @@ local nvchad = [[
        
 ]]
 
-local logo = lazy
+local logo = three_skulls
 
 return {
   "nvimdev/dashboard-nvim",
