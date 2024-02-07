@@ -5,8 +5,18 @@
 -- adds filename to top right of buffer
 -- vim.opt.winbar = "%=%m %f"
 
--- disables conceal
--- vim.opt.conceallevel = 0
-
 -- disable auto pairs
 vim.g.minipairs_disable = true
+
+-- add highlighting to weird files
+vim.filetype.add({
+  filename = {
+    [".env"] = "sh",
+    [".env.example"] = "sh",
+    [".envrc"] = "sh",
+    [".envrc.local"] = "sh",
+    ["requirements.txt"] = "config",
+    ["requirements-dev.txt"] = "config",
+    ["requirements-test.txt"] = "config",
+  },
+})

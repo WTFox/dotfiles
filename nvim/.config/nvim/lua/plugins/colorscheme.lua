@@ -30,6 +30,11 @@ return {
           style = "nvchad",
         },
       },
+      custom_highlights = function(colors)
+        return {
+          WinSeparator = { fg = colors.pink },
+        }
+      end,
       color_overrides = {
         mocha = {
           base = "#11111b",
