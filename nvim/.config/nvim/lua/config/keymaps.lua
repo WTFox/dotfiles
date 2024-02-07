@@ -28,8 +28,11 @@ map("n", ";", "<cmd>lua require('telescope.builtin').resume(require('telescope.t
 
 -- tab to next buffer
 -- shift tab to previous buffer
-map("n", "<Tab>", ":bnext<cr>")
-map("n", "<S-Tab>", ":bprevious<cr>")
+-- map("n", "<Tab>", ":bnext<cr>")
+-- map("n", "<S-Tab>", ":bprevious<cr>")
+
+-- tab to show buffer list
+map("n", "<Tab>", ":Telescope buffers<cr>")
 
 -- leader a to show dashboard
 map("n", "<leader>a", ":Dashboard<cr>")

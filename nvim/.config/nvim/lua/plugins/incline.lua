@@ -114,7 +114,7 @@ return {
     hide = {
       cursorline = true,
       focused_win = false,
-      only_win = true,
+      only_win = false,
     },
     highlight = {
       groups = {
@@ -158,7 +158,7 @@ return {
       padding_char = " ",
       placement = {
         horizontal = "right",
-        vertical = "bottom",
+        vertical = "top",
       },
       width = "fit",
       winhighlight = {
