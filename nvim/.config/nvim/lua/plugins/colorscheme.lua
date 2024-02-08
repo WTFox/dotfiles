@@ -33,6 +33,7 @@ return {
       custom_highlights = function(colors)
         return {
           WinSeparator = { fg = colors.pink },
+          -- DiffChange = { fg = colors.base, bg = colors.pink },
         }
       end,
       color_overrides = {

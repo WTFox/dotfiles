@@ -142,7 +142,7 @@ return {
         tail_count = 2,
         head_max = 4,
         head_style = { group = "Comment" },
-        tail_style = { guifg = "white" },
+        tail_style = { guifg = "IlluminatedWordText" },
       })
     end,
     window = {

@@ -67,7 +67,8 @@ return {
     event = "BufRead",
     config = true,
     enabled = function()
-      return Utils.is_executable("gh")
+      return false
+      -- return Utils.is_executable("gh")
     end,
     keys = {
       { "<leader>gpc", "<cmd>Octo pr create<cr>", desc = "Create PR" },
