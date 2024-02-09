@@ -10,9 +10,10 @@ if utils.onPersonalLaptop() then
 	table.insert(mappings, { key = "2", app = "Discord" })
 	table.insert(mappings, { key = "3", app = "Spotify" })
 else
-	table.insert(mappings, { key = "1", app = "Brave Browser" })
+	table.insert(mappings, { key = "1", app = "Google Chrome" })
 	table.insert(mappings, { key = "2", app = "Microsoft Outlook" })
-	table.insert(mappings, { key = "3", app = "zoom.us" })
+	table.insert(mappings, { key = "3", app = "Slack" })
+	table.insert(mappings, { key = "4", app = "zoom.us" })
 end
 
 local function toggleApplication(name)
@@ -26,6 +27,7 @@ local function toggleApplication(name)
 	end
 end
 
+hs.application.enableSpotlightForNameSearches(true)
 for _, value in ipairs(mappings) do
 	hs.hotkey.bind(prefix, value.key, function()
 		toggleApplication(value.app)

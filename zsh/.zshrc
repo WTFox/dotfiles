@@ -33,6 +33,8 @@ fi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"

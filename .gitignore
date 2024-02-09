@@ -6,6 +6,8 @@ backup/*
 .vscode/
 
 nvim/.config/nvim/plugged/
+bin/bin/nvim-macos/
+bin/bin/nvim-macos.tar.gz
 
 tags*
 .DS_Store
