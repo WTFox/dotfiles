@@ -2,7 +2,7 @@
   "ChatGPT.nvim": { "branch": "main", "commit": "aadb607038d53d97be4da368b07355f65ad3f047" },
   "JABS.nvim": { "branch": "main", "commit": "b6dbd1a3e1b8cef3d6ebfafe96c2230ca341b65f" },
   "LazyVim": { "branch": "main", "commit": "c433ea7aa842c446edc2b1570998bf5440c68188" },
-  "LuaSnip": { "branch": "master", "commit": "81d83ec368c1e613ce04199d63887cee1a840cec" },
+  "LuaSnip": { "branch": "master", "commit": "c4b9c7c3b02826df74b93ae91009e05b758bfacf" },
   "SchemaStore.nvim": { "branch": "main", "commit": "91b56a811d87b9e7e0600c95f80ff2d08245bf61" },
   "catppuccin": { "branch": "main", "commit": "b76ada82bf2019d5e343018b4104cc9266900c16" },
   "clangd_extensions.nvim": { "branch": "main", "commit": "34c8eaa12be192e83cd4865ce2375e9f53e728f2" },
