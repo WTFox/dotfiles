@@ -1,7 +1,7 @@
 # == macOS-Specific Aliases ==
 
 # == System ==
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"  # Lock the screen (when going AFK)
+alias afk="open -a ScreenSaverEngine"
 alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"  # Flush Directory Service cache
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"  # Hide hidden files
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"  # Hide desktop files
