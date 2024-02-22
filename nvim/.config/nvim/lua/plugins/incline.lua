@@ -112,7 +112,7 @@ return {
       rising = 10,
     },
     hide = {
-      cursorline = true,
+      cursorline = false,
       focused_win = false,
       only_win = false,
     },

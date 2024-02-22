@@ -81,6 +81,8 @@ map("n", "<leader>ub", function()
   Util.toggle("background", false, { "light", "dark" })
 end, { desc = "Toggle Background" })
 
+map("n", "<C-p>", ":lua require('telescope.builtin').find_files()<cr>", { desc = "Find Files" })
+
 -- yazi
 map("n", "<leader>yy", function()
   Util.terminal({ "yazi" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
