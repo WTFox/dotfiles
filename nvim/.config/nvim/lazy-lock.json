@@ -3,7 +3,7 @@
   "JABS.nvim": { "branch": "main", "commit": "b6dbd1a3e1b8cef3d6ebfafe96c2230ca341b65f" },
   "LazyVim": { "branch": "main", "commit": "fe72424e77cb9c953084bbcaaa0eb7fe8056dc70" },
   "LuaSnip": { "branch": "master", "commit": "f3b3d3446bcbfa62d638b1903ff00a78b2b730a1" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "adaca44ad56bd74ae0e4e500320a7dd6f216650a" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "86dee561c41febe36e4c5e1c09af0fa70c3c3db1" },
   "catppuccin": { "branch": "main", "commit": "9703f227bfab20d04bcee62d2f08f1795723b4ae" },
   "clangd_extensions.nvim": { "branch": "main", "commit": "34c8eaa12be192e83cd4865ce2375e9f53e728f2" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
