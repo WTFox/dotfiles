@@ -77,11 +77,18 @@ map("n", "<leader>dd", function()
   Util.terminal({ "lazydocker" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
 end, { desc = "LazyDocker" })
 
+-- toggle background
 map("n", "<leader>ub", function()
   Util.toggle("background", false, { "light", "dark" })
 end, { desc = "Toggle Background" })
 
-map("n", "<C-p>", ":lua require('telescope.builtin').find_files()<cr>", { desc = "Find Files" })
+-- telescope find git files quicker
+map(
+  "n",
+  "<C-p>",
+  ":lua require('telescope.builtin').git_files()<cr>",
+  { noremap = true, silent = true, desc = "Find Git Files" }
+)
 
 -- yazi
 map("n", "<leader>yy", function()
