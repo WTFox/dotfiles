@@ -83,12 +83,12 @@ map("n", "<leader>ub", function()
 end, { desc = "Toggle Background" })
 
 -- telescope find git files quicker
-map(
-  "n",
-  "<C-p>",
-  ":lua require('telescope.builtin').git_files()<cr>",
-  { noremap = true, silent = true, desc = "Find Git Files" }
-)
+-- map(
+--   "n",
+--   "<C-p>",
+--   ":lua require('telescope.builtin').git_files()<cr>",
+--   { noremap = true, silent = true, desc = "Find Git Files" }
+-- )
 
 -- yazi
 map("n", "<leader>yy", function()
