@@ -20,9 +20,6 @@ map("n", "<leader>qw", ":q<cr>", { noremap = true, silent = true, desc = "quit w
 -- leader backspace to delete buffer
 map("n", "<leader><bs>", ":bd<cr>", { noremap = true, silent = true, desc = "delete buffer" })
 
--- enter in normal mode to change word
-map("n", "<cr>", "ciw")
-
 -- resume telescope after exiting
 map("n", ";", "<cmd>lua require('telescope.builtin').resume(require('telescope.themes').get_ivy({}))<cr>")
 
@@ -82,13 +79,17 @@ map("n", "<leader>ub", function()
   Util.toggle("background", false, { "light", "dark" })
 end, { desc = "Toggle Background" })
 
--- telescope find git files quicker
--- map(
---   "n",
---   "<C-p>",
---   ":lua require('telescope.builtin').git_files()<cr>",
---   { noremap = true, silent = true, desc = "Find Git Files" }
--- )
+-- normal mode enter to open telescope git files if in git directory else all files
+map("n", "<cr>", function()
+  if vim.fn.isdirectory(".git") == 1 then
+    require("telescope.builtin").git_files()
+  else
+    require("telescope.builtin").find_files()
+  end
+end, { noremap = true, silent = true, desc = "Find Git Files" })
+
+-- map \ to swap between alternate files
+map("n", "<Tab>", "<c-^>", { noremap = true, silent = true, desc = "Swap Alternate Files" })
 
 -- yazi
 map("n", "<leader>yy", function()
