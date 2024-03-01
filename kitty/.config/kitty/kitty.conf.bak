@@ -10,11 +10,23 @@ text_composition_strategy platform
 
 font_size 15
 
+# font_family Cascadia Code PL
+
 # https://github.com/sainnhe/icursive-nerd-font/
 # font_family Cascursive
 
-# font_family JetBrains Mono
-font_family MonoLisa
+font_family      JetBrains Mono Regular
+font_features    JetBrainsMono-Regular +zero +cv18 +cv15 +calt
+font_features    JetBrainsMono-Italic +zero +cv18 +cv15 +calt
+font_features    JetBrainsMono-Bold-Italic +zero +cv18 +cv15 +calt
+
+# font_family Fira Code Regular
+# font_features FiraCode-Regular +cv06 +cv09 +ss01 +cv14 +cv17 +ss04 +cv31 +cv30 +ss02 +ss08 +cv27
+
+# font_family MonoLisa
+# font_features MonoLisa +zero +ss04 +ss07 +ss08 +ss09
+# font_features MonoLisa +zero +ss04 +ss07 +ss08 +ss09
+
 # font_family mononoki
 # font_family Comic Mono
 # font_family Dank Mono
@@ -24,6 +36,14 @@ font_family MonoLisa
 # italic_font      Operator Mono Book Italic
 # bold_italic_font Operator Mono Medium Italic
 
+###########################################################
+# Symbols Nerd Font complete symbol_map
+# easily troubleshoot missing/incorrect characters with:
+#   kitty --debug-font-fallback
+###########################################################
+
+# Nerd Fonts
+symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0 Symbols Nerd Font Mono
 
 # ------------other
 shell_integration no-cursor
@@ -41,7 +61,6 @@ remember_window_size      yes
 # initial_window_width      640
 # initial_window_height     400
 
-# window_padding_width        12 24 0 24
 placement_strategy          center
 resize_in_steps             yes
 hide_window_decorations     titlebar-only
@@ -70,53 +89,6 @@ tab_title_template          {' :{}:'.format(num_windows) if num_windows > 1 else
 # ----- cursor settings ----- #
 
 cursor_shape block
-
-###########################################################
-# Symbols Nerd Font complete symbol_map
-# easily troubleshoot missing/incorrect characters with:
-#   kitty --debug-font-fallback
-###########################################################
-
-# "Nerd Fonts - Pomicons"
-symbol_map  U+E000-U+E00D Symbols Nerd Font
-
-# "Nerd Fonts - Powerline"
-symbol_map U+e0a0-U+e0a2,U+e0b0-U+e0b3 Symbols Nerd Font
-
-# "Nerd Fonts - Powerline Extra"
-symbol_map U+e0a3-U+e0a3,U+e0b4-U+e0c8,U+e0cc-U+e0d2,U+e0d4-U+e0d4 Symbols Nerd Font
-
-# "Nerd Fonts - Symbols original"
-symbol_map U+e5fa-U+e62b Symbols Nerd Font
-
-# "Nerd Fonts - Devicons"
-symbol_map U+e700-U+e7c5 Symbols Nerd Font
-
-# "Nerd Fonts - Font awesome"
-symbol_map U+f000-U+f2e0 Symbols Nerd Font
-
-# "Nerd Fonts - Font awesome extension"
-symbol_map U+e200-U+e2a9 Symbols Nerd Font
-
-# "Nerd Fonts - Octicons"
-symbol_map U+f400-U+f4a8,U+2665-U+2665,U+26A1-U+26A1,U+f27c-U+f27c Symbols Nerd Font
-
-# "Nerd Fonts - Font Linux"
-symbol_map U+F300-U+F313 Symbols Nerd Font
-
-#  Nerd Fonts - Font Power Symbols"
-symbol_map U+23fb-U+23fe,U+2b58-U+2b58 Symbols Nerd Font
-
-#  "Nerd Fonts - Material Design Icons"
-symbol_map U+f500-U+fd46 Symbols Nerd Font
-
-# "Nerd Fonts - Weather Icons"
-symbol_map U+e300-U+e3eb Symbols Nerd Font
-
-# Misc Code Point Fixes
-symbol_map U+21B5,U+25B8,U+2605,U+2630,U+2632,U+2714,U+E0A3,U+E615,U+E62B Symbols Nerd Font
-
-###########################################################
 
 # ----- keyboard shortcuts ----- #
 map ctrl+enter launch --cwd=current
@@ -147,6 +119,6 @@ map ctrl+b>r                  layout_action rotate
 map ctrl+b>enter              kitten kitty_grab/grab.py
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# Kanagawa
 include current-theme.conf
 # END_KITTY_THEME
