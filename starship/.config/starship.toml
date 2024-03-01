@@ -1,48 +1,46 @@
 format = """
-$aws\
-$python\
-$nodejs\
 $username\
 $hostname\
+$directory\
 $git_branch\
 $git_state\
 $git_status\
-$directory\
 $cmd_duration\
 $line_break\
+$python\
 $character"""
 
-[aws]
-format = '\[[$profile]($style)\] '
-style = 'yellow'
+[directory]
+style = "blue"
 
 [character]
-success_symbol = "[󰄾 ](blue bold)"
-error_symbol = "[󰄾 ](red bold)"
-vimcmd_symbol = "[󰄽](green)"
-
-[cmd_duration]
-format = "[$duration]($style) "
-
-[directory]
-truncation_length = 4
-format = "[$path]($style) "
-style = "white bold"
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
 
 [git_branch]
-format = "[ $branch]($style) "
-style = "purple bold"
+format = "[$branch]($style)"
+style = "bright-black"
 
 [git_status]
-style = "red"
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
 
 [python]
-format = '\[[$virtualenv]($style)\] '
-style = "blue"
-
-[nodejs]
-format = '\[[node $version]($style)\] '
-style = "green"
+format = "[$virtualenv]($style) "
+style = "bright-black"
