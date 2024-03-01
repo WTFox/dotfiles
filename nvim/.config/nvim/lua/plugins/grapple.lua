@@ -3,8 +3,13 @@ return {
     "cbochs/grapple.nvim",
     -- if deleting this plugin, remove the reference in lualine.lua
     keys = {
-      { "<leader>ma", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle" },
-      { "<leader>ml", "<cmd>Grapple open_tags<cr>", desc = "Grapple list" },
+      { "<leader>ha", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle" },
+      { "<leader>hh", "<cmd>Grapple open_tags<cr>", desc = "Grapple list" },
+      { "<C-S-1>", "<cmd>Grapple select index=1<CR>", desc = "Go to Grapple 1" },
+      { "<C-S-2>", "<cmd>Grapple select index=2<CR>", desc = "Go to Grapple 2" },
+      { "<C-S-3>", "<cmd>Grapple select index=3<CR>", desc = "Go to Grapple 3" },
+      { "L", "<cmd>Grapple cycle_forward<cr>", desc = "Grapple next" },
+      { "H", "<cmd>Grapple cycle_backward<cr>", desc = "Grapple prev" },
     },
   },
   {
