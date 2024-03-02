@@ -57,22 +57,4 @@ return {
       },
     },
   },
-  {
-    "pwntester/octo.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-tree/nvim-web-devicons",
-    },
-    event = "BufRead",
-    config = true,
-    enabled = function()
-      return false
-      -- return Utils.is_executable("gh")
-    end,
-    keys = {
-      { "<leader>gpc", "<cmd>Octo pr create<cr>", desc = "Create PR" },
-      { "<leader>gpo", "<cmd>!gh pr view --web<cr>", desc = "Open on github" },
-    },
-  },
 }
