@@ -108,6 +108,7 @@ return {
           TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
           TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
           TelescopeTitle = { fg = theme.ui.special, bold = true },
+          WinSeparator = { fg = theme.ui.fg_dim },
         }
       end,
       theme = "wave", -- Load "wave" theme when 'background' option is not set
