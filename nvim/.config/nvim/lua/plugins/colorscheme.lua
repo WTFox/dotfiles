@@ -1,7 +1,7 @@
 local Utils = require("utils")
 
 local transparent_background = false
-if Utils.is_wsl() then
+if Utils.is_wsl() or Utils.wants_transparent_background() then
   transparent_background = true
 end
 
