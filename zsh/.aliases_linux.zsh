@@ -8,7 +8,6 @@ if [[ ${WSL_DISTRO_NAME:-"False"} == "False" ]]; then
   alias kdiff="kitty +kitten diff"
   alias kicat="kitty +kitten icat"
   alias kssh="kitty +kitten ssh"
-  alias ls="eza --icons --group-directories-first --git --color=always"
 else
   alias exp="/mnt/c/Windows/explorer.exe"
 fi
