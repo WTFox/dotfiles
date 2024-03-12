@@ -10,15 +10,14 @@ text_composition_strategy platform
 
 font_size 15
 
-# font_family Cascadia Code PL
+font_family Cascadia Code
+font_features CascadiaCode-Regular +ss02 +ss19 +ss20
+font_features CascadiaCode-Italic +ss02 +ss19 +ss20
 
-# https://github.com/sainnhe/icursive-nerd-font/
-# font_family Cascursive
-
-font_family      JetBrains Mono Regular
-font_features    JetBrainsMono-Regular +zero +cv18 +cv15 +calt
-font_features    JetBrainsMono-Italic +zero +cv18 +cv15 +calt
-font_features    JetBrainsMono-Bold-Italic +zero +cv18 +cv15 +calt
+# font_family      JetBrains Mono Regular
+# font_features    JetBrainsMono-Italic +zero +cv18 +cv15 +calt
+# font_features    JetBrainsMono-Regular +zero +cv18 +cv15 +calt
+# font_features    JetBrainsMono-Bold-Italic +zero +cv18 +cv15 +calt
 
 # font_family Fira Code Regular
 # font_features FiraCode-Regular +cv06 +cv09 +ss01 +cv14 +cv17 +ss04 +cv31 +cv30 +ss02 +ss08 +cv27
