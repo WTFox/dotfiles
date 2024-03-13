@@ -12,7 +12,7 @@ font_size 15
 
 font_family Cascadia Code
 font_features CascadiaCode-Regular +ss02 +ss19 +ss20
-font_features CascadiaCode-Italic +ss02 +ss19 +ss20
+font_features CascadiaCode-Italic +ss02 +ss19 +ss20 +calt +ss01
 
 # font_family      JetBrains Mono Regular
 # font_features    JetBrainsMono-Italic +zero +cv18 +cv15 +calt
