@@ -1,6 +1,6 @@
 return {
   "akinsho/bufferline.nvim",
-  enabled = false,
+  enabled = true,
   opts = {
     options = {
       separator_style = "slope",

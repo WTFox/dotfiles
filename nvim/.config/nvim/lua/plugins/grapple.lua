@@ -1,20 +1,30 @@
+if true then
+  return {}
+end
+
 return {
   {
+    "akinsho/bufferline.nvim",
+    enabled = true,
+    opts = {
+      options = {
+        separator_style = "slope",
+      },
+    },
+  },
+  {
     "cbochs/grapple.nvim",
+    enabled = false,
     -- if deleting this plugin, remove the reference in lualine.lua
     keys = {
       { "<leader>ha", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle" },
       { "<leader>hh", "<cmd>Grapple open_tags<cr>", desc = "Grapple list" },
-      { "<C-S-1>", "<cmd>Grapple select index=1<CR>", desc = "Go to Grapple 1" },
-      { "<C-S-2>", "<cmd>Grapple select index=2<CR>", desc = "Go to Grapple 2" },
-      { "<C-S-3>", "<cmd>Grapple select index=3<CR>", desc = "Go to Grapple 3" },
-      { "L", "<cmd>Grapple cycle_forward<cr>", desc = "Grapple next" },
-      { "H", "<cmd>Grapple cycle_backward<cr>", desc = "Grapple prev" },
     },
   },
   {
     -- auto close buffers
     "axkirillov/hbac.nvim",
+    enabled = false,
     config = true,
     opts = {
       autoclose = true, -- set autoclose to false if you want to close manually

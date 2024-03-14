@@ -7,12 +7,6 @@ return {
           return "󰣐 " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
         end,
       },
-      lualine_b = {
-        {
-          require("grapple").statusline,
-          cond = require("grapple").exists,
-        },
-      },
       lualine_z = {
         function()
           -- use %R for 24hr time
