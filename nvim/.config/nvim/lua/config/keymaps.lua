@@ -77,18 +77,16 @@ end, { desc = "LazyDocker" })
 -- toggle background
 map("n", "<leader>ub", function()
   Util.toggle("background", false, { "light", "dark" })
+  if vim.o.background == "dark" then
+    vim.fn.system("kitty +kitten themes Catppuccin-Mocha")
+    vim.cmd("colorscheme catppuccin")
+  else
+    vim.fn.system("kitty +kitten themes 'Rose Pine Dawn'")
+    vim.cmd("colorscheme rose-pine-dawn")
+  end
 end, { desc = "Toggle Background" })
 
--- normal mode enter to open telescope git files if in git directory else all files
--- map("n", "<cr>", function()
---   if vim.fn.isdirectory(".git") == 1 then
---     require("telescope.builtin").git_files()
---   else
---     require("telescope.builtin").find_files()
---   end
--- end, { noremap = true, silent = true, desc = "Find Git Files" })
-
--- map \ to swap between alternate files
+-- map Tab to swap between alternate files
 map("n", "<Tab>", "<c-^>", { noremap = true, silent = true, desc = "Swap Alternate Files" })
 
 -- yazi
