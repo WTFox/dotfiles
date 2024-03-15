@@ -14,14 +14,14 @@ font_size 17
 # font_features CascadiaCode-Regular +ss02 +ss19 +ss20
 # font_features CascadiaCode-Italic +ss02 +ss19 +ss20 +calt +ss01
 
-# font_family      JetBrains Mono Regular
-# font_features    JetBrainsMono-Italic +zero +cv18 +cv15 +calt
-# font_features    JetBrainsMono-Regular +zero +cv18 +cv15 +calt
-# font_features    JetBrainsMono-Bold-Italic +zero +cv18 +cv15 +calt
+font_family      JetBrains Mono Regular
+font_features    JetBrainsMono-Italic +zero +cv18 +cv15 +calt
+font_features    JetBrainsMono-Regular +zero +cv18 +cv15 +calt
+font_features    JetBrainsMono-Bold-Italic +zero +cv18 +cv15 +calt
 
 
-font_family FiraCode-Regular
-# font_features FiraCode-Regular +cv06 +cv09 +ss01 +cv14 +cv17 +ss04 +cv31 +cv30 +ss02 +ss08 +cv27
+# font_family FiraCode-Regular
+# font_features FiraCode-Regular +cv06 +cv09 +cv14 +ss04 +cv31 +cv30 +ss02 +ss08 +cv27
 
 # font_family MonoLisa
 # font_features MonoLisa +zero +ss04 +ss07 +ss08 +ss09
