@@ -1,18 +1,19 @@
-CAFFEINE = hs.menubar.new()
+local caffeine = hs.menubar.new()
+if not caffeine then
+	return
+end
 
-function setCaffeineDisplay(state)
+local function setCaffeineDisplay(state)
 	if state then
-		CAFFEINE:setTitle("AWAKE")
+		caffeine:setTitle("AWAKE")
 	else
-		CAFFEINE:setTitle("SLEEPY")
+		caffeine:setTitle("SLEEPY")
 	end
 end
 
-function caffeineClicked()
+local function caffeineClicked()
 	setCaffeineDisplay(hs.caffeinate.toggle("displayIdle"))
 end
 
-if CAFFEINE then
-	CAFFEINE:setClickCallback(caffeineClicked)
-	setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
-end
+caffeine:setClickCallback(caffeineClicked)
+setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
