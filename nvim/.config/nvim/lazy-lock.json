@@ -47,7 +47,7 @@
   "neotest-rust": { "branch": "main", "commit": "9e9df68064bd6fa3b5e40b32fcb7c52af130cdbf" },
   "noice.nvim": { "branch": "main", "commit": "bf67d70bd7265d075191e7812d8eb42b9791f737" },
   "nui.nvim": { "branch": "main", "commit": "cbd2668414331c10039278f558630ed19b93e69b" },
-  "nvim-cmp": { "branch": "main", "commit": "13451e7ee45fd2f5e9283963944561442d041a97" },
+  "nvim-cmp": { "branch": "main", "commit": "43b460a2bd02fd898e67f5f1f65dfd1cce26203a" },
   "nvim-dap": { "branch": "master", "commit": "c1695e500c7d552a0a19953a9aefcc89178fb1af" },
   "nvim-dap-go": { "branch": "main", "commit": "64f73400761e2d19459e664a52ea478f3a4420e7" },
   "nvim-dap-python": { "branch": "master", "commit": "66560f0ebddf96604f7037e1efad3ba6942761e6" },
