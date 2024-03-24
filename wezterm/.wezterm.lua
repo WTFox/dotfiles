@@ -54,12 +54,21 @@ if get_os() == "windows" then
 end
 
 -- Colors
+local function scheme_for_appearance(appearance)
+	if appearance:find("Dark") then
+		return "catppuccin-mocha"
+	else
+		return "rose-pine-dawn"
+	end
+end
+
 local catppuccin_mocha = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
 catppuccin_mocha.background = "#11111b"
 config.color_schemes = {
 	["catppuccin-mocha"] = catppuccin_mocha,
 }
-config.color_scheme = "catppuccin-mocha"
+
+config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 
 -- Keys
 config.keys = {
@@ -86,36 +95,36 @@ config.keys = {
 		action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
 	},
 	-- toggle pane zoom with shift-ctrl-l also works with shift-ctrl-z
-	{
-		key = "l",
-		mods = "SHIFT|CTRL",
-		action = wezterm.action.TogglePaneZoomState,
-	},
+	-- {
+	-- 	key = "l",
+	-- 	mods = "SHIFT|CTRL",
+	-- 	action = wezterm.action.TogglePaneZoomState,
+	-- },
 	-- unmap alt-enter
 	{
 		key = "Enter",
 		mods = "ALT",
 		action = wezterm.action.DisableDefaultAssignment,
 	},
-	-- map pane switching to alt-{h,j,k,l}
+	-- map pane switching to super-hjkl
 	{
 		key = "h",
-		mods = "ALT",
+		mods = "SUPER",
 		action = wezterm.action({ ActivatePaneDirection = "Left" }),
 	},
 	{
 		key = "j",
-		mods = "ALT",
+		mods = "SUPER",
 		action = wezterm.action({ ActivatePaneDirection = "Down" }),
 	},
 	{
 		key = "k",
-		mods = "ALT",
+		mods = "SUPER",
 		action = wezterm.action({ ActivatePaneDirection = "Up" }),
 	},
 	{
 		key = "l",
-		mod = "ALT",
+		mods = "SUPER",
 		action = wezterm.action({ ActivatePaneDirection = "Right" }),
 	},
 }
