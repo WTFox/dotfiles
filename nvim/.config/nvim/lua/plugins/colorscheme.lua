@@ -5,7 +5,7 @@ if Utils.is_wsl() or Utils.wants_transparent_background() then
   transparent_background = true
 end
 
-local light_theme = "solarized-light"
+local light_theme = "gruvbox"
 local dark_theme = "catppuccin-mocha"
 
 return {
@@ -117,6 +117,10 @@ return {
     },
   },
   {
+    "folke/tokyonight.nvim",
+    lazy = false,
+  },
+  {
     "rebelot/kanagawa.nvim",
     opts = {
       compile = false, -- enable compiling the colorscheme
@@ -196,6 +200,10 @@ return {
   },
   {
     "shaunsingh/solarized.nvim",
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
+    priority = 1000,
   },
   {
     "LazyVim/LazyVim",

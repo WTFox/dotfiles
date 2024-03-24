@@ -18,7 +18,7 @@ local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
 		return "catppuccin-mocha"
 	else
-		return "solarized-light"
+		return "GruvboxLight"
 	end
 end
 
@@ -27,6 +27,7 @@ config.automatically_reload_config = true
 
 -- UI
 config.custom_block_glyphs = true
+config.default_cursor_style = "BlinkingBlock"
 config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = {
 	left = 2,
@@ -34,6 +35,9 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
+-- config.window_background_opacity = 0.3
+-- config.macos_window_background_blur = 20
+-- config.tab_bar_at_bottom = true
 
 -- Font
 config.font_size = 16

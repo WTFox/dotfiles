@@ -22,3 +22,4 @@ vim.filetype.add({
 })
 
 -- vim.g.lazyvim_python_lsp = "basedpyright"
+vim.opt.guicursor = "n-v-c-sm-ve:block,i-ci:ver20,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
