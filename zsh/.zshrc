@@ -39,4 +39,12 @@ eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 
-update_neofetch_cache
+# update_neofetch_cache
+
+if command -v please &> /dev/null
+then
+  please
+else
+  echo "please-cli is not installed. Please pipx install please-cli."
+fi
+
