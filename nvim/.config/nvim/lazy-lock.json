@@ -1,7 +1,7 @@
 {
   "ChatGPT.nvim": { "branch": "main", "commit": "df53728e05129278d6ea26271ec086aa013bed90" },
   "LazyVim": { "branch": "main", "commit": "c91982a8bca120857f24f0eb0dd9bdcc7d574f50" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "ed3f891a5deefcd94c62c8e375d1efb1ce53464b" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "ec922ac461c1c755332f55e163b8296bbc4dfa12" },
   "auto-dark-mode.nvim": { "branch": "master", "commit": "e328dc463d238cb7d690fb4daf068eba732a5a14" },
   "bufferline.nvim": { "branch": "main", "commit": "64e2c5def50dfd6b6f14d96a45fa3d815a4a1eef" },
   "catppuccin": { "branch": "main", "commit": "56fb98218d22d5c326387bf9e4076227e7372e6b" },
@@ -81,7 +81,7 @@
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "9ef21b2e6bb6ebeaf349a0781745549bbb870d27" },
   "telescope-terraform-doc.nvim": { "branch": "main", "commit": "e09181f76acefaf66d2b55149bebe939828234b4" },
   "telescope-terraform.nvim": { "branch": "main", "commit": "072c97023797ca1a874668aaa6ae0b74425335df" },
-  "telescope.nvim": { "branch": "master", "commit": "1e591885751d255b12c3649253cb6c2838e2c724" },
+  "telescope.nvim": { "branch": "master", "commit": "c2b8311dfacd08b3056b8f0249025d633a4e71a8" },
   "todo-comments.nvim": { "branch": "main", "commit": "833d8dd8b07eeda37a09e99460f72a02616935cb" },
   "tokyonight.nvim": { "branch": "main", "commit": "092f86550bd83d54c9c6f05e9e2af33a59586aa8" },
   "treesj": { "branch": "main", "commit": "60e27280030f9cd8dfb6ceb335922c6ff76682cc" },
