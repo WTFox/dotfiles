@@ -14,6 +14,14 @@ local function get_os()
 	end
 end
 
+local function scheme_for_appearance(appearance)
+	if appearance:find("Dark") then
+		return "catppuccin-mocha"
+	else
+		return "rose-pine-dawn"
+	end
+end
+
 -- Behavior
 config.automatically_reload_config = true
 
@@ -37,6 +45,7 @@ config.font = wezterm.font({
 		"clig=1",
 		"liga=1",
 		"zero=1",
+		-- "ss01=1",
 		"ss02=1",
 		"ss20=1",
 		"cv03=1",
@@ -54,14 +63,6 @@ if get_os() == "windows" then
 end
 
 -- Colors
-local function scheme_for_appearance(appearance)
-	if appearance:find("Dark") then
-		return "catppuccin-mocha"
-	else
-		return "rose-pine-dawn"
-	end
-end
-
 local catppuccin_mocha = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
 catppuccin_mocha.background = "#11111b"
 config.color_schemes = {
