@@ -9,6 +9,7 @@ directories_to_stow=(
 	"fzf/"
 	"git/"
 	"kitty/"
+	"misc/"
 	"nvim/"
 	"neofetch/"
 	"pgcli/"
