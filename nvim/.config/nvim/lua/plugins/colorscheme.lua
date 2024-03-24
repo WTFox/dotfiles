@@ -5,7 +5,24 @@ if Utils.is_wsl() or Utils.wants_transparent_background() then
   transparent_background = true
 end
 
+local light_theme = "rose-pine-dawn"
+local dark_theme = "catppuccin-mocha"
+
 return {
+  {
+    "f-person/auto-dark-mode.nvim",
+    config = {
+      update_interval = 1000,
+      set_dark_mode = function()
+        vim.api.nvim_set_option("background", "dark")
+        vim.cmd("colorscheme " .. dark_theme)
+      end,
+      set_light_mode = function()
+        vim.api.nvim_set_option("background", "light")
+        vim.cmd("colorscheme " .. light_theme)
+      end,
+    },
+  },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -180,7 +197,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = dark_theme,
     },
   },
 }
