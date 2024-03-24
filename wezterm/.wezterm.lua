@@ -26,7 +26,10 @@ end
 config.automatically_reload_config = true
 
 -- UI
+config.front_end = "WebGpu"
 config.custom_block_glyphs = true
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
 config.default_cursor_style = "BlinkingBlock"
 config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = {
@@ -141,6 +144,12 @@ config.keys = {
 		key = "Enter",
 		mods = "SUPER",
 		action = wezterm.action.ToggleFullScreen,
+	},
+	-- close pane with super-w
+	{
+		key = "w",
+		mods = "SUPER",
+		action = wezterm.action({ CloseCurrentPane = { confirm = true } }),
 	},
 }
 
