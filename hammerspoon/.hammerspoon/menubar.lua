@@ -1,19 +1,30 @@
-local caffeine = hs.menubar.new()
-if not caffeine then
+local utils = require("utils")
+
+local darkMode = hs.menubar.new()
+if not darkMode then
 	return
 end
 
-local function setCaffeineDisplay(state)
-	if state then
-		caffeine:setTitle("AWAKE")
-	else
-		caffeine:setTitle("SLEEPY")
+local function darkModeEnabled()
+	local value = hs.execute("defaults read -g AppleInterfaceStyle")
+	if not value then
+		return false
 	end
+	-- this trims the whitespace lol
+	value = value:gsub("^%s*(.-)%s*$", "%1")
+	return value == "Dark"
 end
 
-local function caffeineClicked()
-	setCaffeineDisplay(hs.caffeinate.toggle("displayIdle"))
+local function toggleDarkModeClicked()
+	hs.execute(
+		"osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
+	)
+	darkMode:setTitle(darkModeEnabled() and "🌙" or "☀️")
 end
 
-caffeine:setClickCallback(caffeineClicked)
-setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
+darkMode:setTitle(darkModeEnabled() and "🌙" or "☀️")
+darkMode:setClickCallback(toggleDarkModeClicked)
+
+hs.hotkey.bind(utils.MASH, "b", function()
+	toggleDarkModeClicked()
+end)

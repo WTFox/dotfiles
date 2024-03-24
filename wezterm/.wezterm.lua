@@ -36,7 +36,7 @@ config.window_padding = {
 }
 
 -- Font
-config.font_size = 16.0
+config.font_size = 16
 config.font = wezterm.font({
 	family = "JetBrains Mono",
 	weight = "Medium",
@@ -127,6 +127,12 @@ config.keys = {
 		key = "l",
 		mods = "SUPER",
 		action = wezterm.action({ ActivatePaneDirection = "Right" }),
+	},
+	-- toggle fullscreen with super-enter
+	{
+		key = "Enter",
+		mods = "SUPER",
+		action = wezterm.action.ToggleFullScreen,
 	},
 }
 
