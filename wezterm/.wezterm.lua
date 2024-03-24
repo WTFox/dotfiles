@@ -68,7 +68,7 @@ config.font = wezterm.font({
 
 -- Shell
 if get_os() == "windows" then
-	config.default_program = { "WSL:Ubuntu" }
+	config.default_domain = "WSL:Ubuntu"
 end
 
 -- Colors
