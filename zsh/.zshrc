@@ -41,41 +41,4 @@ eval "$(starship init zsh)"
 
 # update_neofetch_cache
 
-greet() {
-    QUOTE_FILE=~/.config/misc/quotes.json
-
-    RED='\033[0;31m'
-    GREEN='\033[0;32m'
-    BLUE='\033[0;34m'
-    NC='\033[0m' # No Color
-    YELLOW='\033[1;33m'
-
-    WIDTH=$(tput cols)
-    print_centered() {
-        TEXT="$1"
-        COLOR="$2"
-        WRAPPED_TEXT=$(echo -e "$TEXT" | fold -w $((WIDTH * 0.6)) -s)
-        while IFS= read -r LINE; do
-            TEXT_LENGTH=$(echo -n "$LINE" | sed 's/\x1b\[[0-9;]*m//g' | wc -m)
-            SPACES=$(( (WIDTH - TEXT_LENGTH) / 2 ))
-            printf "%${SPACES}s" ""
-            echo -e "${COLOR}${LINE}${NC}"
-        done <<< "$WRAPPED_TEXT"
-    }
-
-    DATE_TIME="$(date "+%Y-%m-%d @ %I:%M %p")"
-    NUM_QUOTES=$(jq '. | length' $QUOTE_FILE)
-    RANDOM_INDEX=$((RANDOM % NUM_QUOTES))
-    QUOTE_CONTENT=$(jq -r --argjson index $RANDOM_INDEX '.[$index] | .content' $QUOTE_FILE)
-    QUOTE_AUTHOR=$(jq -r --argjson index $RANDOM_INDEX '.[$index] | .author' $QUOTE_FILE)
-    QUOTED_CONTENT="\"${QUOTE_CONTENT}\""
-
-    print_centered "" ""
-    print_centered "$QUOTED_CONTENT" "$BLUE"
-    print_centered "" ""
-    print_centered "- $QUOTE_AUTHOR" "$YELLOW"
-    print_centered "" ""
-    print_centered "$DATE_TIME" "$GREEN"
-}
-
-greet
+source ~/bin/greet
