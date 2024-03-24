@@ -85,28 +85,38 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
 	},
-	-- toggle pane zoom with shift-ctrl-l
+	-- toggle pane zoom with shift-ctrl-l also works with shift-ctrl-z
 	{
 		key = "l",
 		mods = "SHIFT|CTRL",
 		action = wezterm.action.TogglePaneZoomState,
-	},
-	-- switch panes with ctrl-shift-[ and ]
-	{
-		key = "[",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.ActivatePaneDirection("Left"),
-	},
-	{
-		key = "]",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.ActivatePaneDirection("Right"),
 	},
 	-- unmap alt-enter
 	{
 		key = "Enter",
 		mods = "ALT",
 		action = wezterm.action.DisableDefaultAssignment,
+	},
+	-- map pane switching to alt-{h,j,k,l}
+	{
+		key = "h",
+		mods = "ALT",
+		action = wezterm.action({ ActivatePaneDirection = "Left" }),
+	},
+	{
+		key = "j",
+		mods = "ALT",
+		action = wezterm.action({ ActivatePaneDirection = "Down" }),
+	},
+	{
+		key = "k",
+		mods = "ALT",
+		action = wezterm.action({ ActivatePaneDirection = "Up" }),
+	},
+	{
+		key = "l",
+		mod = "ALT",
+		action = wezterm.action({ ActivatePaneDirection = "Right" }),
 	},
 }
 
