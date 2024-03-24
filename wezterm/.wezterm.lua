@@ -75,12 +75,12 @@ config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 config.keys = {
 	{
 		key = "v",
-		mods = "CTRL",
+		mods = "CTRL|SHIFT",
 		action = wezterm.action({ PasteFrom = "Clipboard" }),
 	},
 	{
 		key = "c",
-		mods = "CTRL",
+		mods = "CTRL|SHIFT",
 		action = wezterm.action({ CopyTo = "Clipboard" }),
 	},
 	-- split vertical with ctrl-enter
