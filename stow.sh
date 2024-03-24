@@ -17,6 +17,7 @@ directories_to_stow=(
 	"pylint/"
 	"starship/"
 	"tmux/"
+	"wezterm/"
 	"vscode-vim/"
 	"yazi/"
 	"zsh/"

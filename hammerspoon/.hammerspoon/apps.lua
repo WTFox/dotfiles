@@ -2,7 +2,7 @@ local utils = require("utils")
 
 local prefix = { "ctrl" }
 local mappings = {
-	{ key = "`", app = "kitty" },
+	{ key = "`", app = "wezterm" },
 }
 
 if utils.onPersonalLaptop() then
