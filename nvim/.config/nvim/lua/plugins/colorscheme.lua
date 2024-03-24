@@ -5,7 +5,7 @@ if Utils.is_wsl() or Utils.wants_transparent_background() then
   transparent_background = true
 end
 
-local light_theme = "rose-pine-dawn"
+local light_theme = "solarized-light"
 local dark_theme = "catppuccin-mocha"
 
 return {
@@ -193,6 +193,9 @@ return {
         TelescopePromptBorder = { fg = "surface", bg = "surface" },
       },
     },
+  },
+  {
+    "shaunsingh/solarized.nvim",
   },
   {
     "LazyVim/LazyVim",

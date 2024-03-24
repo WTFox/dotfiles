@@ -18,7 +18,7 @@ local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
 		return "catppuccin-mocha"
 	else
-		return "rose-pine-dawn"
+		return "solarized-light"
 	end
 end
 
@@ -68,6 +68,10 @@ catppuccin_mocha.background = "#11111b"
 config.color_schemes = {
 	["catppuccin-mocha"] = catppuccin_mocha,
 }
+
+local solarized_light = wezterm.color.get_builtin_schemes()["Solarized Light (Gogh)"]
+solarized_light.background = "#faf5d4"
+config.color_schemes["solarized-light"] = solarized_light
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 
