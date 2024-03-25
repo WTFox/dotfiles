@@ -26,6 +26,7 @@ end
 config.automatically_reload_config = true
 
 -- UI
+-- config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.front_end = "WebGpu"
 config.custom_block_glyphs = true
 config.use_fancy_tab_bar = false
@@ -152,6 +153,17 @@ config.keys = {
 		key = "w",
 		mods = "SUPER",
 		action = wezterm.action({ CloseCurrentPane = { confirm = true } }),
+	},
+	-- Option-left and Option-right to go forward/back per word
+	{
+		key = "LeftArrow",
+		mods = "ALT",
+		action = wezterm.action({ SendString = "\x1bb" }),
+	},
+	{
+		key = "RightArrow",
+		mods = "ALT",
+		action = wezterm.action({ SendString = "\4bf" }),
 	},
 }
 
