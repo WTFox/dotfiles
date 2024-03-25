@@ -1,19 +1,42 @@
 local wezterm = require("wezterm")
 
+local act = wezterm.action
+local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
+local key_mod_panes = is_windows and "ALT" or "CMD"
+
 local config = wezterm.config_builder()
-
+local process_icons = {
+	["docker"] = wezterm.nerdfonts.linux_docker,
+	["docker-compose"] = wezterm.nerdfonts.linux_docker,
+	["psql"] = "󱤢",
+	["usql"] = "󱤢",
+	["kuberlr"] = wezterm.nerdfonts.linux_docker,
+	["ssh"] = wezterm.nerdfonts.fa_exchange,
+	["ssh-add"] = wezterm.nerdfonts.fa_exchange,
+	["kubectl"] = wezterm.nerdfonts.linux_docker,
+	["stern"] = wezterm.nerdfonts.linux_docker,
+	["nvim"] = wezterm.nerdfonts.custom_vim,
+	["make"] = wezterm.nerdfonts.seti_makefile,
+	["vim"] = wezterm.nerdfonts.dev_vim,
+	["node"] = wezterm.nerdfonts.mdi_hexagon,
+	["go"] = wezterm.nerdfonts.seti_go,
+	["python3"] = "",
+	["zsh"] = wezterm.nerdfonts.dev_terminal,
+	["bash"] = wezterm.nerdfonts.cod_terminal_bash,
+	["btm"] = wezterm.nerdfonts.mdi_chart_donut_variant,
+	["htop"] = wezterm.nerdfonts.mdi_chart_donut_variant,
+	["cargo"] = wezterm.nerdfonts.dev_rust,
+	["sudo"] = wezterm.nerdfonts.fa_hashtag,
+	["lazygit"] = wezterm.nerdfonts.dev_git,
+	["lazydocker"] = wezterm.nerdfonts.linux_docker,
+	["git"] = wezterm.nerdfonts.dev_git,
+	["lua"] = wezterm.nerdfonts.seti_lua,
+	["wget"] = wezterm.nerdfonts.mdi_arrow_down_box,
+	["curl"] = wezterm.nerdfonts.mdi_flattr,
+	["gh"] = wezterm.nerdfonts.dev_github_badge,
+	["ruby"] = wezterm.nerdfonts.cod_ruby,
+}
 -- Functions
-local function get_os()
-	local os_name = wezterm.target_triple
-	if os_name:find("windows") then
-		return "windows"
-	elseif os_name:find("darwin") then
-		return "macos"
-	else
-		return "linux"
-	end
-end
-
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
 		return "catppuccin-mocha"
@@ -22,8 +45,56 @@ local function scheme_for_appearance(appearance)
 	end
 end
 
+local function get_current_working_dir(tab)
+	local current_dir = tab.active_pane and tab.active_pane.current_working_dir or { file_path = "" }
+	local HOME_DIR = string.format("file://%s", os.getenv("HOME"))
+	return current_dir == HOME_DIR and "." or string.gsub(current_dir.file_path, "(.*[/\\])(.*)", "%2")
+end
+
+local function get_process(tab)
+	if not tab.active_pane or tab.active_pane.foreground_process_name == "" then
+		return "[?]"
+	end
+
+	local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
+	if string.find(process_name, "kubectl") then
+		process_name = "kubectl"
+	end
+
+	return process_icons[process_name] or string.format("[%s]", process_name)
+end
+
 -- Behavior
 config.automatically_reload_config = true
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local has_unseen_output = false
+	if not tab.is_active then
+		for _, pane in ipairs(tab.panes) do
+			if pane.has_unseen_output then
+				has_unseen_output = true
+				break
+			end
+		end
+	end
+
+	local cwd = wezterm.format({
+		{ Attribute = { Intensity = "Bold" } },
+		{ Text = get_current_working_dir(tab) },
+	})
+
+	local title = string.format(" %s  %s  ", get_process(tab), cwd)
+
+	if has_unseen_output then
+		return {
+			{ Foreground = { Color = "#28719c" } },
+			{ Text = title },
+		}
+	end
+
+	return {
+		{ Text = title },
+	}
+end)
 
 -- UI
 -- config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
@@ -67,11 +138,6 @@ config.font = wezterm.font({
 	},
 })
 
--- Shell
-if get_os() == "windows" then
-	config.default_domain = "WSL:Ubuntu"
-end
-
 -- Colors
 local catppuccin_mocha = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
 catppuccin_mocha.background = "#11111b"
@@ -87,84 +153,128 @@ config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 
 -- Keys
 config.keys = {
-	{
-		key = "v",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action({ PasteFrom = "Clipboard" }),
-	},
-	{
-		key = "c",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action({ CopyTo = "Clipboard" }),
-	},
-	-- split vertical with ctrl-enter
-	{
-		key = "Enter",
-		mods = "CTRL",
-		action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
-	},
-	-- split horizontal with ctrl-shift-enter
-	{
-		key = "Enter",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
-	},
-	-- toggle pane zoom with shift-ctrl-l also works with shift-ctrl-z
-	-- {
-	-- 	key = "l",
-	-- 	mods = "SHIFT|CTRL",
-	-- 	action = wezterm.action.TogglePaneZoomState,
-	-- },
 	-- unmap alt-enter
 	{
 		key = "Enter",
 		mods = "ALT",
-		action = wezterm.action.DisableDefaultAssignment,
+		action = act.DisableDefaultAssignment,
+	},
+	-- super-shift-v to paste from clipboard
+	{
+		key = "v",
+		mods = key_mod_panes .. "|SHIFT",
+		action = act({ PasteFrom = "Clipboard" }),
+	},
+	-- shift + right click to paste from clipboard
+	-- {
+	-- 	button = "Right",
+	-- 	mods = "SHIFT",
+	-- 	action = act({ PasteFrom = "Clipboard" }),
+	-- },
+	-- super-shift-c to copy to clipboard
+	{
+		key = "c",
+		mods = key_mod_panes .. "|SHIFT",
+		action = act({ CopyTo = "Clipboard" }),
+	},
+	-- split vertical with ctrl-\
+	{
+		key = "|",
+		mods = key_mod_panes,
+		action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
+	},
+	-- split horizontal with ctrl-shift-enter
+	{
+		key = "-",
+		mods = key_mod_panes .. "|SHIFT",
+		action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }),
 	},
 	-- map pane switching to super-hjkl
 	{
 		key = "h",
-		mods = "SUPER",
-		action = wezterm.action({ ActivatePaneDirection = "Left" }),
+		mods = key_mod_panes,
+		action = act({ ActivatePaneDirection = "Left" }),
 	},
 	{
 		key = "j",
-		mods = "SUPER",
-		action = wezterm.action({ ActivatePaneDirection = "Down" }),
+		mods = key_mod_panes,
+		action = act({ ActivatePaneDirection = "Down" }),
 	},
 	{
 		key = "k",
-		mods = "SUPER",
-		action = wezterm.action({ ActivatePaneDirection = "Up" }),
+		mods = key_mod_panes,
+		action = act({ ActivatePaneDirection = "Up" }),
 	},
 	{
 		key = "l",
-		mods = "SUPER",
-		action = wezterm.action({ ActivatePaneDirection = "Right" }),
+		mods = key_mod_panes,
+		action = act({ ActivatePaneDirection = "Right" }),
 	},
 	-- toggle fullscreen with super-enter
 	{
 		key = "Enter",
-		mods = "SUPER",
-		action = wezterm.action.ToggleFullScreen,
+		mods = key_mod_panes,
+		action = act.ToggleFullScreen,
 	},
 	-- close pane with super-w
 	{
 		key = "w",
-		mods = "SUPER",
-		action = wezterm.action({ CloseCurrentPane = { confirm = true } }),
+		mods = key_mod_panes,
+		action = act({ CloseCurrentPane = { confirm = true } }),
 	},
 	-- Option-left and Option-right to go forward/back per word
 	{
 		key = "LeftArrow",
 		mods = "ALT",
-		action = wezterm.action({ SendString = "\x1bb" }),
+		action = act({ SendString = "\x1bb" }),
 	},
 	{
 		key = "RightArrow",
 		mods = "ALT",
-		action = wezterm.action({ SendString = "\4bf" }),
+		action = act({ SendString = "\4bf" }),
+	},
+	-- shift + page up/down to scroll
+	{ key = "PageUp", mods = "SHIFT", action = act.ScrollByPage(-1) },
+	{ key = "PageDown", mods = "SHIFT", action = act.ScrollByPage(1) },
+	-- super + p shows launcher
+	{
+		key = "p",
+		mods = key_mod_panes,
+		action = act.ShowLauncherArgs({ flags = "FUZZY|TABS|WORKSPACES" }),
+	},
+	-- super + . shows command palette
+	{
+		key = ".",
+		mods = key_mod_panes,
+		action = act.ActivateCommandPalette,
 	},
 }
+
+config.mouse_bindings = {
+	{
+		event = { Down = { streak = 1, button = "Right" } },
+		mods = "SHIFT",
+		action = wezterm.action_callback(function(window, pane)
+			local has_selection = window:get_selection_text_for_pane(pane) ~= ""
+			if has_selection then
+				window:perform_action(act.CopyTo("ClipboardAndPrimarySelection"), pane)
+				window:perform_action(act.ClearSelection, pane)
+			else
+				window:perform_action(act({ PasteFrom = "Clipboard" }), pane)
+			end
+		end),
+	},
+}
+
+if is_windows then
+	config.default_prog = { "wsl.exe", "-d", "Ubuntu", "--cd", "~" }
+	config.wsl_domains = {
+		{
+			name = "WSL:Ubuntu",
+			distribution = "Ubuntu",
+			default_cwd = "~",
+		},
+	}
+end
 
 return config

@@ -193,12 +193,12 @@ symbol = "⨀ "
 style = "italic bright-yellow"
 
 [nodejs]
-format = " [  ($version)](italic bright-green)"
+format = " [ ($version)](italic bright-green)"
 detect_files = ["package-lock.json", "yarn.lock"]
 version_format = "${major}.${minor}"
 
 [python]
-format = "[${symbol}${version}]($style)"
+format = "[ ${symbol}${version}]($style)"
 symbol = "[ ](italic bright-yellow)"
 version_format = "${major}.${minor}"
 style = "italic bright-yellow"
@@ -221,10 +221,13 @@ symbol = "◁ "
 style = "italic bright-red"
 version_format = "${major}.${minor}"
 
+[terraform]
+format = " [$symbol$workspace]($style)"
+
 [aws]
-format = " aws [$symbol $profile $region]($style)"
+format = " [$symbol $profile $region]($style)"
 style = "italic blue"
-symbol = "▲ "
+symbol = "☁️"
 
 [buf]
 symbol = "■ "

@@ -36,5 +36,6 @@ print_centered "" ""
 print_centered "- $QUOTE_AUTHOR" "$YELLOW"
 print_centered "" ""
 print_centered "$DATE_TIME" "$GREEN"
+print_centered "" ""
 
 # vim: filetype=sh:tabstop=4:shiftwidth=4:expandtab:
