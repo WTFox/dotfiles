@@ -86,7 +86,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 
 	if has_unseen_output then
 		return {
-			{ Foreground = { Color = "#28719c" } },
+			{ Foreground = { Color = "#faf5d4" } },
 			{ Text = title },
 		}
 	end
@@ -152,43 +152,31 @@ config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 
 -- Keys
 config.keys = {
-	-- unmap alt-enter
 	{
 		key = "Enter",
 		mods = "ALT",
 		action = act.DisableDefaultAssignment,
 	},
-	-- super-shift-v to paste from clipboard
 	{
 		key = "v",
 		mods = key_mod_panes,
 		action = act({ PasteFrom = "Clipboard" }),
 	},
-	-- shift + right click to paste from clipboard
-	-- {
-	-- 	button = "Right",
-	-- 	mods = "SHIFT",
-	-- 	action = act({ PasteFrom = "Clipboard" }),
-	-- },
-	-- super-shift-c to copy to clipboard
 	{
 		key = "c",
 		mods = key_mod_panes,
 		action = act({ CopyTo = "Clipboard" }),
 	},
-	-- split vertical with ctrl-\
 	{
 		key = "|",
 		mods = key_mod_panes,
 		action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
 	},
-	-- split horizontal with ctrl-shift-enter
 	{
 		key = "_",
 		mods = key_mod_panes,
 		action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }),
 	},
-	-- map pane switching to super-hjkl
 	{
 		key = "h",
 		mods = key_mod_panes,
@@ -210,11 +198,20 @@ config.keys = {
 		action = act({ ActivatePaneDirection = "Right" }),
 	},
 	{
+		key = "{",
+		mods = key_mod_panes,
+		action = act({ ActivateTabRelative = -1 }),
+	},
+	{
+		key = "}",
+		mods = key_mod_panes,
+		action = act({ ActivateTabRelative = 1 }),
+	},
+	{
 		key = "f",
 		mods = key_mod_panes,
 		action = act.ToggleFullScreen,
 	},
-	-- backsapce to close pane
 	{
 		key = "Backspace",
 		mods = key_mod_panes,
@@ -230,16 +227,13 @@ config.keys = {
 		mods = "ALT",
 		action = act({ SendString = "\4bf" }),
 	},
-	-- shift + page up/down to scroll
 	{ key = "PageUp", mods = "SHIFT", action = act.ScrollByPage(-1) },
 	{ key = "PageDown", mods = "SHIFT", action = act.ScrollByPage(1) },
-	-- super + p shows launcher
 	{
 		key = "p",
 		mods = key_mod_panes,
 		action = act.ShowLauncherArgs({ flags = "FUZZY|TABS|WORKSPACES" }),
 	},
-	-- super + . shows command palette
 	{
 		key = ".",
 		mods = key_mod_panes,
