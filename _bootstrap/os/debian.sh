@@ -57,8 +57,7 @@ install_pyenv_requirements() {
 }
 
 install_apps() {
-	# read packages from debian-apps.txt
-	sudo apt-get install -y $(cat linux-apps.txt)
+	sudo apt-get install -y $(cat ./_bootstrap/linux-apps.txt)
 
 	# install gh
 	type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)

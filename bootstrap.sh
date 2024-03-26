@@ -30,15 +30,7 @@ install_go
 install_nvim
 install_apps
 
-read -rp "Do you want to do configure git? (yes/no): " response
-case $response in
-[yY] | [yY][eE][sS])
-	configure_git
-	;;
-*)
-	echo "Not configuring git."
-	;;
-esac
+echo "All done! Please run configure_git manually." $green
 
 chsh -s $(which zsh)
 exec zsh -l

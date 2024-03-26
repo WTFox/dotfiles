@@ -9,18 +9,6 @@ BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# print_centered() {
-# 	TEXT="$1"
-# 	COLOR="$2"
-# 	WRAPPED_TEXT=$(echo -e "$TEXT" | fold -w $((WIDTH * 0.6)) -s)
-# 	while IFS= read -r LINE; do
-# 		TEXT_LENGTH=$(echo -n "$LINE" | sed 's/\x1b\[[0-9;]*m//g' | wc -m)
-# 		SPACES=$(((WIDTH - TEXT_LENGTH) / 2))
-# 		printf "%${SPACES}s" ""
-# 		echo -e "${COLOR}${LINE}${NC}"
-# 	done <<<"$WRAPPED_TEXT"
-# }
-
 print_centered() {
 	TEXT="$1"
 	COLOR="$2"
