@@ -7,7 +7,13 @@ require("spongebob")
 
 local utils = require("utils")
 
+-- MASH + r to reload config
 hs.hotkey.bind(utils.MASH, "r", function()
 	hs.reload()
 	hs.notify.new({ title = "Hammerspoon", informativeText = "Config loaded" }):send()
+end)
+
+-- MASH + backspace to lock screen
+hs.hotkey.bind(utils.MASH, "delete", function()
+	hs.caffeinate.lockScreen()
 end)
