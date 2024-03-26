@@ -121,19 +121,35 @@ config.font = wezterm.font({
 	family = "JetBrains Mono",
 	weight = "Medium",
 	harfbuzz_features = {
-		"calt=1",
+		"calt=1", -- Contains all ligatures. Substitution for : between digits
 		"clig=1",
 		"liga=1",
-		"zero=1",
-		-- "ss01=1",
-		"ss02=1",
-		"ss20=1",
-		"cv03=1",
-		"cv06=1",
-		"cv15=1",
-		"cv16=1",
-		"cv18=1",
-		"cv19=1",
+		"zero=1", -- Changes 0 to slashed variant.
+		-- "frac=1", -- Substitute digits in fraction sequences to look more like fractions.
+		-- "ss01=1", -- All classic construction. JetBrains Mono but even more neutral. Performs better in big paragraph of text.
+		-- "ss02=1", -- All closed construction. Change the rhythm to a more lively one.
+		-- "ss19=1", -- Adds gaps in ≠ ≠= == === ligatures.
+		-- "ss20=1", -- Shift horizontal stroke in f to match x-height
+		-- "cv01=1", -- l with symmetrical lower stroke. (ss01)
+		-- "cv02=1", -- t with curly tail (ss02)
+		"cv03=1", -- g with more complex construction
+		"cv04=1", -- j with curly descender
+		-- "cv05=1", -- l with curly tail (ss02)
+		"cv06=1", -- m with shorter middle leg (ss02)
+		"cv07=1", -- Ww with lower middle peak (ss02)
+		-- "cv08=1", -- Kk with sharp connection (ss01)
+		-- "cv09=1", -- f with additional horizontal stroke. (ss01)
+		-- "cv10=1", -- r with more open construction (ss01)
+		"cv11=1", -- y with different ascender construction (ss01)
+		-- "cv12=1", -- u with traditional construction (ss01)
+		-- "cv14=1", -- $ with broken bar
+		"cv15=1", -- alternative ampersand
+		"cv16=1", -- Q with bent tail
+		"cv17=1", -- f with curly ascender (ss02)
+		-- "cv18=1", -- 269 variant
+		-- "cv19=1", -- 8 old variant
+		-- "cv20=1", -- 5 old variant
+		-- "cv99=1", -- highlights cyrillic C and c for debugging
 	},
 })
 
