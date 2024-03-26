@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local act = wezterm.action
 local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
-local key_mod_panes = is_windows and "ALT" or "CMD"
+local key_mod_panes = "CTRL|SHIFT"
 
 local config = wezterm.config_builder()
 local process_icons = {
@@ -97,7 +97,6 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 -- UI
--- config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.front_end = "WebGpu"
 config.custom_block_glyphs = true
 config.use_fancy_tab_bar = false
@@ -162,7 +161,7 @@ config.keys = {
 	-- super-shift-v to paste from clipboard
 	{
 		key = "v",
-		mods = key_mod_panes .. "|SHIFT",
+		mods = key_mod_panes,
 		action = act({ PasteFrom = "Clipboard" }),
 	},
 	-- shift + right click to paste from clipboard
@@ -174,7 +173,7 @@ config.keys = {
 	-- super-shift-c to copy to clipboard
 	{
 		key = "c",
-		mods = key_mod_panes .. "|SHIFT",
+		mods = key_mod_panes,
 		action = act({ CopyTo = "Clipboard" }),
 	},
 	-- split vertical with ctrl-\
@@ -185,8 +184,8 @@ config.keys = {
 	},
 	-- split horizontal with ctrl-shift-enter
 	{
-		key = "-",
-		mods = key_mod_panes .. "|SHIFT",
+		key = "_",
+		mods = key_mod_panes,
 		action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }),
 	},
 	-- map pane switching to super-hjkl
@@ -210,19 +209,17 @@ config.keys = {
 		mods = key_mod_panes,
 		action = act({ ActivatePaneDirection = "Right" }),
 	},
-	-- toggle fullscreen with super-enter
 	{
-		key = "Enter",
+		key = "f",
 		mods = key_mod_panes,
 		action = act.ToggleFullScreen,
 	},
-	-- close pane with super-w
+	-- backsapce to close pane
 	{
-		key = "w",
+		key = "Backspace",
 		mods = key_mod_panes,
 		action = act({ CloseCurrentPane = { confirm = true } }),
 	},
-	-- Option-left and Option-right to go forward/back per word
 	{
 		key = "LeftArrow",
 		mods = "ALT",
