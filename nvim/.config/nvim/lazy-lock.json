@@ -1,6 +1,6 @@
 {
   "ChatGPT.nvim": { "branch": "main", "commit": "df53728e05129278d6ea26271ec086aa013bed90" },
-  "LazyVim": { "branch": "main", "commit": "55c2527dfe53088e64a9fb63e37c64ef590914cf" },
+  "LazyVim": { "branch": "main", "commit": "1de90e7e4c94f51b187c4cd4fcfb6480f4303c46" },
   "SchemaStore.nvim": { "branch": "main", "commit": "65f07cde64d9123eab8639c1a3f7aa7939060cde" },
   "auto-dark-mode.nvim": { "branch": "master", "commit": "e328dc463d238cb7d690fb4daf068eba732a5a14" },
   "bufferline.nvim": { "branch": "main", "commit": "64e2c5def50dfd6b6f14d96a45fa3d815a4a1eef" },
@@ -26,7 +26,7 @@
   "incline.nvim": { "branch": "main", "commit": "a03020c920a55b75d82ac54c9da18cbf52e8c4d8" },
   "indent-blankline.nvim": { "branch": "master", "commit": "3d08501caef2329aba5121b753e903904088f7e6" },
   "kanagawa.nvim": { "branch": "master", "commit": "bfa818c7bf6259152f1d89cf9fbfba3554c93695" },
-  "lazy.nvim": { "branch": "main", "commit": "107719d31e2e4f4dccbabdbd7c7e662aebdb8399" },
+  "lazy.nvim": { "branch": "main", "commit": "68941b7b13861ca44ad5d4caf7296d9160b4732f" },
   "lualine.nvim": { "branch": "master", "commit": "b5e8bb642138f787a2c1c5aedc2a78cb2cebbd67" },
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "9dfcf2036c223920826140f0151d929a43f9eceb" },
