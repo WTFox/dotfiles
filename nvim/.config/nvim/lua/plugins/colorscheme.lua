@@ -5,11 +5,26 @@ if Utils.is_wsl() or Utils.wants_transparent_background() then
   transparent_background = true
 end
 
-local light_theme = "gruvbox"
 local dark_theme = "catppuccin-mocha"
+local light_theme = "gruvbox"
+
+local function switch_colorscheme()
+  if vim.o.background == "dark" then
+    vim.cmd("colorscheme " .. dark_theme)
+  else
+    vim.cmd("colorscheme " .. light_theme)
+  end
+end
+
+-- Switch colorscheme based on the background option
+vim.api.nvim_create_autocmd("OptionSet", {
+  pattern = "background",
+  callback = switch_colorscheme,
+})
 
 return {
   {
+    -- follows the system theme
     "f-person/auto-dark-mode.nvim",
     config = {
       update_interval = 1000,

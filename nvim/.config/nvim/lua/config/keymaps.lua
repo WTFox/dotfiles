@@ -74,16 +74,6 @@ map("n", "<leader>dd", function()
   Util.terminal({ "lazydocker" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
 end, { desc = "LazyDocker" })
 
--- toggle background
-map("n", "<leader>ub", function()
-  Util.toggle("background", false, { "light", "dark" })
-  if vim.o.background == "dark" then
-    vim.cmd("colorscheme catppuccin")
-  else
-    vim.cmd("colorscheme gruvbox")
-  end
-end, { desc = "Toggle Background" })
-
 -- map Tab to swap between alternate files
 map("n", "<Tab>", "<c-^>", { noremap = true, silent = true, desc = "Swap Alternate Files" })
 
