@@ -142,7 +142,7 @@ config.font = wezterm.font({
 		-- "cv10=1", -- r with more open construction (ss01)
 		"cv11=1", -- y with different ascender construction (ss01)
 		-- "cv12=1", -- u with traditional construction (ss01)
-		-- "cv14=1", -- $ with broken bar
+		"cv14=1", -- $ with broken bar
 		"cv15=1", -- alternative ampersand
 		"cv16=1", -- Q with bent tail
 		"cv17=1", -- f with curly ascender (ss02)
@@ -159,10 +159,6 @@ catppuccin_mocha.background = "#11111b"
 config.color_schemes = {
 	["catppuccin-mocha"] = catppuccin_mocha,
 }
-
-local solarized_light = wezterm.color.get_builtin_schemes()["Solarized Light (Gogh)"]
-solarized_light.background = "#faf5d4"
-config.color_schemes["solarized-light"] = solarized_light
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 

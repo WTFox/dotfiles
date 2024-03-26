@@ -78,11 +78,9 @@ end, { desc = "LazyDocker" })
 map("n", "<leader>ub", function()
   Util.toggle("background", false, { "light", "dark" })
   if vim.o.background == "dark" then
-    vim.fn.system("kitty +kitten themes Catppuccin-Mocha")
     vim.cmd("colorscheme catppuccin")
   else
-    vim.fn.system("kitty +kitten themes 'Rose Pine Dawn'")
-    vim.cmd("colorscheme rose-pine-dawn")
+    vim.cmd("colorscheme gruvbox")
   end
 end, { desc = "Toggle Background" })
 
