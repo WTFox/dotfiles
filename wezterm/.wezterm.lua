@@ -218,6 +218,11 @@ config.keys = {
 		action = act({ CloseCurrentPane = { confirm = true } }),
 	},
 	{
+		key = "n",
+		mods = key_mod_panes,
+		action = act({ SpawnTab = "CurrentPaneDomain" }),
+	},
+	{
 		key = "LeftArrow",
 		mods = "ALT",
 		action = act({ SendString = "\x1bb" }),
@@ -236,7 +241,7 @@ config.keys = {
 	},
 	{
 		key = ".",
-		mods = key_mod_panes,
+		mods = "CTRL",
 		action = act.ActivateCommandPalette,
 	},
 }
