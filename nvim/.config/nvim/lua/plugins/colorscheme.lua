@@ -1,19 +1,21 @@
 local Utils = require("utils")
 
+local colors = Utils.read_jsonfile(vim.env.HOME .. "/dotfiles/colors.json")
+if not colors then
+  colors = {
+    dark = "tokyonight",
+    light = "tokyonight",
+  }
+end
+
 local transparent_background = false
 if Utils.is_wsl() or Utils.wants_transparent_background() then
   transparent_background = true
 end
 
-local dark_theme = "catppuccin-mocha"
-local light_theme = "gruvbox"
-
 local function switch_colorscheme()
-  if vim.o.background == "dark" then
-    vim.cmd("colorscheme " .. dark_theme)
-  else
-    vim.cmd("colorscheme " .. light_theme)
-  end
+  local color = vim.o.background == "dark" and colors.dark or colors.light
+  vim.cmd("colorscheme " .. color)
 end
 
 -- Switch colorscheme based on the background option
@@ -30,17 +32,18 @@ return {
       update_interval = 1000,
       set_dark_mode = function()
         vim.api.nvim_set_option_value("background", "dark", {})
-        vim.cmd("colorscheme " .. dark_theme)
+        vim.cmd("colorscheme " .. colors.dark)
       end,
       set_light_mode = function()
         vim.api.nvim_set_option_value("background", "light", {})
-        vim.cmd("colorscheme " .. light_theme)
+        vim.cmd("colorscheme " .. colors.light)
       end,
     },
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    lazy = false,
     opts = {
       -- no_italic = true,
       -- no_bold = true,

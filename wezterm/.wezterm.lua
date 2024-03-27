@@ -36,13 +36,28 @@ local process_icons = {
 	["gh"] = wezterm.nerdfonts.dev_github_badge,
 	["ruby"] = wezterm.nerdfonts.cod_ruby,
 }
+
 -- Functions
-local function scheme_for_appearance(appearance)
-	if appearance:find("Dark") then
-		return "catppuccin-mocha"
-	else
-		return "Gruvbox (Gogh)"
+local function read_jsonfile(file)
+	local f = io.open(file, "r")
+	if f == nil then
+		return nil
 	end
+	local content = f:read("*all")
+	f:close()
+	return wezterm.json_parse(content)
+end
+
+local function scheme_for_appearance(appearance)
+	local colors = read_jsonfile(os.getenv("HOME") .. "/dotfiles/colors.json")
+	if not colors then
+		colors = {
+			dark = "tokyonight",
+			light = "tokyonight",
+		}
+	end
+
+	return appearance:find("Dark") and colors.dark or colors.light
 end
 
 local function get_current_working_dir(tab)
@@ -156,8 +171,11 @@ config.font = wezterm.font({
 -- Colors
 local catppuccin_mocha = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
 catppuccin_mocha.background = "#11111b"
+
+local gruvbox = wezterm.color.get_builtin_schemes()["Gruvbox (Gogh)"]
 config.color_schemes = {
 	["catppuccin-mocha"] = catppuccin_mocha,
+	["gruvbox"] = gruvbox,
 }
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
