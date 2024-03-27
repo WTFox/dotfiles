@@ -1,16 +1,20 @@
 hs.loadSpoon("EmmyLua") -- loads autocomplete info for editors
-hs.loadSpoon("ControlEscape"):start() -- remaps caps lock to escape when pressed alone, control when pressed with another key
+-- hs.loadSpoon("ControlEscape"):start() -- remaps caps lock to escape when pressed alone, control when pressed with another key
 
 require("apps")
-require("menubar")
 require("spongebob")
+require("toggleTheme")
 
 local utils = require("utils")
 
 -- MASH + r to reload config
 hs.hotkey.bind(utils.MASH, "r", function()
 	hs.reload()
-	hs.notify.new({ title = "Hammerspoon", informativeText = "Config loaded" }):send()
+	local notify = hs.notify.new({ title = "Hammerspoon", informativeText = "Config loaded" })
+	if not notify then
+		return
+	end
+	notify:send()
 end)
 
 -- MASH + backspace to lock screen

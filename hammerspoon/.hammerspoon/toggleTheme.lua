@@ -10,19 +10,21 @@ local function darkModeEnabled()
 	if not value then
 		return false
 	end
-	-- this trims the whitespace lol
-	value = value:gsub("^%s*(.-)%s*$", "%1")
-	return value == "Dark"
+	return utils.trimString(value) == "Dark"
+end
+
+local function icon()
+	return darkModeEnabled() and "🌙" or "☀️"
 end
 
 local function toggleDarkModeClicked()
 	hs.execute(
 		"osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
 	)
-	darkMode:setTitle(darkModeEnabled() and "🌙" or "☀️")
+	darkMode:setTitle(icon())
 end
 
-darkMode:setTitle(darkModeEnabled() and "🌙" or "☀️")
+darkMode:setTitle(icon())
 darkMode:setClickCallback(toggleDarkModeClicked)
 
 hs.hotkey.bind(utils.MASH, "b", function()
