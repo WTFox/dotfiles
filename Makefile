@@ -10,3 +10,7 @@ debian:
 
 install:
 	./bootstrap.sh
+
+update:
+	@git pull origin main
+	@nvim --headless "+Lazy! restore" +qa
