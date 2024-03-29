@@ -11,6 +11,10 @@ debian:
 install:
 	./bootstrap.sh
 
+push:
+	@git add . && git commit -m "updates" && git push origin main
+
 update:
 	@git pull origin main
 	@nvim --headless "+Lazy! restore" +qa
+
