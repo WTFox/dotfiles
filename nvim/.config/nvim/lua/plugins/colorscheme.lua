@@ -221,6 +221,10 @@ return {
     priority = 1000,
   },
   {
+    "Mofiqul/vscode.nvim",
+    lazy = false,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = dark_theme,
