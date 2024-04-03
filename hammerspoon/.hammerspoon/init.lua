@@ -7,7 +7,6 @@ require("toggleTheme")
 
 local utils = require("utils")
 
--- MASH + r to reload config
 hs.hotkey.bind(utils.MASH, "r", function()
 	hs.reload()
 	local notify = hs.notify.new({ title = "Hammerspoon", informativeText = "Config loaded" })
@@ -17,7 +16,7 @@ hs.hotkey.bind(utils.MASH, "r", function()
 	notify:send()
 end)
 
--- MASH + backspace to lock screen
-hs.hotkey.bind(utils.MASH, "delete", function()
+-- cmd + escape to lock screen
+hs.hotkey.bind("cmd", "escape", function()
 	hs.caffeinate.lockScreen()
 end)
