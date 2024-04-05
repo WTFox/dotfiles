@@ -39,7 +39,8 @@ local process_icons = {
 -- Functions
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		return "catppuccin-mocha"
+		-- return "catppuccin-mocha"
+		return "tokyonight_night"
 	else
 		return "zenbones"
 	end

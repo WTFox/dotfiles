@@ -156,8 +156,8 @@ style = "dimmed white"
 
 [git_branch]
 format = "[ $symbol $branch(:$remote_branch) ]($style)"
-symbol = "[](bold pink)"
-style = "bold italic pink"
+symbol = "[](bold red)"
+style = "bold italic red"
 
 [git_status]
 style = "italic bright-blue"
