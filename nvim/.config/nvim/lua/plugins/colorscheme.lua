@@ -6,7 +6,7 @@ if Utils.is_wsl() or Utils.wants_transparent_background() then
 end
 
 local dark_theme = "catppuccin-mocha"
-local light_theme = "gruvbox"
+local light_theme = "zenbones"
 
 local function switch_colorscheme()
   if vim.o.background == "dark" then
@@ -194,35 +194,19 @@ return {
     },
   },
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    opts = {
-      highlight_groups = {
-        TelescopeBorder = { fg = "overlay", bg = "overlay" },
-        TelescopeNormal = { fg = "subtle", bg = "overlay" },
-        TelescopeSelection = { fg = "text", bg = "highlight_med" },
-        TelescopeSelectionCaret = { fg = "love", bg = "highlight_med" },
-        TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
-
-        TelescopeTitle = { fg = "base", bg = "love" },
-        TelescopePromptTitle = { fg = "base", bg = "pine" },
-        TelescopePreviewTitle = { fg = "base", bg = "iris" },
-
-        TelescopePromptNormal = { fg = "text", bg = "surface" },
-        TelescopePromptBorder = { fg = "surface", bg = "surface" },
-      },
-    },
-  },
-  {
-    "shaunsingh/solarized.nvim",
-  },
-  {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
   },
   {
     "Mofiqul/vscode.nvim",
     lazy = false,
+  },
+  {
+    "mcchrish/zenbones.nvim",
+    lazy = false,
+    dependencies = {
+      "rktjmp/lush.nvim",
+    },
   },
   {
     "LazyVim/LazyVim",
