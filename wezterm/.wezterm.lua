@@ -39,8 +39,7 @@ local process_icons = {
 -- Functions
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		-- return "catppuccin-mocha"
-		return "tokyonight_night"
+		return "catppuccin-mocha"
 	else
 		return "zenbones"
 	end
@@ -125,7 +124,7 @@ config.font = wezterm.font({
 		"calt=1", -- Contains all ligatures. Substitution for : between digits
 		"clig=1",
 		"liga=1",
-		"zero=1", -- Changes 0 to slashed variant.
+		-- "zero=1", -- Changes 0 to slashed variant.
 		-- "frac=1", -- Substitute digits in fraction sequences to look more like fractions.
 		-- "ss01=1", -- All classic construction. JetBrains Mono but even more neutral. Performs better in big paragraph of text.
 		-- "ss02=1", -- All closed construction. Change the rhythm to a more lively one.
