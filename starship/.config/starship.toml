@@ -83,7 +83,7 @@ $character\
 """
 
 add_newline = true
-# palette = "catppuccin_mocha"
+palette = "catppuccin_mocha"
 
 [character]
 format = "$symbol "
@@ -156,8 +156,8 @@ style = "dimmed white"
 
 [git_branch]
 format = "[ $symbol $branch(:$remote_branch) ]($style)"
-symbol = "[](bold red)"
-style = "bold italic red"
+symbol = "[](bold pink)"
+style = "bold italic pink"
 
 [git_status]
 style = "italic bright-blue"
