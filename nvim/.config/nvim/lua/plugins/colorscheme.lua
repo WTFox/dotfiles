@@ -5,7 +5,7 @@ if Utils.is_wsl() or Utils.wants_transparent_background() then
   transparent_background = true
 end
 
-local dark_theme = "catppuccin-mocha"
+local dark_theme = "tokyonight-night"
 local light_theme = "zenbones"
 
 local function switch_colorscheme()
@@ -137,6 +137,10 @@ return {
   {
     "folke/tokyonight.nvim",
     opts = {
+      on_colors = function(colors)
+        colors.bg = "#11111b"
+        colors.border = colors.purple
+      end,
       on_highlights = function(hl, c)
         local prompt = "#2d3149"
         hl.TelescopeNormal = {

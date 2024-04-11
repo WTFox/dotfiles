@@ -39,7 +39,7 @@ local process_icons = {
 -- Functions
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		return "catppuccin-mocha"
+		return "tokyonight"
 	else
 		return "zenbones"
 	end
@@ -159,6 +159,10 @@ catppuccin_mocha.background = "#11111b"
 config.color_schemes = {
 	["catppuccin-mocha"] = catppuccin_mocha,
 }
+
+local tokyonight_night = wezterm.color.get_builtin_schemes()["tokyonight_night"]
+tokyonight_night.background = "#11111b"
+config.color_schemes["tokyonight"] = tokyonight_night
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 
