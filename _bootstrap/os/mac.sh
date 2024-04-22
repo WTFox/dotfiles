@@ -26,8 +26,10 @@ install_kitty() {
 
 install_nvim() {
 	pushd ~/bin || exit
-	curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
-	tar xzf nvim-macos.tar.gz
+	curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz
+	xattr -c ./nvim-macos-arm64.tar.gz
+	tar xzf nvim-macos-arm64.tar.gz
+	mv nvim-macos-arm64 nvim-macos
 	echo "nvim installed!"
 	popd || exit
 }

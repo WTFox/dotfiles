@@ -24,7 +24,7 @@ return {
     keys = {
       { "<leader>gb", "<cmd>Git blame<cr>", desc = "blame" },
       {
-        "<leader>gB",
+        "<leader>gw",
         function()
           if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
             vim.cmd("'<,'>GBrowse")
@@ -33,7 +33,7 @@ return {
           end
         end,
         mode = { "n", "v" },
-        desc = "Open on Github",
+        desc = "Open on web (Github)",
       },
     },
   },
