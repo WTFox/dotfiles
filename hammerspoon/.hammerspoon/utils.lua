@@ -2,11 +2,11 @@ local M = {}
 
 M.MASH = { "⌥", "⌃" }
 
-M.onPersonalLaptop = function()
+M.on_personal_laptop = function()
 	return hs.host.localizedName() == "majora"
 end
 
-M.trimString = function(s)
+M.trim_string = function(s)
 	return s:gsub("^%s*(.-)%s*$", "%1")
 end
 

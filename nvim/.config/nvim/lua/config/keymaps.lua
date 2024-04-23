@@ -45,7 +45,7 @@ map("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text u
 map("n", "Q", "<esc>:q<cr>", { noremap = true, silent = true })
 
 -- / to invoke Telescope buffer
-map("n", "/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Buffer" })
+-- map("n", "/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Buffer" })
 
 -- delete vim terminal mappings
 vim.keymap.del("t", "<c-l>")

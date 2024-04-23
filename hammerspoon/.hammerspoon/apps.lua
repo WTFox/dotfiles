@@ -5,7 +5,7 @@ local mappings = {
 	{ key = "`", app = "wezterm" },
 }
 
-if utils.onPersonalLaptop() then
+if utils.on_personal_laptop() then
 	table.insert(mappings, { key = "1", app = "Firefox" })
 	table.insert(mappings, { key = "2", app = "Discord" })
 	table.insert(mappings, { key = "3", app = "Spotify" })

@@ -10,7 +10,7 @@ local function darkModeEnabled()
 	if not value then
 		return false
 	end
-	return utils.trimString(value) == "Dark"
+	return utils.trim_string(value) == "Dark"
 end
 
 local function icon()

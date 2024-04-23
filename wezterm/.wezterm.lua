@@ -36,7 +36,22 @@ local process_icons = {
 	["gh"] = wezterm.nerdfonts.dev_github_badge,
 	["ruby"] = wezterm.nerdfonts.cod_ruby,
 }
+
 -- Functions
+local function is_vim(pane)
+	local process_info = pane:get_foreground_process_info()
+	local process_name = process_info and process_info.name
+	return process_name == "nvim" or process_name == "vim"
+end
+
+local function find_vim_pane(tab)
+	for _, pane in ipairs(tab:panes()) do
+		if is_vim(pane) then
+			return pane
+		end
+	end
+end
+
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
 		-- return "tokyonight"
@@ -280,6 +295,28 @@ config.keys = {
 		key = ".",
 		mods = "CTRL",
 		action = act.ActivateCommandPalette,
+	},
+	{
+		key = ";",
+		mods = "CTRL",
+		action = wezterm.action_callback(function(window, pane)
+			local tab = window:active_tab()
+			if is_vim(pane) then
+				if (#tab:panes()) == 1 then
+					pane:split({ direction = "Bottom" })
+				else
+					window:perform_action({
+						SendKey = { key = ";", mods = "CTRL" },
+					}, pane)
+				end
+			end
+
+			local vim_pane = find_vim_pane(tab)
+			if vim_pane then
+				vim_pane:activate()
+				tab:set_zoomed(true)
+			end
+		end),
 	},
 }
 
