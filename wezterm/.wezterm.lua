@@ -297,6 +297,11 @@ config.keys = {
 		action = act.ActivateCommandPalette,
 	},
 	{
+		key = "Enter",
+		mods = key_mod_panes,
+		action = act.TogglePaneZoomState,
+	},
+	{
 		key = ";",
 		mods = "CTRL",
 		action = wezterm.action_callback(function(window, pane)
