@@ -17,7 +17,7 @@ M.is_executable = function(cmd)
 end
 
 M.on_personal_laptop = function()
-  return M.hostname() == "majora"
+  return M.hostname() == "majora" or M.hostname() == "FOX-PC"
 end
 
 return M
