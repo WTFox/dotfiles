@@ -14,7 +14,7 @@ install:
 push:
 	@git add . && git commit -m "updates" && git push origin main
 
-update:
+pull:
 	@git pull origin main
 	@nvim --headless "+Lazy! restore" +qa
 
