@@ -132,8 +132,7 @@ config.initial_rows = 30
 -- config.tab_bar_at_bottom = true
 
 -- Font
-config.font_size = 16
-config.font = wezterm.font({
+local jetbrains = {
 	family = "JetBrains Mono",
 	weight = "Medium",
 	harfbuzz_features = {
@@ -167,7 +166,20 @@ config.font = wezterm.font({
 		-- "cv20=1", -- 5 old variant
 		-- "cv99=1", -- highlights cyrillic C and c for debugging
 	},
-})
+}
+
+local operator_mono = {
+	family = "Operator Mono",
+	weight = "Book",
+	harfbuzz_features = {
+		"calt=1",
+		"clig=1",
+		"liga=1",
+	},
+}
+
+config.font_size = 16
+config.font = wezterm.font(jetbrains)
 
 -- Colors
 local catppuccin_mocha = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
