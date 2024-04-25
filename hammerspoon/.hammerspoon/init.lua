@@ -4,6 +4,7 @@ hs.loadSpoon("EmmyLua") -- loads autocomplete info for editors
 require("apps")
 require("spongebob")
 require("toggleTheme")
+require("alert")
 
 local utils = require("utils")
 
