@@ -5,9 +5,6 @@
 local Util = require("lazyvim.util")
 local map = vim.keymap.set
 
--- delete lazyvim git blame
-vim.keymap.del("n", "<leader>gb")
-
 -- next quickfix item
 map("n", "]q", ":cnext<cr>zz", { noremap = true, silent = true, desc = "next quickfix" })
 

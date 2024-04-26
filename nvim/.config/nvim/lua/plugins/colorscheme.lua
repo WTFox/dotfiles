@@ -45,6 +45,8 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    lazy = true,
+    priority = 1000,
     opts = {
       -- no_italic = true,
       -- no_bold = true,
@@ -138,6 +140,7 @@ return {
   },
   {
     "folke/tokyonight.nvim",
+    lazy = true,
     opts = {
       on_colors = function(colors)
         colors.bg = "#11111b"
@@ -177,6 +180,7 @@ return {
   },
   {
     "mcchrish/zenbones.nvim",
+    lazy = true,
     dependencies = {
       "rktjmp/lush.nvim",
     },

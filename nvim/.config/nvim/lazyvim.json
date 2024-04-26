@@ -5,7 +5,6 @@
     "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.dap.nlua",
-    "lazyvim.plugins.extras.editor.dial",
     "lazyvim.plugins.extras.editor.leap",
     "lazyvim.plugins.extras.editor.trouble-v3",
     "lazyvim.plugins.extras.formatting.black",
