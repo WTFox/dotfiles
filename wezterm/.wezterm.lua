@@ -178,18 +178,38 @@ local operator_mono = {
 	},
 }
 
-config.font_size = 16
-config.font = wezterm.font(jetbrains)
+local monolisa = {
+	family = "MonoLisa",
+	weight = "Regular",
+	harfbuzz_features = {
+		"calt=1",
+		"clig=1",
+		"liga=1",
+		"ss02=1",
+		"ss03=1",
+		"ss09=1",
+		"ss13=1",
+		"ss14=1",
+		"ss15=1",
+		"ss16=1",
+	},
+}
+
+config.font_size = 15
+config.font = wezterm.font(monolisa)
+config.adjust_window_size_when_changing_font_size = false
 
 -- Colors
 local catppuccin_mocha = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
+-- catppuccin_mocha.background = "#11111b"
 catppuccin_mocha.background = "#000000"
 config.color_schemes = {
 	["catppuccin-mocha"] = catppuccin_mocha,
 }
 
 local tokyonight_night = wezterm.color.get_builtin_schemes()["tokyonight_night"]
-tokyonight_night.background = "#11111b"
+-- tokyonight_night.background = "#11111b"
+tokyonight_night.background = "#000000"
 config.color_schemes["tokyonight"] = tokyonight_night
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
