@@ -201,15 +201,15 @@ config.adjust_window_size_when_changing_font_size = false
 
 -- Colors
 local catppuccin_mocha = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
--- catppuccin_mocha.background = "#11111b"
-catppuccin_mocha.background = "#000000"
+catppuccin_mocha.background = "#11111b"
+-- catppuccin_mocha.background = "#000000"
 config.color_schemes = {
 	["catppuccin-mocha"] = catppuccin_mocha,
 }
 
 local tokyonight_night = wezterm.color.get_builtin_schemes()["tokyonight_night"]
--- tokyonight_night.background = "#11111b"
-tokyonight_night.background = "#000000"
+tokyonight_night.background = "#11111b"
+-- tokyonight_night.background = "#000000"
 config.color_schemes["tokyonight"] = tokyonight_night
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())

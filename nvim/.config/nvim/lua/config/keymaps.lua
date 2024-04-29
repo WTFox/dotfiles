@@ -29,7 +29,7 @@ map("n", ";", "<cmd>lua require('telescope.builtin').resume(require('telescope.t
 -- map("n", "<S-Tab>", ":bprevious<cr>")
 
 -- shift-tab to show buffer list
-map("n", "<S-Tab>", ":Telescope buffers<cr>")
+-- map("n", "<S-Tab>", ":Telescope buffers<cr>")
 
 -- leader a to show dashboard
 map("n", "<leader>a", ":Dashboard<cr>")
@@ -78,7 +78,7 @@ map("n", "<leader>dd", function()
 end, { desc = "LazyDocker" })
 
 -- map Tab to swap between alternate files
-map("n", "<Tab>", "<c-^>", { noremap = true, silent = true, desc = "Swap Alternate Files" })
+-- map("n", "<Tab>", "<c-^>", { noremap = true, silent = true, desc = "Swap Alternate Files" })
 
 -- yazi
 map("n", "<leader>yy", function()
