@@ -6,7 +6,7 @@
 -- vim.opt.winbar = "%=%m %f"
 
 -- disable auto pairs
-vim.g.minipairs_disable = true
+-- vim.g.minipairs_disable = true
 
 -- add highlighting to weird files
 vim.filetype.add({
