@@ -1,7 +1,11 @@
 local M = {}
 
+local hostname = ""
 M.hostname = function()
-  return vim.loop.os_gethostname()
+  if not hostname then
+    hostname = vim.loop.os_gethostname()
+  end
+  return hostname
 end
 
 M.wants_transparent_background = function()
