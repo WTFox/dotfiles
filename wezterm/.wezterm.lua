@@ -196,7 +196,7 @@ local monolisa = {
 }
 
 config.font_size = 15
-config.font = wezterm.font(monolisa)
+config.font = wezterm.font(jetbrains)
 config.adjust_window_size_when_changing_font_size = false
 
 -- Colors
