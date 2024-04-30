@@ -1,6 +1,6 @@
 local M = {}
 
-local hostname = ""
+local hostname = nil
 M.hostname = function()
   if not hostname then
     hostname = vim.loop.os_gethostname()
