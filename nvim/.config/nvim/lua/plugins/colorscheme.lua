@@ -66,6 +66,10 @@ return {
           enabled = true,
           style = "nvchad",
         },
+        mini = {
+          enabled = true,
+          indentscope_color = "peach", -- catppuccin color (eg. `lavender`) Default: text
+        },
       },
       custom_highlights = function(colors)
         return {
