@@ -71,17 +71,14 @@ local function get_process(tab)
 	if not tab.active_pane or tab.active_pane.foreground_process_name == "" then
 		return "[?]"
 	end
-
 	local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
-	if string.find(process_name, "kubectl") then
-		process_name = "kubectl"
-	end
-
 	return process_icons[process_name] or string.format("[%s]", process_name)
 end
 
 -- Behavior
 config.automatically_reload_config = true
+
+-- UI
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local has_unseen_output = false
 	if not tab.is_active then
@@ -93,11 +90,12 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		end
 	end
 
-	local cwd = wezterm.format({
-		{ Attribute = { Intensity = "Bold" } },
-		{ Text = get_current_working_dir(tab) },
-	})
-
+	-- local cwd = wezterm.format({
+	-- 	{ Attribute = { Intensity = "Bold" } },
+	-- 	{ Text = get_current_working_dir(tab) },
+	-- })
+	--
+	local cwd = get_current_working_dir(tab)
 	local title = string.format(" %s  %s  ", get_process(tab), cwd)
 
 	if has_unseen_output then
@@ -107,12 +105,20 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		}
 	end
 
+	if tab.is_active then
+		return {
+			{ Attribute = { Intensity = "Bold" } },
+			{ Background = { Color = "#89b4fa" } },
+			{ Text = title },
+		}
+	end
+
 	return {
+		{ Attribute = { Intensity = "Bold" } },
 		{ Text = title },
 	}
 end)
 
--- UI
 config.front_end = "WebGpu"
 config.custom_block_glyphs = true
 config.use_fancy_tab_bar = false
@@ -209,10 +215,13 @@ local fira_code = {
 	family = "Fira Code",
 	weight = "Regular",
 	harfbuzz_features = {
-		-- "zero",
+		"zero",
 		-- "ss01",
-		-- "ss02",
+		"ss02",
+		"ss04",
 		"ss06",
+		"ss09",
+		-- "ss10",
 		-- "ss19",
 		-- "ss20",
 		-- "cv01",
@@ -220,7 +229,7 @@ local fira_code = {
 		-- "cv03",
 		-- "cv04",
 		-- "cv05",
-		-- "cv06",
+		"cv06",
 		-- "cv07",
 		-- "cv08",
 		-- "cv09",
@@ -234,9 +243,10 @@ local fira_code = {
 		-- "cv18",
 		-- "cv19",
 		-- "cv20",
+		"cv26",
 		"cv27",
 		"cv30",
-		"cv31",
+		-- "cv31",
 		-- "cv99",
 	},
 }

@@ -54,11 +54,8 @@ return {
       -- section_separators = { left = "", right = "" },
     },
     sections = {
-      lualine_a = {
-        function()
-          return "󰣐 " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-        end,
-      },
+      lualine_a = { "mode" },
+      lualine_b = { "branch" },
       lualine_c = {},
       lualine_x = {
           -- stylua: ignore
