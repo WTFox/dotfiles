@@ -25,5 +25,5 @@ vim.filetype.add({
 vim.g.root_spec = { "cwd" }
 vim.opt.guicursor = "n-v-c-sm-ve:block,i-ci:ver20,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
 
-vim.opt.number = false
-vim.opt.relativenumber = false
+-- vim.opt.number = true
+-- vim.opt.relativenumber = true

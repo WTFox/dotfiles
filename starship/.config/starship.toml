@@ -111,10 +111,10 @@ disabled = false
 [directory]
 home_symbol = "~"
 truncation_length = 2
-fish_style_pwd_dir_length = 1
+fish_style_pwd_dir_length = 3
 truncation_symbol = "…/"
 read_only = "🔒"
-style = "blue"
+style = "sapphire"
 format = '[$path]($style)[$read_only]($read_only_style)'
 
 [cmd_duration]
@@ -156,8 +156,8 @@ style = "dimmed white"
 
 [git_branch]
 format = "[ $symbol $branch(:$remote_branch) ]($style)"
-symbol = "[](bold pink)"
-style = "bold pink"
+symbol = "[](bold maroon)"
+style = "maroon"
 
 [git_status]
 style = "bright-blue"
@@ -174,10 +174,10 @@ format = """([$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted
 # untracked = "[◌◦](italic bright-yellow)"
 ahead = "​"
 behind = "​"
-conflicted = "[✖ ](italic red)"
-deleted = "[  ](italic red)"
+conflicted = "[✖ ](italic maroon)"
+deleted = "[  ](italic maroon)"
 diverged = "​"
-modified = "[  ](italic red)"
+modified = "[  ](italic maroon)"
 renamed = "​"
 staged = "[  ](italic green)"
 stashed = "​"
@@ -188,7 +188,7 @@ format = " deno [∫ $version](blue italic)"
 version_format = "${major}.${minor}"
 
 [lua]
-format = " lua [${symbol}${version}]($style)"
+format = " [${symbol}${version}]($style)"
 symbol = "⨀ "
 style = "italic bright-yellow"
 
