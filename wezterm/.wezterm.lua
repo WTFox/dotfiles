@@ -90,17 +90,12 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		end
 	end
 
-	-- local cwd = wezterm.format({
-	-- 	{ Attribute = { Intensity = "Bold" } },
-	-- 	{ Text = get_current_working_dir(tab) },
-	-- })
-	--
 	local cwd = get_current_working_dir(tab)
 	local title = string.format(" %s  %s  ", get_process(tab), cwd)
 
 	if has_unseen_output then
 		return {
-			{ Foreground = { Color = "#faf5d4" } },
+			{ Foreground = { Color = "#fab387" } },
 			{ Text = title },
 		}
 	end
