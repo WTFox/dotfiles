@@ -17,7 +17,7 @@ alias gds="git diff --stat"
 alias gg="lazygit"
 alias gst="git status --short --branch"
 alias "gh?"="gh copilot"
-alias branch="git branch | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git switch"
+alias branch="git branch | grep -v \"^\*\" | fzf --height=20% --reverse --info=inline | xargs git switch"
 
 # == Networking ==
 alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
