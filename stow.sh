@@ -4,6 +4,7 @@ directories_to_stow=(
 	"audio/"
 	"bashrc/"
 	"bin/"
+	"btop/"
 	"direnv/"
 	"fonts/"
 	"fzf/"
