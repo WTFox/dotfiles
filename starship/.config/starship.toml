@@ -87,14 +87,14 @@ palette = "catppuccin_mocha"
 
 [character]
 format = "$symbol "
-success_symbol = "[◉](bold italic bright-yellow)"
-error_symbol = "[⊘](italic purple)"
+success_symbol = "[◉](bold bright-yellow)"
+error_symbol = "[⊘](purple)"
 # success_symbol = "[❯](bold italic bright-yellow)"
 # error_symbol = "[❯](italic red)"
 
 [env_var.VIMSHELL] # vim subshell
 format = "[$env_value]($style)"
-style = 'green italic'
+style = 'green'
 
 [sudo]
 format = "[$symbol]($style)"
@@ -114,7 +114,7 @@ truncation_length = 2
 fish_style_pwd_dir_length = 1
 truncation_symbol = "…/"
 read_only = "🔒"
-style = "italic blue"
+style = "blue"
 format = '[$path]($style)[$read_only]($read_only_style)'
 
 [cmd_duration]
@@ -157,10 +157,10 @@ style = "dimmed white"
 [git_branch]
 format = "[ $symbol $branch(:$remote_branch) ]($style)"
 symbol = "[](bold pink)"
-style = "bold italic pink"
+style = "bold pink"
 
 [git_status]
-style = "italic bright-blue"
+style = "bright-blue"
 format = """([$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed]($style))"""
 # ahead = "[▲ [${count}](bold white) ](italic green)"
 # behind = "[▽ [${count}](bold white) ](italic red)"
