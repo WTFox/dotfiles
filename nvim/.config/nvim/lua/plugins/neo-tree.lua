@@ -10,5 +10,12 @@ return {
         ["h"] = "close_node",
       },
     },
+    filesystem = {
+      filtered_items = {
+        always_show = {
+          ".github",
+        },
+      },
+    },
   },
 }
