@@ -114,7 +114,7 @@ truncation_length = 2
 fish_style_pwd_dir_length = 3
 truncation_symbol = "…/"
 read_only = "🔒"
-style = "sapphire"
+style = "blue"
 format = '[$path]($style)[$read_only]($read_only_style)'
 
 [cmd_duration]
@@ -156,8 +156,8 @@ style = "dimmed white"
 
 [git_branch]
 format = "[ $symbol $branch(:$remote_branch) ]($style)"
-symbol = "[](bold maroon)"
-style = "maroon"
+symbol = "[](bold pink)"
+style = "pink"
 
 [git_status]
 style = "bright-blue"
@@ -174,10 +174,10 @@ format = """([$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted
 # untracked = "[◌◦](italic bright-yellow)"
 ahead = "​"
 behind = "​"
-conflicted = "[✖ ](italic maroon)"
-deleted = "[  ](italic maroon)"
+conflicted = "[✖ ](italic red)"
+deleted = "[  ](italic red)"
 diverged = "​"
-modified = "[  ](italic maroon)"
+modified = "[  ](italic red)"
 renamed = "​"
 staged = "[  ](italic green)"
 stashed = "​"
