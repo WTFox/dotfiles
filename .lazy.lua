@@ -1,16 +1,17 @@
 return {
+	-- examples:
 	-- disable auto theme switching
-	{
-		"f-person/auto-dark-mode.nvim",
-		enabled = false,
-	},
+	-- {
+	-- 	"f-person/auto-dark-mode.nvim",
+	-- 	enabled = false,
+	-- },
 	-- different colorscheme
-	{
-		"LazyVim/LazyVim",
-		opts = {
-			colorscheme = "habamax",
-		},
-	},
+	-- {
+	-- 	"LazyVim/LazyVim",
+	-- 	opts = {
+	-- 		colorscheme = "habamax",
+	-- 	},
+	-- },
 	-- show hidden files in neotree by default
 	{
 		"nvim-neo-tree/neo-tree.nvim",

@@ -252,7 +252,7 @@ config.adjust_window_size_when_changing_font_size = false
 
 -- Colors
 local catppuccin_mocha = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
--- catppuccin_mocha.background = "#11111b"
+catppuccin_mocha.background = "#11111b"
 -- catppuccin_mocha.background = "#000000"
 config.color_schemes = {
 	["catppuccin-mocha"] = catppuccin_mocha,
