@@ -109,12 +109,19 @@ return {
           end,
         },
       },
+      lualine_y = {
+        -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
+        -- { "location", padding = { left = 0, right = 1 } },
+        -- { "filetype", padding = { left = 1, right = 1 } },
+        { "encoding", padding = { left = 1, right = 1 } },
+      },
       lualine_z = {
-        function()
-          -- use %R for 24hr time
-          local value = os.date("%I:%M %p") -- e.g. 01:36 PM
-          return " " .. value
-        end,
+        { "location" },
+        -- function()
+        --   -- use %R for 24hr time
+        --   local value = os.date("%I:%M %p") -- e.g. 01:36 PM
+        --   return " " .. value
+        -- end,
       },
     },
   },
