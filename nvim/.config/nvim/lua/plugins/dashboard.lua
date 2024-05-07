@@ -85,7 +85,10 @@ return {
   opts = {
     theme = "doom", -- doom, hyper
     config = {
-      header = vim.split(logo, "\n"),
+      week_header = {
+        enable = true,
+      },
+      -- header = vim.split(logo, "\n"),
     },
   },
 }

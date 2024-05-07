@@ -20,7 +20,7 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = {
       sections = {
-        lualine_b = {
+        lualine_c = {
           "grapple",
         },
       },
