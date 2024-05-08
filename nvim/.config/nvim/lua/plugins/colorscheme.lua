@@ -61,6 +61,7 @@ return {
         dark = "mocha",
       },
       integrations = {
+        diffview = true,
         telescope = {
           enabled = true,
           style = "nvchad",
