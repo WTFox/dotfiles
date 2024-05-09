@@ -5,7 +5,7 @@ if Utils.is_wsl() or Utils.wants_transparent_background() then
   transparent_background = true
 end
 
-local dark_theme = "catppuccin-mocha"
+local dark_theme = "vscode"
 local light_theme = "zenbones"
 
 local function switch_colorscheme()
@@ -44,8 +44,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = true,
-    priority = 1000,
+    lazy = false,
     opts = {
       -- no_italic = true,
       -- no_bold = true,
@@ -212,14 +211,17 @@ return {
   },
   {
     "mcchrish/zenbones.nvim",
-    lazy = true,
     dependencies = {
       "rktjmp/lush.nvim",
     },
   },
   {
     "Mofiqul/vscode.nvim",
-    lazy = true,
+    opts = {
+      underline_links = true,
+      italic_comments = true,
+      disable_nvimtree_bg = true,
+    },
   },
   {
     "LazyVim/LazyVim",

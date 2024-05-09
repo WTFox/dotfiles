@@ -127,7 +127,7 @@ config.window_padding = {
 	bottom = 0,
 }
 config.initial_cols = 120
-config.initial_rows = 30
+config.initial_rows = 32
 -- config.window_background_opacity = 0.3
 -- config.macos_window_background_blur = 20
 -- config.tab_bar_at_bottom = true
