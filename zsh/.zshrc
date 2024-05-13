@@ -41,4 +41,4 @@ eval "$(starship init zsh)"
 
 # update_neofetch_cache
 
-source ~/bin/greet
+# source ~/bin/greet
