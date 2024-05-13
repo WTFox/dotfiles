@@ -54,7 +54,7 @@ end
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		return "kanagawabones"
+		return "tokyonight_night"
 	else
 		return "zenbones"
 	end
@@ -102,7 +102,6 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	if tab.is_active then
 		return {
 			{ Attribute = { Intensity = "Bold" } },
-			{ Background = { Color = "#89b4fa" } },
 			{ Text = title },
 		}
 	end
@@ -156,7 +155,7 @@ local jetbrains_styled = {
 		-- "ss19", -- Adds gaps in ≠ ≠= == === ligatures.
 		-- "ss20", -- Shift horizontal stroke in f to match x-height
 		-- "cv01", -- l with symmetrical lower stroke. (ss01)
-		"cv02", -- t with curly tail (ss02)
+		-- "cv02", -- t with curly tail (ss02)
 		"cv03", -- g with more complex construction
 		-- "cv04", -- j with curly descender
 		-- "cv05", -- l with curly tail (ss02)
@@ -246,7 +245,7 @@ local fira_code = {
 }
 
 config.font_size = 15
-config.font = wezterm.font(fira_code)
+config.font = wezterm.font(jetbrains_styled)
 config.adjust_window_size_when_changing_font_size = false
 
 -- Colors
