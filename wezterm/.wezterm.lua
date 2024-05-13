@@ -54,8 +54,7 @@ end
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		-- return "tokyonight"
-		return "catppuccin-mocha"
+		return "kanagawabones"
 	else
 		return "zenbones"
 	end
@@ -251,17 +250,16 @@ config.font = wezterm.font(fira_code)
 config.adjust_window_size_when_changing_font_size = false
 
 -- Colors
-local catppuccin_mocha = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
-catppuccin_mocha.background = "#11111b"
--- catppuccin_mocha.background = "#000000"
-config.color_schemes = {
-	["catppuccin-mocha"] = catppuccin_mocha,
-}
+local colors = wezterm.color.get_builtin_schemes()
+local function set_theme_attr(theme, attr, value)
+	local t = colors[theme]
+	t[attr] = value
+	config.color_schemes = {
+		[theme] = t,
+	}
+end
 
-local tokyonight_night = wezterm.color.get_builtin_schemes()["tokyonight_night"]
--- tokyonight_night.background = "#11111b"
--- tokyonight_night.background = "#000000"
-config.color_schemes["tokyonight"] = tokyonight_night
+set_theme_attr("catppuccin-mocha", "background", "#11111b")
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 
