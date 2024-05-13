@@ -5,7 +5,7 @@ if Utils.is_wsl() or Utils.wants_transparent_background() then
   transparent_background = true
 end
 
-local dark_theme = "catppuccin-macchiato"
+local dark_theme = "catppuccin-mocha"
 local light_theme = "zenbones"
 
 local function switch_colorscheme()
