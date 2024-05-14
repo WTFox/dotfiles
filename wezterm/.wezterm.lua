@@ -112,7 +112,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	}
 end)
 
-config.front_end = "WebGpu"
+-- config.front_end = "WebGpu"
 config.custom_block_glyphs = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true

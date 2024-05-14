@@ -15,6 +15,7 @@ return {
     },
     handlers = {
       cursor = false,
+      diagnostic = false,
     },
   },
 }
