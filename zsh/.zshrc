@@ -27,8 +27,7 @@ if [[ "$osType" == "mac" ]]; then
 fi
 
 # pc-specific files that are git-ignored:
-[ -f ~/.personal.zsh ] && source ~/.personal.zsh
-[ -f ~/.work.zsh ] && source ~/.work.zsh
+[ -f ~/.local.sh ] && source ~/.local.sh
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
