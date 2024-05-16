@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 return {
   "zbirenbaum/copilot.lua",
   opts = {
@@ -7,12 +9,14 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    enabled = utils.on_personal_laptop(),
     opts = {
-      show_help = "yes", -- Show help text for CopilotChatInPlace, default: yes
-      debug = false, -- Enable or disable debug mode, the log file will be in ~/.local/state/nvim/CopilotChat.nvim.log
+      show_help = "no", -- Show help text for CopilotChatInPlace, default: yes
+      debug = true, -- Enable or disable debug mode, the log file will be in ~/.local/state/nvim/CopilotChat.nvim.log
+      allow_insecure = false,
       disable_extra_info = "no", -- Disable extra information (e.g: system prompt) in the response.
       language = "English", -- Copilot answer language settings when using default prompts. Default language is English.
-      -- temperature = 0.1,
+      temperature = 0.1,
     },
     event = "VeryLazy",
     keys = {
