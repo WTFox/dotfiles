@@ -1,5 +1,3 @@
-local utils = require("utils")
-
 return {
   "zbirenbaum/copilot.lua",
   opts = {
@@ -9,7 +7,6 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    enabled = utils.on_personal_laptop(),
     opts = {
       show_help = "no", -- Show help text for CopilotChatInPlace, default: yes
       debug = true, -- Enable or disable debug mode, the log file will be in ~/.local/state/nvim/CopilotChat.nvim.log
