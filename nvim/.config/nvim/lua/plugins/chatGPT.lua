@@ -12,7 +12,7 @@ end
 return {
   "jackMort/ChatGPT.nvim",
   event = "VeryLazy",
-  enabled = Utils.on_personal_laptop(),
+  enabled = false,
   opts = {
     api_key_cmd = api_key_cmd,
     openai_params = {

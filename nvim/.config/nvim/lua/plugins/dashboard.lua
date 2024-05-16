@@ -91,4 +91,17 @@ return {
       -- header = vim.split(logo, "\n"),
     },
   },
+  keys = {
+    {
+      "<F2>",
+      function()
+        if vim.bo.filetype == "dashboard" then
+          vim.cmd("bd")
+        else
+          vim.cmd("Dashboard")
+        end
+      end,
+      { noremap = true, silent = true, desc = "dashboard" },
+    },
+  },
 }

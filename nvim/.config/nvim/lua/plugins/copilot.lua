@@ -35,11 +35,9 @@ return {
       { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
       { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests", mode = { "n", "v", "x" } },
       { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code", mode = { "n", "v", "x" } },
-      -- Chat with Copilot in visual mode
       {
-        "<leader>av",
-        ":CopilotChatVisual",
-        mode = "x",
+        "<F1>",
+        "<cmd>CopilotChatToggle<cr>",
         desc = "CopilotChat - Open in vertical split",
       },
       -- Custom input for CopilotChat
