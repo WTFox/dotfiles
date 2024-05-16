@@ -67,7 +67,10 @@ return {
         height = 0.80,
         preview_cutoff = 120,
       },
-      path_display = { "truncate" },
+      path_display = {
+        "filename_first",
+        "truncate",
+      },
       winblend = 0,
       -- border = {},
       -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
