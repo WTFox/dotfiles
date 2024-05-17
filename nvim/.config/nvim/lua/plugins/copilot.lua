@@ -4,12 +4,17 @@ return {
     panel = {
       enabled = true,
     },
+    filetypes = {
+      markdown = true,
+      help = true,
+      txt = false,
+    },
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     opts = {
       show_help = "no", -- Show help text for CopilotChatInPlace, default: yes
-      debug = true, -- Enable or disable debug mode, the log file will be in ~/.local/state/nvim/CopilotChat.nvim.log
+      debug = false, -- Enable or disable debug mode, the log file will be in ~/.local/state/nvim/CopilotChat.nvim.log
       allow_insecure = false,
       disable_extra_info = "no", -- Disable extra information (e.g: system prompt) in the response.
       language = "English", -- Copilot answer language settings when using default prompts. Default language is English.

@@ -1,16 +1,14 @@
 return {
   "echasnovski/mini.surround",
-  event = "VeryLazy",
   opts = {
     mappings = {
-      replace = "cs",
-      add = "ys",
-      delete = "ds",
-      highlight = "vs",
-      find = "yf",
-      find_left = "yF",
-      update_n_lines = "",
+      add = "gsa",
+      delete = "gsd",
+      find = "gsf",
+      find_left = "gsF",
+      highlight = "gsh",
+      replace = "gsr",
+      update_n_lines = "gsn",
     },
-    search_method = "cover_or_next",
   },
 }
