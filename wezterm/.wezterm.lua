@@ -1,5 +1,8 @@
 local wezterm = require("wezterm")
 
+local DARK_THEME = "tokyonight_night"
+local LIGHT_THEME = "zenbones"
+
 local act = wezterm.action
 local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
 local key_mod_panes = "CTRL|SHIFT"
@@ -54,10 +57,9 @@ end
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		return "tokyonight_night"
-	else
-		return "zenbones"
+		return DARK_THEME
 	end
+	return LIGHT_THEME
 end
 
 local function get_current_working_dir(tab)
