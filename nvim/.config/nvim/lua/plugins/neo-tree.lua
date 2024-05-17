@@ -12,6 +12,9 @@ return {
     },
     filesystem = {
       filtered_items = {
+        never_show = {
+          "__pycache__",
+        },
         always_show = {
           ".github",
         },

@@ -1,5 +1,27 @@
+local utils = require("lazyvim.util")
+
 return {
-  "chrisgrieser/nvim-early-retirement",
-  config = true,
-  event = "VeryLazy",
+  {
+    "akinsho/bufferline.nvim",
+    opts = {
+      options = {
+        separator_style = "slope",
+        auto_toggle_bufferline = false,
+      },
+    },
+    keys = {
+      {
+        "<leader>uB",
+        function()
+          utils.toggle.option("showtabline", false, { 2, 0 })
+        end,
+        desc = "Toggle Bufferline",
+      },
+    },
+  },
+  {
+    "chrisgrieser/nvim-early-retirement",
+    config = true,
+    event = "VeryLazy",
+  },
 }

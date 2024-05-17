@@ -27,7 +27,7 @@ if [[ "$osType" == "mac" ]]; then
 fi
 
 # pc-specific files that are git-ignored:
-[ -f ~/.local.sh ] && source ~/.local.sh
+[ -f ~/.local.zsh ] && source ~/.local.zsh
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -39,5 +39,4 @@ eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 
 # update_neofetch_cache
-
 # source ~/bin/greet
