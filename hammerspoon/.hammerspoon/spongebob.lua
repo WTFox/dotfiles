@@ -1,5 +1,8 @@
--- e.g., "hello" -> "hElLo"
-
+---Convert a string to Spongebob case.
+---
+---e.g. "hello" -> "hElLo"
+---@param str string
+---@return string
 local function spongebobCase(str)
 	local result = ""
 	for i = 1, #str do
