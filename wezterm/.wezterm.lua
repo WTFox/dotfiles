@@ -261,6 +261,7 @@ local function set_theme_attr(theme, attr, value)
 end
 
 set_theme_attr("catppuccin-mocha", "background", "#11111b")
+set_theme_attr("tokyonight_night", "background", "#11111b")
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 

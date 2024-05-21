@@ -173,7 +173,8 @@ return {
     lazy = true,
     opts = {
       on_colors = function(colors)
-        -- colors.border = colors.purple
+        colors.border = colors.purple
+        colors.bg = "#11111b"
       end,
       on_highlights = function(hl, c)
         local prompt = "#2d3149"
