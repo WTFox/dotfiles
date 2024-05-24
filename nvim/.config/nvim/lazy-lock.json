@@ -1,5 +1,5 @@
 {
-  "CopilotChat.nvim": { "branch": "canary", "commit": "f694ccae14a6f45b783cb386f17431b05162e8d0" },
+  "CopilotChat.nvim": { "branch": "canary", "commit": "bac4dcc894332eddc989758d875cab84ab52944d" },
   "LazyVim": { "branch": "main", "commit": "0f6ff53ce336082869314db11e9dfa487cf83292" },
   "SchemaStore.nvim": { "branch": "main", "commit": "9a5992a881583d886bfbb46631a09f736f0fae50" },
   "auto-dark-mode.nvim": { "branch": "master", "commit": "2b8c938da9a7c9432120266b92936b2c22e8cfb8" },
