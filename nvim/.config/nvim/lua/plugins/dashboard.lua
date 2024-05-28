@@ -93,7 +93,7 @@ return {
   },
   keys = {
     {
-      "<F2>",
+      "<leader>`",
       function()
         if vim.bo.filetype == "dashboard" then
           vim.cmd("bd")
