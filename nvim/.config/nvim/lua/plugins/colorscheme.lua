@@ -172,10 +172,18 @@ return {
     "folke/tokyonight.nvim",
     lazy = true,
     opts = {
+      lualine_bold = true,
+      --- You can override specific color groups to use other groups or a hex color
+      --- function will be called with a ColorScheme table
+      ---@param colors ColorScheme
       on_colors = function(colors)
         colors.border = colors.purple
         colors.bg = "#11111b"
       end,
+      --- You can override specific highlights to use other groups or a hex color
+      --- function will be called with a Highlights and ColorScheme table
+      ---@param hl Highlights
+      ---@param c ColorScheme
       on_highlights = function(hl, c)
         local prompt = "#2d3149"
         hl.TelescopeNormal = {
@@ -204,6 +212,15 @@ return {
         hl.TelescopeResultsTitle = {
           bg = c.bg_dark,
           fg = c.bg_dark,
+        }
+        hl.DashboardIcon = {
+          fg = c.orange,
+        }
+        hl.DashboardDesc = {
+          fg = c.fg_dark,
+        }
+        hl.DashboardFooter = {
+          fg = c.magenta,
         }
       end,
     },
