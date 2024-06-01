@@ -190,12 +190,12 @@ return {
       on_highlights = function(hl, c)
         -- FIXME: override string.documentation to look like strings
         local prompt = "#2d3149"
-        hl.Type = {
-          fg = "#EA9999",
-        }
-        hl.Special = {
-          fg = "#EA9999",
-        }
+        -- hl.Type = {
+        --   fg = "#EA9999",
+        -- }
+        -- hl.Special = {
+        --   fg = "#EA9999",
+        -- }
         hl.TelescopeNormal = {
           bg = c.bg_dark,
           fg = c.fg_dark,
