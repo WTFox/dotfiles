@@ -1,7 +1,7 @@
 {
   "CopilotChat.nvim": { "branch": "canary", "commit": "82923efe22b604cf9c0cad0bb2a74aa9247755ab" },
   "LazyVim": { "branch": "main", "commit": "b289fea1636eda08d82344dc32a114bca550e375" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "931f9f3b7b60ec976159cb01b4a40da3829ac2fd" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "f9d0f20f018ad970658ad2ffd68b10634e65fe67" },
   "auto-dark-mode.nvim": { "branch": "master", "commit": "2b8c938da9a7c9432120266b92936b2c22e8cfb8" },
   "bufferline.nvim": { "branch": "main", "commit": "99337f63f0a3c3ab9519f3d1da7618ca4f91cffe" },
   "catppuccin": { "branch": "main", "commit": "5215ea59df6d0a7e27da9a5cd1165e06d1b04cbe" },
@@ -49,7 +49,7 @@
   "noice.nvim": { "branch": "main", "commit": "2bf04290b32dc5b1a002a4888c95147bb91ec6f2" },
   "nui.nvim": { "branch": "main", "commit": "b1b3dcd6ed8f355c78bad3d395ff645be5f8b6ae" },
   "nvim-cmp": { "branch": "main", "commit": "5260e5e8ecadaf13e6b82cf867a909f54e15fd07" },
-  "nvim-dap": { "branch": "master", "commit": "7122fd5848919a9aeff8c52bd9e71cbc51d0c90e" },
+  "nvim-dap": { "branch": "master", "commit": "6f79b822997f2e8a789c6034e147d42bc6706770" },
   "nvim-dap-go": { "branch": "main", "commit": "a0c5a2b991d7e9304a9a032cf177e22a4b0acda1" },
   "nvim-dap-python": { "branch": "master", "commit": "3b9caf8a23259dacd8c8783cb2220f9cbd2781c2" },
   "nvim-dap-ui": { "branch": "master", "commit": "b7267003ba4dd860350be86f75b9d9ea287cedca" },
