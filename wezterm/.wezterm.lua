@@ -1,4 +1,12 @@
+---@type Wezterm
 local wezterm = require("wezterm")
+
+---@class Config
+local config = {}
+
+-- if wezterm.config_builder then
+config = wezterm.config_builder()
+-- end
 
 local DARK_THEME = "tokyonight_night"
 local LIGHT_THEME = "zenbones"
@@ -7,7 +15,6 @@ local act = wezterm.action
 local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
 local key_mod_panes = "CTRL|SHIFT"
 
-local config = wezterm.config_builder()
 local process_icons = {
 	["docker"] = wezterm.nerdfonts.linux_docker,
 	["docker-compose"] = wezterm.nerdfonts.linux_docker,

@@ -1,17 +1,4 @@
 return {
-	-- examples:
-	-- disable auto theme switching
-	-- {
-	-- 	"f-person/auto-dark-mode.nvim",
-	-- 	enabled = false,
-	-- },
-	-- different colorscheme
-	-- {
-	-- 	"LazyVim/LazyVim",
-	-- 	opts = {
-	-- 		colorscheme = "habamax",
-	-- 	},
-	-- },
 	-- show hidden files in neotree by default
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -22,6 +9,20 @@ return {
 					hide_gitignore = false,
 					hide_hidden = false,
 				},
+			},
+		},
+	},
+	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				"lazy.nvim",
+				-- Only load the lazyvim library when the `LazyVim` global is found
+				{ path = "LazyVim", words = { "LazyVim" } },
+				-- Load the wezterm types when the `wezterm` module is required
+				-- Needs `justinsgithub/wezterm-types` to be installed
+				{ path = "wezterm-types", mods = { "wezterm" } },
 			},
 		},
 	},
