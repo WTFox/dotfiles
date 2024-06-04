@@ -38,5 +38,23 @@ eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 
+_run-cdi() {
+    local dir="$(eval "zoxide query -i")"
+    if [[ -z "$dir" ]]; then
+        zle redisplay
+        return 0
+    fi
+    zle push-line
+    BUFFER="builtin cd -- ${(q)dir}"
+    zle accept-line
+    local ret=$?
+    unset dir
+    zle reset-prompt
+    return $ret
+}
+
+zle -N _run-cdi
+bindkey "^F" _run-cdi
+
 # update_neofetch_cache
 # source ~/bin/greet
