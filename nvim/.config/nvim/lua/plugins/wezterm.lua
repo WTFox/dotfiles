@@ -12,5 +12,6 @@ return {
   },
   {
     "justinsgithub/wezterm-types",
+    ft = "lua",
   },
 }
