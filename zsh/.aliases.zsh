@@ -30,6 +30,8 @@ alias icat="wezterm imgcat"
 
 # == Text Editors ==
 alias n.="nvim ."
+alias v="vim"
+alias v.="vim ."
 alias lazy_sync='nvim --headless "+Lazy! sync" +qa'
 alias lazy_restore='nvim --headless "+Lazy! restore" +qa'
 alias vim="nvim"
