@@ -83,7 +83,7 @@
   "telescope.nvim": { "branch": "master", "commit": "dfa230be84a044e7f546a6c2b0a403c739732b86" },
   "todo-comments.nvim": { "branch": "main", "commit": "70a93ce66083699571adc361166504b03cc39c2b" },
   "tokyonight.nvim": { "branch": "main", "commit": "9d88650502bc331f43eb0bef6286e58144ac5a96" },
-  "trouble.nvim": { "branch": "main", "commit": "39595e883e2f91456413ca4df287575d31665940" },
+  "trouble.nvim": { "branch": "main", "commit": "f13e65a08911e14bbf8227c2cb676e3de2ee791a" },
   "ts-comments.nvim": { "branch": "main", "commit": "e339090c076871069c00e488b11def49aaf4e413" },
   "undotree": { "branch": "master", "commit": "56c684a805fe948936cda0d1b19505b84ad7e065" },
   "venv-selector.nvim": { "branch": "regexp", "commit": "51e1b8cb557800dcb7a577c19815ebe3e222280a" },
