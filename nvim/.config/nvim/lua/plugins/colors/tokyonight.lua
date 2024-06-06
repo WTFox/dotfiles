@@ -11,6 +11,7 @@ return {
     on_colors = function(colors)
       colors.border = colors.purple
       -- colors.bg = "#11111b"
+      -- colors.bg = "#1b1b1f"
       colors.bg = "#0e0e13"
     end,
 
@@ -18,6 +19,14 @@ return {
     --- function will be called with a Highlights and ColorScheme table
     on_highlights = function(hl, c)
       local prompt = "#2d3149"
+
+      -- general ui
+      hl.MiniIndentscopeSymbol = {
+        fg = c.purple,
+        nocombine = true,
+      }
+
+      -- material-looking telescope
       hl.TelescopeNormal = {
         bg = c.bg_dark,
         fg = c.fg_dark,
@@ -45,6 +54,8 @@ return {
         bg = c.bg_dark,
         fg = c.bg_dark,
       }
+
+      -- dashboard
       hl.DashboardIcon = {
         fg = c.orange,
       }
@@ -54,7 +65,21 @@ return {
       hl.DashboardFooter = {
         fg = c.magenta,
       }
+
+      -- lang-specific
+      -- python
       hl["@string.documentation.python"] = {
+        fg = c.comment,
+      }
+      hl["@lsp.typemod.function.defaultLibrary.python"] = {
+        link = "@type.builtin",
+      }
+
+      -- json
+      hl["@property.json"] = {
+        fg = c.blue,
+      }
+      hl["@punctuation.bracket.json"] = {
         fg = c.comment,
       }
     end,
