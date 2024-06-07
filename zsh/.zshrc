@@ -54,7 +54,7 @@ _run-cdi() {
 }
 
 zle -N _run-cdi
-bindkey "^F" _run-cdi
+bindkey "^G" _run-cdi
 
 # update_neofetch_cache
 # source ~/bin/greet
