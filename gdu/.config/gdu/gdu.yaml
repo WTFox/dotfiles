@@ -2,10 +2,10 @@ log-file: /dev/null
 input-file: ""
 output-file: ""
 ignore-dirs:
-    - /proc
-    - /dev
-    - /sys
-    - /run
+  - /proc
+  - /dev
+  - /sys
+  - /run
 ignore-dir-patterns: []
 ignore-from-file: ""
 max-cores: 24
@@ -28,12 +28,12 @@ use-si-prefix: false
 no-prefix: false
 change-cwd: false
 style:
-    selected-row:
-        text-color: ""
-        background-color: ""
-    progress-modal:
-        current-item-path-max-len: 0
-    use-old-size-bar: false
+  selected-row:
+    text-color: "#0e0e13"
+    background-color: "#585b70"
+  progress-modal:
+    current-item-path-max-len: 0
+  use-old-size-bar: false
 sorting:
-    by: ""
-    order: ""
+  by: ""
+  order: ""

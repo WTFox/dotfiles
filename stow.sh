@@ -8,6 +8,7 @@ directories_to_stow=(
 	"direnv/"
 	"fonts/"
 	"fzf/"
+	"gdu/"
 	"git/"
 	"kitty/"
 	"misc/"
