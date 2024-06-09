@@ -1,4 +1,4 @@
-local dark_theme = "tokyonight-night"
+local dark_theme = "catppuccin-mocha"
 local light_theme = "zenbones"
 
 -- Switch colorscheme based on the background option
@@ -29,9 +29,9 @@ return {
       end,
     },
   },
-  -- { import = "plugins.colors.catppuccin" },
+  { import = "plugins.colors.catppuccin" },
   -- { import = "plugins.colors.kanagawa" },
-  { import = "plugins.colors.tokyonight" },
+  -- { import = "plugins.colors.tokyonight" },
   -- { import = "plugins.colors.vscode" },
   { import = "plugins.colors.zenbones" },
   {
