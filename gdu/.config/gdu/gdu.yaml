@@ -29,7 +29,7 @@ no-prefix: false
 change-cwd: false
 style:
   selected-row:
-    text-color: "#0e0e13"
+    text-color: "#fff"
     background-color: "#585b70"
   progress-modal:
     current-item-path-max-len: 0
