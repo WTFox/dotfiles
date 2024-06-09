@@ -31,6 +31,7 @@ return {
       return {
         WinSeparator = { fg = colors.lavender },
         -- DiffChange = { fg = colors.base, bg = colors.pink },
+        -- ["@property"] = { fg = "#45707a" },
       }
     end,
     color_overrides = {
@@ -48,8 +49,10 @@ return {
         sky = "#91d7e3",
         sapphire = "#68bae0",
         blue = "#739df2",
-        lavender = "#a0a8f6",
-        text = "#b5c1f1",
+        -- lavender = "#a0a8f6",
+        lavender = "#959de6",
+        -- text = "#b5c1f1",
+        text = "#d5daeb",
         subtext1 = "#a6b0d8",
         subtext0 = "#959ec2",
         overlay2 = "#848cad",
