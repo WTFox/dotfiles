@@ -36,6 +36,7 @@ return {
         PmenuSbar = { bg = theme.ui.bg_m1 },
         PmenuThumb = { bg = theme.ui.bg_p2 },
         DashboardHeader = { fg = theme.ui.special },
+        ["@variable.parameter"] = { fg = "#E46876" },
       }
     end,
     theme = "wave", -- Load "wave" theme when 'background' option is not set
