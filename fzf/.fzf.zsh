@@ -22,5 +22,5 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 # Kanagawa Dragon
 export FZF_DEFAULT_OPTS=" \
  --color=bg+:#313244,bg:#181616,spinner:#c8c093,hl:#c4746e \
- --color=fg:#cdd6f4,header:#c4746e,info:#938aa9,pointer:#c8c093\
- --color=marker:#c8c093,fg+:#cdd6f4,prompt:#938aa9,hl+:#c4746e"
+ --color=fg:#c5c9c5,header:#c4746e,info:#a292a3,pointer:#c8c093\
+ --color=marker:#c8c093,fg+:#c5c9c5,prompt:#a292a3,hl+:#c4746e"
