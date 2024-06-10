@@ -87,7 +87,7 @@ add_newline = true
 
 [character]
 format = "$symbol "
-success_symbol = "[❯❯](bold italic green)"
+success_symbol = "[❯❯](bold italic yellow)"
 error_symbol = "[❯❯](italic red)"
 
 [env_var.VIMSHELL] # vim subshell
