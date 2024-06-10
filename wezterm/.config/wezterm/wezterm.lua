@@ -8,7 +8,8 @@ local config = {}
 config = wezterm.config_builder()
 -- end
 
-local DARK_THEME = "my-catppuccin"
+-- local DARK_THEME = "Kanagawa (Gogh)"
+local DARK_THEME = "kanagawa-dragon"
 local LIGHT_THEME = "zenbones"
 
 local act = wezterm.action
@@ -87,7 +88,7 @@ end
 config.automatically_reload_config = true
 
 -- UI
-config.color_scheme_dirs = { "~/.config/wezterm/colors" }
+config.color_scheme_dirs = { "~/.config/wezterm/colors/" }
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local has_unseen_output = false
@@ -269,10 +270,10 @@ local function set_theme_attr(theme, attr, value)
 	}
 end
 
-set_theme_attr("catppuccin-mocha", "background", "#0e0e13")
+-- set_theme_attr("catppuccin-mocha", "background", "#0e0e13")
 -- set_theme_attr("catppuccin-mocha", "background", "#11111b")
 -- set_theme_attr("tokyonight_night", "background", "#11111b")
-set_theme_attr("tokyonight_night", "background", "#0e0e13")
+-- set_theme_attr("tokyonight_night", "background", "#0e0e13")
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 
