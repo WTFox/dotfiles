@@ -31,6 +31,7 @@ return {
   },
   -- { import = "plugins.colors.catppuccin" },
   { import = "plugins.colors.kanagawa" },
+  -- { import = "plugins.colors.nordic" },
   -- { import = "plugins.colors.tokyonight" },
   -- { import = "plugins.colors.vscode" },
   { import = "plugins.colors.zenbones" },
