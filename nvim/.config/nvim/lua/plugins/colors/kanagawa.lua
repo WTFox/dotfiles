@@ -1,7 +1,7 @@
 return {
   "rebelot/kanagawa.nvim",
   opts = {
-    compile = true, -- enable compiling the colorscheme
+    compile = false, -- enable compiling the colorscheme
     undercurl = true, -- enable undercurls
     commentStyle = { italic = true },
     functionStyle = { italic = true },
@@ -35,8 +35,8 @@ return {
         PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
         PmenuSbar = { bg = theme.ui.bg_m1 },
         PmenuThumb = { bg = theme.ui.bg_p2 },
-        DashboardHeader = { fg = theme.ui.special },
-        ["@variable.parameter"] = { fg = "#E46876" },
+        DashboardHeader = { fg = "#7E9CD8" },
+        ["@variable.parameter"] = { fg = theme.waveAqua1 },
       }
     end,
     theme = "wave", -- Load "wave" theme when 'background' option is not set
