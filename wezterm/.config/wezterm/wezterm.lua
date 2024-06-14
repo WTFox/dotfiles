@@ -168,10 +168,10 @@ local jetbrains_styled = {
 		-- "ss19", -- Adds gaps in ≠ ≠= == === ligatures.
 		"ss20", -- Shift horizontal stroke in f to match x-height
 		-- "cv01", -- l with symmetrical lower stroke. (ss01)
-		-- "cv02", -- t with curly tail (ss02)
+		"cv02", -- t with curly tail (ss02)
 		"cv03", -- g with more complex construction
 		"cv04", -- j with curly descender
-		-- "cv05", -- l with curly tail (ss02)
+		"cv05", -- l with curly tail (ss02)
 		"cv06", -- m with shorter middle leg (ss02)
 		"cv07", -- Ww with lower middle peak (ss02)
 		-- "cv08", -- Kk with sharp connection (ss01)
