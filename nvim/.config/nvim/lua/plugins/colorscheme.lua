@@ -1,4 +1,5 @@
-local dark_theme = "kanagawa"
+-- local dark_theme = "kanagawa"
+local dark_theme = "catppuccin-macchiato"
 local light_theme = "zenbones"
 
 -- Switch colorscheme based on the background option
@@ -29,8 +30,8 @@ return {
       end,
     },
   },
-  -- { import = "plugins.colors.catppuccin" },
-  { import = "plugins.colors.kanagawa" },
+  { import = "plugins.colors.catppuccin" },
+  -- { import = "plugins.colors.kanagawa" },
   -- { import = "plugins.colors.nordic" },
   -- { import = "plugins.colors.tokyonight" },
   -- { import = "plugins.colors.vscode" },

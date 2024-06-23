@@ -9,7 +9,8 @@ config = wezterm.config_builder()
 -- end
 
 -- local DARK_THEME = "Kanagawa (Gogh)"
-local DARK_THEME = "kanagawa-dragon"
+-- local DARK_THEME = "kanagawa-dragon"
+local DARK_THEME = "tokyonight_night"
 local LIGHT_THEME = "zenbones"
 
 local act = wezterm.action
