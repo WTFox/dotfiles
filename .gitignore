@@ -10,6 +10,8 @@ bin/bin/nvim-macos/
 bin/bin/nvim-macos.tar.gz
 bin/bin/nvim-linux64/
 bin/bin/nvim-linux64.tar.gz
+bin/bin/nvim-macos-arm64
+bin/bin/nvim-macos-arm64.tar.gz
 
 tags*
 .DS_Store
