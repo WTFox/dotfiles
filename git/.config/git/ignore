@@ -16,3 +16,5 @@ tags*
 pyrightconfig.json
 
 **/.lazy.lua
+
+.gitconfig-local

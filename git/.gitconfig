@@ -20,8 +20,12 @@
 [include]
     path = ~/.gitaliases
 
+[include]
+  path = ~/.gitconfig-local
+
 [includeIf "gitdir:/Users/"]
     path = ~/.gitconfig-macos
 
 [includeIf "gitdir:/home/"]
     path = ~/.gitconfig-linux
+
