@@ -11,7 +11,8 @@ config = wezterm.config_builder()
 -- local DARK_THEME = "Kanagawa (Gogh)"
 -- local DARK_THEME = "kanagawa-dragon"
 -- local DARK_THEME = "tokyonight_night"
-local DARK_THEME = "catppuccin-mocha"
+-- local DARK_THEME = "catppuccin-mocha"
+local DARK_THEME = "catppuccin-macchiato"
 local LIGHT_THEME = "zenbones"
 
 local act = wezterm.action
@@ -260,7 +261,7 @@ local fira_code = {
 }
 
 config.font_size = 15
-config.font = wezterm.font(jetbrains_styled)
+config.font = wezterm.font(jetbrains_mono)
 config.adjust_window_size_when_changing_font_size = false
 
 -- Colors
