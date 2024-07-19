@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 local icons = require("lazyvim.config").icons
 
 return {
