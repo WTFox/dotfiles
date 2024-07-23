@@ -261,7 +261,7 @@ local fira_code = {
 }
 
 config.font_size = 15
-config.font = wezterm.font(jetbrains_mono)
+config.font = wezterm.font(jetbrains_styled)
 config.adjust_window_size_when_changing_font_size = false
 
 -- Colors
