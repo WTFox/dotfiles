@@ -12,7 +12,7 @@ return {
       colors.border = colors.purple
       -- colors.bg = "#11111b"
       -- colors.bg = "#1b1b1f"
-      colors.bg = "#0e0e13"
+      -- colors.bg = "#0e0e13"
     end,
 
     --- You can override specific highlights to use other groups or a hex color
