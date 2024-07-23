@@ -9,7 +9,7 @@ return {
     --- You can override specific color groups to use other groups or a hex color
     --- function will be called with a ColorScheme table
     on_colors = function(colors)
-      colors.border = colors.purple
+      -- colors.border = colors.purple
       -- colors.bg = "#11111b"
       -- colors.bg = "#1b1b1f"
       -- colors.bg = "#0e0e13"
