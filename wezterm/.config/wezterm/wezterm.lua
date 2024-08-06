@@ -9,8 +9,10 @@ config = wezterm.config_builder()
 -- end
 
 -- local DARK_THEME = "Kanagawa (Gogh)"
+local DARK_THEME = "Jellybeans"
 -- local DARK_THEME = "kanagawa-dragon"
-local DARK_THEME = "tokyonight_night"
+-- local DARK_THEME = "tokyonight_night"
+-- local DARK_THEME = "vscode-dark"
 -- local DARK_THEME = "catppuccin-mocha"
 -- local DARK_THEME = "catppuccin-macchiato"
 local LIGHT_THEME = "zenbones"

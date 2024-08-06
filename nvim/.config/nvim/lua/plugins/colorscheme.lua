@@ -1,7 +1,9 @@
--- local dark_theme = "kanagawa"
+local dark_theme = "jellybeans-nvim"
+-- local dark_theme = "zenbones"
 -- local dark_theme = "catppuccin-macchiato"
 -- local dark_theme = "catppuccin-mocha"
-local dark_theme = "tokyonight-night"
+-- local dark_theme = "tokyonight-night"
+-- local dark_theme = "vscode"
 local light_theme = "zenbones"
 
 -- Switch colorscheme based on the background option
@@ -32,7 +34,9 @@ return {
       end,
     },
   },
+  { import = "plugins.colors.ayu" },
   { import = "plugins.colors.catppuccin" },
+  { import = "plugins.colors.jellybeans" },
   { import = "plugins.colors.kanagawa" },
   { import = "plugins.colors.nordic" },
   { import = "plugins.colors.tokyonight" },
