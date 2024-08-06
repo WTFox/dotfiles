@@ -1,4 +1,4 @@
-local dark_theme = "jellybeans-nvim"
+local dark_theme = "jellybeans-custom"
 -- local dark_theme = "zenbones"
 -- local dark_theme = "catppuccin-macchiato"
 -- local dark_theme = "catppuccin-mocha"
@@ -36,6 +36,7 @@ return {
   },
   { import = "plugins.colors.ayu" },
   { import = "plugins.colors.catppuccin" },
+  { import = "plugins.colors.darcula" },
   { import = "plugins.colors.jellybeans" },
   { import = "plugins.colors.kanagawa" },
   { import = "plugins.colors.nordic" },
