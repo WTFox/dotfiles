@@ -9,8 +9,8 @@ ansi = [
   '#78cec1',
   '#bac2de',
 ]
-# background = '#0e0e13'
-background = '#11111b'
+background = '#0e0e13'
+# background = '#11111b'
 brights = [
   '#585b70',
   '#ea838c',
@@ -38,6 +38,7 @@ visual_bell = '#313244'
 
 [colors.tab_bar]
 background = '#11111b'
+# background = '#0e0e13'
 inactive_tab_edge = '#313244'
 
 [colors.tab_bar.active_tab]
