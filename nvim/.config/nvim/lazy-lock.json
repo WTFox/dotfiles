@@ -23,7 +23,7 @@
   "dressing.nvim": { "branch": "master", "commit": "6741f1062d3dc6e4755367a7e9b347b553623f04" },
   "flash.nvim": { "branch": "main", "commit": "34c7be146a91fec3555c33fe89c7d643f6ef5cf1" },
   "friendly-snippets": { "branch": "main", "commit": "00ebcaa159e817150bd83bfe2d51fa3b3377d5c4" },
-  "github-nvim-theme": { "branch": "fix-color-global-state", "commit": "770d1b51ecbab04d4448b8303ad45e6ea446ef79" },
+  "github-nvim-theme": { "branch": "main", "commit": "770d1b51ecbab04d4448b8303ad45e6ea446ef79" },
   "gitsigns.nvim": { "branch": "main", "commit": "562dc47189ad3c8696dbf460d38603a74d544849" },
   "grapple.nvim": { "branch": "main", "commit": "7aedc261b05a6c030397c4bc26416efbe746ebf1" },
   "grug-far.nvim": { "branch": "main", "commit": "22f1571d2c60883b3fbf05e90f04cabde056fe3e" },
