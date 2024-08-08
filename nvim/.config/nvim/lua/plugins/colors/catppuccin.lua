@@ -29,8 +29,9 @@ return {
     },
     custom_highlights = function(colors)
       return {
-        WinSeparator = { fg = colors.base, bg = colors.base },
+        WinSeparator = { fg = colors.lavender, bg = colors.base },
         -- DiffChange = { fg = colors.base, bg = colors.pink },
+        ["@string.documentation"] = { link = "Comment" },
         -- ["@property"] = { fg = "#45707a" },
       }
     end,
@@ -44,7 +45,8 @@ return {
         --   maroon = "#ea838c",
         --   peach = "#f39967",
         --   yellow = "#eaca89",
-        --   green = "#96d382",
+        green = "#96d382",
+        -- green = "#89b482",
         --   teal = "#78cec1",
         --   sky = "#91d7e3",
         --   sapphire = "#68bae0",

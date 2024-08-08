@@ -42,7 +42,8 @@ background = '#11111b'
 inactive_tab_edge = '#313244'
 
 [colors.tab_bar.active_tab]
-bg_color = '#cba6f7'
+# bg_color = '#cba6f7'
+bg_color = '#89b4fa'
 fg_color = '#11111b'
 intensity = 'Normal'
 italic = false
