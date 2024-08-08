@@ -1,10 +1,9 @@
 # Nordic Colorscheme for Wezterm.
 # Based on https://github.com/AlexvZyl/nordic.nvim
 # Author: @kuntau
-
 [colors]
 foreground = "#D8DEE9"
-background = "#242933"
+background = "#191D24"
 cursor_bg = "#D8DEE9"
 cursor_border = "#D8DEE9"
 cursor_fg = "#242933"
@@ -31,3 +30,29 @@ brights = [
   "#93CCDC",
   "#E5E9F0",
 ]
+
+[colors.tab_bar]
+background = "#191D24"
+
+[colors.tab_bar.active_tab]
+bg_color = '#d79784'
+fg_color = '#000'
+intensity = 'Normal'
+italic = false
+strikethrough = false
+underline = 'None'
+
+[colors.tab_bar.inactive_tab]
+bg_color = '#1E222A'
+fg_color = '#D8DEE9'
+intensity = 'Normal'
+italic = false
+strikethrough = false
+underline = 'None'
+
+[colors.tab_bar.new_tab]
+bg_color = "#2e3440"
+fg_color = "#D8DEE9"
+
+[metadata]
+name = 'nordic-dark'

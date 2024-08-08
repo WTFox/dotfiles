@@ -9,7 +9,7 @@ config = wezterm.config_builder()
 -- end
 
 -- local DARK_THEME = "Kanagawa (Gogh)"
-local DARK_THEME = "Jellybeans"
+local DARK_THEME = "nordic-dark"
 -- local DARK_THEME = "kanagawa-dragon"
 -- local DARK_THEME = "tokyonight_night"
 -- local DARK_THEME = "vscode-dark"
@@ -97,33 +97,8 @@ config.automatically_reload_config = true
 config.color_scheme_dirs = { "~/.config/wezterm/colors/" }
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local has_unseen_output = false
-	if not tab.is_active then
-		for _, pane in ipairs(tab.panes) do
-			if pane.has_unseen_output then
-				has_unseen_output = true
-				break
-			end
-		end
-	end
-
 	local cwd = get_current_working_dir(tab)
 	local title = string.format(" %s  %s  ", get_process(tab), cwd)
-
-	if has_unseen_output then
-		return {
-			{ Foreground = { Color = "#ff9e64" } },
-			{ Text = title },
-		}
-	end
-
-	if tab.is_active then
-		return {
-			{ Attribute = { Intensity = "Bold" } },
-			{ Text = title },
-		}
-	end
-
 	return {
 		{ Attribute = { Intensity = "Bold" } },
 		{ Text = title },
@@ -282,7 +257,16 @@ end
 -- set_theme_attr("tokyonight_night", "background", "#0e0e13")
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
-
+-- config.colors = {
+-- 	tab_bar = {
+-- 		background = "#191d24",
+-- 		new_tab = {
+-- 			bg_color = "#2e3440",
+-- 			fg_color = "#d8dee9",
+-- 		},
+-- 	},
+-- }
+--
 -- Keys
 config.keys = {
 	{

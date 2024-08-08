@@ -31,6 +31,24 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 #  --color=fg:#c5c9c5,header:#c4746e,info:#a292a3,pointer:#c8c093\
 #  --color=marker:#c8c093,fg+:#c5c9c5,prompt:#a292a3,hl+:#c4746e"
 
+# nordic
+export FZF_DEFAULT_OPTS="\
+--border=none \
+--no-separator \
+--color=fg:#D8DEE9 \
+--color=bg:#1E222A \
+--color=hl:#D8DEE9 \
+--color=fg+:#D8DEE9 \
+--color=bg+:#2E3440 \
+--color=hl+:#D8DEE9 \
+--color=info:#81A1C1 \
+--color=prompt:#81A1C1 \
+--color=pointer:#D8DEE9 \
+--color=marker:#D8DEE9 \
+--color=spinner:#D8DEE9 \
+--color=header:#81A1C1 \
+"
+
 # tokyonight
 # export FZF_DEFAULT_OPTS="\
 #   --ansi \
