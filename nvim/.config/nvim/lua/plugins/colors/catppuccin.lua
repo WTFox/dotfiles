@@ -26,6 +26,7 @@ return {
         enabled = true,
         indentscope_color = "lavender", -- catppuccin color (eg. `lavender`) Default: text
       },
+      noice = true,
     },
     custom_highlights = function(colors)
       return {
