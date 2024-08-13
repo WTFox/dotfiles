@@ -30,7 +30,7 @@ return {
     },
     custom_highlights = function(colors)
       return {
-        WinSeparator = { fg = colors.lavender, bg = colors.base },
+        -- WinSeparator = { fg = colors.lavender, bg = colors.base },
         -- DiffChange = { fg = colors.base, bg = colors.pink },
         ["@string.documentation"] = { link = "Comment" },
         -- ["@property"] = { fg = "#45707a" },
