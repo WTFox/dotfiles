@@ -97,6 +97,10 @@ config.automatically_reload_config = true
 
 -- UI
 config.color_scheme_dirs = { "~/.config/wezterm/colors/" }
+config.inactive_pane_hsb = {
+	saturation = 0.9,
+	brightness = 0.3,
+}
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local cwd = get_current_working_dir(tab)
