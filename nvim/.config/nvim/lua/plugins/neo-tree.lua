@@ -1,5 +1,15 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  keys = {
+    {
+      "<leader>E",
+      function()
+        require("neo-tree.command").execute({ toggle = true, dir = vim.fn.expand("%:p:h") })
+      end,
+      desc = "Explorer NeoTree (local to file)",
+      remap = true,
+    },
+  },
   opts = {
     window = {
       position = "right",
