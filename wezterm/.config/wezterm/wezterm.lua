@@ -16,7 +16,7 @@ for _, module in ipairs({
 	colors,
 	font,
 	keys,
-	windows_overrides,
+	windows_overrides, -- must be last
 }) do
 	for k, v in pairs(module) do
 		config[k] = v
