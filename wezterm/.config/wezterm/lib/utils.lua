@@ -34,4 +34,18 @@ M.merge_tables = function(base, updates)
 	end
 end
 
+M.is_vim = function(pane)
+	local process_info = pane:get_foreground_process_info()
+	local process_name = process_info and process_info.name
+	return process_name == "nvim" or process_name == "vim"
+end
+
+M.find_vim_pane = function(tab)
+	for _, pane in ipairs(tab:panes()) do
+		if M.is_vim(pane) then
+			return pane
+		end
+	end
+end
+
 return M

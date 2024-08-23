@@ -1,21 +1,8 @@
----@class Wezterm
 local wezterm = require("wezterm")
 local act = wezterm.action
+local utils = require("lib.utils")
+
 local key_mod_panes = "CTRL|SHIFT"
-
-local function is_vim(pane)
-	local process_info = pane:get_foreground_process_info()
-	local process_name = process_info and process_info.name
-	return process_name == "nvim" or process_name == "vim"
-end
-
-local function find_vim_pane(tab)
-	for _, pane in ipairs(tab:panes()) do
-		if is_vim(pane) then
-			return pane
-		end
-	end
-end
 
 return {
 	keys = {
@@ -141,7 +128,7 @@ return {
 			mods = "CTRL",
 			action = wezterm.action_callback(function(window, pane)
 				local tab = window:active_tab()
-				if is_vim(pane) then
+				if utils.is_vim(pane) then
 					if (#tab:panes()) == 1 then
 						pane:split({ direction = "Bottom" })
 					else
@@ -151,7 +138,8 @@ return {
 					end
 				end
 
-				local vim_pane = find_vim_pane(tab)
+				local vim_pane = utils.find_vim_pane(tab)
+				print("finding vim pane", vim_pane)
 				if vim_pane then
 					vim_pane:activate()
 					tab:set_zoomed(true)
