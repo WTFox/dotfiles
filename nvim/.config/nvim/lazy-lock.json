@@ -66,11 +66,11 @@
   "nvim-dap-virtual-text": { "branch": "master", "commit": "484995d573c0f0563f6a66ebdd6c67b649489615" },
   "nvim-early-retirement": { "branch": "main", "commit": "2c36a5671b9d8f0d9e11b77c5a55de802bc45e34" },
   "nvim-lint": { "branch": "master", "commit": "debabca63c0905b59ce596a55a8e33eafdf66342" },
-  "nvim-lspconfig": { "branch": "master", "commit": "a7f0f9c18baa70a3970ea18f9984e03b6f6c2e8a" },
+  "nvim-lspconfig": { "branch": "master", "commit": "911167921d49cd5c1c9b2436031d0da3945e787f" },
   "nvim-nio": { "branch": "master", "commit": "a428f309119086dc78dd4b19306d2d67be884eee" },
   "nvim-notify": { "branch": "master", "commit": "d333b6f167900f6d9d42a59005d82919830626bf" },
   "nvim-snippets": { "branch": "main", "commit": "56b4052f71220144689caaa2e5b66222ba5661eb" },
-  "nvim-treesitter": { "branch": "master", "commit": "8724e7d028ba11604dde94dc4be63f70cccf16e0" },
+  "nvim-treesitter": { "branch": "master", "commit": "04401b5dd17c3419dae5141677bd256f52d54733" },
   "nvim-treesitter-context": { "branch": "master", "commit": "0f3332788e0bd37716fbd25f39120dcfd557c90f" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "41e3abf6bfd9a9a681eb1f788bdeba91c9004b2b" },
   "nvim-ts-autotag": { "branch": "main", "commit": "0cb76eea80e9c73b88880f0ca78fbd04c5bdcac7" },
@@ -103,5 +103,5 @@
   "which-key.nvim": { "branch": "main", "commit": "6c1584eb76b55629702716995cca4ae2798a9cca" },
   "yanky.nvim": { "branch": "main", "commit": "73215b77d22ebb179cef98e7e1235825431d10e4" },
   "zen-mode.nvim": { "branch": "main", "commit": "29b292bdc58b76a6c8f294c961a8bf92c5a6ebd6" },
-  "zenbones.nvim": { "branch": "main", "commit": "5d69a8b159178c53d08151350967e2b0a42d59be" }
+  "zenbones.nvim": { "branch": "main", "commit": "8e4d87d4ff9107a6c85775831a79c521d775ab0d" }
 }
