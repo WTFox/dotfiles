@@ -1,25 +1,16 @@
 local wezterm = require("wezterm")
 
-local DARK_THEME = "catppuccin-mocha"
-local LIGHT_THEME = "zenbones"
+DARK_THEME = "catppuccin-mocha"
+LIGHT_THEME = "zenbones"
 
-local function scheme_for_appearance(appearance)
+local function scheme_for_appearance(appearance, dark, light)
 	if appearance:find("Dark") then
-		return DARK_THEME
+		return dark
 	end
-	return LIGHT_THEME
-end
-
-local colors = wezterm.color.get_builtin_schemes()
-local function set_theme_attr(theme, attr, value)
-	local t = colors[theme]
-	t[attr] = value
-	config.color_schemes = {
-		[theme] = t,
-	}
+	return light
 end
 
 return {
-	color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
+	color_scheme = scheme_for_appearance(wezterm.gui.get_appearance(), DARK_THEME, LIGHT_THEME),
 	color_scheme_dirs = { "~/.config/wezterm/colors/" },
 }
