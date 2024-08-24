@@ -3,7 +3,7 @@ local fonts = require("lib.fonts")
 
 return {
 	font_size = 16,
-	font = wezterm.font(fonts.operator_mono),
+	font = wezterm.font(fonts.jetbrains_styled),
 	adjust_window_size_when_changing_font_size = false,
 	inactive_pane_hsb = {
 		saturation = 0.9,
