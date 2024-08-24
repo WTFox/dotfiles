@@ -72,8 +72,18 @@ use_nvmrc() {
 }
 
 use_nodejs() {
-	NODE_VERSION="$1"
+    NODE_VERSION="$1"
 
-	type nvm >/dev/null 2>&1 || . /opt/homebrew/opt/nvm/nvm.sh
-	nvm use "$NODE_VERSION"
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Linux/WSL
+        type nvm >/dev/null 2>&1 || . $HOME/.nvm/nvm.sh
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        type nvm >/dev/null 2>&1 || . /opt/homebrew/opt/nvm/nvm.sh
+    else
+        echo "Unknown OS type: $OSTYPE"
+        return 1
+    fi
+
+    nvm use "$NODE_VERSION"
 }
