@@ -78,6 +78,6 @@ end, { desc = "LazyDocker" })
 -- map("n", "<Tab>", "<c-^>", { noremap = true, silent = true, desc = "Swap Alternate Files" })
 
 -- yazi
-map("n", "<leader>yy", function()
-  Util.terminal({ "yazi" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
-end, { desc = "Yazi" })
+map("n", "<leader>fm", function()
+  Util.terminal({ "ranger" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
+end, { desc = "Ranger" })

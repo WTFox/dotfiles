@@ -1,6 +1,24 @@
 local wezterm = require("wezterm")
 
 return {
+	maple_mono = {
+		family = "Maple Mono NF",
+		weight = "Regular",
+		harfbuzz_features = {
+			"calt",
+			"clig",
+			"liga",
+			"cv01", -- @ # $ % ^ & * ( ) _ + - = { } [ ] | \ : ; " ' < > , . ? / ` ~
+			"cv02", -- i
+			-- "cv03", -- a
+			-- "cv04", -- @ only
+			"ss01", -- == === != !==
+			"ss02", -- todo))
+			"ss03", -- __  (double underscore)
+			"ss04", -- >= <=
+			"ss05", -- {{ }}
+		},
+	},
 	operator_mono = {
 		family = "Operator Mono",
 		weight = "Book",
