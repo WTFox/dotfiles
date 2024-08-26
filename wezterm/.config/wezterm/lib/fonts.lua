@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 return {
 	maple_mono = {
-		family = "Maple Mono NF",
+		family = "Maple Mono",
 		weight = "Regular",
 		harfbuzz_features = {
 			"calt",
