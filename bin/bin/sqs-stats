@@ -17,20 +17,31 @@ def list_sqs_queues(queue_name=None):
         print("No SQS queues found.")
         return
 
-    print(f"{'Queue Name':60} | {'Number of Messages':20}")
+    print(f"{'Queue Name':30} | {'In Progress':20}| {'Pending':20}")
     print("-" * 85)
 
     c = []
     for queue_url in queues["QueueUrls"]:
         queue_name = queue_url.split("/")[-1]
         attributes = sqs.get_queue_attributes(
-            QueueUrl=queue_url, AttributeNames=["ApproximateNumberOfMessages"]
+            QueueUrl=queue_url,
+            AttributeNames=[
+                "ApproximateNumberOfMessagesNotVisible",
+                "ApproximateNumberOfMessages",
+            ],
         )
-        num_messages = attributes["Attributes"]["ApproximateNumberOfMessages"]
-        c.append((queue_name, num_messages))
+        num_messages_visible = attributes["Attributes"]["ApproximateNumberOfMessages"]
+        num_messages_invisible = attributes["Attributes"][
+            "ApproximateNumberOfMessagesNotVisible"
+        ]
+        c.append((queue_name, num_messages_invisible, num_messages_visible))
 
-    for queue_name, num_messages in sorted(c, key=lambda x: x[1], reverse=True):
-        print(f"{queue_name:60} | {num_messages:20}")
+    for queue_name, num_messages_invisible, num_messages_visible in sorted(
+        c, key=lambda x: x[1], reverse=True
+    ):
+        print(
+            f"{queue_name:30} | {num_messages_invisible:20}| {num_messages_visible:20}"
+        )
 
 
 if __name__ == "__main__":
