@@ -1,5 +1,3 @@
-local utils = require("lazyvim.util")
-
 return {
   {
     "akinsho/bufferline.nvim",
@@ -13,7 +11,11 @@ return {
       {
         "<leader>uB",
         function()
-          utils.toggle.option("showtabline", false, { 2, 0 })
+          if vim.opt.showtabline:get() == 2 then
+            vim.opt.showtabline = 0
+          else
+            vim.opt.showtabline = 2
+          end
         end,
         desc = "Toggle Bufferline",
       },
