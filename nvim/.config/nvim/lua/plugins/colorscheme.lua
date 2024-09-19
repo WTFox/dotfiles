@@ -40,6 +40,7 @@ return {
   { import = "plugins.colors.darcula" },
   { import = "plugins.colors.github" },
   { import = "plugins.colors.kanagawa" },
+  { import = "plugins.colors.obscure" },
   { import = "plugins.colors.nordic" },
   { import = "plugins.colors.tokyonight" },
   { import = "plugins.colors.vscode" },
