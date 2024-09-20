@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 local fonts = require("lib.fonts")
 
-local tabline = require("lib.tabline.plugin")
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 tabline.setup({
 	options = {
 		icons_enabled = true,
