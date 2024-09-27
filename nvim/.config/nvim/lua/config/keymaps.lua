@@ -28,18 +28,12 @@ map("n", ";", "<cmd>lua require('telescope.builtin').resume(require('telescope.t
 -- map("n", "<Tab>", ":bnext<cr>")
 -- map("n", "<S-Tab>", ":bprevious<cr>")
 
--- shift-tab to show buffer list
--- map("n", "<S-Tab>", ":Telescope buffers<cr>")
-
 -- move line up and down
 map("v", "J", ":m '>+1<CR>gv==kgvo<esc>=kgvo", { desc = "move highlighted text down" })
 map("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text up" })
 
 -- capital Q to quit
 map("n", "Q", "<esc>:q<cr>", { noremap = true, silent = true })
-
--- / to invoke Telescope buffer
--- map("n", "/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Buffer" })
 
 -- delete vim terminal mappings
 vim.keymap.del("t", "<c-l>")
@@ -75,9 +69,9 @@ map("n", "<leader>dd", function()
 end, { desc = "LazyDocker" })
 
 -- map Tab to swap between alternate files
--- map("n", "<Tab>", "<c-^>", { noremap = true, silent = true, desc = "Swap Alternate Files" })
+map("n", "<Tab>", "<c-^>", { noremap = true, silent = true, desc = "Swap Alternate Files" })
 
--- yazi
+-- Ranger
 map("n", "<leader>fm", function()
   Util.terminal({ "ranger" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
 end, { desc = "Ranger" })
