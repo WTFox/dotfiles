@@ -5,9 +5,9 @@
 echo "Please enter your sudo password for setup:"
 sudo -v
 while true; do
-	sudo -n true
-	sleep 60
-	kill -0 "$$" || exit
+  sudo -n true
+  sleep 60
+  kill -0 "$$" || exit
 done 2>/dev/null &
 
 source ./_bootstrap/os/common.sh
@@ -24,6 +24,7 @@ install_dotfiles
 install_zsh_and_oh_my_zsh
 install_zoxide
 install_python_and_pyenv
+install_uv
 install_node_and_nvm
 install_rust
 install_go

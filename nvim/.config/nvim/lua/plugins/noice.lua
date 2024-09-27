@@ -17,6 +17,13 @@ return {
       },
       {
         filter = {
+          event = "notify",
+          find = "Toggling hidden files",
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
           event = "msg_show",
           any = {
             { find = "%d+L, %d+B" },
