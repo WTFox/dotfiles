@@ -130,7 +130,7 @@ return {
 				local tab = window:active_tab()
 				if utils.is_vim(pane) then
 					if (#tab:panes()) == 1 then
-						pane:split({ direction = "Bottom" })
+						pane:split({ direction = "Bottom", size = 0.4 })
 					else
 						window:perform_action({
 							SendKey = { key = ";", mods = "CTRL" },

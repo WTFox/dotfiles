@@ -2,7 +2,10 @@ return {
   "nvim-telescope/telescope.nvim",
   opts = {
     defaults = {
-      file_ignore_patterns = { "node_modules", ".git", "**/migrations/*" },
+      file_ignore_patterns = {
+        "node_modules",
+        ".git",
+      },
       mappings = {
         i = {
           ["<C-j>"] = function(...)

@@ -67,6 +67,3 @@ end, { desc = "Lazygit (cwd)" })
 map("n", "<leader>dd", function()
   Util.terminal({ "lazydocker" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
 end, { desc = "LazyDocker" })
-
--- map Tab to swap between alternate files
-map("n", "<Tab>", "<c-^>", { noremap = true, silent = true, desc = "Swap Alternate Files" })
