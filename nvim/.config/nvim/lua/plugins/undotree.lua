@@ -3,7 +3,7 @@ return {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
     keys = {
-      { "<leader>uT", "<cmd>UndotreeToggle<cr>", desc = "Undo Tree Toggle" },
+      { "<leader>uT", "<cmd>UndotreeToggle<cr>", desc = "Undo Tree Toggle", noremap = true },
     },
     init = function()
       -- Persist undo, refer https://github.com/mbbill/undotree#usage
