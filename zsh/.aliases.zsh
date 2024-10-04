@@ -38,6 +38,7 @@ alias v.="vim ."
 alias lazy_sync='nvim --headless "+Lazy! sync" +qa'
 alias lazy_restore='nvim --headless "+Lazy! restore" +qa'
 alias vim="nvim"
+alias vimdiff="nvim -d"
 alias zshconfig="nvim ~/.zshrc"
 
 # == Utilities ==

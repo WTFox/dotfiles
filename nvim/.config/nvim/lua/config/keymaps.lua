@@ -4,6 +4,7 @@
 
 local Util = require("lazyvim.util")
 local map = vim.keymap.set
+local del = vim.keymap.del
 
 -- next quickfix item
 map("n", "]q", ":cnext<cr>zz", { noremap = true, silent = true, desc = "next quickfix" })
@@ -23,11 +24,6 @@ map("n", "<leader><bs>", ":bd<cr>", { noremap = true, silent = true, desc = "del
 -- resume telescope after exiting
 map("n", ";", "<cmd>lua require('telescope.builtin').resume(require('telescope.themes').get_ivy({}))<cr>")
 
--- tab to next buffer
--- shift tab to previous buffer
--- map("n", "<Tab>", ":bnext<cr>")
--- map("n", "<S-Tab>", ":bprevious<cr>")
-
 -- move line up and down
 map("v", "J", ":m '>+1<CR>gv==kgvo<esc>=kgvo", { desc = "move highlighted text down" })
 map("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text up" })
@@ -36,22 +32,14 @@ map("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text u
 map("n", "Q", "<esc>:q<cr>", { noremap = true, silent = true })
 
 -- delete vim terminal mappings
-vim.keymap.del("t", "<c-l>")
-vim.keymap.del("t", "<c-k>")
+del("t", "<c-l>")
+del("t", "<c-k>")
 
 -- floating terminal
 local lazyterm = function()
   Util.terminal(nil, { cwd = Util.root() })
 end
-
-map("n", "<leader>ft", lazyterm, { desc = "Terminal (root dir)" })
-
-map("n", "<leader>fT", function()
-  Util.terminal()
-end, { desc = "Terminal (cwd)" })
-
 map("n", "<c-/>", lazyterm, { desc = "Terminal (root dir)" })
-
 map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
 
 -- lazygit
@@ -59,6 +47,7 @@ map("n", "<leader>gg", function()
   Util.terminal({ "lazygit" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
 end, { desc = "Lazygit (root dir)" })
 
+-- lazygit CWD
 map("n", "<leader>gG", function()
   Util.terminal({ "lazygit" }, { esc_esc = false, ctrl_hjkl = false })
 end, { desc = "Lazygit (cwd)" })
@@ -67,3 +56,6 @@ end, { desc = "Lazygit (cwd)" })
 map("n", "<leader>dd", function()
   Util.terminal({ "lazydocker" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
 end, { desc = "LazyDocker" })
+
+-- diff
+map("n", "<leader>ds", "<cmd>windo diffthis<cr>", { desc = "Diff Split" })
