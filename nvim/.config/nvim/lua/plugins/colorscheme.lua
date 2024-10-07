@@ -1,9 +1,10 @@
 -- local dark_theme = "catppuccin-macchiato"
 local dark_theme = "catppuccin-mocha"
+-- local dark_theme = "github_dark_default"
+-- local dark_theme = "nordic"
+-- local dark_theme = "obscure"
 -- local dark_theme = "tokyonight-night"
 -- local dark_theme = "vscode"
--- local dark_theme = "nordic"
--- local dark_theme = "github_dark_default"
 -- local dark_theme = "zenbones"
 local light_theme = "zenbones"
 
