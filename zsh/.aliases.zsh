@@ -42,6 +42,7 @@ alias vimdiff="nvim -d"
 alias zshconfig="nvim ~/.zshrc"
 
 # == Utilities ==
+alias bat="bat --theme='base16-256'"
 alias bc="bc -l"
 alias cls=clear
 alias df='df -H'
