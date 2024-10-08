@@ -32,12 +32,6 @@ fi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(zoxide init zsh)"
-eval "$(direnv hook zsh)"
-eval "$(starship init zsh)"
-
 _run-cdi() {
     local dir="$(eval "zoxide query -i")"
     if [[ -z "$dir" ]]; then
@@ -52,9 +46,15 @@ _run-cdi() {
     zle reset-prompt
     return $ret
 }
-
 zle -N _run-cdi
 bindkey "^G" _run-cdi
+
+run_ya() {
+    zle reset-prompt
+    ya
+}
+zle -N run_ya
+bindkey "^O" run_ya
 
 # Emit the OSC 133 prompt sequences
 precmd() {
@@ -76,5 +76,8 @@ zle-line-finish() {
 zle -N zle-line-init
 zle -N zle-line-finish
 
-# update_neofetch_cache
-# source ~/bin/greet
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+eval "$(zoxide init zsh)"
+eval "$(direnv hook zsh)"
+eval "$(starship init zsh)"
