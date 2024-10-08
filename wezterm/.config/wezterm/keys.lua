@@ -6,6 +6,8 @@ local key_mod_panes = "CTRL|SHIFT"
 
 return {
 	keys = {
+		{ key = "UpArrow", mods = "SHIFT", action = act.ScrollToPrompt(-1) },
+		{ key = "DownArrow", mods = "SHIFT", action = act.ScrollToPrompt(1) },
 		{
 			key = "Enter",
 			mods = "ALT",

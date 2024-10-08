@@ -12,6 +12,7 @@ bin/bin/nvim-linux64/
 bin/bin/nvim-linux64.tar.gz
 bin/bin/nvim-macos-arm64
 bin/bin/nvim-macos-arm64.tar.gz
+bin/bin/particle
 
 tags*
 .DS_Store
