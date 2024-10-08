@@ -209,8 +209,8 @@ install_rust() {
     curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
   fi
 
-  # utilities written in rust
-  cargo install --locked --git https://github.com/sxyazi/yazi.git
+  # yazi
+  cargo install --locked --git https://github.com/sxyazi/yazi.git yazi-fm yazi-cli
 }
 
 install_uv() {
