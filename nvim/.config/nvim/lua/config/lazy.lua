@@ -27,7 +27,7 @@ require("lazy").setup({
     "catppuccin",
     "habamax",
   } },
-  checker = { enabled = true }, -- automatically check for plugin updates
+  checker = { enabled = true, notify = false },
   performance = {
     rtp = {
       -- disable some rtp plugins
