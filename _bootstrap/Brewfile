@@ -76,6 +76,7 @@ brew "tmux"
 brew "trash"
 brew "tree"
 brew "wget"
+brew "xsv"
 brew "yt-dlp"
 
 cask "1password"
