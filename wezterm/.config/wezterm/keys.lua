@@ -120,6 +120,14 @@ return {
 			mods = "CTRL",
 			action = act.ActivateCommandPalette,
 		},
+		-- This could be useful to swap panes
+		-- {
+		-- 	key = "\\",
+		-- 	mods = "CTRL",
+		-- 	action = act.PaneSelect({
+		-- 		mode = "SwapWithActiveKeepFocus",
+		-- 	}),
+		-- },
 		{
 			key = "Enter",
 			mods = key_mod_panes,
@@ -132,7 +140,7 @@ return {
 				local tab = window:active_tab()
 				if utils.is_vim(pane) then
 					if (#tab:panes()) == 1 then
-						pane:split({ direction = "Bottom", size = 0.4 })
+						pane:split({ direction = "Bottom", size = 0.3 })
 					else
 						window:perform_action({
 							SendKey = { key = ";", mods = "CTRL" },
