@@ -198,6 +198,14 @@ install_starship() {
   curl -sS https://starship.rs/install.sh | sh -s -- -y
 }
 
+install_yazi() {
+  if ! command -v cargo >/dev/null 2>&1; then
+    echo "Cargo not found. Please install Rust first."
+  fi
+
+  cargo install --locked --git https://github.com/sxyazi/yazi.git yazi-fm yazi-cli
+}
+
 install_rust() {
   curl https://sh.rustup.rs -sSf | sh -s -- -y
   source "$HOME/.cargo/env"
@@ -209,8 +217,7 @@ install_rust() {
     curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
   fi
 
-  # yazi
-  cargo install --locked --git https://github.com/sxyazi/yazi.git yazi-fm yazi-cli
+  install_yazi
 }
 
 install_uv() {
