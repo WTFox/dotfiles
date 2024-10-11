@@ -1,6 +1,0 @@
-[MAIN]
-
-[MESSAGES CONTROL]
-disable=
-    missing-docstring,
-    too-few-public-methods

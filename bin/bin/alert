@@ -1,15 +1,8 @@
-function save_api_key() {
-	API_KEY=$(op read "op://personal/particle.io/text")
-	echo "$API_KEY" >/tmp/partile_api_key
-}
-
-if [ ! -f /tmp/partile_api_key ]; then
-	save_api_key
-fi
-
-API_KEY=$(cat /tmp/partile_api_key)
-
 curl https://api.particle.io/v1/devices/p2_1/triggerAlertEvent \
-	-d access_token="$API_KEY"
+    -d access_token="$(op read op://secrets/particle/token)" &
+
+sleep 1
+
+afplay ~/audio/goat-scream.mp3
 
 # vim: filetype=sh:tabstop=4:shiftwidth=4:expandtab:
