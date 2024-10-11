@@ -1,4 +1,4 @@
-local wezterm = require("wezterm")
+local wezterm = require("wezterm") --[[@as Wezterm]]
 
 DARK_THEME = "catppuccin-mocha"
 LIGHT_THEME = "zenbones"

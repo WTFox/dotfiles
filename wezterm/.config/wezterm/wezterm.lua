@@ -1,4 +1,4 @@
-local wezterm = require("wezterm")
+local wezterm = require("wezterm") --[[@as Wezterm]]
 local utils = require("lib.utils")
 
 local appearance = require("appearance")

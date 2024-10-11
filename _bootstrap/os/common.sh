@@ -74,6 +74,10 @@ install_zoxide() {
   eval "$(zoxide init zsh)"
 }
 
+install_uv() {
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+}
+
 install_python_and_pyenv() {
   local python_version=${1:-3.12.1}
 
@@ -218,10 +222,6 @@ install_rust() {
   fi
 
   install_yazi
-}
-
-install_uv() {
-  curl -LsSf https://astral.sh/uv/install.sh | sh
 }
 
 configure_git() {

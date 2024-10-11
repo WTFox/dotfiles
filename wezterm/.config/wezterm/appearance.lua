@@ -1,4 +1,4 @@
-local wezterm = require("wezterm")
+local wezterm = require("wezterm") --[[@as Wezterm]]
 local fonts = require("lib.fonts")
 
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
