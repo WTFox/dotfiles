@@ -6,7 +6,8 @@ local behavior = require("behavior")
 local colors = require("colors")
 local events = require("events")
 local keys = require("keys")
-local plugins = require("plugins")
+
+require("plugins")
 
 local config = {}
 for _, module in ipairs({
@@ -15,7 +16,6 @@ for _, module in ipairs({
 	colors,
 	events,
 	keys,
-	plugins,
 }) do
 	utils.merge_tables(config, module)
 end

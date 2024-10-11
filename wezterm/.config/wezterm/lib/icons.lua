@@ -1,4 +1,4 @@
-local wezterm = require("wezterm")
+local wezterm = require("wezterm") --[[@as Wezterm]]
 
 return {
 	["bash"] = wezterm.nerdfonts.cod_terminal_bash,

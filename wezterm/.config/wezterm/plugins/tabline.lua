@@ -1,7 +1,6 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
-local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 
-tabline.setup({
+wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez").setup({
 	options = {
 		icons_enabled = true,
 		theme = "Catppuccin Mocha",
@@ -46,5 +45,3 @@ tabline.setup({
 	},
 	extensions = {},
 })
-
-return {}
