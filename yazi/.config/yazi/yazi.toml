@@ -1,0 +1,16 @@
+[manager]
+show_hidden = true
+
+[opener]
+play = [
+  { run = '/Applications/IINA.app/Contents/MacOS/IINA "$0"', orphan = true, for = "macos" },
+  { run = '"C:\Program Files\mpv.exe" %*', orphan = true, for = "windows" },
+]
+
+[plugin]
+# https://github.com/Ape/mediainfo.yazi
+# requires mediainfo and ffmpeg-thumbnailer
+prepend_previewers = [
+  { mime = "{image,audio,video}/*", run = "mediainfo" },
+  { mime = "application/x-subrip", run = "mediainfo" },
+]

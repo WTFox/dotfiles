@@ -22,6 +22,7 @@ directories_to_stow=(
   "tmux/"
   "wezterm/"
   "vscode-vim/"
+  "yazi"
   "zsh/"
 )
 
