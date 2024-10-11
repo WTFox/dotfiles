@@ -20,8 +20,8 @@ return {
 		top = 0,
 		bottom = 0,
 	},
-	initial_cols = 120,
+	initial_cols = 150,
 	initial_rows = 32,
-	-- window_background_opacity = 0.3
-	-- macos_window_background_blur = 20
+	-- window_background_opacity = 0.8,
+	-- macos_window_background_blur = 50,
 }
