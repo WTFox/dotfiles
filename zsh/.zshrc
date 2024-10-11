@@ -56,26 +56,6 @@ run_ya() {
 zle -N run_ya
 bindkey "^O" run_ya
 
-# Emit the OSC 133 prompt sequences
-precmd() {
-  echo -ne "\e]133;A\e\\"
-}
-
-preexec() {
-  echo -ne "\e]133;B\e\\"
-}
-
-zle-line-init() {
-  echo -ne "\e]133;C\e\\"
-}
-
-zle-line-finish() {
-  echo -ne "\e]133;D\e\\"
-}
-
-zle -N zle-line-init
-zle -N zle-line-finish
-
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(zoxide init zsh)"
