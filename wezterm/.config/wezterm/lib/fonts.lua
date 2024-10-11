@@ -1,6 +1,10 @@
-local wezterm = require("wezterm")
+local wezterm = require("wezterm") --[[@as Wezterm]]
 
 return {
+	cascadia_code = {
+		family = "Cascadia Code",
+		weight = "Regular",
+	},
 	maple_mono = {
 		family = "Maple Mono",
 		weight = "Regular",
