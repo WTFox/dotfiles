@@ -4,9 +4,12 @@ return {
     presets = {
       lsp_doc_border = false,
     },
-    -- cmdline = {
-    --   view = "cmdline",
-    -- },
+    cmdline = {
+      view = "cmdline",
+    },
+    messages = {
+      view = "mini",
+    },
     routes = {
       {
         filter = {
