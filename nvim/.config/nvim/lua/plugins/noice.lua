@@ -7,9 +7,6 @@ return {
     cmdline = {
       view = "cmdline",
     },
-    messages = {
-      view = "mini",
-    },
     routes = {
       {
         filter = {
