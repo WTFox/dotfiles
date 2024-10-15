@@ -5,8 +5,8 @@ return {
       enabled = false,
     },
     diagnostics = {
-      virtual_text = true,
-      signs = false,
+      virtual_text = false,
+      signs = true,
     },
   },
 }

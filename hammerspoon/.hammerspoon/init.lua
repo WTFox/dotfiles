@@ -1,7 +1,7 @@
 hs.loadSpoon("EmmyLua") -- loads autocomplete info for editors
--- hs.loadSpoon("ControlEscape"):start() -- remaps caps lock to escape when pressed alone, control when pressed with another key
 
 require("apps")
+require("caffeine")
 require("spongebob")
 require("toggleTheme")
 require("alert")
