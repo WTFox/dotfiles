@@ -5,9 +5,9 @@ end
 
 local function setCaffeineDisplay(state)
 	if state then
-		caffeine:setTitle("AWAKE")
+		caffeine:setTitle("☕️")
 	else
-		caffeine:setTitle("SLEEPY")
+		caffeine:setTitle("🥱")
 	end
 end
 
