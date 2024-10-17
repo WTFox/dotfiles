@@ -3,7 +3,7 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez").setup({
 	options = {
 		icons_enabled = true,
-		theme = "Catppuccin Mocha",
+		theme = "Tokyo Night Storm",
 		color_overrides = {},
 		section_separators = {
 			left = wezterm.nerdfonts.pl_left_hard_divider,

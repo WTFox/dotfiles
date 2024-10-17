@@ -16,7 +16,6 @@ alias gap="git add -p"
 alias gds="git diff --stat"
 alias gg="lazygit"
 alias gst="git status --short --branch"
-alias "gh?"="gh copilot"
 alias branch="git branch | grep -v \"^\*\" | fzf --height=20% --reverse --info=inline | xargs git switch"
 
 # == Networking ==
