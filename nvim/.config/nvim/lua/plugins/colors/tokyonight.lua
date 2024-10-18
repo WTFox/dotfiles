@@ -1,10 +1,21 @@
----@module "tokyonight"
-
 return {
   "folke/tokyonight.nvim",
   lazy = true,
-  ---@type Config
   opts = {
+    styles = {
+      -- Style to be applied to different syntax groups
+      -- Value is any valid attr-list value for `:help nvim_set_hl`
+      comments = { italic = true },
+      keywords = { italic = true },
+      functions = { italic = false },
+      variables = {},
+      -- Background styles. Can be "dark", "transparent" or "normal"
+      sidebars = "dark", -- style for sidebars, see below
+      floats = "dark", -- style for floating windows
+    },
+    day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
+    dim_inactive = true, -- dims inactive windows
+
     lualine_bold = true,
     --- You can override specific color groups to use other groups or a hex color
     --- function will be called with a ColorScheme table
