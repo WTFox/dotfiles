@@ -47,16 +47,15 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 # --color=marker:#D8DEE9 \
 # --color=spinner:#D8DEE9 \
 # --color=header:#81A1C1 \
-# "
 
 # tokyonight
 export FZF_DEFAULT_OPTS="\
   --ansi \
   --layout=reverse \
-  --border=none
+  --border=none \
   --color=bg+:#283457 \
-  --color=bg:#16161e \
-  --color=border:#27a1b9 \
+  --color=border:#1A1B26 \
+  --color=bg:#1A1B26 \
   --color=fg:#c0caf5 \
   --color=gutter:#16161e \
   --color=header:#ff9e64 \
