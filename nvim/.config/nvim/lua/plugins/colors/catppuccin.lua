@@ -38,8 +38,9 @@ return {
     end,
     color_overrides = {
       mocha = {
-        -- green = "#96d382",
+        green = "#96d382",
         -- base = "#0e0e13",
+        base = "#11111b",
         -- base = "#000000",
       },
       -- https://github.com/catppuccin/nvim/discussions/323#discussioncomment-5287724

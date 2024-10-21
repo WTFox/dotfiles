@@ -1,4 +1,4 @@
-local dark_theme = "tokyonight-night"
+local dark_theme = "catppuccin-mocha"
 local light_theme = "zenbones"
 
 -- Switch colorscheme based on the background option

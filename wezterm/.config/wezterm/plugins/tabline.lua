@@ -3,7 +3,6 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez").setup({
 	options = {
 		icons_enabled = true,
-		theme = "Tokyo Night Storm",
 		color_overrides = {},
 		section_separators = {
 			left = wezterm.nerdfonts.pl_left_hard_divider,
@@ -20,7 +19,9 @@ wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez").setup(
 	},
 	sections = {
 		tabline_a = { "mode" },
-		tabline_b = { "workspace" },
+		tabline_b = {
+			"workspace",
+		},
 		tabline_c = { " " },
 		tab_active = {
 			"tab_index",

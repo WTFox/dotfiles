@@ -1,6 +1,6 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 
-DARK_THEME = "tokyonight_night"
+DARK_THEME = "catppuccin-mocha-custom"
 LIGHT_THEME = "zenbones"
 
 local function scheme_for_appearance(appearance, dark, light)
