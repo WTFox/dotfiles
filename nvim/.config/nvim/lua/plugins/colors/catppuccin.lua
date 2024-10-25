@@ -68,9 +68,9 @@ return {
         surface2 = "#4d4d4d",
         surface1 = "#404040",
         surface0 = "#292929",
-        base = "#1d2021",
-        mantle = "#191b1c",
-        crust = "#141617",
+        base = "#1b1b1b",
+        mantle = "#171717",
+        crust = "#131313",
       },
       latte = {
         rosewater = "#c14a4a",
