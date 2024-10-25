@@ -53,3 +53,20 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 #   --color=scrollbar:#27a1b9 \
 #   --color=separator:#ff9e64 \
 #   --color=spinner:#ff007c"
+
+# Catppuccin Frappe (Gruvbox Material Dark)
+export FZF_DEFAULT_OPTS="\
+--color=fg:#ebdbb2 \
+--color=fg+:#ebdbb2 \
+--color=bg:#1b1b1b \
+--color=hl:#d3869b \
+--color=bg+:#1d2021 \
+--color=hl+:#d3869b \
+--color=info:#d8a657 \
+--color=prompt:#ea6962 \
+--color=pointer:#ea6962 \
+--color=marker:#a9b665 \
+--color=spinner:#89b482 \
+--color=header:#7daea3 \
+--color=border:#1b1b1b \
+--border=none"
