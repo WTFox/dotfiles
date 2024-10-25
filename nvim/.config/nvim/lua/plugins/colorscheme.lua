@@ -1,4 +1,4 @@
-local dark_theme = "catppuccin-mocha"
+local dark_theme = "catppuccin-frappe"
 local light_theme = "zenbones"
 
 -- Switch colorscheme based on the background option

@@ -2,9 +2,10 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 local fonts = require("lib.fonts")
 
 return {
-	font_size = 16,
+	font_size = 13,
+	line_height = 1.2,
 	font = wezterm.font(fonts.jetbrains_styled),
-	adjust_window_size_when_changing_font_size = false,
+	-- adjust_window_size_when_changing_font_size = false,
 	inactive_pane_hsb = {
 		saturation = 0.9,
 		brightness = 0.3,
@@ -21,7 +22,7 @@ return {
 		bottom = 0,
 	},
 	initial_cols = 150,
-	initial_rows = 32,
+	-- initial_rows = 30,
 	-- window_background_opacity = 0.8,
 	-- macos_window_background_blur = 50,
 }
