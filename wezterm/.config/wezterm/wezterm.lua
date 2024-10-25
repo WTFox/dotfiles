@@ -6,8 +6,7 @@ local behavior = require("behavior")
 local colors = require("colors")
 local events = require("events")
 local keys = require("keys")
-
-require("plugins")
+local plugins = require("plugins")
 
 local config = {}
 for _, module in ipairs({
@@ -25,5 +24,7 @@ if is_windows then
 	local windows_overrides = require("windows_overrides")
 	utils.merge_tables(config, windows_overrides)
 end
+
+plugins.tabline.apply_to_config(config)
 
 return config

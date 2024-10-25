@@ -1,14 +1,11 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 
-wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez").setup({
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+tabline.setup({
 	options = {
 		icons_enabled = true,
 		theme = "Gruvbox Material (Gogh)",
-		color_overrides = {
-			normal_mode = {
-				-- a = { bg = "#112233" },
-			},
-		},
+		color_overrides = {},
 		section_separators = {
 			left = wezterm.nerdfonts.pl_left_hard_divider,
 			right = wezterm.nerdfonts.pl_right_hard_divider,
@@ -51,3 +48,5 @@ wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez").setup(
 	},
 	extensions = {},
 })
+
+return tabline

@@ -1,1 +1,3 @@
-require("plugins.tabline")
+return {
+	tabline = require("plugins.tabline"),
+}

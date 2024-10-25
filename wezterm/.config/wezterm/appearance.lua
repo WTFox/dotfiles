@@ -12,9 +12,9 @@ return {
 	},
 	custom_block_glyphs = true,
 	use_fancy_tab_bar = false,
-	tab_bar_at_bottom = true,
-	default_cursor_style = "BlinkingBlock",
+	tab_bar_at_bottom = false,
 	hide_tab_bar_if_only_one_tab = false,
+	default_cursor_style = "BlinkingBlock",
 	window_padding = {
 		left = 0,
 		right = 0,
