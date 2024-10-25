@@ -22,7 +22,7 @@ return {
 		bottom = 0,
 	},
 	initial_cols = 150,
-	-- initial_rows = 30,
+	initial_rows = 30,
 	-- window_background_opacity = 0.8,
 	-- macos_window_background_blur = 50,
 }
