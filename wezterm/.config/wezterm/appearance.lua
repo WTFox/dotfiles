@@ -5,7 +5,7 @@ return {
 	font_size = 13,
 	line_height = 1.2,
 	font = wezterm.font(fonts.jetbrains_styled),
-	-- adjust_window_size_when_changing_font_size = false,
+	adjust_window_size_when_changing_font_size = false,
 	inactive_pane_hsb = {
 		saturation = 0.9,
 		brightness = 0.3,
