@@ -1,5 +1,5 @@
 local dark_theme = "catppuccin-frappe"
-local light_theme = "zenbones"
+local light_theme = "catppuccin-latte"
 
 -- Switch colorscheme based on the background option
 vim.api.nvim_create_autocmd("OptionSet", {
