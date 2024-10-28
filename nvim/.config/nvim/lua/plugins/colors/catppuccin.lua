@@ -33,7 +33,7 @@ return {
         -- WinSeparator = { fg = colors.lavender, bg = colors.base },
         -- DiffChange = { fg = colors.base, bg = colors.pink },
         ["@string.documentation"] = { link = "Comment" },
-        DashboardHeader = { fg = colors.yellow },
+        DashboardHeader = { fg = colors.peach },
       }
     end,
     color_overrides = {
