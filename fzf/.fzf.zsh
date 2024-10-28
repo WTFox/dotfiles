@@ -20,11 +20,11 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 # --color=marker:#e0d0b0,fg+:#95b9d0,prompt:#cba6f7,hl+:#f38ba8"
 
 # Catppuccin-Mocha
-# export FZF_DEFAULT_OPTS=" \
-# --color=bg+:#313244,bg:#11111b,spinner:#f5e0dc,hl:#f38ba8 \
-# --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-# --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
-# --color=border:#11111b"
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#11111b,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=border:#11111b"
 
 # Kanagawa Dragon
 # export FZF_DEFAULT_OPTS=" \
@@ -55,18 +55,18 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 #   --color=spinner:#ff007c"
 
 # Catppuccin Frappe (Gruvbox Material Dark)
-export FZF_DEFAULT_OPTS="\
---color=fg:#ebdbb2 \
---color=fg+:#ebdbb2 \
---color=bg:#1b1b1b \
---color=hl:#d3869b \
---color=bg+:#1d2021 \
---color=hl+:#d3869b \
---color=info:#d8a657 \
---color=prompt:#ea6962 \
---color=pointer:#ea6962 \
---color=marker:#a9b665 \
---color=spinner:#89b482 \
---color=header:#7daea3 \
---color=border:#1b1b1b \
---border=none"
+# export FZF_DEFAULT_OPTS="\
+# --color=fg:#ebdbb2 \
+# --color=fg+:#ebdbb2 \
+# --color=bg:#1b1b1b \
+# --color=hl:#d3869b \
+# --color=bg+:#1d2021 \
+# --color=hl+:#d3869b \
+# --color=info:#d8a657 \
+# --color=prompt:#ea6962 \
+# --color=pointer:#ea6962 \
+# --color=marker:#a9b665 \
+# --color=spinner:#89b482 \
+# --color=header:#7daea3 \
+# --color=border:#1b1b1b \
+# --border=none"
