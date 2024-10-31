@@ -3,6 +3,10 @@ local act = wezterm.action
 local utils = require("lib.utils")
 
 local key_mod_panes = "CTRL|SHIFT"
+local quick_select_patterns = {}
+for _, pattern in ipairs(wezterm.default_hyperlink_rules()) do
+	table.insert(quick_select_patterns, pattern.regex)
+end
 
 return {
 	keys = {
@@ -161,9 +165,7 @@ return {
 			mods = key_mod_panes,
 			action = wezterm.action({
 				QuickSelectArgs = {
-					patterns = {
-						"https?://\\S+",
-					},
+					patterns = quick_select_patterns,
 					action = wezterm.action_callback(function(window, pane)
 						local url = window:get_selection_text_for_pane(pane)
 						wezterm.log_info("opening: " .. url)
