@@ -1,5 +1,5 @@
 {
-  "CopilotChat.nvim": { "branch": "canary", "commit": "12ac3974daea98cd41e7d483bdb11cc8b6305623" },
+  "CopilotChat.nvim": { "branch": "canary", "commit": "d786775c8f246a37226731e75d8f0e497f4ba9c7" },
   "LazyVim": { "branch": "main", "commit": "73f14943bac5830905d715804ca581a91844272a" },
   "SchemaStore.nvim": { "branch": "main", "commit": "22ce6adf3c866a8c3d0c55956c4b8feeb4f10c32" },
   "auto-dark-mode.nvim": { "branch": "master", "commit": "d365beccca05ffcb01e50109f2adca2459c3995a" },
@@ -91,6 +91,6 @@
   "wezterm-types": { "branch": "main", "commit": "1518752906ba3fac0060d9efab6e4d3ec15d4b5a" },
   "which-key.nvim": { "branch": "main", "commit": "8badb359f7ab8711e2575ef75dfe6fbbd87e4821" },
   "yanky.nvim": { "branch": "main", "commit": "73215b77d22ebb179cef98e7e1235825431d10e4" },
-  "yazi.nvim": { "branch": "main", "commit": "6616bd5a24280d5a21d9110025451a69ebc9708e" },
+  "yazi.nvim": { "branch": "main", "commit": "bdc1e5a46a00a2388460145991d1d7e12a92afdc" },
   "zenbones.nvim": { "branch": "main", "commit": "88960c8aa3ad8aff0bcccdce7cd23629c7a3c510" }
 }
