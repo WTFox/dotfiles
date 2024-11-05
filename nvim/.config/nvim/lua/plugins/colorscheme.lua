@@ -1,4 +1,6 @@
-local dark_theme = "kanagawa-dragon"
+-- local dark_theme = "kanagawa-dragon"
+local dark_theme = "catppuccin-mocha"
+-- local dark_theme = "tokyonight-night"
 local light_theme = "kanagawa-light"
 
 -- Switch colorscheme based on the background option
