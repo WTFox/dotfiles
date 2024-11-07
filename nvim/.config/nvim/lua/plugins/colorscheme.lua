@@ -1,5 +1,6 @@
--- local dark_theme = "kanagawa-dragon"
-local dark_theme = "catppuccin-mocha"
+local dark_theme = "kanagawa-wave"
+-- local dark_theme = "catppuccin-mocha"
+-- local dark_theme = "obscure"
 -- local dark_theme = "tokyonight-night"
 local light_theme = "kanagawa-light"
 
@@ -33,6 +34,7 @@ return {
   },
   { import = "plugins.colors.catppuccin" },
   { import = "plugins.colors.kanagawa" },
+  { import = "plugins.colors.obscure" },
   { import = "plugins.colors.tokyonight" },
   { import = "plugins.colors.zenbones" },
   {

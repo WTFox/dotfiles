@@ -20,17 +20,23 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 # --color=marker:#e0d0b0,fg+:#95b9d0,prompt:#cba6f7,hl+:#f38ba8"
 
 # Catppuccin-Mocha
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#11111b,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
---color=border:#11111b"
+# export FZF_DEFAULT_OPTS=" \
+# --color=bg+:#313244,bg:#11111b,spinner:#f5e0dc,hl:#f38ba8 \
+# --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+# --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+# --color=border:#11111b"
 
 # Kanagawa Dragon
 # export FZF_DEFAULT_OPTS=" \
 #  --color=bg+:#313244,bg:#181616,spinner:#c8c093,hl:#c4746e \
 #  --color=fg:#c5c9c5,header:#c4746e,info:#a292a3,pointer:#c8c093\
 #  --color=marker:#c8c093,fg+:#c5c9c5,prompt:#a292a3,hl+:#c4746e"
+
+# Kanagawa Wave
+export FZF_DEFAULT_OPTS=" \
+  --color=bg+:#313244,bg:#1f1f28,spinner:#c8c093,hl:#957fb8 \
+  --color=fg:#dcd7ba,header:#957fb8,info:#a292a3,pointer:#c8c093 \
+  --color=marker:#c8c093,fg+:#dcd7ba,prompt:#a292a3,hl+:#957fb8"
 
 # tokyonight
 # export FZF_DEFAULT_OPTS="\
