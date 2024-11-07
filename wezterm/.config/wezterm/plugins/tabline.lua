@@ -4,7 +4,6 @@ local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabl
 tabline.setup({
 	options = {
 		icons_enabled = true,
-		theme = "Kanagawa (Gogh)",
 		color_overrides = {},
 		section_separators = {
 			left = wezterm.nerdfonts.pl_left_hard_divider,

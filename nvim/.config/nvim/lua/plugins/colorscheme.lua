@@ -35,8 +35,6 @@ return {
   },
   { import = "plugins.colors.catppuccin" },
   { import = "plugins.colors.kanagawa" },
-  { import = "plugins.colors.obscure" },
-  { import = "plugins.colors.rose-pine" },
   { import = "plugins.colors.tokyonight" },
   { import = "plugins.colors.zenbones" },
   {
