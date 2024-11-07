@@ -1,7 +1,8 @@
-local dark_theme = "kanagawa-wave"
--- local dark_theme = "catppuccin-mocha"
+-- local dark_theme = "kanagawa-wave"
+local dark_theme = "catppuccin-mocha"
 -- local dark_theme = "obscure"
 -- local dark_theme = "tokyonight-night"
+-- local dark_theme = "rose-pine"
 local light_theme = "kanagawa-light"
 
 -- Switch colorscheme based on the background option
@@ -35,6 +36,7 @@ return {
   { import = "plugins.colors.catppuccin" },
   { import = "plugins.colors.kanagawa" },
   { import = "plugins.colors.obscure" },
+  { import = "plugins.colors.rose-pine" },
   { import = "plugins.colors.tokyonight" },
   { import = "plugins.colors.zenbones" },
   {

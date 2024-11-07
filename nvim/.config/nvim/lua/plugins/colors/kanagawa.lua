@@ -17,6 +17,8 @@ return {
         all = {
           ui = {
             bg_gutter = "none",
+            bg = "#000000",
+            bg_dim = "#000000",
           },
         },
       },
