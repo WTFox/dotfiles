@@ -1,7 +1,8 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 
 -- DARK_THEME = "Kanagawa (Gogh)"
-DARK_THEME = "catppuccin-mocha-custom"
+-- DARK_THEME = "catppuccin-mocha-custom"
+DARK_THEME = "Catppuccin Mocha"
 -- DARK_THEME = "tokyonight_night"
 LIGHT_THEME = "Gruvbox light, hard (base16)"
 

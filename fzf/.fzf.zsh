@@ -20,18 +20,26 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 # --color=marker:#e0d0b0,fg+:#95b9d0,prompt:#cba6f7,hl+:#f38ba8"
 
 # Catppuccin-Mocha
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=border:#1e1e2e \
+--multi"
+
+# Catppuccin-Mocha Darker
 # export FZF_DEFAULT_OPTS=" \
 # --color=bg+:#313244,bg:#11111b,spinner:#f5e0dc,hl:#f38ba8 \
 # --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 # --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
 # --color=border:#11111b"
 
-# Catppuccin-Mocha - black bg
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#000000,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
---color=border:#000000"
+# Oledpuccin
+# export FZF_DEFAULT_OPTS=" \
+# --color=bg+:#313244,bg:#000000,spinner:#f5e0dc,hl:#f38ba8 \
+# --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+# --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+# --color=border:#000000"
 
 # Kanagawa Dragon
 # export FZF_DEFAULT_OPTS=" \
