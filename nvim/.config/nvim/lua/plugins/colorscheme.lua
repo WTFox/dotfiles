@@ -4,7 +4,7 @@ local dark_theme = "jellybeans-nvim"
 -- local dark_theme = "obscure"
 -- local dark_theme = "tokyonight-night"
 -- local dark_theme = "rose-pine"
-local light_theme = "kanagawa-light"
+local light_theme = "zenbones"
 
 -- Switch colorscheme based on the background option
 vim.api.nvim_create_autocmd("OptionSet", {
