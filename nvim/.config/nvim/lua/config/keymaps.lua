@@ -32,8 +32,8 @@ map("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text u
 map("n", "Q", "<esc>:q<cr>", { noremap = true, silent = true })
 
 -- delete vim terminal mappings
-del("t", "<c-l>")
-del("t", "<c-k>")
+-- del("t", "<c-l>")
+-- del("t", "<c-k>")
 
 -- floating terminal
 local lazyterm = function()

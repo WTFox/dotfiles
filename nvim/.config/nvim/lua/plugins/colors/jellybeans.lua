@@ -1,4 +1,4 @@
 return {
-  "metalelf0/jellybeans-nvim",
+  "wtfox/jellybeans-nvim",
   dependencies = { "rktjmp/lush.nvim" },
 }
