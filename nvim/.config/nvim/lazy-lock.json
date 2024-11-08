@@ -25,6 +25,7 @@
   "grug-far.nvim": { "branch": "main", "commit": "26415d3cc2fef99ccefa019cbc3969f404a83e70" },
   "incline.nvim": { "branch": "main", "commit": "16fc9c073e3ea4175b66ad94375df6d73fc114c0" },
   "indent-blankline.nvim": { "branch": "master", "commit": "04e44b09ee3ff189c69ab082edac1ef7ae2e256c" },
+  "jellybeans-nvim": { "branch": "main", "commit": "12a8687daf82bb4f69c5cb1dcc672bd9c5e6a094" },
   "kanagawa.nvim": { "branch": "master", "commit": "ad3dddecd606746374ba4807324a08331dfca23c" },
   "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
   "lazydev.nvim": { "branch": "main", "commit": "d5800897d9180cea800023f2429bce0a94ed6064" },
