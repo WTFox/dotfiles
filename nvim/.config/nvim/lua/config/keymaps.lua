@@ -2,9 +2,9 @@
 -- default keymaps that are always set: https://github.com/lazyvim/lazyvim/blob/main/lua/lazyvim/config/keymaps.lua
 -- add any additional keymaps here
 
-local Util = require("lazyvim.util")
 local map = vim.keymap.set
-local del = vim.keymap.del
+local term = require("snacks.terminal")
+local lazygit = require("snacks.lazygit")
 
 -- next quickfix item
 map("n", "]q", ":cnext<cr>zz", { noremap = true, silent = true, desc = "next quickfix" })
@@ -32,29 +32,23 @@ map("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text u
 map("n", "Q", "<esc>:q<cr>", { noremap = true, silent = true })
 
 -- delete vim terminal mappings
--- del("t", "<c-l>")
--- del("t", "<c-k>")
+-- vim.keymap.del("t", "<c-l>")
+-- vim.keymap.del("t", "<c-k>")
 
 -- floating terminal
-local lazyterm = function()
-  Util.terminal(nil, { cwd = Util.root() })
-end
-map("n", "<c-/>", lazyterm, { desc = "Terminal (root dir)" })
-map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
+map("n", "<c-/>", function()
+  term.toggle()
+end, { desc = "Terminal (root dir)" })
+-- map("n", "<c-_>", term, { desc = "which_key_ignore" })
 
 -- lazygit
 map("n", "<leader>gg", function()
-  Util.terminal({ "lazygit" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
+  lazygit.open()
 end, { desc = "Lazygit (root dir)" })
-
--- lazygit CWD
-map("n", "<leader>gG", function()
-  Util.terminal({ "lazygit" }, { esc_esc = false, ctrl_hjkl = false })
-end, { desc = "Lazygit (cwd)" })
 
 -- lazydocker
 map("n", "<leader>dd", function()
-  Util.terminal({ "lazydocker" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
+  term.toggle("lazydocker")
 end, { desc = "LazyDocker" })
 
 -- diff
