@@ -124,7 +124,7 @@ return {
         },
         InclineNormalNC = {
           default = true,
-          group = "NormalFloat",
+          group = "NormalFloatNC",
         },
       },
     },
