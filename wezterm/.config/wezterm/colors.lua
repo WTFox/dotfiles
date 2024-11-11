@@ -4,7 +4,8 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 -- DARK_THEME = "catppuccin-mocha-custom"
 DARK_THEME = "Jellybeans"
 -- DARK_THEME = "tokyonight_night"
-LIGHT_THEME = "Gruvbox light, hard (base16)"
+-- LIGHT_THEME = "Gruvbox light, hard (base16)"
+LIGHT_THEME = "zenbones"
 
 local function scheme_for_appearance(appearance, dark, light)
 	if appearance:find("Dark") then
