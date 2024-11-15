@@ -138,6 +138,11 @@ return {
 			action = act.TogglePaneZoomState,
 		},
 		{
+			key = ".",
+			mods = key_mod_panes,
+			action = act.ActivateCopyMode,
+		},
+		{
 			key = ";",
 			mods = "CTRL",
 			action = wezterm.action_callback(function(window, pane)
