@@ -2,6 +2,10 @@ return {
   "wtfox/jellybeans.nvim",
   opts = {
     on_highlights = function(hl, c)
+      hl.NormalFloat = {
+        bg = c.grey_one,
+      }
+
       -- hl.DiagnosticInfo = {
       --   fg = c.perano,
       -- }
