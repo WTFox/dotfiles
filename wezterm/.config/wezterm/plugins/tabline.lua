@@ -26,7 +26,7 @@ tabline.setup({
 				c = { fg = "#cdd6f4", bg = "#181825" },
 			},
 			tab = {
-				active = { fg = "#8fbfdc", bg = "#1f1f1f" },
+				active = { fg = "#1f1f1f", bg = "#e6a75a" },
 				inactive = { fg = "#cdd6f4", bg = "#151515" },
 				inactive_hover = { fg = "#f5c2e7", bg = "#181825" },
 			},
