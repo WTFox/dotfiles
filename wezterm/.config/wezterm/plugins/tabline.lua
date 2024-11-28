@@ -3,9 +3,34 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 tabline.setup({
 	options = {
-		theme = "Jellybeans",
 		icons_enabled = true,
-		color_overrides = {},
+		color_overrides = {
+			normal_mode = {
+				a = { fg = "#181825", bg = "#8fbfdc" },
+				b = { fg = "#b0d0f0", bg = "#1f1f1f" },
+				c = { fg = "#c6b6ee", bg = "#151515" },
+			},
+			copy_mode = {
+				a = { fg = "#181825", bg = "#fad07a" },
+				b = { fg = "#fad07a", bg = "#1f1f1f" },
+				c = { fg = "#c6b6ee", bg = "#151515" },
+			},
+			search_mode = {
+				a = { fg = "#181825", bg = "#d2ebbe" },
+				b = { fg = "#d2ebbe", bg = "#313244" },
+				c = { fg = "#c6b6ee", bg = "#151515" },
+			},
+			window_mode = {
+				a = { fg = "#181825", bg = "#cba6f7" },
+				b = { fg = "#cba6f7", bg = "#313244" },
+				c = { fg = "#cdd6f4", bg = "#181825" },
+			},
+			tab = {
+				active = { fg = "#8fbfdc", bg = "#1f1f1f" },
+				inactive = { fg = "#cdd6f4", bg = "#151515" },
+				inactive_hover = { fg = "#f5c2e7", bg = "#181825" },
+			},
+		},
 		section_separators = {
 			left = wezterm.nerdfonts.pl_left_hard_divider,
 			right = wezterm.nerdfonts.pl_right_hard_divider,
