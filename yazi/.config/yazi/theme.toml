@@ -59,7 +59,7 @@ inactive = { fg = "#e8e8d3" }
 [input]
 border = { fg = "#87d7ff" }
 title = {}
-value = { fg = "#700089" }
+value = { fg = "#c6b6ee" }
 selected = { bg = "#2B5B77" }
 
 [completion]
