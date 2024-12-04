@@ -47,7 +47,7 @@ progress_error = { fg = "#902020" }
 # Permissions
 permissions_t = { fg = "#8197bf" }
 permissions_r = { fg = "#e6a75a" }
-permissions_w = { fg = "#902020" }
+permissions_w = { fg = "#d98870" }
 permissions_x = { fg = "#99ad6a" }
 permissions_s = { fg = "#403c41" }
 
