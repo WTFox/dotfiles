@@ -6,6 +6,15 @@ local map = vim.keymap.set
 local term = require("snacks.terminal")
 local lazygit = require("snacks.lazygit")
 
+-- quick yank line/paste/comment prev line
+map("n", "yc", "yy:lua MiniComment.operator('n')<CR>p", { noremap = true, silent = true })
+
+-- quick clear highlighting
+map("n", "<C-[>", "<cmd>nohlsearch<cr>", { noremap = true, silent = true })
+
+-- quick change in word
+map("n", "<C-c>", "ciw")
+
 -- next quickfix item
 map("n", "]q", ":cnext<cr>zz", { noremap = true, silent = true, desc = "next quickfix" })
 
