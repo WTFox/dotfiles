@@ -83,12 +83,21 @@ $character\
 """
 
 add_newline = true
-# palette = "catppuccin_mocha"
+palette = "jellybeans"
 
 [character]
 format = "$symbol "
-success_symbol = "[|>](bold yellow)"
-error_symbol = "[|>](red)"
+success_symbol = "[❯❯](bold bright-orange)"
+error_symbol = "[❯❯](bright-red)"
+
+[directory]
+home_symbol = "~"
+truncation_length = 3
+fish_style_pwd_dir_length = 1
+truncation_symbol = "…/"
+read_only = "🔒"
+style = "bold bright-orange"
+format = '[\[ $path \]]($style)[$read_only]($read_only_style)'
 
 [env_var.VIMSHELL] # vim subshell
 format = "[$env_value]($style)"
@@ -96,7 +105,7 @@ style = 'green'
 
 [sudo]
 format = "[$symbol]($style)"
-style = "italic bright-purple"
+style = "italic purple"
 symbol = "◇┈"
 disabled = false
 
@@ -105,15 +114,6 @@ style_user = "yellow bold"
 style_root = "purple bold italic"
 format = "[$user]($style) ▻ "
 disabled = false
-
-[directory]
-home_symbol = "~"
-truncation_length = 2
-fish_style_pwd_dir_length = 3
-truncation_symbol = "…/"
-read_only = "🔒"
-style = "bold blue"
-format = '[\[ $path \]]($style)[$read_only]($read_only_style)'
 
 [cmd_duration]
 min_time = 500
@@ -154,8 +154,8 @@ style = "dimmed white"
 
 [git_branch]
 format = "[ $symbol $branch(:$remote_branch) ]($style)"
-symbol = "[](bold purple)"
-style = "purple"
+symbol = "[](purple)"
+style = "italic purple"
 
 [git_status]
 style = "bright-blue"
@@ -172,12 +172,12 @@ format = """([$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted
 # untracked = "[◌◦](italic bright-yellow)"
 ahead = "​"
 behind = "​"
-conflicted = "[✖ ](italic red)"
-deleted = "[  ](italic red)"
+conflicted = "[✖ ](italic bright-red)"
+deleted = "[  ](italic bright-red)"
 diverged = "​"
-modified = "[  ](italic red)"
+modified = "[  ](italic bright-red)"
 renamed = "​"
-staged = "[  ](italic green)"
+staged = "[  ](italic bright-green)"
 stashed = "​"
 untracked = "[  ](italic bright-yellow)"
 
@@ -223,9 +223,8 @@ version_format = "${major}.${minor}"
 format = " [$symbol$workspace]($style)"
 
 [aws]
-format = " [$symbol $profile $region]($style)"
-style = "italic blue"
-symbol = "☁️"
+format = " [<$profile>]($style)"
+style = "dimmed italic orange"
 
 [buf]
 symbol = "■ "
@@ -287,35 +286,51 @@ format = " nix [$symbol$state $name]($style)"
 symbol = "◇ "
 format = " spack [$symbol$environment]($style)"
 
-# [palettes.catppuccin_mocha]
-# rosewater = "#f5e0dc"
-# flamingo = "#f2cdcd"
-# pink = "#f5c2e7"
-# bright-pink = "#f5c2e7"
-# mauve = "#cba6f7"
-# purple = "#cba6f7"
-# red = "#f38ba8"
-# bright-red = "#eba0ac"
-# maroon = "#eba0ac"
-# peach = "#fab387"
-# yellow = "#f9e2af"
-# green = "#a6e3a1"
-# teal = "#94e2d5"
-# sky = "#89dceb"
-# sapphire = "#74c7ec"
-# bright-blue = "#74c7ec"
-# blue = "#89b4fa"
-# lavender = "#b4befe"
-# bright-purple = "#b4befe"
-# text = "#cdd6f4"
-# subtext1 = "#bac2de"
-# subtext0 = "#a6adc8"
-# overlay2 = "#9399b2"
-# overlay1 = "#7f849c"
-# overlay0 = "#6c7086"
-# surface2 = "#585b70"
-# surface1 = "#45475a"
-# surface0 = "#313244"
-# base = "#0e0e13"
-# mantle = "#181825"
-# crust = "#11111b"
+[palettes.jellybeans]
+orange = "#d98870"
+bright-orange = "#e6a75a"
+white = "#e8e8d3"
+bright-white = "#dddddd"
+purple = "#c6b6ee"
+bright-purple = "#dcbdfb"
+yellow = "#fad07a"
+bright-yellow = "#dad085"
+blue = "#8197bf"
+bright-blue = "#b0d0f0"
+green = "#437019"
+bright-green = "#afd787"
+red = "#902020"
+bright-red = "#cc88a3"
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+bright-pink = "#f5c2e7"
+mauve = "#cba6f7"
+purple = "#cba6f7"
+red = "#f38ba8"
+bright-red = "#eba0ac"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+bright-blue = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+bright-purple = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#0e0e13"
+mantle = "#181825"
+crust = "#11111b"
