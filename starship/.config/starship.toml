@@ -87,8 +87,8 @@ palette = "jellybeans"
 
 [character]
 format = "$symbol "
-success_symbol = "[❯❯](bold bright-orange)"
-error_symbol = "[❯❯](bright-red)"
+success_symbol = "[ 󰄾 ](bold bright-orange)"
+error_symbol = "[ 󰄾 ](bright-red)"
 
 [directory]
 home_symbol = "~"
@@ -96,8 +96,8 @@ truncation_length = 3
 fish_style_pwd_dir_length = 1
 truncation_symbol = "…/"
 read_only = "🔒"
-style = "bold bright-orange"
-format = '[\[ $path \]]($style)[$read_only]($read_only_style)'
+style = "bold dimmed bright-blue"
+format = '[ \[ $path \]]($style)[$read_only]($read_only_style)'
 
 [env_var.VIMSHELL] # vim subshell
 format = "[$env_value]($style)"
@@ -117,7 +117,7 @@ disabled = false
 
 [cmd_duration]
 min_time = 500
-format = "[$duration ](italic bright-yellow)"
+format = "[ $duration](italic bright-yellow)"
 
 [jobs]
 format = "[ $symbol$number]($style)"
@@ -153,9 +153,9 @@ threshold = 70
 style = "dimmed white"
 
 [git_branch]
-format = "[ $symbol $branch(:$remote_branch) ]($style)"
-symbol = "[](purple)"
-style = "italic purple"
+format = "[ $symbol$branch(:$remote_branch) ]($style)"
+symbol = "[ ](dimmed purple)"
+style = "italic dimmed purple"
 
 [git_status]
 style = "bright-blue"
