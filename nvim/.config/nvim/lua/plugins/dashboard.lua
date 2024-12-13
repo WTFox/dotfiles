@@ -1,3 +1,6 @@
+if true then
+  return {}
+end
 local three_skulls = [[
                                                                 
                                                                 

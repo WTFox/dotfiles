@@ -1,8 +1,5 @@
 return {
   {
-    "CopilotC-Nvim/CopilotChat.nvim",
-  },
-  {
     "zbirenbaum/copilot.lua",
     opts = {
       panel = {

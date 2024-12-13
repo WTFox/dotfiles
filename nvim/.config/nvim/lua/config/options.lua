@@ -29,5 +29,7 @@ vim.opt.guicursor = "n-v-c-sm-ve:block,i-ci:ver20,r-cr-o:hor20,a:blinkwait700-bl
 vim.opt.pumblend = 0 -- for cmp menu
 vim.opt.winblend = 0 -- for documentation popup
 
+vim.g.snacks_animate = false
+
 -- vim.opt.number = true
 -- vim.opt.relativenumber = true
