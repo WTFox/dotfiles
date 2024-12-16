@@ -13,7 +13,7 @@ find_position = { fg = "#87d7ff", bg = "#2B5B77", bold = true }
 marker_copied = { fg = "#afd787", bg = "#afd787" }
 marker_cut = { fg = "#902020", bg = "#902020" }
 marker_marked = { fg = "#c6b6ee", bg = "#c6b6ee" }
-marker_selected = { fg = "#8197bf", bg = "#8197bf" }
+marker_selected = { fg = "#151515", bg = "#e6a75a" }
 
 # Tab
 tab_active = { fg = "#e8e8d3", bg = "#1c1c1c" }
