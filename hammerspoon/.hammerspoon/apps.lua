@@ -3,14 +3,13 @@ local utils = require("utils")
 local prefix = { "ctrl" }
 local mappings = {
 	{ key = "`", app = "wezterm" },
+	{ key = "1", app = "Firefox Nightly" },
 }
 
 if utils.on_personal_laptop() then
-	table.insert(mappings, { key = "1", app = "Firefox Nightly" })
 	table.insert(mappings, { key = "2", app = "Discord" })
 	table.insert(mappings, { key = "3", app = "Spotify" })
 else
-	table.insert(mappings, { key = "1", app = "Google Chrome" })
 	table.insert(mappings, { key = "2", app = "Slack" })
 	table.insert(mappings, { key = "3", app = "Microsoft Outlook" })
 	table.insert(mappings, { key = "4", app = "zoom.us" })
