@@ -13,14 +13,12 @@ return {
           module = "blink-cmp-copilot",
         },
       },
-      completion = {
-        enabled_providers = {
-          "copilot",
-          "lsp",
-          "path",
-          "snippets",
-          "buffer",
-        },
+      default = {
+        "copilot",
+        "lsp",
+        "path",
+        "snippets",
+        "buffer",
       },
     },
   },
