@@ -28,19 +28,19 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 # --multi"
 
 # Jellybeans
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#202020,bg:#151515,spinner:#ffafaf,hl:#ff8700 \
---color=fg:#dddddd,header:#ffaf5f,info:#ff8700,pointer:#ffafaf \
---color=marker:#ff5f87,fg+:#c6b6ee,prompt:#ff8700,hl+:#ff8700 \
---color=border:#151515 \
---multi"
+# export FZF_DEFAULT_OPTS=" \
+# --color=bg+:#202020,bg:#151515,spinner:#ffafaf,hl:#ff8700 \
+# --color=fg:#dddddd,header:#ffaf5f,info:#ff8700,pointer:#ffafaf \
+# --color=marker:#ff5f87,fg+:#c6b6ee,prompt:#ff8700,hl+:#ff8700 \
+# --color=border:#151515 \
+# --multi"
 
 # Catppuccin-Mocha Darker
-# export FZF_DEFAULT_OPTS=" \
-# --color=bg+:#313244,bg:#11111b,spinner:#f5e0dc,hl:#f38ba8 \
-# --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-# --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
-# --color=border:#11111b"
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#11111b,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=border:#11111b"
 
 # Oledpuccin
 # export FZF_DEFAULT_OPTS=" \

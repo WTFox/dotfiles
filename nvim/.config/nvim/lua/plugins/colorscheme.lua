@@ -1,6 +1,6 @@
 -- local dark_theme = "kanagawa-wave"
--- local dark_theme = "catppuccin-mocha"
-local dark_theme = "jellybeans"
+local dark_theme = "catppuccin-mocha"
+-- local dark_theme = "jellybeans"
 -- local dark_theme = "obscure"
 -- local dark_theme = "tokyonight-night"
 -- local dark_theme = "rose-pine"
