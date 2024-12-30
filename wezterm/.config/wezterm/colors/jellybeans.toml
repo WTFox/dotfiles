@@ -24,6 +24,7 @@ ansi = [
   "#2B5B77",
   "#c7c7c7",
 ]
+
 brights = [
   "#404040",
   "#cf6a4c",
@@ -35,10 +36,16 @@ brights = [
   "#ffffff",
 ]
 
+[colors.indexed]
+16 = "#cf6a4c"
+17 = "#d8ad4c"
+18 = "#1c1c1c"
+19 = "#303030"
+20 = "#636363"
+21 = "#c7c7c7"
+
 [colors.tab_bar]
 background = "#151515"
-
-[colors.tab]
 active_tab.bg_color = "#1c1c1c"
 active_tab.fg_color = "#e8e8d3"
 inactive_tab.bg_color = "#101010"

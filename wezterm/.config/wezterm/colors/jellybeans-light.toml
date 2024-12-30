@@ -1,0 +1,59 @@
+[metadata]
+name = "jellybeans-light"
+author = "A. Fox"
+origin_url = ""
+wezterm_version = "20220807-113146-c2fee766"
+
+[colors]
+foreground = "#262626"
+background = "#fdf6e3"
+cursor_fg = "#fdf6e3"
+cursor_bg = "#262626"
+cursor_border = "#262626"
+selection_fg = "#fdf6e3"
+selection_bg = "#787878"
+compose_cursor = "#262626"
+visual_bell = "#ffe5ea"
+
+ansi = [
+  "#f5f5f5", # cod_grey (black)
+  "#954d3b", # raw_sienna (red)
+  "#386014", # mantis (green)
+  "#876820", # brandy (yellow)
+  "#234291", # perano (blue)
+  "#6a4abd", # biloba_flower (magenta)
+  "#2B5B77", # calypso (cyan)
+  "#444444", # alto (white)
+]
+
+brights = [
+  "#787878", # grey (bright black)
+  "#a02020", # old_brick (bright red)
+  "#457039", # highland (bright green)
+  "#a66a10", # goldenrod (bright yellow)
+  "#2952a3", # ship_cove (bright blue)
+  "#540063", # ripe_plum (bright magenta)
+  "#3a596a", # hoki (bright cyan)
+  "#262626", # foreground (bright white)
+]
+
+[colors.indexed]
+16 = "#904070" # wewak
+17 = "#556633" # costa_del_sol
+18 = "#e0dcd7" # grey_one
+19 = "#595959" # grey_two
+20 = "#7a8490" # regent_grey
+21 = "#f8f8f8" # mine_shaft
+
+[colors.tab_bar]
+background = "#fdf6e3"
+active_tab.bg_color = "#e0dcd7"
+active_tab.fg_color = "#262626"
+inactive_tab.bg_color = "#f5f5f5"
+inactive_tab.fg_color = "#787878"
+inactive_tab_hover.bg_color = "#e0dcd7"
+inactive_tab_hover.fg_color = "#505860"
+new_tab.bg_color = "#f5f5f5"
+new_tab.fg_color = "#787878"
+new_tab_hover.bg_color = "#e0dcd7"
+new_tab_hover.fg_color = "#505860"
