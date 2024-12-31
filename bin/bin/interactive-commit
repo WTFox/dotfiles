@@ -1,0 +1,118 @@
+#!/bin/zsh
+
+# Store original parameters to pass through to git commit
+PARAMS="$@"
+
+# Commit types following conventional commits specification
+types=(
+  "feat:     A new feature"
+  "fix:      A bug fix"
+  "docs:     Documentation only changes"
+  "style:    Changes that do not affect the meaning of the code"
+  "refactor: A code change that neither fixes a bug nor adds a feature"
+  "perf:     A code change that improves performance"
+  "test:     Adding missing tests or correcting existing tests"
+  "build:    Changes that affect the build system or external dependencies"
+  "ci:       Changes to our CI configuration files and scripts"
+  "chore:    Other changes that do not modify src or test files"
+  "revert:   Reverts a previous commit"
+)
+
+if ! command -v fzf >/dev/null 2>&1; then
+  echo "Error: fzf is not installed. Please install it first."
+  exit 1
+fi
+
+if ! command -v jq >/dev/null 2>&1; then
+  echo "Error: jq is not installed. Please install it first."
+  exit 1
+fi
+
+# Get staged files
+staged_files=$(git diff --cached --name-only)
+if [ -z "$staged_files" ]; then
+  echo "No files are staged for commit. Use 'git add' first."
+  exit 1
+fi
+
+# Select commit type using fzf
+type=$(printf "%s\n" "${types[@]}" | fzf --height=40% --prompt="Select commit type > " | cut -d: -f1)
+if [ -z "$type" ]; then
+  echo "No commit type selected. Aborting."
+  exit 1
+fi
+
+# Extract unique scopes from recent commits
+recent_scopes=$(git log -50 --format=format:'%s' | jq -R 'capture("^(?<type>[a-z]+)\\((?<scope>[^)]+)\\):") | .scope' | sed s/\"//g | sort -u)
+
+# Add a "manual entry" option and format scopes for fzf
+scopes_list="[manual entry]"
+if [ ! -z "$recent_scopes" ]; then
+  scopes_list="$scopes_list\n$recent_scopes"
+fi
+
+# Select scope using fzf
+selected_scope=$(echo -e "$scopes_list" | fzf --height=40% --prompt="Select or enter scope (esc to skip) > ")
+
+# Handle scope selection
+scope=""
+if [ ! -z "$selected_scope" ]; then
+  if [ "$selected_scope" = "[manual entry]" ]; then
+    echo -n "Enter scope: "
+    read scope
+  else
+    scope=$selected_scope
+  fi
+fi
+
+# Get the commit message
+echo -n "Commit message: "
+read message
+
+# Format the commit message according to conventional commits
+if [ -n "$scope" ]; then
+  commit_msg="$type($scope): $message"
+else
+  commit_msg="$type: $message"
+fi
+
+# Show breaking changes prompt
+echo -n "Is this a breaking change? (y/N): "
+read breaking
+if [[ $breaking =~ ^[Yy]$ ]]; then
+  echo "Describe the breaking changes:"
+  read breaking_msg
+  commit_msg="$commit_msg
+
+BREAKING CHANGE: $breaking_msg"
+fi
+
+# Show the commit body prompt
+echo -n "Would you like to add a detailed body? (y/N): "
+read add_body
+if [[ $add_body =~ ^[Yy]$ ]]; then
+  echo "Enter the commit body (press Ctrl+D when done):"
+  body=$(cat)
+  if [ ! -z "$body" ]; then
+    commit_msg="$commit_msg
+
+$body"
+  fi
+fi
+
+# Show the final commit message and confirm
+echo -e "\nFinal commit message:"
+echo -e "$commit_msg"
+echo -n "Commit with this message? (Y/n): "
+read confirm
+if [[ $confirm =~ ^[Nn]$ ]]; then
+  echo "Commit aborted."
+  exit 1
+fi
+
+# Commit the changes with any additional parameters
+echo -e "$commit_msg" | git commit -F - $PARAMS
+
+echo "Changes committed successfully!"
+
+# vim: set ft=sh:
