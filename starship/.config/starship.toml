@@ -21,6 +21,7 @@ truncate_to_repo = true
 truncation_length = 3
 format = "[ $path]($style)[$read_only]($read_only_style) "
 style = "bright-blue"
+fish_style_pwd_dir_length = 1
 
 [character]
 success_symbol = "[❯](bright-purple)"
