@@ -2,6 +2,7 @@ format = """
 $username\
 $hostname\
 $directory\
+$aws\
 $python\
 $rust\
 $nodejs\
@@ -18,6 +19,7 @@ right_format = "$cmd_duration"
 [directory]
 truncate_to_repo = true
 truncation_length = 3
+format = "[ $path]($style)[$read_only]($read_only_style) "
 style = "bright-blue"
 
 [character]
@@ -26,7 +28,7 @@ error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
 
 [git_branch]
-format = "[$branch]($style)"
+format = " [$branch]($style)"
 style = "bright-black"
 
 [git_status]
@@ -43,6 +45,10 @@ stashed = "≡"
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
+
+[aws]
+format = "[aws:$profile]($style) "
+style = "bright-yellow"
 
 [cmd_duration]
 format = "[$duration]($style) "
