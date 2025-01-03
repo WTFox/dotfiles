@@ -59,17 +59,17 @@ defaults write com.apple.dock show-recents -bool false
 
 # Menu bar: hide the Time Machine, User icons, but show the volume Icon.
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
-	defaults write "${domain}" dontAutoLoad -array \
-		"/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-		"/System/Library/CoreServices/Menu Extras/User.menu"
+  defaults write "${domain}" dontAutoLoad -array \
+    "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
+    "/System/Library/CoreServices/Menu Extras/User.menu"
 done
 
 defaults write com.apple.systemuiserver menuExtras -array \
-	"/System/Library/CoreServices/Menu Extras/Volume.menu" \
-	"/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
-	"/System/Library/CoreServices/Menu Extras/AirPort.menu" \
-	"/System/Library/CoreServices/Menu Extras/Battery.menu" \
-	"/System/Library/CoreServices/Menu Extras/Clock.menu"
+  "/System/Library/CoreServices/Menu Extras/Volume.menu" \
+  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+  "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+  "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+  "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
 ##################
 ### Terminal
@@ -140,7 +140,7 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Increase mouse tracking speed
-defaults write com.apple.mouse.scaling -float 6
+defaults write -g com.apple.mouse.scaling 10.0
 
 ###############################################################################
 # Mac App Store                                                               #
