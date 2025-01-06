@@ -12,7 +12,7 @@ install:
 	./bootstrap.sh
 
 push:
-	@git add . && git commit -m "updates" && git push origin main
+	@git add . && git commit -m "chore(lazy): updates" && git push origin main
 
 pull:
 	@git pull origin main
