@@ -22,7 +22,12 @@ return {
         },
       },
     },
-    indent = {},
+    indent = {
+      enabled = false,
+      animate = {
+        enabled = false,
+      },
+    },
     dashboard = {
       preset = {
         header = [[
