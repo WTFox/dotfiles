@@ -21,6 +21,9 @@ vim.filetype.add({
   },
 })
 
+-- don't show tab indicators
+vim.opt.listchars = { tab = "  " }
+
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.root_spec = { "cwd" }
 vim.opt.guicursor = "n-v-c-sm-ve:block,i-ci:ver20,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
