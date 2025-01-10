@@ -52,8 +52,10 @@ zle -N _run-cdi
 bindkey "^G" _run-cdi
 
 run_ya() {
+    zle -I
+    exec < /dev/tty
+    yazi
     zle reset-prompt
-    ya
 }
 zle -N run_ya
 bindkey "^O" run_ya
