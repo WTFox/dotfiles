@@ -3,5 +3,15 @@ use = "boydaihungst/mediainfo"
 rev = "ddfd5ec"
 hash = ""
 
+[[plugin.deps]]
+use = "dedukun/bookmarks"
+rev = "202e450"
+hash = ""
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "4053c8c"
+hash = ""
+
 [flavor]
 deps = []
