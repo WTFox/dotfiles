@@ -2,6 +2,7 @@ return {
   "wtfox/jellybeans.nvim",
   -- dir = "~/dev/jellybeans.nvim",
   opts = {
+    italics = false,
     -- on_colors = function(c)
     -- end,
 
