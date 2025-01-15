@@ -1,5 +1,15 @@
 return {
-	-- show hidden files in neotree by default
+	-- show hidden files in neotree and snacks picker by default
+	{
+		"folke/snacks.nvim",
+		opts = {
+			picker = {
+				buffers = { hidden = true },
+				files = { hidden = true },
+				grep = { hidden = true },
+			},
+		},
+	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		opts = {
