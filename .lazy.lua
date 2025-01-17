@@ -4,9 +4,11 @@ return {
 		"folke/snacks.nvim",
 		opts = {
 			picker = {
-				buffers = { hidden = true },
-				files = { hidden = true },
-				grep = { hidden = true },
+				sources = {
+					buffers = { hidden = true },
+					files = { hidden = true },
+					grep = { hidden = true },
+				},
 			},
 		},
 	},
