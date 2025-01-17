@@ -105,3 +105,5 @@ layout_uv() {
     export UV_ACTIVE=1  # or VENV_ACTIVE=1
     export VIRTUAL_ENV
 }
+
+# vim: set ft=sh:
