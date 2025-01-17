@@ -3,6 +3,26 @@ local Snacks = require("snacks")
 return {
   "folke/snacks.nvim",
   opts = {
+    picker = {
+      layout = {
+        layout = {
+          backdrop = false,
+          box = "vertical",
+          row = -1,
+          width = 0,
+          height = 0.7,
+          border = "top",
+          title = " {source} {live}",
+          title_pos = "left",
+          { win = "input", height = 1, border = "bottom" },
+          {
+            box = "horizontal",
+            { win = "list", border = "none" },
+            { win = "preview", width = 0.6, border = "left" },
+          },
+        },
+      },
+    },
     scope = {
       treesitter = {
         blocks = {
