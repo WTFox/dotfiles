@@ -66,9 +66,9 @@ install_apps() {
   sudo apt update
   sudo apt install snapd
 
-  sudo snap install diff-so-fancy
+  sudo snap install diff-so-fancy direnv
 
-	sudo apt-get install -y $(cat ./_bootstrap/linux-apps.txt)
+	sudo apt install -y $(cat ./_bootstrap/linux-apps.txt)
 
 	# install gh
 	type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)

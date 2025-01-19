@@ -4,3 +4,4 @@ bat
 tmux
 neofetch
 pipx
+zoxide

@@ -23,13 +23,13 @@ install_stow
 install_dotfiles
 install_zsh_and_oh_my_zsh
 install_zoxide
+install_apps
 install_python_and_pyenv
 install_uv
 install_node_and_nvm
 install_rust
 install_go
 install_nvim
-install_apps
 
 echo "All done! Please run configure_git manually." $green
 
