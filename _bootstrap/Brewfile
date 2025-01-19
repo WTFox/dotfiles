@@ -72,6 +72,7 @@ brew "tree"
 brew "wget"
 brew "xsv"
 brew "yt-dlp"
+brew "zoxide"
 
 cask "1password"
 cask "aerial"
