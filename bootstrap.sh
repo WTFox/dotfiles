@@ -33,5 +33,9 @@ install_apps
 
 echo "All done! Please run configure_git manually." $green
 
-chsh -s $(which zsh)
-exec zsh -l
+if [ "$SHELL" != "$(which zsh)" ]; then
+    chsh -s $(which zsh)
+    echo "Shell changed to zsh. Please log out and log back in for changes to take effect."
+else
+    echo "zsh is already your default shell"
+fi
