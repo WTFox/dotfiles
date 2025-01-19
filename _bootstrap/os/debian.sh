@@ -6,8 +6,10 @@ update_package_manager() {
 }
 
 install_zsh_and_oh_my_zsh() {
-	sudo apt-get install -y zsh
-	install_oh_my_zsh
+  if ! command -v zsh &> /dev/null; then
+      sudo apt-get install -y zsh
+  fi
+  install_oh_my_zsh
 }
 
 install_stow() {
@@ -57,6 +59,11 @@ install_pyenv_requirements() {
 }
 
 install_apps() {
+  sudo apt update
+  sudo apt install snapd
+
+  sudo snap install diff-so-fancy
+
 	sudo apt-get install -y $(cat ./_bootstrap/linux-apps.txt)
 
 	# install gh
