@@ -34,7 +34,17 @@ install_apps
 echo "All done! Please run configure_git manually." $green
 
 if [ "$SHELL" != "$(which zsh)" ]; then
-    chsh -s $(which zsh)
+    # Replace the current chsh line with:
+    if ! sudo chsh -s "$(which zsh)" "$USER"; then
+        echo "Failed to change shell to zsh. Check if zsh is in /etc/shells"
+        # Add zsh to /etc/shells if it's not there
+        if ! grep -q "$(which zsh)" /etc/shells; then
+            echo "Adding zsh to /etc/shells..."
+            echo "$(which zsh)" | sudo tee -a /etc/shells
+            # Try changing shell again
+            sudo chsh -s "$(which zsh)" "$USER"
+        fi
+    fi
     echo "Shell changed to zsh. Please log out and log back in for changes to take effect."
 else
     echo "zsh is already your default shell"

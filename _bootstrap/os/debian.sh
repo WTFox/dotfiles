@@ -8,6 +8,10 @@ update_package_manager() {
 install_zsh_and_oh_my_zsh() {
   if ! command -v zsh &> /dev/null; then
       sudo apt-get install -y zsh
+      # Ensure zsh is in /etc/shells
+      if ! grep -q "$(which zsh)" /etc/shells; then
+          echo "$(which zsh)" | sudo tee -a /etc/shells
+      fi
   fi
   install_oh_my_zsh
 }

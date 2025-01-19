@@ -60,6 +60,9 @@ install_dotfiles() {
 install_oh_my_zsh() {
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
         KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        # Ensure correct ownership
+        sudo chown "$USER:$(id -gn)" "$HOME/.zshrc"
+        sudo chmod 644 "$HOME/.zshrc"
         # Clone plugins only if they don't exist
         [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ] && \
             git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
