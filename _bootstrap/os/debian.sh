@@ -64,9 +64,9 @@ install_pyenv_requirements() {
 
 install_apps() {
   sudo apt update
-  sudo apt install snapd
+  sudo apt install snapd direnv
 
-  sudo snap install diff-so-fancy direnv
+  sudo snap install diff-so-fancy
 
   sudo apt install -y $(cat ./_bootstrap/linux-apps.txt)
 
