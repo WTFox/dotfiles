@@ -86,7 +86,6 @@ install_components() {
   local components=(
     "update_package_manager"
     "install_git_and_gh"
-    "install_direnv"
     "install_starship"
     "install_fzf"
     "install_stow"
