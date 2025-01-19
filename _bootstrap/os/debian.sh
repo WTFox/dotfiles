@@ -64,10 +64,8 @@ install_pyenv_requirements() {
 
 install_apps() {
   sudo apt update
-  sudo apt install snapd direnv
-
+  sudo apt install -y snapd direnv
   sudo snap install diff-so-fancy
-
   sudo apt install -y $(cat ./_bootstrap/linux-apps.txt)
 
   # install gh
