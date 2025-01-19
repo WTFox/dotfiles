@@ -34,44 +34,18 @@ install_nvim
 echo "All done! Please run configure_git manually." $green
 
 if [ "$SHELL" != "$(which zsh)" ]; then
-    # Replace the current chsh line with:
-    if ! sudo chsh -s "$(which zsh)" "$USER"; then
-        echo "Failed to change shell to zsh. Check if zsh is in /etc/shells"
-        # Add zsh to /etc/shells if it's not there
-        if ! grep -q "$(which zsh)" /etc/shells; then
-            echo "Adding zsh to /etc/shells..."
-            echo "$(which zsh)" | sudo tee -a /etc/shells
-            # Try changing shell again
-            sudo chsh -s "$(which zsh)" "$USER"
-        fi
+  # Replace the current chsh line with:
+  if ! sudo chsh -s "$(which zsh)" "$USER"; then
+    echo "Failed to change shell to zsh. Check if zsh is in /etc/shells"
+    # Add zsh to /etc/shells if it's not there
+    if ! grep -q "$(which zsh)" /etc/shells; then
+      echo "Adding zsh to /etc/shells..."
+      echo "$(which zsh)" | sudo tee -a /etc/shells
+      # Try changing shell again
+      sudo chsh -s "$(which zsh)" "$USER"
     fi
-    echo "Shell changed to zsh. Please log out and log back in for changes to take effect."
+  fi
+  echo "Shell changed to zsh. Please log out and log back in for changes to take effect."
 else
-    echo "zsh is already your default shell"
+  echo "zsh is already your default shell"
 fi
-
-echo "Current shell: $SHELL"
-echo "Path to zsh: $(which zsh)"
-
-# Check if zsh is properly installed
-if ! command -v zsh &> /dev/null; then
-    echo "Error: zsh is not installed or not in PATH"
-    exit 1
-fi
-
-# Check if zsh is in /etc/shells
-if ! grep -q "$(which zsh)" /etc/shells; then
-    echo "Adding zsh to /etc/shells..."
-    echo "$(which zsh)" | sudo tee -a /etc/shells
-fi
-
-# Try to change shell
-if ! sudo chsh -s "$(which zsh)" "$USER"; then
-    echo "Failed to change shell. Please check:"
-    echo "1. Is zsh installed? $(which zsh)"
-    echo "2. Is zsh in /etc/shells? $(grep zsh /etc/shells)"
-    echo "3. Current user's shell: $(getent passwd $USER | cut -d: -f7)"
-    exit 1
-fi
-
-echo "Shell successfully changed to zsh. Please log out and log back in."
