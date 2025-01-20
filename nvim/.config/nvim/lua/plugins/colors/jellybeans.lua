@@ -49,6 +49,10 @@ return {
         fg = c.background,
         bg = c.biloba_flower,
       }
+      hl.SnacksPickerFlag = {
+        bg = c.koromiko,
+        fg = c.ripe_plum,
+      }
     end,
   },
 }
