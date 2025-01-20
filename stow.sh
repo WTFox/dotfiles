@@ -8,6 +8,7 @@ directories_to_stow=(
   "fonts/"
   "fzf/"
   "git/"
+  "ghostty/"
   "kitty/"
   "nvim/"
   "neofetch/"
