@@ -54,7 +54,12 @@ bindkey "^G" _run-cdi
 run_ya() {
     zle -I
     exec < /dev/tty
-    yazi
+    temp_file="/tmp/yazi-cwd-$USER"
+    yazi --cwd-file="$temp_file"
+    if [ -f "$temp_file" ]; then
+        cd "$(cat "$temp_file")"
+        rm "$temp_file"
+    fi
     zle reset-prompt
 }
 zle -N run_ya
