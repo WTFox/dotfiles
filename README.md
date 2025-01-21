@@ -15,8 +15,8 @@ This repository contains my personal configuration for all the tools and applica
 ## Instructions
 
 ```bash
-$ git clone https://github.com/wtfox/dotfiles.git ~/dotfiles/ && cd ~/dotfiles/
-$ ./bootstrap.sh
+git clone https://github.com/wtfox/dotfiles.git ~/dotfiles/ && cd ~/dotfiles/
+./bootstrap.sh
 ```
 
 ## Screenshots
