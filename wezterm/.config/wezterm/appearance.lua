@@ -2,9 +2,9 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 local fonts = require("lib.fonts")
 
 return {
-	font_size = 15,
-	line_height = 1.2,
-	font = wezterm.font(fonts.jetbrains),
+	font_size = 17,
+	-- line_height = 1.2,
+	font = wezterm.font(fonts.jetbrains_styled),
 	adjust_window_size_when_changing_font_size = false,
 	inactive_pane_hsb = {
 		saturation = 0.9,
