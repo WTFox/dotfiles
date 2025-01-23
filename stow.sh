@@ -9,11 +9,8 @@ directories_to_stow=(
   "fzf/"
   "git/"
   "ghostty/"
-  "kitty/"
   "nvim/"
-  "neofetch/"
   "starship/"
-  "tmux/"
   "wezterm/"
   "yazi"
   "zsh/"
@@ -21,7 +18,6 @@ directories_to_stow=(
 
 mac_specific=(
   "hammerspoon/"
-  "karabiner/"
 )
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
