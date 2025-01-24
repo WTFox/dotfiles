@@ -1,7 +1,7 @@
 {
   "CopilotChat.nvim": { "branch": "main", "commit": "2ebe591cff06018e265263e71e1dbc4c5aa8281e" },
   "LazyVim": { "branch": "main", "commit": "2bea40c447b72e54ffb2d5cddc98d7798990796f" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "5be212138af55d3dcae9d77b5b14f63634243e3d" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "bb52c530698654355bbddb9f0035dc35cea401a5" },
   "auto-dark-mode.nvim": { "branch": "master", "commit": "4531f8b2b09ed8f0b8875a706419f9cecda1d969" },
   "blink-cmp-copilot": { "branch": "main", "commit": "5d4ed42c5d7d144012792bb6cc4ac7899a108169" },
   "blink.cmp": { "branch": "main", "commit": "1cc3b1a908fbcfd15451c4772759549724f38524" },
@@ -16,7 +16,7 @@
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "flash.nvim": { "branch": "main", "commit": "34c7be146a91fec3555c33fe89c7d643f6ef5cf1" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
-  "gitsigns.nvim": { "branch": "main", "commit": "3ec5fbd9202ae3908551c98c4b6c3c05ff7c8e96" },
+  "gitsigns.nvim": { "branch": "main", "commit": "d8918f06624dd53b9a82bd0e29c31bcfd541b40d" },
   "grapple.nvim": { "branch": "main", "commit": "b41ddfc1c39f87f3d1799b99c2f0f1daa524c5f7" },
   "grug-far.nvim": { "branch": "main", "commit": "8e8f3429038d45a6d4144c0642d92f470e5480f3" },
   "incline.nvim": { "branch": "main", "commit": "16fc9c073e3ea4175b66ad94375df6d73fc114c0" },
@@ -80,6 +80,6 @@
   "wezterm-types": { "branch": "main", "commit": "1518752906ba3fac0060d9efab6e4d3ec15d4b5a" },
   "which-key.nvim": { "branch": "main", "commit": "6cebd86917df559a88de0f806b2989799c6e6423" },
   "yanky.nvim": { "branch": "main", "commit": "d2696b30e389dced94d5acab728f524a25f308d2" },
-  "yazi.nvim": { "branch": "main", "commit": "e86ced6e52a4bc3875ec5f43c98b8e222f228fa4" },
+  "yazi.nvim": { "branch": "main", "commit": "07a628422f2b243423c93d21687a404906f62ead" },
   "zenbones.nvim": { "branch": "main", "commit": "9ef4241c50ea24026b732512223dbc55589ce2c4" }
 }
