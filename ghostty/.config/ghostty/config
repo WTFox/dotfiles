@@ -1,5 +1,5 @@
 theme = jellybeans
-keybind = global:cmd+grave_accent=toggle_quick_terminal
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
 window-height = 36
 window-width = 143
 font-size = 17
