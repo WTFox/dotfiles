@@ -1,6 +1,7 @@
 # appearance
 background-opacity = 0.98
 theme = jellybeans
+theme = dark:jellybeans,light:jellybeans-light
 window-height = 36
 window-width = 143
 
@@ -25,3 +26,5 @@ font-feature = "cv17"
 
 # keys
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
+keybind = super+shift+j=write_screen_file:paste
+keybind = super+alt+shift+j=write_screen_file:open
