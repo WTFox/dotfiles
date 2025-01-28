@@ -1,6 +1,27 @@
+# appearance
+background-opacity = 0.98
 theme = jellybeans
-keybind = global:ctrl+grave_accent=toggle_quick_terminal
 window-height = 36
 window-width = 143
+
+# font
 font-size = 17
-background-opacity = 0.95
+font-family = Jetbrains Mono
+font-feature = "calt"
+font-feature = "clig"
+font-feature = "liga"
+font-feature = "ss20"
+font-feature = "cv02"
+font-feature = "cv03"
+font-feature = "cv04"
+font-feature = "cv05"
+font-feature = "cv06"
+font-feature = "cv07"
+font-feature = "cv11"
+font-feature = "cv14"
+font-feature = "cv15"
+font-feature = "cv16"
+font-feature = "cv17"
+
+# keys
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
