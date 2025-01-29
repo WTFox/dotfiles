@@ -25,6 +25,6 @@ font-feature = "cv16"
 font-feature = "cv17"
 
 # keys
-keybind = global:ctrl+grave_accent=toggle_quick_terminal
+# keybind = global:ctrl+grave_accent=toggle_quick_terminal
 keybind = super+shift+j=write_screen_file:paste
 keybind = super+alt+shift+j=write_screen_file:open
