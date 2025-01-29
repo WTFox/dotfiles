@@ -1,17 +1,19 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
-local act = wezterm.action
 local utils = require("lib.utils")
 
-local key_mod_panes = "CTRL|SHIFT"
 local quick_select_patterns = {}
 for _, pattern in ipairs(wezterm.default_hyperlink_rules()) do
 	table.insert(quick_select_patterns, pattern.regex)
 end
 
+local act = wezterm.action
+local key_mod_panes = "CTRL|SHIFT"
 return {
 	keys = {
-		{ key = "UpArrow", mods = "SHIFT", action = act.ScrollToPrompt(-1) },
-		{ key = "DownArrow", mods = "SHIFT", action = act.ScrollToPrompt(1) },
+		{ key = "c", mods = "CTRL", action = act.CopyMode("Close") },
+		{ key = "d", mods = "SUPER|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+		{ key = "d", mods = "SUPER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+		{ key = "p", mods = "SUPER|SHIFT", action = act.ActivateCommandPalette },
 		{
 			key = "Enter",
 			mods = "ALT",
@@ -102,18 +104,10 @@ return {
 			mods = key_mod_panes,
 			action = act({ SpawnTab = "CurrentPaneDomain" }),
 		},
-		{
-			key = "LeftArrow",
-			mods = "ALT",
-			action = act({ SendString = "\x1bb" }),
-		},
-		{
-			key = "RightArrow",
-			mods = "ALT",
-			action = act({ SendString = "\4bf" }),
-		},
-		{ key = "PageUp", mods = "SHIFT", action = act.ScrollByPage(-1) },
-		{ key = "PageDown", mods = "SHIFT", action = act.ScrollByPage(1) },
+		{ key = "UpArrow", mods = "SHIFT", action = act.ScrollByLine(-1) },
+		{ key = "DownArrow", mods = "SHIFT", action = act.ScrollByLine(1) },
+		{ key = "k", mods = key_mod_panes, action = act.ScrollByLine(-1) },
+		{ key = "j", mods = key_mod_panes, action = act.ScrollByLine(1) },
 		{
 			key = "p",
 			mods = key_mod_panes,
@@ -124,14 +118,13 @@ return {
 			mods = "CTRL",
 			action = act.ActivateCommandPalette,
 		},
-		-- This could be useful to swap panes
-		-- {
-		-- 	key = "\\",
-		-- 	mods = "CTRL",
-		-- 	action = act.PaneSelect({
-		-- 		mode = "SwapWithActiveKeepFocus",
-		-- 	}),
-		-- },
+		{
+			key = "\\",
+			mods = "CTRL",
+			action = act.PaneSelect({
+				mode = "SwapWithActiveKeepFocus",
+			}),
+		},
 		{
 			key = "Enter",
 			mods = key_mod_panes,

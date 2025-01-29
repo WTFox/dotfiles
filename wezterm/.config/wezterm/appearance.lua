@@ -11,10 +11,10 @@ return {
 		brightness = 0.3,
 	},
 	-- custom_block_glyphs = true,
-	-- use_fancy_tab_bar = true,
+	use_fancy_tab_bar = true,
 	-- tab_bar_at_bottom = false,
-	hide_tab_bar_if_only_one_tab = true,
-	-- default_cursor_style = "BlinkingBlock",
+	hide_tab_bar_if_only_one_tab = false,
+	default_cursor_style = "BlinkingBlock",
 	window_padding = {
 		left = 0,
 		right = 0,
@@ -23,6 +23,8 @@ return {
 	},
 	initial_cols = 120,
 	initial_rows = 30,
+	bold_brightens_ansi_colors = true,
+	window_decorations = "RESIZE|INTEGRATED_BUTTONS",
 	-- window_background_opacity = 0.8,
-	-- macos_window_background_blur = 50,
+	-- macos_window_background_blur = 80,
 }

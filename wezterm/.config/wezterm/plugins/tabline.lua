@@ -78,9 +78,10 @@ M.setup = function(config)
 	})
 
 	-- specific tabline config
-	config.use_fancy_tab_bar = true
+	config.use_fancy_tab_bar = false
 	config.tab_bar_at_bottom = false
 	config.hide_tab_bar_if_only_one_tab = false
+	config.window_decorations = "NONE"
 
 	tabline.apply_to_config(config)
 end
