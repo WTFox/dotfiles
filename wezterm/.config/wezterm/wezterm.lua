@@ -25,6 +25,7 @@ if is_windows then
 	utils.merge_tables(config, windows_overrides)
 end
 
-plugins.tabline.apply_to_config(config)
+config.tabline_enabled = false
+plugins.setup(config)
 
 return config
