@@ -9,8 +9,30 @@ end
 local act = wezterm.action
 local key_mod_panes = "CTRL|SHIFT"
 return {
+	key_tables = {
+		search_mode = {
+			{ key = "c", mods = "CTRL", action = act.CopyMode("Close") },
+			{ key = "Enter", mods = "NONE", action = act.CopyMode("PriorMatch") },
+			{ key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
+			{ key = "n", mods = "CTRL", action = act.CopyMode("NextMatch") },
+			{ key = "p", mods = "CTRL", action = act.CopyMode("PriorMatch") },
+			{ key = "r", mods = "CTRL", action = act.CopyMode("CycleMatchType") },
+			{ key = "u", mods = "CTRL", action = act.CopyMode("ClearPattern") },
+			{
+				key = "PageUp",
+				mods = "NONE",
+				action = act.CopyMode("PriorMatchPage"),
+			},
+			{
+				key = "PageDown",
+				mods = "NONE",
+				action = act.CopyMode("NextMatchPage"),
+			},
+			{ key = "UpArrow", mods = "NONE", action = act.CopyMode("PriorMatch") },
+			{ key = "DownArrow", mods = "NONE", action = act.CopyMode("NextMatch") },
+		},
+	},
 	keys = {
-		{ key = "c", mods = "CTRL", action = act.CopyMode("Close") },
 		{ key = "d", mods = "SUPER|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 		{ key = "d", mods = "SUPER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 		{ key = "p", mods = "SUPER|SHIFT", action = act.ActivateCommandPalette },
