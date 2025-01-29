@@ -8,10 +8,6 @@ local events = require("events")
 local keys = require("keys")
 local plugins = require("plugins")
 
-local plugin_opts = {
-	tabline_enabled = true,
-}
-
 local config = {}
 for _, module in ipairs({
 	appearance,
@@ -29,6 +25,9 @@ if is_windows then
 	utils.merge_tables(config, windows_overrides)
 end
 
-plugins.setup(config, plugin_opts)
+local opts = {
+	tabline = { enabled = true },
+}
+plugins.setup(config, opts)
 
 return config

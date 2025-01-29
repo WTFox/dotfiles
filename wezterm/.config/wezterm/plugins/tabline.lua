@@ -2,34 +2,34 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 
 local M = {}
 
-M.setup = function(config)
+M.setup = function(config, opts)
 	local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 	tabline.setup({
 		options = {
 			icons_enabled = true,
 			color_overrides = {
 				normal_mode = {
-					a = { fg = "#181825", bg = "#8fbfdc" },
+					a = { fg = "#000000", bg = "#8fbfdc" },
 					b = { fg = "#b0d0f0", bg = "#1f1f1f" },
 					c = { fg = "#c6b6ee", bg = "#151515" },
 				},
 				copy_mode = {
-					a = { fg = "#181825", bg = "#fad07a" },
+					a = { fg = "#000000", bg = "#fad07a" },
 					b = { fg = "#fad07a", bg = "#1f1f1f" },
 					c = { fg = "#c6b6ee", bg = "#151515" },
 				},
 				search_mode = {
-					a = { fg = "#181825", bg = "#d2ebbe" },
+					a = { fg = "#000000", bg = "#d2ebbe" },
 					b = { fg = "#d2ebbe", bg = "#313244" },
 					c = { fg = "#c6b6ee", bg = "#151515" },
 				},
 				window_mode = {
-					a = { fg = "#181825", bg = "#cba6f7" },
+					a = { fg = "#000000", bg = "#cba6f7" },
 					b = { fg = "#cba6f7", bg = "#313244" },
 					c = { fg = "#cdd6f4", bg = "#181825" },
 				},
 				tab = {
-					active = { fg = "#1f1f1f", bg = "#e6a75a" },
+					active = { fg = "#000000", bg = "#cba6f7" },
 					inactive = { fg = "#cdd6f4", bg = "#151515" },
 					inactive_hover = { fg = "#f5c2e7", bg = "#181825" },
 				},
@@ -52,7 +52,9 @@ M.setup = function(config)
 			tabline_b = {
 				"workspace",
 			},
-			tabline_c = { " " },
+			tabline_c = {
+				-- " "
+			},
 			tab_active = {
 				"tab_index",
 				-- { "parent", padding = 0 },
@@ -70,7 +72,7 @@ M.setup = function(config)
 				"ram",
 				"cpu",
 				-- "datetime",
-				-- "battery"
+				"battery",
 			},
 			tabline_z = { "hostname" },
 		},
