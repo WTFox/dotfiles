@@ -20,7 +20,7 @@
   "grapple.nvim": { "branch": "main", "commit": "b41ddfc1c39f87f3d1799b99c2f0f1daa524c5f7" },
   "grug-far.nvim": { "branch": "main", "commit": "59e744e21069fa382c898913e77d576fe9132214" },
   "incline.nvim": { "branch": "main", "commit": "16fc9c073e3ea4175b66ad94375df6d73fc114c0" },
-  "jellybeans.nvim": { "branch": "main", "commit": "faff26425d9638f099c8689b618dfede7548f18e" },
+  "jellybeans.nvim": { "branch": "main", "commit": "28722c9c4af37d34613adb13d10c4c645c4cd4e9" },
   "kanagawa.nvim": { "branch": "master", "commit": "988082eb00b845e4afbcaa4fd8e903da8a3ab3b9" },
   "lazy.nvim": { "branch": "main", "commit": "7e6c863bc7563efbdd757a310d17ebc95166cef3" },
   "lazydev.nvim": { "branch": "main", "commit": "a1b78b2ac6f978c72e76ea90ae92a94edf380cfc" },
