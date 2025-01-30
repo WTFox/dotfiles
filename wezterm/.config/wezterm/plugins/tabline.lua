@@ -29,7 +29,7 @@ M.setup = function(config, opts)
 					c = { fg = "#cdd6f4", bg = "#181825" },
 				},
 				tab = {
-					active = { fg = "#000000", bg = "#cba6f7" },
+					active = { fg = "#000000", bg = "#e6a75a" },
 					inactive = { fg = "#cdd6f4", bg = "#151515" },
 					inactive_hover = { fg = "#f5c2e7", bg = "#181825" },
 				},
