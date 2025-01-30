@@ -97,6 +97,21 @@ return {
 				end
 			end),
 		},
+		-- funsies
+		{
+			key = "g",
+			mods = mods.l,
+			action = act.SpawnCommandInNewTab({
+				args = { utils.get_cmd("lazygit") },
+			}),
+		},
+		{
+			key = "m",
+			mods = mods.l,
+			action = act.SpawnCommandInNewTab({
+				args = { utils.get_cmd("cmatrix") },
+			}),
+		},
 	},
 	mouse_bindings = {
 		{

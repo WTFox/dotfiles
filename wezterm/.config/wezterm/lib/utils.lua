@@ -1,7 +1,11 @@
-local wezterm = require("wezterm")
+local wezterm = require("wezterm") --[[@as Wezterm]]
 local process_icons = require("lib.icons")
 
 local M = {}
+
+M.is_mac = function()
+	return wezterm.target_triple:find("darwin")
+end
 
 M.get_current_working_dir = function(tab)
 	local current_dir = tab.active_pane and tab.active_pane.current_working_dir or { file_path = "" }
@@ -46,6 +50,15 @@ M.find_vim_pane = function(tab)
 			return pane
 		end
 	end
+end
+
+---@param cmd string
+---@return string
+M.get_cmd = function(cmd)
+	if M.is_mac() then
+		return "/opt/homebrew/bin/" .. cmd
+	end
+	return cmd
 end
 
 return M
