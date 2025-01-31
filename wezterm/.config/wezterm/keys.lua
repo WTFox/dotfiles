@@ -37,8 +37,9 @@ return {
 		{ key = "Enter", mods = mods.l, action = act.ToggleFullScreen },
 		{ key = "f", mods = mods.l, action = act.Search({ CaseInSensitiveString = "" }) },
 		{ key = "n", mods = mods.l, action = act({ SpawnTab = "CurrentPaneDomain" }) },
-		{ key = "|", mods = mods.l, action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
-		{ key = "\\", mods = mods.l, action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) }, -- windows
+		-- { key = "|", mods = mods.l, action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) }, -- incompatible w/ windows
+		-- { key = "\\", mods = mods.l, action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) }, -- windows
+		{ key = "|", mods = "LEADER|SHIFT", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
 		{ key = "-", mods = mods.l, action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
 		{ key = "h", mods = mods.l, action = act({ ActivatePaneDirection = "Left" }) },
 		{ key = "j", mods = mods.l, action = act({ ActivatePaneDirection = "Down" }) },
