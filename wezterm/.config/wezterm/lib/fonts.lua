@@ -39,7 +39,7 @@ return {
 			"calt", -- Contains all ligatures. Substitution for : between digits
 			"clig",
 			"liga",
-			-- "zero", -- Changes 0 to slashed variant.
+			"zero", -- Changes 0 to slashed variant.
 			-- "frac", -- Substitute digits in fraction sequences to look more like fractions.
 			-- "ss01", -- All classic construction. JetBrains Mono but even more neutral. Performs better in big paragraph of text.
 			-- "ss02", -- All closed construction. Change the rhythm to a more lively one.
@@ -61,9 +61,9 @@ return {
 			"cv15", -- & alternative ampersand
 			"cv16", -- Q with bent tail
 			"cv17", -- f with curly ascender (ss02)
-			-- "cv18", -- 269 variant
+			"cv18", -- 269 variant
 			-- "cv19", -- 8 old variant
-			-- "cv20", -- 5 old variant
+			"cv20", -- 5 old variant
 			-- "cv99", -- highlights cyrillic C and c for debugging
 		},
 	},
