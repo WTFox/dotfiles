@@ -7,7 +7,7 @@ return {
       sources = {
         explorer = {
           layout = {
-            preview = "main",
+            -- preview = "main",
             layout = {
               backdrop = false,
               width = 50,
