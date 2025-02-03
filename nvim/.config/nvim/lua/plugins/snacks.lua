@@ -4,29 +4,35 @@ return {
   "folke/snacks.nvim",
   opts = {
     picker = {
+      sources = {
+        explorer = {
+          layout = {
+            preview = "main",
+            layout = {
+              backdrop = false,
+              width = 50,
+              min_width = 40,
+              height = 0,
+              position = "right",
+              border = "none",
+              box = "vertical",
+              {
+                win = "input",
+                height = 1,
+                border = "rounded",
+                title = "{title} {live} {flags}",
+                title_pos = "center",
+              },
+              { win = "list", border = "none" },
+              { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+            },
+          },
+        },
+      },
       formatters = {
         file = {
           filename_first = true,
         },
-      },
-      layout = {
-        -- layout = { backdrop = false },
-        -- layout = {
-        --   backdrop = false,
-        --   box = "vertical",
-        --   row = -1,
-        --   width = 0,
-        --   height = 0.7,
-        --   border = "top",
-        --   title = " {source} {live}",
-        --   title_pos = "left",
-        --   { win = "input", height = 1, border = "bottom" },
-        --   {
-        --     box = "horizontal",
-        --     { win = "list", border = "none" },
-        --     { win = "preview", width = 0.6, border = "left" },
-        --   },
-        -- },
       },
     },
     scope = {

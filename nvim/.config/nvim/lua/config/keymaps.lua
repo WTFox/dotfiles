@@ -30,9 +30,6 @@ map("n", "<leader>qw", ":q<cr>", { noremap = true, silent = true, desc = "quit w
 -- leader backspace to delete buffer
 map("n", "<leader><bs>", ":bd<cr>", { noremap = true, silent = true, desc = "delete buffer" })
 
--- resume telescope after exiting
--- map("n", ";", "<cmd>lua require('telescope.builtin').resume(require('telescope.themes').get_ivy({}))<cr>")
-
 -- move line up and down
 map("v", "J", ":m '>+1<CR>gv==kgvo<esc>=kgvo", { desc = "move highlighted text down" })
 map("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text up" })
@@ -40,15 +37,10 @@ map("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text u
 -- capital Q to quit
 map("n", "Q", "<esc>:q<cr>", { noremap = true, silent = true })
 
--- delete vim terminal mappings
--- vim.keymap.del("t", "<c-l>")
--- vim.keymap.del("t", "<c-k>")
-
 -- floating terminal
 map("n", "<c-/>", function()
   term.toggle()
 end, { desc = "Terminal (root dir)" })
--- map("n", "<c-_>", term, { desc = "which_key_ignore" })
 
 -- lazygit
 map("n", "<leader>gg", function()
