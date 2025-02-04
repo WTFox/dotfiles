@@ -2,15 +2,16 @@ return {
   "wtfox/jellybeans.nvim",
   -- dir = "~/dev/jellybeans.nvim",
   opts = {
-    italics = false,
-    -- style = "dark",
-    -- flat_ui = true,
+    transparent = false,
+    italics = true,
+    style = "dark",
+    flat_ui = true,
 
-    -- on_colors = function(c)
-    --   local light_bg = "#ffffff"
-    --   local dark_bg = "#000000"
-    --   c.background = vim.o.background == "light" and light_bg or dark_bg
-    -- end,
+    on_colors = function(c)
+      -- local light_bg = "#ffffff"
+      -- local dark_bg = "#000000"
+      -- c.background = vim.o.background == "light" and light_bg or dark_bg
+    end,
 
     on_highlights = function(hl, c)
       -- change namespace colors to blue for golang
