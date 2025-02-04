@@ -3,16 +3,13 @@ local fonts = require("lib.fonts")
 
 return {
 	font_size = 17,
-	-- line_height = 1.2,
 	font = wezterm.font(fonts.jetbrains_styled),
 	adjust_window_size_when_changing_font_size = false,
 	inactive_pane_hsb = {
 		saturation = 0.9,
 		brightness = 0.3,
 	},
-	-- custom_block_glyphs = true,
 	use_fancy_tab_bar = true,
-	-- tab_bar_at_bottom = false,
 	hide_tab_bar_if_only_one_tab = false,
 	default_cursor_style = "BlinkingBlock",
 	window_padding = {
@@ -25,6 +22,6 @@ return {
 	initial_rows = 30,
 	bold_brightens_ansi_colors = true,
 	window_decorations = "RESIZE|INTEGRATED_BUTTONS",
-	-- window_background_opacity = 0.8,
-	-- macos_window_background_blur = 80,
+	window_background_opacity = 0.8,
+	macos_window_background_blur = 80,
 }
