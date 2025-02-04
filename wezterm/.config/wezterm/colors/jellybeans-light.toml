@@ -2,17 +2,16 @@
 name = "jellybeans-light"
 author = "A. Fox"
 origin_url = ""
-wezterm_version = "20220807-113146-c2fee766"
 
 [colors]
-foreground = "#262626"
-background = "#fdf6e3"
-cursor_fg = "#fdf6e3"
-cursor_bg = "#262626"
-cursor_border = "#262626"
-selection_fg = "#fdf6e3"
-selection_bg = "#787878"
-compose_cursor = "#262626"
+foreground = "#252525"
+background = "#f5e6d3"
+cursor_fg = "#f5e6d3"
+cursor_bg = "#252525"
+cursor_border = "#252525"
+selection_fg = "#f5e6d3"
+selection_bg = "#686868"
+compose_cursor = "#252525"
 visual_bell = "#ffe5ea"
 
 ansi = [
@@ -34,7 +33,7 @@ brights = [
   "#2952a3", # ship_cove (bright blue)
   "#540063", # ripe_plum (bright magenta)
   "#3a596a", # hoki (bright cyan)
-  "#262626", # foreground (bright white)
+  "#252525", # foreground (bright white)
 ]
 
 [colors.indexed]
@@ -46,9 +45,9 @@ brights = [
 21 = "#f8f8f8" # mine_shaft
 
 [colors.tab_bar]
-background = "#fdf6e3"
+background = "#f5e6d3"
 active_tab.bg_color = "#e0dcd7"
-active_tab.fg_color = "#262626"
+active_tab.fg_color = "#252525"
 inactive_tab.bg_color = "#f5f5f5"
 inactive_tab.fg_color = "#787878"
 inactive_tab_hover.bg_color = "#e0dcd7"
