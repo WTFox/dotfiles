@@ -5,6 +5,9 @@ return {
 		opts = {
 			picker = {
 				sources = {
+					grep = {
+						hidden = true,
+					},
 					files = {
 						hidden = true,
 					},
