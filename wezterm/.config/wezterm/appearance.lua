@@ -22,6 +22,6 @@ return {
 	initial_rows = 30,
 	bold_brightens_ansi_colors = true,
 	window_decorations = "RESIZE|INTEGRATED_BUTTONS",
-	window_background_opacity = 0.8,
-	macos_window_background_blur = 80,
+	-- window_background_opacity = 0.8,
+	-- macos_window_background_blur = 80,
 }
