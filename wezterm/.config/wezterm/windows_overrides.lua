@@ -3,8 +3,8 @@ local fonts = require("lib.fonts")
 
 return {
 	default_prog = { "wsl.exe", "-d", "Ubuntu", "--cd", "~" },
-	window_background_opacity = 0,
-	win32_system_backdrop = "Tabbed",
+	window_background_opacity = 1,
+	-- win32_system_backdrop = "Tabbed",
 	wsl_domains = {
 		{
 			name = "WSL:Ubuntu",
