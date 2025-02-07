@@ -36,3 +36,7 @@ vim.g.snacks_animate = false
 
 -- vim.opt.number = true
 -- vim.opt.relativenumber = true
+
+vim.opt.numberwidth = 3
+vim.opt.signcolumn = "yes:1"
+vim.opt.statuscolumn = "%l%s"
