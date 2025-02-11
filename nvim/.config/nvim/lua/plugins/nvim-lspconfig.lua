@@ -5,6 +5,7 @@ return {
       enabled = false,
     },
     diagnostics = {
+      virtual_text = false,
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = "",
