@@ -1,5 +1,5 @@
 {
-  "CopilotChat.nvim": { "branch": "main", "commit": "dbce8a231d1ac72c68ce00b86b415c9304417102" },
+  "CopilotChat.nvim": { "branch": "main", "commit": "804d9067d1eef0ee21dc39b5bbc86ab9f52287b7" },
   "LazyVim": { "branch": "main", "commit": "9d426ed7fc57b285e0a89e011f7a35bd99cdc7f8" },
   "SchemaStore.nvim": { "branch": "main", "commit": "118e563101169e8c5096023bc45c460e4c4fb77c" },
   "auto-dark-mode.nvim": { "branch": "master", "commit": "02ef9553e2a1d6e861bc6955d58ce5883d28a6ad" },
@@ -61,10 +61,10 @@
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "1b212c2eee76d787bbea6aa5e92a2b534e7b4f8f" },
   "one-small-step-for-vimkind": { "branch": "main", "commit": "b9def31568d20b16f7da9479a4174d165046fe8a" },
   "persistence.nvim": { "branch": "main", "commit": "f6aad7dde7fcf54148ccfc5f622c6d5badd0cc3d" },
-  "plenary.nvim": { "branch": "master", "commit": "3707cdb1e43f5cea73afb6037e6494e7ce847a66" },
+  "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "render-markdown.nvim": { "branch": "main", "commit": "17a77463f945c4b9e4f371c752efd90e3e1bf604" },
   "rustaceanvim": { "branch": "master", "commit": "f03035fa03ccb36cd26d0792c946fbacba1d1a39" },
-  "snacks.nvim": { "branch": "main", "commit": "5df7664e09641369fb5f1203a2c4e6ff68783cee" },
+  "snacks.nvim": { "branch": "main", "commit": "a7e442b5ab1c62d97f171b367ea53fa1492fa210" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
   "tokyonight.nvim": { "branch": "main", "commit": "84ea0b5f4651afdf50ececaf6f110fe9d9dc9458" },
   "trouble.nvim": { "branch": "main", "commit": "6f380b8826fb819c752c8fd7daaee9ef96d4c689" },
@@ -78,6 +78,6 @@
   "wezterm-types": { "branch": "main", "commit": "1518752906ba3fac0060d9efab6e4d3ec15d4b5a" },
   "which-key.nvim": { "branch": "main", "commit": "0e76a87ac51772569aec678dc74baa8e2a86100c" },
   "yanky.nvim": { "branch": "main", "commit": "d2696b30e389dced94d5acab728f524a25f308d2" },
-  "yazi.nvim": { "branch": "main", "commit": "3372a447d89c934972681bf01c81f49f600bde9b" },
+  "yazi.nvim": { "branch": "main", "commit": "327dcd8c11ac5df0ef5f832c1a3ef9511e777c56" },
   "zenbones.nvim": { "branch": "main", "commit": "9ef4241c50ea24026b732512223dbc55589ce2c4" }
 }
