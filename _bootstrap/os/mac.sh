@@ -7,6 +7,8 @@ update_package_manager() {
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
+  sudo mkdir -p "/usr/local/bin/"
+
   brew update
   brew install coreutils git curl wget
 }
@@ -40,16 +42,12 @@ install_nvim() {
 }
 
 install_apps() {
-  xcode-select --install
+  xcode-select --install || true
 
   brew bundle
-
-  # tpm for tmux
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
 install_git_and_gh() {
-  brew "github/gh/gh"
   brew install git gh
 }
 
