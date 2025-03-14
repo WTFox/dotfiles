@@ -1,5 +1,4 @@
-curl https://api.particle.io/v1/devices/p2_1/triggerAlertEvent \
-    -d access_token="$(op read op://secrets/particle/token)" &
+curl https://api.particle.io/v1/devices/p2_1/alert -d access_token="$(op read op://secrets/particle/token)" &
 
 sleep 1
 
