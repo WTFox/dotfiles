@@ -2,7 +2,7 @@ return {
   "wtfox/jellybeans.nvim",
   -- dir = "~/dev/jellybeans.nvim",
   opts = {
-    transparent = false,
+    transparent = true,
     italics = true,
     style = "dark",
     flat_ui = true,
