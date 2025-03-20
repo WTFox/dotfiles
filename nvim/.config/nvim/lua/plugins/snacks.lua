@@ -7,7 +7,7 @@ return {
       sources = {
         explorer = {
           layout = {
-            preview = "main",
+            preview = false,
             layout = {
               backdrop = false,
               width = 40,
@@ -24,7 +24,7 @@ return {
                 title_pos = "center",
               },
               { win = "list", border = "none" },
-              { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+              -- { win = "preview", title = "{preview}", height = 0.4, border = "top" },
             },
           },
         },
