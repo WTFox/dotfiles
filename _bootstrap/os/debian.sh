@@ -30,8 +30,8 @@ install_go() {
 
 install_nvim() {
   pushd ~/bin || exit
-  curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-  tar xzf nvim-linux64.tar.gz
+  curl -LO https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.tar.gz
+  tar xzf nvim-linux-x86_64.tar.gz
   echo "nvim installed!"
   popd || exit
 }
