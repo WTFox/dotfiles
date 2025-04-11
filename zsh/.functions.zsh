@@ -31,15 +31,6 @@ function gi() {
   curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$1
 }
 
-function ya() {
-    tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-    yazi --cwd-file="$tmp"
-    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        cd -- "$cwd"
-    fi
-    rm -f -- "$tmp"
-}
-
 function update_neofetch_cache() {
     local cache_file="$HOME/.cache/neofetch_output"
     local update_interval=86400  # Update interval in seconds (e.g., 86400 for 1 day)
