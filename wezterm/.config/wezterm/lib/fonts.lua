@@ -34,7 +34,7 @@ return {
 	},
 	jetbrains_styled = {
 		family = "JetBrains Mono",
-		weight = "Medium",
+		weight = "Light",
 		harfbuzz_features = {
 			"calt", -- Contains all ligatures. Substitution for : between digits
 			"clig",
@@ -44,7 +44,7 @@ return {
 			-- "ss01", -- All classic construction. JetBrains Mono but even more neutral. Performs better in big paragraph of text.
 			-- "ss02", -- All closed construction. Change the rhythm to a more lively one.
 			-- "ss19", -- Adds gaps in ≠ ≠= == === ligatures.
-			"ss20", -- Shift horizontal stroke in f to match x-height
+			-- "ss20", -- Shift horizontal stroke in f to match x-height
 			-- "cv01", -- l with symmetrical lower stroke. (ss01)
 			"cv02", -- t with curly tail (ss02)
 			"cv03", -- g with more complex construction

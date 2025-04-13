@@ -1,0 +1,58 @@
+[metadata]
+name = "jellybeans-muted-light"
+author = "A. Fox"
+origin_url = ""
+
+[colors]
+foreground = "#2d2c2a"
+background = "#f7f3eb"
+cursor_fg = "#f7f3eb"
+cursor_bg = "#2d2c2a"
+cursor_border = "#2d2c2a"
+selection_fg = "#f7f3eb"
+selection_bg = "#787775"
+compose_cursor = "#2d2c2a"
+visual_bell = "#ffe8e5"
+
+ansi = [
+  "#fdfdfa", # cod_grey (black)
+  "#b84949", # error (red)
+  "#4a6335", # mantis (green)
+  "#7f7042", # brandy (yellow)
+  "#334a84", # perano (blue)
+  "#655683", # biloba_flower (magenta)
+  "#3c5884", # calypso (cyan)
+  "#47463f", # alto (white)
+]
+
+brights = [
+  "#787775", # grey (bright black)
+  "#913a34", # old_brick (bright red)
+  "#567553", # highland (bright green)
+  "#987b40", # goldenrod (bright yellow)
+  "#445987", # ship_cove (bright blue)
+  "#4f205a", # ripe_plum (bright magenta)
+  "#475b68", # hoki (bright cyan)
+  "#2d2c2a", # foreground (bright white)
+]
+
+[colors.indexed]
+16 = "#835a6d" # wewak
+17 = "#555e3f" # costa_del_sol
+18 = "#ebe7df" # grey_one
+19 = "#504c47" # grey_two
+20 = "#777f88" # regent_grey
+21 = "#c9b99a" # mine_shaft
+
+[colors.tab_bar]
+background = "#f7f3eb"
+active_tab.bg_color = "#ebe7df"
+active_tab.fg_color = "#2d2c2a"
+inactive_tab.bg_color = "#fdfdfa"
+inactive_tab.fg_color = "#787775"
+inactive_tab_hover.bg_color = "#ebe7df"
+inactive_tab_hover.fg_color = "#4f565d"
+new_tab.bg_color = "#fdfdfa"
+new_tab.fg_color = "#787775"
+new_tab_hover.bg_color = "#ebe7df"
+new_tab_hover.fg_color = "#4f565d"

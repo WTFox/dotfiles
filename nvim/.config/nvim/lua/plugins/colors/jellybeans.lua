@@ -6,6 +6,7 @@ return {
     italics = true,
     style = "dark",
     flat_ui = true,
+    palette = "jellybeans_muted",
 
     on_colors = function(c)
       -- local light_bg = "#ffffff"
