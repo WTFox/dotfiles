@@ -34,7 +34,7 @@ return {
 	},
 	jetbrains_styled = {
 		family = "JetBrains Mono",
-		weight = "Light",
+		weight = "ExtraLight",
 		harfbuzz_features = {
 			"calt", -- Contains all ligatures. Substitution for : between digits
 			"clig",
