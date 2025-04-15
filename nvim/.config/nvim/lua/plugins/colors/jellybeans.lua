@@ -15,13 +15,30 @@ return {
 
     on_colors = function(c)
       -- set_oled(c)
+      c.visual = vim.o.background == "dark" and c.zambezi
     end,
 
     on_highlights = function(hl, c)
       -- example: change namespace colors to blue for golang
+      --
       -- hl["@lsp.type.namespace.go"] = {
       --   fg = c.morning_glory,
       -- }
+
+      hl.FloatTitle = {
+        fg = c.morning_glory,
+        bg = c.background,
+      }
+
+      hl.FloatBorder = {
+        fg = c.tundora,
+        bg = c.background,
+      }
+
+      hl.PmenuSbar = {
+        bg = c.tundora,
+        fg = c.zambezi,
+      }
     end,
   },
 }
