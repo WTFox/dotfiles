@@ -34,7 +34,7 @@ return {
 	},
 	jetbrains_styled = {
 		family = "JetBrains Mono",
-		weight = "Light",
+		weight = "Regular",
 		harfbuzz_features = {
 			"calt", -- Contains all ligatures. Substitution for : between digits
 			"clig",
@@ -56,7 +56,7 @@ return {
 			-- "cv09", -- f with additional horizontal stroke. (ss01)
 			-- "cv10", -- r with more open construction (ss01)
 			"cv11", -- y with different ascender construction (ss01)
-			-- "cv12", -- u with traditional construction (ss01)
+			"cv12", -- u with traditional construction (ss01)
 			"cv14", -- $ with broken bar
 			"cv15", -- & alternative ampersand
 			"cv16", -- Q with bent tail

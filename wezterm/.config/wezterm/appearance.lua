@@ -2,7 +2,7 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 local fonts = require("lib.fonts")
 
 return {
-	font_size = 17,
+	font_size = 16,
 	font = wezterm.font(fonts.jetbrains_styled),
 	adjust_window_size_when_changing_font_size = false,
 	inactive_pane_hsb = {
@@ -18,7 +18,7 @@ return {
 		top = 0,
 		bottom = 0,
 	},
-	initial_cols = 120,
+	initial_cols = 130,
 	initial_rows = 30,
 	bold_brightens_ansi_colors = true,
 	window_decorations = "RESIZE|INTEGRATED_BUTTONS",

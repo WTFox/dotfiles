@@ -1,21 +1,24 @@
+---@diagnostic disable-next-line: unused-local,unused-function
+local set_oled = function(c)
+  c.background = vim.o.background == "dark" and "#000000" or c.background
+end
+
 return {
   "wtfox/jellybeans.nvim",
   -- dir = "~/dev/jellybeans.nvim",
   opts = {
     transparent = false,
-    italics = true,
+    italics = false,
     style = "dark",
     flat_ui = true,
     palette = "jellybeans_muted",
 
     on_colors = function(c)
-      -- local light_bg = "#ffffff"
-      -- local dark_bg = "#000000"
-      -- c.background = vim.o.background == "light" and light_bg or dark_bg
+      -- set_oled(c)
     end,
 
     on_highlights = function(hl, c)
-      -- change namespace colors to blue for golang
+      -- example: change namespace colors to blue for golang
       -- hl["@lsp.type.namespace.go"] = {
       --   fg = c.morning_glory,
       -- }
