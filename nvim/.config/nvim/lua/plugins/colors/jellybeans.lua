@@ -4,8 +4,8 @@ local set_oled = function(c)
 end
 
 return {
-  -- "wtfox/jellybeans.nvim",
-  dir = "~/dev/jellybeans.nvim",
+  "wtfox/jellybeans.nvim",
+  -- dir = "~/dev/jellybeans.nvim",
   opts = {
     transparent = false,
     italics = false,
