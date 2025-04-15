@@ -24,19 +24,19 @@ vim.filetype.add({
 -- don't show tab indicators
 vim.opt.listchars = { tab = "  " }
 
--- vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.root_spec = { "cwd" }
 vim.opt.guicursor = "n-v-c-sm-ve:block,i-ci:ver20,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
 
 -- make windows opaque
-vim.opt.pumblend = 0 -- for cmp menu
-vim.opt.winblend = 0 -- for documentation popup
+-- vim.opt.pumblend = 0 -- for cmp menu
+-- vim.opt.winblend = 0 -- for documentation popup
 
 vim.g.snacks_animate = false
 
 -- vim.opt.number = true
 -- vim.opt.relativenumber = true
 
-vim.opt.numberwidth = 3
-vim.opt.signcolumn = "yes:1"
-vim.opt.statuscolumn = "%l%s"
+-- vim.opt.numberwidth = 3
+-- vim.opt.signcolumn = "yes:1"
+-- vim.opt.statuscolumn = "%l%s"
