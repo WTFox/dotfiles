@@ -9,13 +9,13 @@ M.setup = function(config, opts)
 			icons_enabled = true,
 			color_overrides = {
 				normal_mode = {
-					a = { fg = "#000000", bg = "#8fbfdc" },
-					b = { fg = "#b0d0f0", bg = "#1f1f1f" },
-					c = { fg = "#c6b6ee", bg = "#151515" },
+					a = { fg = "#101010", bg = "#83adc3" },
+					b = { fg = "#83adc3", bg = "#1f1f1f" },
+					c = { fg = "#c6b6ee", bg = "#101010" },
 				},
 				copy_mode = {
-					a = { fg = "#000000", bg = "#fad07a" },
-					b = { fg = "#fad07a", bg = "#1f1f1f" },
+					a = { fg = "#000000", bg = "#d8a16c" },
+					b = { fg = "#d8a16c", bg = "#1f1f1f" },
 					c = { fg = "#c6b6ee", bg = "#151515" },
 				},
 				search_mode = {
@@ -29,8 +29,8 @@ M.setup = function(config, opts)
 					c = { fg = "#cdd6f4", bg = "#181825" },
 				},
 				tab = {
-					active = { fg = "#000000", bg = "#e6a75a" },
-					inactive = { fg = "#cdd6f4", bg = "#151515" },
+					active = { fg = "#000000", bg = "#d8a16c" },
+					inactive = { fg = "#cdd6f4", bg = "#101010" },
 					inactive_hover = { fg = "#f5c2e7", bg = "#181825" },
 				},
 			},
