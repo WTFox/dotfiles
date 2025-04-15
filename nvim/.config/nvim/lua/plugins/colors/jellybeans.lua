@@ -4,8 +4,8 @@ local set_oled = function(c)
 end
 
 return {
-  "wtfox/jellybeans.nvim",
-  -- dir = "~/dev/jellybeans.nvim",
+  -- "wtfox/jellybeans.nvim",
+  dir = "~/dev/jellybeans.nvim",
   opts = {
     transparent = false,
     italics = false,
@@ -15,7 +15,7 @@ return {
 
     on_colors = function(c)
       -- set_oled(c)
-      c.visual = vim.o.background == "dark" and c.zambezi
+      c.visual = vim.o.background == "dark" and c.zambezi or c.visual
     end,
 
     on_highlights = function(hl, c)
