@@ -35,6 +35,10 @@ return {
         bg = c.background,
       }
 
+      hl.Pmenu = {
+        bg = c.tundora,
+      }
+
       hl.PmenuSbar = {
         bg = c.tundora,
         fg = c.zambezi,
