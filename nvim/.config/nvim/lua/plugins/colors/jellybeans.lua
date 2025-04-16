@@ -10,11 +10,11 @@ return {
     transparent = false,
     italics = false,
     style = "dark",
-    flat_ui = true,
+    flat_ui = false,
     palette = "jellybeans_muted",
 
     on_colors = function(c)
-      -- set_oled(c)
+      set_oled(c)
       c.visual = vim.o.background == "dark" and c.zambezi or c.visual
     end,
 
@@ -24,25 +24,6 @@ return {
       -- hl["@lsp.type.namespace.go"] = {
       --   fg = c.morning_glory,
       -- }
-
-      hl.FloatTitle = {
-        fg = c.morning_glory,
-        bg = c.background,
-      }
-
-      hl.FloatBorder = {
-        fg = c.tundora,
-        bg = c.background,
-      }
-
-      hl.Pmenu = {
-        bg = c.tundora,
-      }
-
-      hl.PmenuSbar = {
-        bg = c.tundora,
-        fg = c.zambezi,
-      }
     end,
   },
 }

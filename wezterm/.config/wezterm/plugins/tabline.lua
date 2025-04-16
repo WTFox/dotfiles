@@ -2,6 +2,9 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 
 local M = {}
 
+-- local bg = "#101010"
+local bg = "#000000"
+
 M.setup = function(config, opts)
 	local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 	tabline.setup({
@@ -9,12 +12,12 @@ M.setup = function(config, opts)
 			icons_enabled = true,
 			color_overrides = {
 				normal_mode = {
-					a = { fg = "#101010", bg = "#83adc3" },
+					a = { fg = bg, bg = "#83adc3" },
 					b = { fg = "#83adc3", bg = "#1f1f1f" },
-					c = { fg = "#c6b6ee", bg = "#101010" },
+					c = { fg = "#c6b6ee", bg = bg },
 				},
 				copy_mode = {
-					a = { fg = "#000000", bg = "#d8a16c" },
+					a = { fg = bg, bg = "#d8a16c" },
 					b = { fg = "#d8a16c", bg = "#1f1f1f" },
 					c = { fg = "#c6b6ee", bg = "#151515" },
 				},
@@ -24,13 +27,13 @@ M.setup = function(config, opts)
 					c = { fg = "#c6b6ee", bg = "#151515" },
 				},
 				window_mode = {
-					a = { fg = "#000000", bg = "#cba6f7" },
+					a = { fg = bg, bg = "#cba6f7" },
 					b = { fg = "#cba6f7", bg = "#313244" },
 					c = { fg = "#cdd6f4", bg = "#181825" },
 				},
 				tab = {
-					active = { fg = "#000000", bg = "#d8a16c" },
-					inactive = { fg = "#cdd6f4", bg = "#101010" },
+					active = { fg = bg, bg = "#d8a16c" },
+					inactive = { fg = "#cdd6f4", bg = bg },
 					inactive_hover = { fg = "#f5c2e7", bg = "#181825" },
 				},
 			},

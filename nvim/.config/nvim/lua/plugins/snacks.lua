@@ -5,8 +5,15 @@ return {
   opts = {
     picker = {
       sources = {
+        files = {
+          layout = { fullscreen = true },
+        },
+        grep = {
+          layout = { fullscreen = true },
+        },
         explorer = {
           layout = {
+            fullscreen = false,
             preview = false,
             layout = {
               backdrop = false,
