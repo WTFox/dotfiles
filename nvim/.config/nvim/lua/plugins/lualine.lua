@@ -3,9 +3,9 @@ return {
   event = "VeryLazy",
   opts = {
     sections = {
-      lualine_c = {
-        "",
-      },
+      -- lualine_c = {
+      --   "",
+      -- },
     },
   },
 }
