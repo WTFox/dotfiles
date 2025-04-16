@@ -17,30 +17,30 @@ return {
             fullscreen = true,
           },
         },
-        -- explorer = {
-        --   layout = {
-        --     fullscreen = true,
-        --     preview = true,
-        --     layout = {
-        --       backdrop = true,
-        --       width = 40,
-        --       min_width = 40,
-        --       height = 0,
-        --       position = "right",
-        --       border = "none",
-        --       box = "vertical",
-        --       {
-        --         win = "input",
-        --         height = 1,
-        --         border = "rounded",
-        --         title = "{title} {live} {flags}",
-        --         title_pos = "center",
-        --       },
-        --       { win = "list", border = "none" },
-        --       -- { win = "preview", title = "{preview}", height = 0.4, border = "top" },
-        --     },
-        --   },
-        -- },
+        explorer = {
+          layout = {
+            fullscreen = true,
+            preview = true,
+            layout = {
+              backdrop = true,
+              width = 40,
+              min_width = 40,
+              height = 0,
+              position = "right",
+              border = "none",
+              box = "vertical",
+              {
+                win = "input",
+                height = 1,
+                border = "rounded",
+                title = "{title} {live} {flags}",
+                title_pos = "center",
+              },
+              { win = "list", border = "none" },
+              -- { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+            },
+          },
+        },
       },
       formatters = {
         file = {
