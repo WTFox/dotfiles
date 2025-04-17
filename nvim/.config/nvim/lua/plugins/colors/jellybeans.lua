@@ -24,6 +24,18 @@ return {
       -- hl["@lsp.type.namespace.go"] = {
       --   fg = c.morning_glory,
       -- }
+
+      hl.InclineNormal = {
+        fg = c.alto,
+      }
+
+      local color = "#11111b"
+      hl.TreesitterContext = { bg = color }
+      hl.TreesitterContextLineNumber = { bg = color }
+      hl.TreesitterContextBottom = {
+        underline = false,
+        sp = color,
+      }
     end,
   },
 }
