@@ -11,6 +11,48 @@ return {
             fullscreen = true,
           },
         },
+        buffers = {
+          layout = {
+            layout = { backdrop = false },
+            fullscreen = true,
+          },
+        },
+        git_branches = {
+          layout = {
+            layout = { backdrop = false },
+            fullscreen = true,
+          },
+        },
+        git_diff = {
+          layout = {
+            layout = { backdrop = false },
+            fullscreen = true,
+          },
+        },
+        git_log = {
+          layout = {
+            layout = { backdrop = false },
+            fullscreen = true,
+          },
+        },
+        git_log_line = {
+          layout = {
+            layout = { backdrop = false },
+            fullscreen = true,
+          },
+        },
+        git_status = {
+          layout = {
+            layout = { backdrop = false },
+            fullscreen = true,
+          },
+        },
+        lsp_symbols = {
+          layout = {
+            layout = { backdrop = false },
+            fullscreen = true,
+          },
+        },
         grep = {
           layout = {
             layout = { backdrop = false },
