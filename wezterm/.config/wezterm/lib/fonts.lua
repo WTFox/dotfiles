@@ -21,7 +21,7 @@ return {
 		harfbuzz_features = {
 			"calt", -- enable ligatures
 			-- "zero", -- dotted 0
-			"cv01", -- remove gaps from symbols @
+			-- "cv01", -- remove gaps from symbols @
 			"cv02", -- alt a
 			"cv03", -- alt i
 			-- "cv04", -- alt l
