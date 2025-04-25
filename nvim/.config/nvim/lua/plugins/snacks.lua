@@ -60,6 +60,14 @@ return {
           },
         },
         explorer = {
+          auto_close = true,
+          win = {
+            list = {
+              keys = {
+                ["o"] = "confirm",
+              },
+            },
+          },
           layout = {
             fullscreen = true,
             preview = true,
