@@ -1,26 +1,47 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 
 return {
+	berkeley_mono = {
+		family = "Berkeley Mono",
+		weight = "Regular",
+		harfbuzz_features = {
+			"liga",
+			-- "ss01",
+			-- "ss02",
+			-- "zero",
+		},
+	},
 	cascadia_code = {
 		family = "Cascadia Code",
 		weight = "Regular",
 	},
 	maple_mono = {
-		family = "Maple Mono",
+		family = "Maple Mono Normal",
 		weight = "Regular",
 		harfbuzz_features = {
-			"calt",
-			"clig",
-			"liga",
-			"cv01", -- @ # $ % ^ & * ( ) _ + - = { } [ ] | \ : ; " ' < > , . ? / ` ~
-			"cv02", -- i
-			-- "cv03", -- a
-			-- "cv04", -- @ only
-			"ss01", -- == === != !==
-			"ss02", -- todo))
-			"ss03", -- __  (double underscore)
-			"ss04", -- >= <=
-			"ss05", -- {{ }}
+			"calt", -- enable ligatures
+			-- "zero", -- dotted 0
+			-- "cv01", -- remove gaps from symbols @
+			-- "cv02", -- alt a
+			"cv03", -- alt i
+			-- "cv04", -- alt l
+			-- block: italic only --
+			-- "cv31", -- alt a
+			"cv32", -- alt f
+			"cv33", -- alt i and j
+			"cv34", -- alt k
+			"cv35", -- alt l
+			"cv36", -- alt x
+			"cv37", -- alt y
+			-- end block --
+			-- "ss01", -- == === != !==
+			-- "ss02", -- break >= and ==
+			"ss03", -- enable arbitrary tag todo))
+			-- "ss04", -- break multi underscore __
+			"ss05", -- thin escape backslash \n
+			-- "ss06", -- break connected strokes
+			"ss07", -- enable >>>
+			"ss08", -- =>>
 		},
 	},
 	operator_mono = {
@@ -69,11 +90,12 @@ return {
 	},
 	jetbrains = {
 		family = "JetBrains Mono",
-		weight = "Medium",
+		weight = "Regular",
 		harfbuzz_features = {
 			"calt",
 			"clig",
 			"liga",
+			"cv15", -- & alternative ampersand
 		},
 	},
 	monolisa = {
@@ -81,15 +103,26 @@ return {
 		weight = "Regular",
 		harfbuzz_features = {
 			"calt",
-			"clig",
-			"liga",
-			"ss02",
-			"ss03",
-			"ss09",
-			"ss13",
-			"ss14",
-			"ss15",
-			"ss16",
+			"zero", -- slashed zero
+			"liga", -- ligatures
+			-- "ss01", -- alt *
+			"ss02", -- alt f
+			-- "ss03", -- alt g
+			-- "ss04", -- alt g
+			-- "ss05", -- alt sharp s
+			-- "ss06", -- alt @
+			"ss07", -- alt {}
+			"ss08", -- alt ()
+			-- "ss09", -- alt >=
+			"ss10", -- alt >=
+			"ss11", -- alt hex, e.g. 0x234
+			-- "ss12", -- thin backslash \\
+			"ss13", -- alt $
+			"ss14", -- alt &
+			"ss15", -- alt i (no seriffs)
+			"ss16", -- alt r (no seriffs)
+			-- "ss17", -- alt .= and ..=
+			-- "ss18", -- alt @
 		},
 	},
 	fira = {
