@@ -114,5 +114,5 @@ rules = [
   { name = "*", is = "exec", fg = "#909c6e" },
 
   # Fallback
-  { name = "*/", fg = "#7a8aa6" },
+  { name = "*/", fg = "#83adc3" },
 ]
