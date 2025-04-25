@@ -8,7 +8,7 @@ return {
   -- dir = "~/dev/jellybeans.nvim",
   opts = {
     transparent = false,
-    italics = false,
+    italics = true,
     style = "dark",
     flat_ui = false,
     palette = "jellybeans_muted",
@@ -24,6 +24,8 @@ return {
       -- hl["@lsp.type.namespace.go"] = {
       --   fg = c.morning_glory,
       -- }
+
+      hl["Comment"] = { fg = "#444444", italic = true }
 
       hl.InclineNormal = {
         fg = c.alto,

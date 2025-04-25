@@ -16,25 +16,25 @@ return {
 		weight = "Regular",
 	},
 	maple_mono = {
-		family = "Maple Mono Normal",
-		weight = "Regular",
+		family = "Maple Mono",
+		weight = "Light",
 		harfbuzz_features = {
 			"calt", -- enable ligatures
 			-- "zero", -- dotted 0
-			-- "cv01", -- remove gaps from symbols @
-			-- "cv02", -- alt a
+			"cv01", -- remove gaps from symbols @
+			"cv02", -- alt a
 			"cv03", -- alt i
 			-- "cv04", -- alt l
 			-- block: italic only --
-			-- "cv31", -- alt a
+			"cv31", -- alt a
 			"cv32", -- alt f
-			"cv33", -- alt i and j
+			-- "cv33", -- alt i and j
 			"cv34", -- alt k
-			"cv35", -- alt l
-			"cv36", -- alt x
-			"cv37", -- alt y
+			-- "cv35", -- alt l
+			-- "cv36", -- alt x
+			-- "cv37", -- alt y
 			-- end block --
-			-- "ss01", -- == === != !==
+			-- "ss01", -- break up == === != !==
 			-- "ss02", -- break >= and ==
 			"ss03", -- enable arbitrary tag todo))
 			-- "ss04", -- break multi underscore __
