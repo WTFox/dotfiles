@@ -164,4 +164,11 @@ return {
 			-- "cv99",
 		},
 	},
+	mononoki = {
+		family = "mononoki",
+		weight = "Regular",
+		harfbuzz_features = {
+			-- "ss01",
+		},
+	},
 }
