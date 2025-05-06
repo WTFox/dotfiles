@@ -25,19 +25,19 @@ return {
       --   fg = c.morning_glory,
       -- }
 
-      hl["Comment"] = { fg = "#444444", italic = true }
+      hl["Comment"] = { fg = "#444444" }
 
       hl.InclineNormal = {
         fg = c.alto,
       }
 
-      local color = "#11111b"
-      hl.TreesitterContext = { bg = color }
-      hl.TreesitterContextLineNumber = { bg = color }
-      hl.TreesitterContextBottom = {
-        underline = false,
-        sp = color,
-      }
+      -- local color = "#11111b"
+      -- hl.TreesitterContext = { bg = color }
+      -- hl.TreesitterContextLineNumber = { bg = color }
+      -- hl.TreesitterContextBottom = {
+      --   underline = false,
+      --   sp = color,
+      -- }
     end,
   },
 }
