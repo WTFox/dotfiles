@@ -25,8 +25,6 @@ return {
       --   fg = c.morning_glory,
       -- }
 
-      hl["Comment"] = { fg = "#444444" }
-
       hl.InclineNormal = {
         fg = c.alto,
       }
