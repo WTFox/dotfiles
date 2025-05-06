@@ -8,11 +8,13 @@ local mappings = {
 
 if utils.on_personal_laptop() then
 	table.insert(mappings, { key = "2", app = "Discord" })
-	table.insert(mappings, { key = "3", app = "Spotify" })
+	table.insert(mappings, { key = "3", app = "Obsidian" })
+	table.insert(mappings, { key = "4", app = "Spotify" })
 else
 	table.insert(mappings, { key = "2", app = "Slack" })
 	table.insert(mappings, { key = "3", app = "Microsoft Outlook" })
-	table.insert(mappings, { key = "4", app = "zoom.us" })
+	table.insert(mappings, { key = "4", app = "Obsidian" })
+	table.insert(mappings, { key = "5", app = "zoom.us" })
 end
 
 local function toggleApplication(name)
