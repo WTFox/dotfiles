@@ -171,4 +171,9 @@ return {
 			-- "ss01",
 		},
 	},
+	source_code_pro = {
+		family = "Source Code Pro",
+		weight = "Regular",
+		harfbuzz_features = {},
+	},
 }
