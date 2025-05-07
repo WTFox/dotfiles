@@ -168,7 +168,7 @@ return {
 		family = "mononoki",
 		weight = "Regular",
 		harfbuzz_features = {
-			-- "ss01",
+			"ss01",
 		},
 	},
 	source_code_pro = {
