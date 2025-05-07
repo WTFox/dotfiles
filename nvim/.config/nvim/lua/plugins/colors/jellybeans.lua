@@ -5,7 +5,7 @@ end
 
 return {
   "wtfox/jellybeans.nvim",
-  -- dir = "~/dev/jellybeans.nvim",
+  dev = true,
   opts = {
     transparent = false,
     italics = true,
@@ -14,8 +14,8 @@ return {
     palette = "jellybeans_muted",
 
     on_colors = function(c)
-      set_oled(c)
-      c.visual = vim.o.background == "dark" and c.zambezi or c.visual
+      -- set_oled(c)
+      -- c.visual = vim.o.background == "dark" and c.zambezi or c.visual
     end,
 
     on_highlights = function(hl, c)
@@ -25,9 +25,9 @@ return {
       --   fg = c.morning_glory,
       -- }
 
-      hl.InclineNormal = {
-        fg = c.alto,
-      }
+      -- hl.InclineNormal = {
+      --   fg = c.alto,
+      -- }
 
       -- local color = "#11111b"
       -- hl.TreesitterContext = { bg = color }

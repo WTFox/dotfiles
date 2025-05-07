@@ -2,8 +2,8 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 
 local M = {}
 
--- local bg = "#101010"
-local bg = "#000000"
+local bg = "#101010"
+-- local bg = "#000000"
 
 M.setup = function(config, opts)
 	local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
