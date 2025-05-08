@@ -8,13 +8,35 @@ M.setup = function(config)
 		M.zoxide(),
 	}
 
-	table.insert(config.keys, {
-		key = "s",
-		mods = "LEADER",
-		action = sessionizer.show({
-			schema = schema,
-		}),
-	})
+	for _, key_mapping in ipairs({
+		{ key = "S", mods = "LEADER", action = wezterm.action.ShowLauncherArgs({ flags = "WORKSPACES" }) },
+		{
+			key = "s",
+			mods = "LEADER",
+			action = sessionizer.show({
+				schema = schema,
+				processing = {
+					sessionizer.for_each_entry(function(entry)
+						entry.label = wezterm.format({
+							{ Text = entry.label:gsub(wezterm.home_dir, "~") },
+						})
+					end),
+					sessionizer.for_each_entry(function(entry)
+						entry.label = wezterm.format({
+							{ Background = { Color = "#101010" } },
+							{ Foreground = { Color = "#d8a16c" } },
+							{ Text = wezterm.nerdfonts.cod_folder_opened .. "  " },
+							{ Foreground = { Color = "#7a8aa6" } },
+							{ Background = { Color = "#101010" } },
+							{ Text = entry.label },
+						})
+					end),
+				},
+			}),
+		},
+	}) do
+		table.insert(config.keys, key_mapping)
+	end
 end
 
 M.zoxide = function()
@@ -24,7 +46,7 @@ M.zoxide = function()
 			"/bin/zsh",
 			"-c",
 			"-l",
-			"source ~/.zshrc && zoxide query -l",
+			'source ~/.exports.zsh && eval "$(zoxide init zsh)" && zoxide query -l',
 		})
 
 		if not success then
