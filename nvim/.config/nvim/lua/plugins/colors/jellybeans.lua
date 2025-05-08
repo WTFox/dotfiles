@@ -5,13 +5,16 @@ end
 
 return {
   "wtfox/jellybeans.nvim",
+  branch = "replace-autocmd",
   dev = true,
   opts = {
     transparent = false,
     italics = true,
-    style = "dark",
     flat_ui = false,
-    palette = "jellybeans_muted",
+    background = {
+      dark = "jellybeans_muted",
+      light = "jellybeans_muted_light",
+    },
 
     on_colors = function(c)
       -- set_oled(c)
