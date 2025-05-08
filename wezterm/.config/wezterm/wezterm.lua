@@ -25,9 +25,6 @@ if is_windows then
 	utils.merge_tables(config, windows_overrides)
 end
 
-local opts = {
-	tabline = { enabled = true },
-}
-plugins.setup(config, opts)
+plugins.setup(config)
 
 return config

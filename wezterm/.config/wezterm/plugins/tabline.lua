@@ -5,12 +5,12 @@ local M = {}
 local bg = "#101010"
 -- local bg = "#000000"
 
-M.setup = function(config, opts)
+M.setup = function(config)
 	local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 	tabline.setup({
 		options = {
 			icons_enabled = true,
-			color_overrides = {
+			theme_overrides = {
 				normal_mode = {
 					a = { fg = bg, bg = "#83adc3" },
 					b = { fg = "#83adc3", bg = "#1f1f1f" },
@@ -59,14 +59,14 @@ M.setup = function(config, opts)
 				-- " "
 			},
 			tab_active = {
-				"tab_index",
+				"index",
 				-- { "parent", padding = 0 },
 				-- "/",
 				{ "cwd", padding = { left = 0, right = 1 } },
 				{ "zoomed", padding = 0 },
 			},
 			tab_inactive = {
-				"tab_index",
+				"index",
 				-- { "process", padding = { left = 0, right = 1 } },
 				{ "cwd", padding = { left = 0, right = 1 } },
 			},
