@@ -53,12 +53,13 @@ M.find_vim_pane = function(tab)
 end
 
 ---@param cmd string
----@return string
 M.get_cmd = function(cmd)
-	if M.is_mac() then
-		return "/opt/homebrew/bin/" .. cmd
-	end
-	return cmd
+	return table.unpack({
+		"/bin/zsh",
+		"-c",
+		"-l",
+		cmd,
+	})
 end
 
 return M

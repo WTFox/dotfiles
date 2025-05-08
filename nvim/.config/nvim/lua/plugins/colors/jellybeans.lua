@@ -5,7 +5,6 @@ end
 
 return {
   "wtfox/jellybeans.nvim",
-  branch = "replace-autocmd",
   dev = true,
   opts = {
     transparent = false,
