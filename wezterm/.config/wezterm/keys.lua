@@ -120,6 +120,13 @@ return {
 				args = { utils.get_cmd("cmatrix") },
 			}),
 		},
+		{
+			key = "c",
+			mods = mods.l,
+			action = act.SpawnCommandInNewTab({
+				args = { utils.get_cmd("claude") },
+			}),
+		},
 	},
 	mouse_bindings = {
 		{
