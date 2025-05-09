@@ -98,7 +98,14 @@ return {
 				end
 			end),
 		},
-		-- funsies
+		-- utilities
+		{
+			key = "d",
+			mods = mods.l,
+			action = act.SpawnCommandInNewTab({
+				args = { utils.get_cmd("lazydocker") },
+			}),
+		},
 		{
 			key = "g",
 			mods = mods.l,
