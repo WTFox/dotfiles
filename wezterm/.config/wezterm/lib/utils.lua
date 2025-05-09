@@ -69,11 +69,15 @@ end
 
 ---@param cmd string
 M.get_cmd = function(cmd)
+	local exports_file = "~/.exports_mac.zsh"
+	if not M.is_mac() then
+		exports_file = "~/.exports_debian.zsh"
+	end
 	return table.unpack({
 		"/bin/zsh",
 		"-c",
 		"-l",
-		cmd,
+		"source " .. exports_file .. " && " .. cmd,
 	})
 end
 

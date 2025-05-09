@@ -107,6 +107,13 @@ return {
 			}),
 		},
 		{
+			key = "e",
+			mods = mods.l,
+			action = act.SpawnCommandInNewTab({
+				args = { utils.get_cmd("nvim") },
+			}),
+		},
+		{
 			key = "g",
 			mods = mods.l,
 			action = act.SpawnCommandInNewTab({
