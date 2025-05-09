@@ -7,6 +7,21 @@ M.is_mac = function()
 	return wezterm.target_triple:find("darwin")
 end
 
+M.is_windows = function()
+	return wezterm.target_triple == "x86_64-pc-windows-msvc"
+end
+
+M.run_command = function(cmd)
+	if M.is_windows() then
+		cmd = {
+			"wsl.exe",
+			"-e",
+			table.unpack(cmd),
+		}
+	end
+	return wezterm.run_child_process(cmd)
+end
+
 M.get_current_working_dir = function(tab)
 	local current_dir = tab.active_pane and tab.active_pane.current_working_dir or { file_path = "" }
 	local HOME_DIR = string.format("file://%s", os.getenv("HOME"))

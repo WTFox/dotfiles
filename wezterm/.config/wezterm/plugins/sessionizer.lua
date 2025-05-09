@@ -1,4 +1,5 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
+local utils = require("lib.utils")
 
 local M = {}
 
@@ -42,7 +43,8 @@ end
 M.zoxide = function()
 	return function()
 		local res = {}
-		local success, stdout, stderr = wezterm.run_child_process({
+
+		local success, stdout, stderr = utils.run_command({
 			"/bin/zsh",
 			"-c",
 			"-l",
