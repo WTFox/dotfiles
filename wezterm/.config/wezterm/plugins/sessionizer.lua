@@ -24,11 +24,11 @@ M.setup = function(config)
 					end),
 					sessionizer.for_each_entry(function(entry)
 						entry.label = wezterm.format({
-							{ Background = { Color = "#101010" } },
-							{ Foreground = { Color = "#d8a16c" } },
+							-- { Background = { Color = "#101010" } },
+							-- { Foreground = { Color = "#d8a16c" } },
 							{ Text = wezterm.nerdfonts.cod_folder_opened .. "  " },
 							{ Foreground = { Color = "#7a8aa6" } },
-							{ Background = { Color = "#101010" } },
+							-- { Background = { Color = "#101010" } },
 							{ Text = entry.label },
 						})
 					end),
