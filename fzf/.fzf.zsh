@@ -29,10 +29,10 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 
 # Jellybeans
 export FZF_DEFAULT_OPTS=" \
---color=bg+:#202020,bg:#101010,spinner:#ffafaf,hl:#ff8700 \
---color=fg:#dddddd,header:#ffaf5f,info:#ff8700,pointer:#ffafaf \
---color=marker:#ff5f87,fg+:#c6b6ee,prompt:#ff8700,hl+:#ff8700 \
---color=border:#101010 \
+--color=bg+:#1c1c1c,bg:#151515,spinner:#a0a8b0,hl:#b39066 \
+--color=fg:#dddddd,header:#b39066,info:#7a8aa6,pointer:#a0a8b0 \
+--color=marker:#a08070,fg+:#c7c7c7,prompt:#7a8aa6,hl+:#b39066 \
+--color=border:#151515 \
 --multi"
 
 # Catppuccin-Mocha Darker

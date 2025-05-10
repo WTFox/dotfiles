@@ -11,7 +11,7 @@ $python\
 $character"""
 
 [directory]
-style = "bright-blue"
+style = "blue"
 fish_style_pwd_dir_length = 1
 
 [character]
