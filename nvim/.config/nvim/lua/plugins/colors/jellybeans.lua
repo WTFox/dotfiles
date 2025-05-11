@@ -14,9 +14,7 @@ return {
       dark = "jellybeans_mono",
       light = "jellybeans_mono_light",
     },
-
     on_colors = function(c) end,
-
     on_highlights = function(hl, c) end,
   },
 }
