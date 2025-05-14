@@ -34,8 +34,8 @@ vim.opt.guicursor = "n-v-c-sm-ve:block,i-ci:ver20,r-cr-o:hor20,a:blinkwait700-bl
 
 vim.g.snacks_animate = false
 
--- vim.opt.number = true
--- vim.opt.relativenumber = true
+vim.opt.number = false
+vim.opt.relativenumber = false
 
 -- vim.opt.numberwidth = 3
 -- vim.opt.signcolumn = "yes:1"
