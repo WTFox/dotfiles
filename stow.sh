@@ -11,6 +11,7 @@ directories_to_stow=(
   "ghostty/"
   "nvim/"
   "starship/"
+  "tmux/"
   "wezterm/"
   "yazi"
   "zsh/"

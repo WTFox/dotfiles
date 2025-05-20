@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Jellybeans Muted theme for tmux
+# Based on the Jellybeans Muted Neovim theme palette
+
+# Jellybeans Muted colors
+thm_bg="#101010"
+thm_fg="#dad6c8"
+thm_black="#121210"
+thm_red="#7e2e23"
+thm_green="#909c6e"
+thm_yellow="#c9c08c"
+thm_blue="#7a8aa6"
+thm_magenta="#b8aed3"
+thm_cyan="#617b87"
+thm_white="#bebebe"
+thm_orange="#c88a77"
+thm_black4="#3c3b38"
+thm_bright_blue="#83adc3"
+thm_bright_white="#f9f5ec"
+
+# Status line colors
+thm_gray="#7a7a7a"
+thm_statusline_bg="#1e1e1c"
+thm_statusline_fg="#93989c"
+thm_border="#302e2c"
+thm_active_border="#7a8aa6"
+thm_highlight="#3c3b38"
+
+# LuaLine-specific colors
+thm_accent="#83adc3"        # Accent color for sections (morning_glory)
+thm_total_black="#0d0c0b"   # For text on accent background
+
+# Specialized colors
+thm_cursor="#dad6c8"
+thm_visual="#3c3b38"
+thm_error="#cc4d4d"
+thm_warning="#d9a45a"
+thm_info="#7db7cc"

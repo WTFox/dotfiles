@@ -24,3 +24,4 @@ pgcli/.config/pgcli/history
 pgcli/.config/pgcli/log
 
 tmux-client-*.log
+tmux/.tmux/plugins/
