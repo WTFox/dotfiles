@@ -18,3 +18,5 @@ pyrightconfig.json
 **/.lazy.lua
 
 .gitconfig-local
+
+**/.claude/settings.local.json
