@@ -31,36 +31,22 @@ function gi() {
   curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$1
 }
 
-function update_neofetch_cache() {
-    local cache_file="$HOME/.cache/neofetch_output"
-    local update_interval=86400  # Update interval in seconds (e.g., 86400 for 1 day)
-
-    local function __current_timestamp() {
-        if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-            date +%s  # GNU/Linux
-        elif [[ "$OSTYPE" == "darwin"* ]]; then
-            date -j -f "%a %b %d %T %Z %Y" "$(date)" "+%s"  # macOS
-        else
-            echo "Unsupported OS"
-            exit 1
-        fi
-    }
-
-    local function __file_modification_timestamp() {
-        if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-            date +%s -r "$1"  # GNU/Linux
-        elif [[ "$OSTYPE" == "darwin"* ]]; then
-            stat -f "%m" "$1"  # macOS
-        else
-            echo "Unsupported OS"
-            exit 1
-        fi
-    }
-
-    # Check if the cache file exists and is not too old
-    if [[ ! -f "$cache_file" || $(( $(__current_timestamp) - $(__file_modification_timestamp "$cache_file") )) -gt $update_interval ]]; then
-        neofetch > "$cache_file"
-    fi
-
-    cat "$cache_file"
+help() {
+  if [[ $# -eq 0 ]]; then
+    echo "Usage: help command [args]"
+    return 1
+  fi
+  
+  local cmd="$1"
+  shift
+  
+  if [[ "$@" == *"-h"* || "$@" == *"--help"* ]]; then
+    # Command already has help flag, just run and pipe to bat
+    $cmd "$@" 2>&1 | bat --plain --language=help
+  else
+    # Try --help first, if it fails try -h
+    $cmd --help 2>&1 | bat --plain --language=help || \
+    $cmd -h 2>&1 | bat --plain --language=help
+  fi
 }
+
