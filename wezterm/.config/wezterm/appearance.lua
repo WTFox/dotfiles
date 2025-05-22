@@ -2,8 +2,11 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 local fonts = require("lib.fonts")
 
 return {
-	font_size = 17,
-	font = wezterm.font(fonts.jetbrains_styled),
+	font_size = 18,
+	font = wezterm.font_with_fallback({
+		fonts.mononoki,
+		fonts.jetbrains,
+	}),
 	adjust_window_size_when_changing_font_size = false,
 	use_fancy_tab_bar = true,
 	hide_tab_bar_if_only_one_tab = false,
