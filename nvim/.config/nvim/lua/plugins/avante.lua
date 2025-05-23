@@ -1,76 +1,87 @@
 return {
   {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    enabled = false,
-  },
-  {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    opts = {
-      provider = "copilot",
-      auto_suggestions_provider = "copilot",
-    },
-    build = "make",
     dependencies = {
       "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "zbirenbaum/copilot.lua",
-      {
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            use_absolute_path = true,
-          },
-        },
+      "ibhagwan/fzf-lua",
+    },
+    opts = {
+      -- Default configuration
+      hints = { enabled = false },
+
+      ---@alias AvanteProvider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+      provider = "copilot", -- Recommend using Claude
+      auto_suggestions_provider = "copilot", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+      claude = {
+        endpoint = "https://api.anthropic.com",
+        model = "claude-3-5-sonnet-20241022",
+        temperature = 0,
+        max_tokens = 4096,
+      },
+
+      -- File selector configuration
+      --- @alias FileSelectorProvider "native" | "fzf" | "mini.pick" | "snacks" | "telescope" | string
+      file_selector = {
+        provider = "snacks", -- Avoid native provider issues
+        provider_opts = {},
       },
     },
-    keys = {
-      {
-        "<leader>aa",
-        function()
-          require("avante.api").ask()
-        end,
-        desc = "avante: ask",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>ar",
-        function()
-          require("avante.api").refresh()
-        end,
-        desc = "avante: refresh",
-      },
-      {
-        "<leader>ae",
-        function()
-          require("avante.api").edit()
-        end,
-        desc = "avante: edit",
-        mode = "v",
+    build = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
+  },
+  {
+    "saghen/blink.cmp",
+    lazy = true,
+    dependencies = { "saghen/blink.compat" },
+    opts = {
+      sources = {
+        default = { "avante_commands", "avante_mentions", "avante_files" },
+        compat = {
+          "avante_commands",
+          "avante_mentions",
+          "avante_files",
+        },
+        -- LSP score_offset is typically 60
+        providers = {
+          avante_commands = {
+            name = "avante_commands",
+            module = "blink.compat.source",
+            score_offset = 90,
+            opts = {},
+          },
+          avante_files = {
+            name = "avante_files",
+            module = "blink.compat.source",
+            score_offset = 100,
+            opts = {},
+          },
+          avante_mentions = {
+            name = "avante_mentions",
+            module = "blink.compat.source",
+            score_offset = 1000,
+            opts = {},
+          },
+        },
       },
     },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    optional = true,
+    ft = function(_, ft)
+      vim.list_extend(ft, { "Avante" })
+    end,
+    opts = function(_, opts)
+      opts.file_types = vim.list_extend(opts.file_types or {}, { "Avante" })
+    end,
+  },
+  {
+    "folke/which-key.nvim",
+    optional = true,
     opts = {
-      code = {
-        -- Check these settings
-        style = "full", -- or 'normal'
-        left_pad = 0,
-        right_pad = 0,
-        width = "full", -- This might be related
-        border = "thin", -- Or this
+      spec = {
+        { "<leader>a", group = "ai" },
       },
-      file_types = { "markdown", "Avante" },
     },
-    ft = { "markdown", "Avante" },
   },
 }
