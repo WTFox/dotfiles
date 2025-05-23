@@ -1,4 +1,5 @@
 return {
+  { "CopilotC-Nvim/CopilotChat.nvim", enabled = false },
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
