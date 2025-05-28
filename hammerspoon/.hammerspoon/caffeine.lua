@@ -1,21 +1,19 @@
-local caffeine = hs.menubar.new()
-if not caffeine then
-	return
+local M = {}
+
+local function getIcon()
+	return hs.caffeinate.get("displayIdle") and "☕️" or "🥱"
 end
 
-local function setCaffeineDisplay(state)
-	if state then
-		caffeine:setTitle("☕️")
-	else
-		caffeine:setTitle("🥱")
-	end
+local function getStatus()
+	return hs.caffeinate.get("displayIdle") and "On" or "Off"
 end
 
-local function caffeineClicked()
-	setCaffeineDisplay(hs.caffeinate.toggle("displayIdle"))
+local function toggle()
+	hs.caffeinate.toggle("displayIdle")
 end
 
-if caffeine then
-	caffeine:setClickCallback(caffeineClicked)
-	setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
-end
+M.getIcon = getIcon
+M.getStatus = getStatus
+M.toggle = toggle
+
+return M

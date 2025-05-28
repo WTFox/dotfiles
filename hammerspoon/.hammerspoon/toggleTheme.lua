@@ -1,9 +1,6 @@
 local utils = require("utils")
 
-local darkMode = hs.menubar.new()
-if not darkMode then
-	return
-end
+local M = {}
 
 local function darkModeEnabled()
 	local value = hs.execute("defaults read -g AppleInterfaceStyle")
@@ -13,20 +10,26 @@ local function darkModeEnabled()
 	return utils.trim_string(value) == "Dark"
 end
 
-local function icon()
+local function getIcon()
 	return darkModeEnabled() and "🌙" or "☀️"
 end
 
-local function toggleDarkModeClicked()
+local function getStatus()
+	return darkModeEnabled() and "Dark" or "Light"
+end
+
+local function toggle()
 	hs.execute(
 		"osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
 	)
-	darkMode:setTitle(icon())
 end
 
-darkMode:setTitle(icon())
-darkMode:setClickCallback(toggleDarkModeClicked)
+M.getIcon = getIcon
+M.getStatus = getStatus
+M.toggle = toggle
 
 hs.hotkey.bind(utils.MASH, "b", function()
-	toggleDarkModeClicked()
+	toggle()
 end)
+
+return M

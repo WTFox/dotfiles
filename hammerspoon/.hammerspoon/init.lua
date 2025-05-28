@@ -5,6 +5,7 @@ require("caffeine")
 require("spongebob")
 require("toggleTheme")
 require("alert")
+require("menubar")
 
 local utils = require("utils")
 
