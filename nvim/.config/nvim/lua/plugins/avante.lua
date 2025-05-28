@@ -5,7 +5,6 @@ return {
     event = "VeryLazy",
     dependencies = {
       "stevearc/dressing.nvim",
-      "ibhagwan/fzf-lua",
     },
     opts = {
       -- Default configuration
