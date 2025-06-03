@@ -15,6 +15,7 @@ return {
   { import = "plugins.colors.jellybeans" },
   { import = "plugins.colors.kanagawa" },
   { import = "plugins.colors.tokyonight" },
+  { import = "plugins.colors.vague" },
   { import = "plugins.colors.zenbones" },
   {
     "LazyVim/LazyVim",
