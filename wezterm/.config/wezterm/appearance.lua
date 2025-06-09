@@ -14,7 +14,7 @@ return {
 	hide_tab_bar_if_only_one_tab = false,
 	default_cursor_style = "BlinkingBlock",
 	initial_cols = 130,
-	initial_rows = 32,
+	initial_rows = 31,
 	bold_brightens_ansi_colors = true,
 	window_decorations = "RESIZE|INTEGRATED_BUTTONS",
 	-- window_background_opacity = 0.8,
