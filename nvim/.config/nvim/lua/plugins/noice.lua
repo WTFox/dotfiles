@@ -1,6 +1,4 @@
-if true then
-  return {}
-end
+local Config = require("noice.config")
 
 return {
   "folke/noice.nvim",
@@ -36,6 +34,14 @@ return {
           },
         },
         view = "mini",
+      },
+      {
+        view = "notify",
+        filter = {
+          event = "msg_show",
+          kind = { "", "echo", "echomsg", "lua_print", "list_cmd", "shell_out", "shell_err", "shell_ret" },
+        },
+        opts = { replace = true, merge = true, title = "Messages" },
       },
     },
   },
