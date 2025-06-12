@@ -1,13 +1,9 @@
-if true then
-  return {}
-end
-
 return {
   {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
     keys = {
-      { "<leader>uT", "<cmd>UndotreeToggle<cr>", desc = "Undo Tree Toggle", noremap = true },
+      { "<leader>fu", "<cmd>UndotreeToggle<cr>", desc = "Undo Tree Toggle", noremap = true },
     },
     init = function()
       -- Persist undo, refer https://github.com/mbbill/undotree#usage
@@ -23,7 +19,7 @@ return {
       end
 
       -- set layout style to 2, let g:undotree_WindowLayout = 2
-      vim.g.undotree_WindowLayout = 2
+      vim.g.undotree_WindowLayout = 3
     end,
   },
 }
