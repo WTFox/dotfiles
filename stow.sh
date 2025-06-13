@@ -10,6 +10,7 @@ directories_to_stow=(
   "git/"
   "ghostty/"
   "nvim/"
+  "nvim-v2/"
   "starship/"
   "tmux/"
   "wezterm/"
