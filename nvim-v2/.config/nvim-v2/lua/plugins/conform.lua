@@ -1,44 +1,50 @@
+-- Formatter
+-- https://github.com/stevearc/conform.nvim
+
 return {
-  { -- Autoformat
-    'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
-    keys = {
-      {
-        '<leader>cf',
-        function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
-        end,
-        mode = '',
-        desc = '[F]ormat buffer',
+  {
+    'mason-org/mason.nvim',
+    opts = {
+      ui = {
+        icons = {
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗',
+        },
       },
     },
+  },
+  {
+    'stevearc/conform.nvim',
     opts = {
       notify_on_error = false,
-      format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
-        if disable_filetypes[vim.bo[bufnr].filetype] then
-          return nil
-        else
-          return {
-            timeout_ms = 500,
-            lsp_format = 'fallback',
-          }
-        end
-      end,
       formatters_by_ft = {
-        lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        python = { 'isort', 'black' },
-        --
-        typescript = { 'prettier' },
+        css = { 'prettier' },
+        go = { 'gofumpt', 'goimports', 'gosec', 'golines' },
+        html = { 'prettier' },
+        htmlangular = { 'prettier' },
         javascript = { 'prettier' },
+        json = { 'prettier' },
+        lua = { 'stylua' },
+        markdown = { 'prettierd' },
+        python = { 'black' },
+        rust = { 'rustfmt' },
+        scss = { 'prettier' },
+        typescript = { 'prettier' },
         typescriptreact = { 'prettier' },
-        javascriptreact = { 'prettier' },
+        vue = { 'prettier' },
+      },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_format = 'fallback',
       },
     },
+    init = function()
+      -- Use conform for gq.
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
+
+    event = { 'BufWritePre' },
+    enabled = not vim.g.vscode,
   },
 }

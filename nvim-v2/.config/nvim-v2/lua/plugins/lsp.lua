@@ -1,3 +1,5 @@
+if true then return {} end
+
 return {
   -- LSP Plugins
   {
@@ -29,7 +31,7 @@ return {
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
     },
-    config = function()
+    opts = function()
       -- Brief aside: **What is LSP?**
       --
       -- LSP is an initialism you've probably heard, but might not understand what it is.
@@ -235,8 +237,8 @@ return {
             },
           },
         },
-        pyright = {},
-        rust_analyzer = {},
+        -- pyright = {},
+        -- rust_analyzer = {},
         -- eslint = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --

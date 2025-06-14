@@ -37,4 +37,18 @@ M.extend = function(t1, t2)
   return vim.tbl_deep_extend('force', t1, t2)
 end
 
+M.set_keymap = function(opts)
+  local mode = opts.mode or 'n'
+  local bufnr = opts.bufnr or 0
+  local expr = opts.expr or false
+
+  vim.keymap.set(mode, opts.key, opts.cmd, {
+    expr = expr,
+    buffer = bufnr,
+    noremap = true,
+    silent = true,
+    desc = opts.desc,
+  })
+end
+
 return M
