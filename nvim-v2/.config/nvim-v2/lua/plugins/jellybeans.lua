@@ -5,6 +5,7 @@ end
 
 return {
   'wtfox/jellybeans.nvim',
+  dev = true,
   config = function()
     require('jellybeans').setup {
       transparent = false,
