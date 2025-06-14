@@ -1,6 +1,5 @@
-if true then
-  return {}
-end
+-- Framework-agnostic Python configuration for Neovim
+-- Only LSP and test adapter configuration
 
 local lsp = 'pyright'
 local ruff = 'ruff'
@@ -8,129 +7,97 @@ local ruff = 'ruff'
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    opts = { ensure_installed = { 'ninja', 'rst' } },
+    opts = { ensure_installed = { 'ninja', 'rst', 'python' } },
   },
   {
     'neovim/nvim-lspconfig',
-    opts = {
-      servers = {
-        ruff = {
-          cmd_env = { RUFF_TRACE = 'messages' },
-          init_options = {
-            settings = {
-              logLevel = 'error',
-            },
-          },
-          keys = {
-            {
-              '<leader>co',
-              LazyVim.lsp.action['source.organizeImports'],
-              desc = 'Organize Imports',
-            },
+    config = function()
+      local lspconfig = require 'lspconfig'
+
+      -- Ruff configuration
+      lspconfig.ruff.setup {
+        cmd_env = { RUFF_TRACE = 'messages' },
+        init_options = {
+          settings = {
+            logLevel = 'error',
           },
         },
-        ruff_lsp = {
-          keys = {
-            {
-              '<leader>co',
-              LazyVim.lsp.action['source.organizeImports'],
-              desc = 'Organize Imports',
-            },
-          },
-        },
-      },
-      setup = {
-        [ruff] = function()
-          LazyVim.lsp.on_attach(function(client, _)
-            -- Disable hover in favor of Pyright
-            client.server_capabilities.hoverProvider = false
-          end, ruff)
+        on_attach = function(client, bufnr)
+          -- Disable hover in favor of Pyright
+          client.server_capabilities.hoverProvider = false
+
+          -- Set up organize imports keymap
+          vim.keymap.set('n', '<leader>co', function()
+            vim.lsp.buf.code_action {
+              filter = function(action)
+                return action.kind == 'source.organizeImports'
+              end,
+              apply = true,
+            }
+          end, { buffer = bufnr, desc = 'Organize Imports' })
         end,
-      },
-    },
-  },
-  {
-    'neovim/nvim-lspconfig',
-    opts = function(_, opts)
-      local servers = { 'pyright', 'basedpyright', 'ruff', 'ruff_lsp', ruff, lsp }
-      for _, server in ipairs(servers) do
-        opts.servers[server] = opts.servers[server] or {}
-        opts.servers[server].enabled = server == lsp or server == ruff
-      end
+      }
+
+      -- Pyright configuration
+      lspconfig.pyright.setup {
+        on_attach = function(_, bufnr)
+          -- Any pyright-specific attach logic here
+        end,
+        capabilities = vim.lsp.protocol.make_client_capabilities(),
+      }
     end,
   },
   {
     'nvim-neotest/neotest',
-    optional = true,
     dependencies = {
       'nvim-neotest/neotest-python',
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
     },
-    opts = {
-      adapters = {
-        ['neotest-python'] = {
-          -- Here you can specify the settings for the adapter, i.e.
-          -- runner = "pytest",
-          -- python = ".venv/bin/python",
+    config = function()
+      require('neotest').setup {
+        adapters = {
+          require 'neotest-python' {
+            -- Here you can specify the settings for the adapter
+            -- runner = "pytest",
+            -- python = ".venv/bin/python",
+            dap = { justMyCode = false }, -- Disable DAP integration
+          },
         },
-      },
-    },
+      }
+    end,
   },
-  {
-    'mfussenegger/nvim-dap',
-    optional = true,
-    dependencies = {
-      'mfussenegger/nvim-dap-python',
-      -- stylua: ignore
-      keys = {
-        { "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
-        { "<leader>dPc", function() require('dap-python').test_class() end, desc = "Debug Class", ft = "python" },
-      },
-      config = function()
-        if vim.fn.has 'win32' == 1 then
-          require('dap-python').setup(LazyVim.get_pkg_path('debugpy', '/venv/Scripts/pythonw.exe'))
-        else
-          require('dap-python').setup(LazyVim.get_pkg_path('debugpy', '/venv/bin/python'))
-        end
-      end,
-    },
-  },
-
   {
     'linux-cultist/venv-selector.nvim',
-    branch = 'regexp', -- Use this branch for the new version
+    branch = 'regexp',
     cmd = 'VenvSelect',
-    enabled = function()
-      return LazyVim.has 'telescope.nvim'
-    end,
-    opts = {
-      settings = {
-        options = {
-          notify_user_on_venv_activation = true,
-        },
-      },
-    },
-    --  Call config for python files and load the cached venv automatically
     ft = 'python',
-    keys = { { '<leader>cv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv', ft = 'python' } },
-  },
-
-  {
-    'hrsh7th/nvim-cmp',
-    optional = true,
-    opts = function(_, opts)
-      opts.auto_brackets = opts.auto_brackets or {}
-      table.insert(opts.auto_brackets, 'python')
+    dependencies = { 'nvim-telescope/telescope.nvim' },
+    config = function()
+      require('venv-selector').setup {
+        settings = {
+          options = {
+            notify_user_on_venv_activation = true,
+          },
+        },
+      }
     end,
-  },
-
-  -- Don't mess up DAP adapters provided by nvim-dap-python
-  {
-    'jay-babu/mason-nvim-dap.nvim',
-    optional = true,
-    opts = {
-      handlers = {
-        python = function() end,
-      },
+    keys = {
+      { '<leader>cv', '<cmd>VenvSelect<cr>', desc = 'Select VirtualEnv', ft = 'python' },
     },
+  },
+  -- Optional: Mason LSP config to ensure Python LSPs are installed
+  {
+    'williamboman/mason-lspconfig.nvim',
+    dependencies = {
+      'williamboman/mason.nvim',
+      'neovim/nvim-lspconfig',
+    },
+    config = function()
+      require('mason').setup()
+      require('mason-lspconfig').setup {
+        ensure_installed = { 'pyright', 'ruff' },
+      }
+    end,
   },
 }

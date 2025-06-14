@@ -555,6 +555,20 @@ return {
       desc = 'Resume',
     },
     {
+      '<leader>ss',
+      function()
+        Snacks.picker.lsp_symbols()
+      end,
+      desc = 'Document Symbols',
+    },
+    {
+      '<leader>sS',
+      function()
+        Snacks.picker.lsp_workspace_symbols()
+      end,
+      desc = 'Workspace Symbols',
+    },
+    {
       '<leader>sq',
       function()
         Snacks.picker.qflist()

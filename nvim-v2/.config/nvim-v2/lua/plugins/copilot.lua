@@ -78,8 +78,8 @@ return {
     event = 'BufReadPost',
     opts = {
       suggestion = {
-        enabled = true,
-        auto_trigger = true,
+        enabled = false,
+        auto_trigger = false,
         hide_during_completion = true,
         keymap = {
           accept = '<c-e>',
@@ -102,32 +102,6 @@ return {
           end
           return true
         end,
-      },
-    },
-  },
-  {
-    'saghen/blink.cmp',
-    optional = true,
-    dependencies = {
-      'giuxtaposition/blink-cmp-copilot',
-    },
-    opts = {
-      sources = {
-        default = {
-          'copilot',
-          'lsp',
-          'path',
-          'buffer',
-          'snippets',
-        },
-        providers = {
-          copilot = {
-            name = 'copilot',
-            module = 'blink-cmp-copilot',
-            score_offset = 100,
-            async = true,
-          },
-        },
       },
     },
   },
