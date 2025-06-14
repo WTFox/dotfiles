@@ -1,10 +1,11 @@
-require 'config.autocmds'
-require 'config.health'
-require 'config.options'
-require 'config.keymaps'
-require 'utils'
+require("config.health")
+require("config.options")
+require("config.autocmds")
+require("utils")
 
-require 'config.lazy'
+require("config.lazy")
+
+require("config.keymaps")
 
 _G.dd = function(...)
   Snacks.debug.inspect(...)
