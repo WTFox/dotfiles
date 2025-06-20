@@ -8,7 +8,7 @@ return {
   dev = true,
   opts = {
     transparent = false,
-    italics = true,
+    italics = false,
     flat_ui = false,
     background = {
       dark = "jellybeans_mono",
