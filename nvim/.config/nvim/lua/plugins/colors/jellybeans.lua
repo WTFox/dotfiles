@@ -9,6 +9,7 @@ return {
   opts = {
     transparent = false,
     italics = false,
+    bold = true,
     flat_ui = false,
     background = {
       dark = "jellybeans_mono",
