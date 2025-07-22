@@ -32,7 +32,7 @@ fi
 [ -f ~/.local.zsh ] && source ~/.local.zsh
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 _run-cdi() {
     local dir="$(eval "zoxide query -i")"
