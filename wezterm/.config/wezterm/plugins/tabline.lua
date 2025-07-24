@@ -11,34 +11,33 @@ M.setup = function(config)
 	tabline.setup({
 		options = {
 			icons_enabled = true,
-			theme = "Gruvbox dark, hard (base16)",
-			-- theme_overrides = {
-			-- 	normal_mode = {
-			-- 		a = { fg = bg, bg = blue },
-			-- 		b = { fg = blue, bg = "#1f1f1f" },
-			-- 		c = { fg = "#c6b6ee", bg = bg },
-			-- 	},
-			-- 	copy_mode = {
-			-- 		a = { fg = bg, bg = yellow },
-			-- 		b = { fg = yellow, bg = "#1f1f1f" },
-			-- 		c = { fg = "#c6b6ee", bg = "#151515" },
-			-- 	},
-			-- 	search_mode = {
-			-- 		a = { fg = "#000000", bg = "#d2ebbe" },
-			-- 		b = { fg = "#d2ebbe", bg = "#313244" },
-			-- 		c = { fg = "#c6b6ee", bg = "#151515" },
-			-- 	},
-			-- 	window_mode = {
-			-- 		a = { fg = bg, bg = "#cba6f7" },
-			-- 		b = { fg = "#cba6f7", bg = "#313244" },
-			-- 		c = { fg = "#cdd6f4", bg = "#181825" },
-			-- 	},
-			-- 	tab = {
-			-- 		active = { fg = bg, bg = yellow },
-			-- 		inactive = { fg = "#cdd6f4", bg = bg },
-			-- 		inactive_hover = { fg = "#f5c2e7", bg = "#181825" },
-			-- 	},
-			-- },
+			theme_overrides = {
+				normal_mode = {
+					a = { fg = bg, bg = blue },
+					b = { fg = blue, bg = "#1f1f1f" },
+					c = { fg = "#c6b6ee", bg = bg },
+				},
+				copy_mode = {
+					a = { fg = bg, bg = yellow },
+					b = { fg = yellow, bg = "#1f1f1f" },
+					c = { fg = "#c6b6ee", bg = "#151515" },
+				},
+				search_mode = {
+					a = { fg = "#000000", bg = "#d2ebbe" },
+					b = { fg = "#d2ebbe", bg = "#313244" },
+					c = { fg = "#c6b6ee", bg = "#151515" },
+				},
+				window_mode = {
+					a = { fg = bg, bg = "#cba6f7" },
+					b = { fg = "#cba6f7", bg = "#313244" },
+					c = { fg = "#cdd6f4", bg = "#181825" },
+				},
+				tab = {
+					active = { fg = bg, bg = yellow },
+					inactive = { fg = "#cdd6f4", bg = bg },
+					inactive_hover = { fg = "#f5c2e7", bg = "#181825" },
+				},
+			},
 			section_separators = {
 				left = wezterm.nerdfonts.pl_left_hard_divider,
 				right = wezterm.nerdfonts.pl_right_hard_divider,

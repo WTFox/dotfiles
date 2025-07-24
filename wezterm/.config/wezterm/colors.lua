@@ -1,7 +1,7 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 
 local light = "jellybeans-muted-light"
-local dark = "GruvboxDarkHard"
+local dark = "jellybeans-mono"
 
 local function scheme_for_appearance(appearance)
 	return appearance:find("Light") and light or dark
