@@ -2,10 +2,10 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 local fonts = require("lib.fonts")
 
 return {
-	font_size = 18,
+	font_size = 16,
 	font = wezterm.font_with_fallback({
 		-- fonts.mononoki,
-		-- fonts.monolisa,
+		fonts.monolisa,
 		fonts.jetbrains,
 		fonts.jetbrains_styled,
 	}),
