@@ -14,7 +14,7 @@ return {
     },
     background = {
       light = "latte",
-      dark = "mocha",
+      dark = "frappe",
     },
     integrations = {
       diffview = true,
