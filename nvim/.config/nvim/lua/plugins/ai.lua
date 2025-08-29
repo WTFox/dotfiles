@@ -92,6 +92,10 @@ return {
         provider = "snacks", -- Avoid native provider issues
         provider_opts = {},
       },
+      selection = {
+        enabled = false,
+        hint_display = "delayed",
+      },
     },
     build = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
   },
