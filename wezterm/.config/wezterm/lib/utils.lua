@@ -3,14 +3,6 @@ local process_icons = require("lib.icons")
 
 local M = {}
 
-local light = "jellybeans-muted-light"
--- local dark = "jellybeans-mono"
-local dark = "GruvboxDarkHard"
-
-M.scheme_for_appearance = function(appearance)
-	return appearance:find("Light") and light or dark
-end
-
 M.is_mac = function()
 	return wezterm.target_triple:find("darwin")
 end
