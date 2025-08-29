@@ -105,9 +105,6 @@ style = "ossymbol"
 disabled = false
 
 [os.symbols]
-AIX = "AIX "
-Alpaquita = "\uf26a "        # \uf26a  # \ue3a5\ue390 
-AlmaLinux = "\uf31d "        # 
 Alpine = "\uf300 "           # ""
 Amazon = "\uf270 "           # ""
 Android = "\ue70e "          # ""
@@ -124,7 +121,6 @@ Garuda = "\uf337 "           # ""
 Gentoo = "\uf30d "           # ""
 HardenedBSD = "\uf132 "      # 
 Illumos = "\uf326 "          # "🐦"
-Kali = "\uf327 "             # 
 Linux = "\uf17c "            # ""
 Mabox = "\uf1b2 "            #  📦
 Macos = "\uf302 "            # ""
@@ -143,14 +139,11 @@ Pop = "\uf32a "              # ""
 Raspbian = "\uf315 "         # ""
 Redhat = "\uf316 "           # "" # 󱄛
 RedHatEnterprise = "\uf316 " # "" # 󱄛
-RockyLinux = "\uf32b "       # 
 Redox = "\uf331 "            #   󰺕
 Solus = "\uf32d "            # "" # " "
 SUSE = "\uef6d "             # ""
 Ubuntu = "\uf31b "           # ""
-Ultramarine = "󱙳 "           # 🔷
 Unknown = "\uf108 "          # ""
-Void = "\uf32e "             #  
 Windows = "\uf17a "          # ""
 
 [shell]
@@ -203,7 +196,6 @@ symbol = 'direnv'
 style = 'fg:greydimmed'
 format = "[\u3009$symbol $loaded/$allowed ]($style)"
 allowed_msg = 'a'                                    # 'ok' # '✓'
-not_allowed_msg = '!a'                               # 'nok' # '!'
 denied_msg = 'x'                                     # '✘'
 loaded_msg = '+'                                     # "\ueabc" # \ueabc  # '->' # 'yo' # '󰗡' # \udb81\udde1 # '󱥸✓' # '󱥸✓' # 
 unloaded_msg = '-'                                   # "\ueabc!" # \ueabc ! # '->!' # 'no' # '󰅚' # '󱥸!' \udb86\udd78

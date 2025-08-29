@@ -1,5 +1,4 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
-local colors = require("colors")
 
 local M = {}
 
@@ -8,7 +7,7 @@ M.setup = function(config)
 	tabline.setup({
 		options = {
 			icons_enabled = true,
-			theme = colors.dark,
+			theme = "GruvboxDarkHard",
 			section_separators = {
 				left = wezterm.nerdfonts.pl_left_hard_divider,
 				right = wezterm.nerdfonts.pl_right_hard_divider,
