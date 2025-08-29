@@ -5,7 +5,7 @@ return {
 	font_size = 16,
 	font = wezterm.font_with_fallback({
 		-- fonts.mononoki,
-		-- fonts.monolisa,
+		fonts.monolisa,
 		fonts.jetbrains,
 		fonts.jetbrains_styled,
 	}),

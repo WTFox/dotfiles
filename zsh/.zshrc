@@ -5,7 +5,7 @@ DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 
 plugins=(
-  git gh extract zsh-autosuggestions zsh-syntax-highlighting fzf direnv poetry universalarchive urltools eza autoupdate uv zsh-completions
+  git gh extract zsh-autosuggestions zsh-syntax-highlighting fzf direnv poetry universalarchive urltools eza autoupdate zsh-completions
 )
 fpath=(/usr/local/share/zsh-completions $fpath)
 source $ZSH/oh-my-zsh.sh
