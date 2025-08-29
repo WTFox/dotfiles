@@ -28,12 +28,12 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 # --multi"
 
 # Jellybeans
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#1c1c1c,bg:#151515,spinner:#a0a8b0,hl:#b39066 \
---color=fg:#dddddd,header:#b39066,info:#7a8aa6,pointer:#a0a8b0 \
---color=marker:#a08070,fg+:#c7c7c7,prompt:#7a8aa6,hl+:#b39066 \
---color=border:#151515 \
---multi"
+# export FZF_DEFAULT_OPTS=" \
+# --color=bg+:#1c1c1c,bg:#151515,spinner:#a0a8b0,hl:#b39066 \
+# --color=fg:#dddddd,header:#b39066,info:#7a8aa6,pointer:#a0a8b0 \
+# --color=marker:#a08070,fg+:#c7c7c7,prompt:#7a8aa6,hl+:#b39066 \
+# --color=border:#151515 \
+# --multi"
 
 # Catppuccin-Mocha Darker
 # export FZF_DEFAULT_OPTS=" \
@@ -84,18 +84,18 @@ export FZF_DEFAULT_OPTS=" \
 #   --color=spinner:#ff007c"
 
 # Catppuccin Frappe (Gruvbox Material Dark)
-# export FZF_DEFAULT_OPTS="\
-# --color=fg:#ebdbb2 \
-# --color=fg+:#ebdbb2 \
-# --color=bg:#1b1b1b \
-# --color=hl:#d3869b \
-# --color=bg+:#1d2021 \
-# --color=hl+:#d3869b \
-# --color=info:#d8a657 \
-# --color=prompt:#ea6962 \
-# --color=pointer:#ea6962 \
-# --color=marker:#a9b665 \
-# --color=spinner:#89b482 \
-# --color=header:#7daea3 \
-# --color=border:#1b1b1b \
-# --border=none"
+export FZF_DEFAULT_OPTS="\
+--color=fg:#ebdbb2 \
+--color=fg+:#ebdbb2 \
+--color=bg:#1b1b1b \
+--color=hl:#d3869b \
+--color=bg+:#1d2021 \
+--color=hl+:#d3869b \
+--color=info:#d8a657 \
+--color=prompt:#ea6962 \
+--color=pointer:#ea6962 \
+--color=marker:#a9b665 \
+--color=spinner:#89b482 \
+--color=header:#7daea3 \
+--color=border:#1b1b1b \
+--border=none"
