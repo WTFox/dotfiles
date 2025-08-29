@@ -28,7 +28,6 @@
 # ╰╴ # \u2570\u2574
 format = """
 [\u256D\u2574](fg:greydimmed)\
-$os\
 $shell\
 $username\
 $hostname\
@@ -180,16 +179,17 @@ disabled = false
 [directory]
 format = "[\ueab6 ](fg:directory bold)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path ]($style)"                                                       # \u276F ❯ \ueab6 
 style = 'fg:directory bold'
-home_symbol = "\uf015 ~"                                                                                                                                                  # \uf015 ' ~'
+home_symbol = "~"                                                                                                                                                         # \uf015 ' ~'
 read_only = "\uf023 "                                                                                                                                                     # \uf023 ' '
 read_only_style = 'fg:directory'
-truncation_length = 3
+truncation_length = 1
 truncation_symbol = '…/'
 truncate_to_repo = true
 repo_root_format = "[\ueab6 ](fg:directory bold)[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path ]($style)" # \u276F ❯ \ueab6 
 repo_root_style = 'fg:directory bold'
 use_os_path_sep = true
 disabled = false
+fish_style_pwd_dir_length = 1
 
 [direnv]
 symbol = 'direnv'
@@ -240,9 +240,9 @@ ahead = "[\u21E1 ${count} ](fg:ahead)"                                         #
 behind = "[\u21E3 ${unt} ](fg:behind)"                                         # ⇣ \uea9d
 diverged = "[\u2195\u21E1 ${ahead_count} \u21E3${behind_count} ](fg:diverged)" # \u2195\u21E1 ⇕ ↕ ⇳ 󰹹 󰹺 󰧈
 up_to_date = "[\u2714 ](fg:uptodate)"                                          # \u2714 ✔ \u2713 \ueab2 ✓
-untracked = "[󰟉.${count} ](fg:untracked)"                                      # 󰟉 \uf441 \ueb32 ﳇ ' ' # '? '
+untracked = "[? ${count} ](fg:untracked)"                                      # 󰟉 \uf441 \ueb32 ﳇ ' ' # '? '
 stashed = "[\ueb29 ${count} ](fg:stashed)"                                     # \ueb29  '📦 '# ' ' # ' ' # ' ' # ' '
-modified = "[\uf040 ${count} ](fg:modified)"                                   # \uf040 󰷉 '📝' # '! ' #  #  #  \uf044 \uea73
+modified = "[! ${count} ](fg:modified)"                                        # \uf040 󰷉 '📝' # '! ' #  #  #  \uf044 \uea73
 staged = "[\u26DF .${count} ](fg:staged)"                                      # \u26DF  '+ '
 renamed = "[\u0373 ${count} ](fg:renamed)"                                     # \u0373 \ueb69  ' ' # '﫦' # ᴂ #  #  #  # ﳳ
 deleted = "[\uea81 ${count} ](fg:deleted)"                                     # \uea81 \uf507 ﯊ '🗑 ' '- '
