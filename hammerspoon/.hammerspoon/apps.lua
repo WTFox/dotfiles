@@ -3,7 +3,7 @@ local utils = require("utils")
 local prefix = { "ctrl" }
 local mappings = {
 	{ key = "`", app = "wezterm" },
-	{ key = "1", app = "Firefox Nightly" },
+	{ key = "1", app = "Firefox" },
 }
 
 if utils.on_personal_laptop() then
