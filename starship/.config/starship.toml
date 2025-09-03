@@ -191,15 +191,11 @@ use_os_path_sep = true
 disabled = false
 fish_style_pwd_dir_length = 1
 
-[direnv]
-symbol = 'direnv'
-style = 'fg:greydimmed'
-format = "[\u3009$symbol $loaded/$allowed ]($style)"
-allowed_msg = 'a'                                    # 'ok' # '✓'
-denied_msg = 'x'                                     # '✘'
-loaded_msg = '+'                                     # "\ueabc" # \ueabc  # '->' # 'yo' # '󰗡' # \udb81\udde1 # '󱥸✓' # '󱥸✓' # 
-unloaded_msg = '-'                                   # "\ueabc!" # \ueabc ! # '->!' # 'no' # '󰅚' # '󱥸!' \udb86\udd78
-disabled = false
+# [direnv]
+# symbol = 'direnv'
+# style = 'fg:greydimmed'
+# format = "[\u3009$symbol ]($style)"
+# disabled = false
 
 [php]
 format = " [\u3009[$symbol](php italic)($version )]($style)"
