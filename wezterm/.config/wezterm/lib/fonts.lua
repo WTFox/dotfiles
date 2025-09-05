@@ -1,6 +1,10 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 
 return {
+	monaco = {
+		family = "Monaco",
+		weight = "Regular",
+	},
 	berkeley_mono = {
 		family = "Berkeley Mono",
 		weight = "Regular",
