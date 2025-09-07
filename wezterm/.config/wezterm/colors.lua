@@ -1,8 +1,8 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 local utils = require("lib.utils")
 
-local light = "Gruvbox (Gogh)"
-local dark = "GruvboxDarkHard"
+local light = "jellybeans-light"
+local dark = "jellybeans-mono"
 
 return {
 	color_scheme = utils.scheme_for_appearance(wezterm.gui.get_appearance(), dark, light),
