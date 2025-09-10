@@ -1,7 +1,7 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 local utils = require("lib.utils")
 
-local light = "jellybeans-light"
+local light = "jellybeans-muted-light"
 local dark = "jellybeans-mono"
 
 return {
