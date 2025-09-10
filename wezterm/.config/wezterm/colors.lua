@@ -1,10 +1,10 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
+local utils = require("lib.utils")
 
-local function scheme_for_appearance(appearance)
-	return appearance:find("Light") and "jellybeans-muted-light" or "jellybeans-mono"
-end
+local light = "jellybeans-light"
+local dark = "jellybeans-mono"
 
 return {
-	color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
+	color_scheme = utils.scheme_for_appearance(wezterm.gui.get_appearance(), dark, light),
 	color_scheme_dirs = { "~/.config/wezterm/colors/" },
 }

@@ -3,8 +3,13 @@ return {
   event = "VeryLazy",
   keys = {
     {
-      "<leader>fm",
+      "<leader>+",
       "<cmd>Yazi cwd<cr>",
+      desc = "Open the file manager in nvim's working directory",
+    },
+    {
+      "<leader>=",
+      "<cmd>Yazi<cr>",
       desc = "Open the file manager in nvim's working directory",
     },
   },

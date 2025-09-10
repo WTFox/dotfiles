@@ -188,6 +188,9 @@ return {
         git_branches = {
           layout = Utils.extend(layouts.default, { fullscreen = true }),
         },
+        recent = {
+          layout = Utils.extend(layouts.ivy, { fullscreen = true }),
+        },
         git_diff = {
           layout = Utils.extend(layouts.ivy, { fullscreen = true }),
         },

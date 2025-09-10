@@ -116,3 +116,5 @@ rules = [
   # Fallback
   { name = "*/", fg = "#7a8aa6" },
 ]
+
+# vim:fileencoding=utf-8:foldmethod=marker

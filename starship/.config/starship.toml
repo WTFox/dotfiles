@@ -1,14 +1,18 @@
-format = """
+format = """ \
 $username\
 $hostname\
 $directory\
 $git_branch\
 $git_state\
 $git_status\
+$fill\
 $cmd_duration\
 $line_break\
 $python\
 $character"""
+
+[fill]
+symbol = " "
 
 [directory]
 style = "blue"

@@ -7,11 +7,12 @@ return {
   "wtfox/jellybeans.nvim",
   dev = true,
   opts = {
-    transparent = false,
+    transparent = true,
     italics = true,
+    bold = true,
     flat_ui = false,
     background = {
-      dark = "jellybeans_mono",
+      dark = "jellybeans_muted",
       light = "jellybeans_mono_light",
     },
     on_colors = function(c)

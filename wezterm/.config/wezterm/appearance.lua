@@ -2,10 +2,10 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 local fonts = require("lib.fonts")
 
 return {
-	font_size = 17,
+	font_size = 16,
 	font = wezterm.font_with_fallback({
 		-- fonts.mononoki,
-		fonts.monolisa,
+		-- fonts.monolisa,
 		fonts.jetbrains,
 		fonts.jetbrains_styled,
 	}),
@@ -13,7 +13,7 @@ return {
 	use_fancy_tab_bar = true,
 	hide_tab_bar_if_only_one_tab = false,
 	default_cursor_style = "BlinkingBlock",
-	initial_cols = 130,
+	initial_cols = 114,
 	initial_rows = 31,
 	bold_brightens_ansi_colors = true,
 	window_decorations = "RESIZE|INTEGRATED_BUTTONS",

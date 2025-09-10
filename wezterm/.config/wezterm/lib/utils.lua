@@ -70,6 +70,9 @@ end
 ---@param cmd string
 M.get_cmd = function(cmd)
 	local exports_file = "~/.exports_mac.zsh"
+	if M.is_windows() then
+		exports_file = "~/.exports_linux.zsh"
+	end
 	return table.unpack({
 		"/bin/zsh",
 		"-c",

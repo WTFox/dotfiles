@@ -83,7 +83,7 @@ export FZF_DEFAULT_OPTS=" \
 #   --color=separator:#ff9e64 \
 #   --color=spinner:#ff007c"
 
-# Catppuccin Frappe (Gruvbox Material Dark)
+# # Catppuccin Frappe (Gruvbox Material Dark)
 # export FZF_DEFAULT_OPTS="\
 # --color=fg:#ebdbb2 \
 # --color=fg+:#ebdbb2 \
