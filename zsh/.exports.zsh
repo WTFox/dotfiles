@@ -1,6 +1,6 @@
 # == Common Exports ==
 
-export NVIM_APPNAME='nvim-v2'
+export NVIM_APPNAME='nvim-minimal'
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
