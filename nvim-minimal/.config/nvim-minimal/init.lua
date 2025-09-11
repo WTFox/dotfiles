@@ -1,0 +1,7 @@
+require 'bootstrap'
+require 'configs'
+require 'plugin-loader'
+require 'lsp'
+require 'keymaps'
+require 'statusline'
+require 'autocmds'
