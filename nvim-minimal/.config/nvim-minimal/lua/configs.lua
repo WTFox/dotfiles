@@ -28,3 +28,6 @@ opt.shiftround = true
 opt.swapfile = false
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
+
+-- Clipboard
+opt.clipboard = "unnamedplus"

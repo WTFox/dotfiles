@@ -47,12 +47,24 @@ map("n", "<leader>cd", '<cmd>lua vim.fn.chdir(vim.fn.expand("%:p:h"))<CR>')
 -- LSP
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", ns_opts)
 map("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", ns_opts)
+map("n", "<leader>ss", "<cmd>FzfLua lsp_document_symbols<CR>", ns_opts)
+map("n", "<leader>sS", "<cmd>FzfLua lsp_workspace_symbols<CR>", ns_opts)
 
 -- Diagnostics
 map("n", "<leader>dn", "<cmd>lua vim.diagnostic.jump({count = 1})<CR>", ns_opts)
 map("n", "<leader>dp", "<cmd>lua vim.diagnostic.jump({count = -1})<CR>", ns_opts)
 map("n", "<leader>dl", "<cmd>lua vim.diagnostic.setloclist()<CR>", ns_opts)
 map("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", ns_opts)
+map("n", "<leader>ud", function()
+    local config = vim.diagnostic.config()
+    if config and config.underline then
+        vim.diagnostic.config({ underline = false })
+        print("Diagnostic underlines disabled")
+    else
+        vim.diagnostic.config({ underline = true })
+        print("Diagnostic underlines enabled")
+    end
+end, ns_opts)
 
 -- File Explorer
 map("n", "<leader>e", "<cmd>lua MiniFiles.open()<CR>")
@@ -68,6 +80,7 @@ map("n", "<leader>sb", "<cmd>FzfLua buffers<CR>")
 map("n", "<leader>sc", "<cmd>FzfLua commands<CR>")
 map("n", "<leader>sm", "<cmd>FzfLua marks<CR>")
 map("n", "<leader>st", "<cmd>FzfLua tabs<CR>")
+map("n", "<leader>sw", "<cmd>FzfLua grep_cword<CR>")
 
 -- Grapple
 map("n", "<leader>H", require("grapple").toggle)
@@ -86,7 +99,7 @@ map("n", "<leader>gg", function()
     local height = math.floor(vim.o.lines * 0.9)
     local col = math.floor((vim.o.columns - width) / 2)
     local row = math.floor((vim.o.lines - height) / 2)
-    
+
     local win = vim.api.nvim_open_win(buf, true, {
         relative = "editor",
         width = width,
@@ -96,7 +109,7 @@ map("n", "<leader>gg", function()
         style = "minimal",
         border = "rounded"
     })
-    
+
     vim.fn.termopen("lazygit", {
         on_exit = function()
             if vim.api.nvim_win_is_valid(win) then

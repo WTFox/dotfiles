@@ -17,4 +17,7 @@ require("mason-tool-installer").setup({
 })
 
 
-vim.diagnostic.config({ signs = true })
+vim.diagnostic.config({ 
+    signs = true,
+    underline = false 
+})
