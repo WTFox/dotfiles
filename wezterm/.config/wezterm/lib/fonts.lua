@@ -19,6 +19,9 @@ return {
 		family = "Cascadia Code",
 		weight = "Regular",
 	},
+	meslo = {
+		family = "Meslo LG S",
+	},
 	maple_mono = {
 		family = "Maple Mono",
 		weight = "Light",
