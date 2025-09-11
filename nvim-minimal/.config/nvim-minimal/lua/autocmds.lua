@@ -15,25 +15,6 @@ autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "netrw",
-    callback = function()
-        map("n", "<C-c>", "<cmd>bd<CR>", bs)
-        map("n", "<Tab>", "mf", brs)
-        map("n", "<S-Tab>", "mF", brs)
-        map("n", "%", function()
-            local dir = vim.b.netrw_curdir or vim.fn.expand("%:p:h")
-            vim.ui.input({ prompt = "Enter filename: " }, function(input)
-                if input and input ~= "" then
-                    local filepath = dir .. "/" .. input
-                    vim.cmd("!touch " .. vim.fn.shellescape(filepath))
-                    vim.api.nvim_feedkeys("<C-l>", "n", false)
-                end
-            end)
-        end, bs)
-    end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
     callback = function(ev)
         local ft = vim.bo[ev.buf].filetype
@@ -51,5 +32,16 @@ vim.api.nvim_create_autocmd("FileType", {
         end
 
         map("n", "<leader>fo", cmd, { buffer = ev.buf })
+    end,
+})
+
+-- Auto-format on save with LSP
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*",
+    callback = function(args)
+        local clients = vim.lsp.get_clients({ bufnr = args.buf })
+        if #clients > 0 then
+            vim.lsp.buf.format({ bufnr = args.buf })
+        end
     end,
 })
