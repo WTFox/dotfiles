@@ -88,9 +88,9 @@ map("n", "<leader>h", require("grapple").open_tags)
 
 -- Git
 map({ "n", "x" }, "<leader>gy", require("gh-permalink").yank)
-map("n", "<leader>ghp", require("Gitsigns").preview_hunk)
-map("n", "<leader>ghb", require("Gitsigns").blame_line)
-map("n", "<leader>ghr", require("Gitsigns").reset_hunk)
+map("n", "<leader>ghp", function() require("gitsigns").preview_hunk() end, ns_opts)
+map("n", "<leader>ghb", function() require("gitsigns").blame_line() end, ns_opts)
+map("n", "<leader>ghr", function() require("gitsigns").reset_hunk() end, ns_opts)
 map("n", "<leader>gs", "<cmd>Git<CR>", ns_opts)
 map("n", "<leader>gd", "<cmd>Git diffthis<CR>", ns_opts)
 map("n", "<leader>gg", function()
