@@ -122,3 +122,15 @@ map("n", "<leader>gg", function()
     })
     vim.cmd("startinsert")
 end)
+
+-- UI
+-- toggle background
+map("n", "<leader>ub", function()
+    if vim.o.background == "dark" then
+        vim.o.background = "light"
+        print("Switched to light mode")
+    else
+        vim.o.background = "dark"
+        print("Switched to dark mode")
+    end
+end, ns_opts)

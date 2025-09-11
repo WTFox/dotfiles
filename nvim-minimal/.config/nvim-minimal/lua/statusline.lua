@@ -18,9 +18,7 @@ local function hl(group, text)
     return string.format("%%#%s#%s%%*", group, text)
 end
 
--- set (or link) the dim highlight once
-vim.api.nvim_set_hl(0, config.placeholder_hl, {}) -- create if missing
--- Link to Comment to keep it dim; adjust as you like
+-- set dim highlight group
 vim.api.nvim_set_hl(0, config.placeholder_hl, { link = "Comment" })
 
 local function filepath()
@@ -43,13 +41,10 @@ local function git()
         return ""
     end
 
-    local head    = git_info.head
-    local added   = git_info.added and (" +" .. git_info.added) or ""
-    local changed = git_info.changed and (" ~" .. git_info.changed) or ""
-    local removed = git_info.removed and (" -" .. git_info.removed) or ""
-    if git_info.added == 0 then added = "" end
-    if git_info.changed == 0 then changed = "" end
-    if git_info.removed == 0 then removed = "" end
+    local head = git_info.head
+    local added = (git_info.added and git_info.added > 0) and (" +" .. git_info.added) or ""
+    local changed = (git_info.changed and git_info.changed > 0) and (" ~" .. git_info.changed) or ""
+    local removed = (git_info.removed and git_info.removed > 0) and (" -" .. git_info.removed) or ""
 
     if not state.show_branch then
         head = hl(config.placeholder_hl, config.icons.branch_hidden)
