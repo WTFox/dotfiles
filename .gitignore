@@ -7,6 +7,7 @@ backup/*
 
 nvim/.config/nvim/plugged/
 bin/bin/nvim/
+bin/bin/nvim
 bin/bin/nvim-macos/
 bin/bin/nvim-macos.tar.gz
 bin/bin/nvim-linux64/

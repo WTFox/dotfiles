@@ -29,10 +29,24 @@ install_go() {
 }
 
 install_nvim() {
+  # Create ~/bin directory if it doesn't exist
+  mkdir -p ~/bin
+  
   pushd ~/bin || exit
-  curl -LO https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.tar.gz
+  
+  # Download nightly build
+  curl -LO "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz"
   tar xzf nvim-linux-x86_64.tar.gz
-  echo "nvim installed!"
+  
+  # Create symlink for easy PATH access
+  ln -sf ~/bin/nvim-linux-x86_64/bin/nvim ~/bin/nvim
+  
+  # Cleanup
+  rm nvim-linux-x86_64.tar.gz
+  
+  echo "nvim nightly installed!"
+  echo "Make sure ~/bin is in your PATH"
+  
   popd || exit
 }
 
