@@ -23,6 +23,8 @@ return {
     { src = "https://github.com/MagicDuck/grug-far.nvim" },
     { src = "https://github.com/monaqa/dial.nvim" },
     { src = "https://github.com/akinsho/toggleterm.nvim" },
+    -- Formatting
+    { src = "https://github.com/stevearc/conform.nvim" },
     -- Treesitter
     { src = "https://github.com/nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },

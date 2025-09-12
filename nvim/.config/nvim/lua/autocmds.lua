@@ -14,16 +14,6 @@ autocmd("TextYankPost", {
     group = highlight_group,
 })
 
--- Auto-format on save with LSP
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*",
-    callback = function(args)
-        local clients = vim.lsp.get_clients({ bufnr = args.buf })
-        if #clients > 0 then
-            vim.lsp.buf.format({ bufnr = args.buf })
-        end
-    end,
-})
 
 -- Auto-reload buffers when focused
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {

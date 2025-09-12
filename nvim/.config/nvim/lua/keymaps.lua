@@ -51,16 +51,42 @@ map("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", ns_opts)
 -- Diagnostics
 map("n", "<leader>dn", "<cmd>lua vim.diagnostic.jump({count = 1})<CR>", ns_opts)
 map("n", "<leader>dp", "<cmd>lua vim.diagnostic.jump({count = -1})<CR>", ns_opts)
-map("n", "<leader>dl", "<cmd>lua vim.diagnostic.setloclist()<CR>", ns_opts)
+map("n", "<leader>dl", "<cmd>FzfLua diagnostics_document<CR>", ns_opts)
 map("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", ns_opts)
+map("n", "<leader>dw", "<cmd>FzfLua diagnostics_workspace<CR>", ns_opts)
 map("n", "<leader>ud", function()
-    local config = vim.diagnostic.config()
-    if config and config.underline then
-        vim.diagnostic.config({ underline = false })
-        print("Diagnostic underlines disabled")
+    local config = vim.diagnostic.config() or {}
+    local enabled = config.signs ~= false or config.virtual_text ~= false or config.underline ~= false
+    
+    if enabled then
+        vim.diagnostic.config({
+            signs = false,
+            virtual_text = false,
+            underline = false,
+        })
+        print("Diagnostics disabled")
     else
-        vim.diagnostic.config({ underline = true })
-        print("Diagnostic underlines enabled")
+        vim.diagnostic.config({
+            signs = {
+                linehl = {},
+                numhl = {
+                    [vim.diagnostic.severity.ERROR] = "DiagnosticLineNrError",
+                    [vim.diagnostic.severity.WARN] = "DiagnosticLineNrWarn",
+                    [vim.diagnostic.severity.INFO] = "DiagnosticLineNrInfo",
+                    [vim.diagnostic.severity.HINT] = "DiagnosticLineNrHint",
+                },
+            },
+            virtual_text = {
+                spacing = 4,
+                prefix = "●",
+                suffix = "",
+                format = function(diagnostic)
+                    return string.format("%s", diagnostic.message)
+                end,
+            },
+            underline = false,
+        })
+        print("Diagnostics enabled")
     end
 end, ns_opts)
 
