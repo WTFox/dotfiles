@@ -20,6 +20,27 @@ require("mason-tool-installer").setup({
 })
 
 
+-- Fix for change_annotations issue with pyright
+local function fix_workspace_edit(workspace_edit)
+    if workspace_edit and workspace_edit.documentChanges then
+        for _, change in ipairs(workspace_edit.documentChanges) do
+            if change.edits then
+                for _, edit in ipairs(change.edits) do
+                    if edit.annotationId and not workspace_edit.changeAnnotations then
+                        edit.annotationId = nil
+                    end
+                end
+            end
+        end
+    end
+    return workspace_edit
+end
+
+local original_apply_workspace_edit = vim.lsp.util.apply_workspace_edit
+vim.lsp.util.apply_workspace_edit = function(workspace_edit, offset_encoding)
+    return original_apply_workspace_edit(fix_workspace_edit(workspace_edit), offset_encoding)
+end
+
 vim.diagnostic.config({
     signs = {
         linehl = {},

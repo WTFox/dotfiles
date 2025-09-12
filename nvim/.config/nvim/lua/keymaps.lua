@@ -145,3 +145,27 @@ map("n", "<leader>ub", function()
         print("Switched to dark mode")
     end
 end, ns_opts)
+
+-- toggle line numbers
+map("n", "<leader>ul", function()
+    local has_numbers = vim.o.number or vim.o.relativenumber
+    local new_state = not has_numbers
+    
+    -- Set for all buffers
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf) then
+            vim.api.nvim_buf_set_option(buf, 'number', new_state)
+            vim.api.nvim_buf_set_option(buf, 'relativenumber', new_state)
+        end
+    end
+    
+    -- Set global default for new buffers
+    vim.o.number = new_state
+    vim.o.relativenumber = new_state
+    
+    if new_state then
+        print("Line numbers enabled")
+    else
+        print("Line numbers disabled")
+    end
+end, ns_opts)
