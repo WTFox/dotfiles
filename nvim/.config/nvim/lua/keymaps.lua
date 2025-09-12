@@ -50,14 +50,21 @@ map("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", ns_opts)
 
 -- Diagnostics
 map("n", "<leader>dn", "<cmd>lua vim.diagnostic.jump({count = 1})<CR>", ns_opts)
-map("n", "<leader>dp", "<cmd>lua vim.diagnostic.jump({count = -1})<CR>", ns_opts)
+map(
+    "n",
+    "<leader>dp",
+    "<cmd>lua vim.diagnostic.jump({count = -1})<CR>",
+    ns_opts
+)
 map("n", "<leader>dl", "<cmd>FzfLua diagnostics_document<CR>", ns_opts)
 map("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", ns_opts)
 map("n", "<leader>dw", "<cmd>FzfLua diagnostics_workspace<CR>", ns_opts)
 map("n", "<leader>ud", function()
     local config = vim.diagnostic.config() or {}
-    local enabled = config.signs ~= false or config.virtual_text ~= false or config.underline ~= false
-    
+    local enabled = config.signs ~= false
+        or config.virtual_text ~= false
+        or config.underline ~= false
+
     if enabled then
         vim.diagnostic.config({
             signs = false,
@@ -129,9 +136,15 @@ map("n", "<leader>h", require("grapple").open_tags)
 
 -- Git
 map({ "n", "x" }, "<leader>gy", require("gh-permalink").yank)
-map("n", "<leader>ghp", function() require("gitsigns").preview_hunk() end, ns_opts)
-map("n", "<leader>ghb", function() require("gitsigns").blame_line() end, ns_opts)
-map("n", "<leader>ghr", function() require("gitsigns").reset_hunk() end, ns_opts)
+map("n", "<leader>ghp", function()
+    require("gitsigns").preview_hunk()
+end, ns_opts)
+map("n", "<leader>ghb", function()
+    require("gitsigns").blame_line()
+end, ns_opts)
+map("n", "<leader>ghr", function()
+    require("gitsigns").reset_hunk()
+end, ns_opts)
 map("n", "<leader>gd", "<cmd>Git diffthis<CR>", ns_opts)
 
 -- UI
@@ -150,22 +163,25 @@ end, ns_opts)
 map("n", "<leader>ul", function()
     local has_numbers = vim.o.number or vim.o.relativenumber
     local new_state = not has_numbers
-    
+
     -- Set for all buffers
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(buf) then
-            vim.api.nvim_buf_set_option(buf, 'number', new_state)
-            vim.api.nvim_buf_set_option(buf, 'relativenumber', new_state)
+            vim.api.nvim_buf_set_option(buf, "number", new_state)
+            vim.api.nvim_buf_set_option(buf, "relativenumber", new_state)
         end
     end
-    
+
     -- Set global default for new buffers
     vim.o.number = new_state
     vim.o.relativenumber = new_state
-    
+
     if new_state then
         print("Line numbers enabled")
     else
         print("Line numbers disabled")
     end
 end, ns_opts)
+
+-- redraw / clear highlights
+map("n", "<leader>ur", "<cmd>nohls<CR>", ns_opts)
