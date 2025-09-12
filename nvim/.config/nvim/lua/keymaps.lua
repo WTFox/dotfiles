@@ -112,7 +112,7 @@ map("n", "<leader><leader>", "<cmd>FzfLua files<CR>")
 map("n", "<leader>sg", "<cmd>FzfLua live_grep<CR>")
 map("n", "<leader>sh", "<cmd>FzfLua help_tags<CR>")
 map("n", "<leader>/", "<cmd>FzfLua grep_curbuf<CR>")
-map("n", "<leader>sB", "<cmd>FzfLua buffers<CR>")
+map("n", "<leader>fb", "<cmd>FzfLua buffers<CR>")
 map("n", "<leader>sc", "<cmd>FzfLua commands<CR>")
 map("n", "<leader>sm", "<cmd>FzfLua marks<CR>")
 map("n", "<leader>st", "<cmd>FzfLua tabs<CR>")
@@ -129,6 +129,49 @@ map("n", "<leader>sM", "<cmd>FzfLua man_pages<cr>")
 map("n", "<leader>sm", "<cmd>FzfLua marks<cr>")
 map("n", "<leader>sR", "<cmd>FzfLua resume<cr>")
 map("n", "<leader>sq", "<cmd>FzfLua quickfix<cr>")
+map("n", "<leader>fc", function()
+    require("fzf-lua").git_files({ cwd = vim.fn.expand("~/dotfiles") })
+end)
+map("n", "<leader>R", function()
+    -- Clear only our custom lua modules
+    for name, _ in pairs(package.loaded) do
+        if
+            name:match("^keymaps")
+            or name:match("^autocmds")
+            or name:match("^plugins")
+            or name:match("^plugin%-config")
+            or name:match("^plugin%-loader")
+            or name:match("^statusline")
+            or name:match("^lsp")
+            or name:match("^bootstrap")
+        then
+            package.loaded[name] = nil
+        end
+    end
+    dofile(vim.env.MYVIMRC)
+    -- Force colorscheme reload
+    if vim.g.colors_name then
+        vim.cmd("colorscheme " .. vim.g.colors_name)
+    end
+    print("Config reloaded!")
+end)
+
+map("n", "<leader>up", function()
+    local plugins = {}
+    for name in pairs(package.loaded) do
+        if not name:match("^_") and not name:match("^vim") and not name:match("^nvim") then
+            table.insert(plugins, name)
+        end
+    end
+    table.sort(plugins)
+    
+    local lines = { "Loaded Plugins:" }
+    for _, plugin in ipairs(plugins) do
+        table.insert(lines, "  " .. plugin)
+    end
+    
+    vim.api.nvim_echo({{ table.concat(lines, "\n"), "Normal" }}, true, {})
+end)
 
 -- Grapple
 map("n", "<leader>H", require("grapple").toggle)
@@ -157,6 +200,22 @@ map("n", "<leader>ub", function()
         vim.o.background = "dark"
         print("Switched to dark mode")
     end
+end, ns_opts)
+
+-- colorscheme picker
+map("n", "<leader>uC", function()
+    require("fzf-lua").colorschemes({
+        winopts = {
+            height = 0.6,
+            width = 0.6,
+        },
+        actions = {
+            ["default"] = function(selected)
+                vim.cmd("colorscheme " .. selected[1])
+                print("Colorscheme changed to: " .. selected[1])
+            end,
+        },
+    })
 end, ns_opts)
 
 -- toggle line numbers

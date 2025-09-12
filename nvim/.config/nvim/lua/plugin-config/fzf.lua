@@ -24,6 +24,10 @@ require("fzf-lua").setup({
             ["alt-h"] = { actions.toggle_hidden },
         },
     },
+    oldfiles = {
+        formatter = 'path.filename_first',
+        cwd_prompt = false,
+    },
     git = {
         files = {
             formatter = 'path.filename_first',
