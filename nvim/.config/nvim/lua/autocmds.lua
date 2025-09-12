@@ -14,27 +14,6 @@ autocmd("TextYankPost", {
     group = highlight_group,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "*",
-    callback = function(ev)
-        local ft = vim.bo[ev.buf].filetype
-        local formatting = "lua vim.lsp.buf.format()"
-
-        if ft == "lua" then
-            formatting = "!stylua %"
-        elseif ft == "tex" then
-            formatting = "!latexindent -s -l -w %"
-        end
-
-        local cmd = function()
-            vim.cmd("write")
-            vim.cmd("silent " .. formatting)
-        end
-
-        map("n", "<leader>fo", cmd, { buffer = ev.buf })
-    end,
-})
-
 -- Auto-format on save with LSP
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
