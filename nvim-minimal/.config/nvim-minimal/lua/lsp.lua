@@ -2,22 +2,23 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({
     ensure_installed = {
+        "bashls",
+        "clangd",
+        "cssls",
+        "eslint",
+        "gopls",
+        "html",
+        "jsonls",
         "lua_ls",
-        "stylua",
         "pyright",
         "rust_analyzer",
-        "clangd",
-        "gopls",
-        "eslint",
-        "html",
-        "cssls",
-        "jsonls",
-        "bashls",
+        "stylua",
+        "ts_ls",
     },
 })
 
 
-vim.diagnostic.config({ 
+vim.diagnostic.config({
     signs = true,
-    underline = false 
+    underline = false
 })
