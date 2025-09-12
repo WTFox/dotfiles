@@ -5,7 +5,7 @@ opt.guicursor = "i:block"
 opt.signcolumn = "yes:1"
 opt.termguicolors = true
 opt.number = false
-opt.relativenumber = true
+opt.relativenumber = false
 opt.numberwidth = 2
 opt.cursorline = true
 opt.wrap = false
@@ -16,7 +16,7 @@ opt.listchars = {
     trail = "·",
     extends = "→",
     precedes = "←",
-    nbsp = "␣"
+    nbsp = "␣",
 }
 
 -- Search
