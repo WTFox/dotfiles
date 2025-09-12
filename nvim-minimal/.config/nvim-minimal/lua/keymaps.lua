@@ -17,8 +17,8 @@ map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
 
 -- Window Splits
-map("n", "<leader>|", ":vsplit<CR><C-w>w", opts)
-map("n", "<leader>-", ":split<CR><C-w>w", opts)
+map("n", "<leader>|", ":vsplit<CR>", opts)
+map("n", "<leader>-", ":split<CR>", opts)
 
 -- Buffer Navigation
 map("n", "L", ":bnext<CR>", opts)

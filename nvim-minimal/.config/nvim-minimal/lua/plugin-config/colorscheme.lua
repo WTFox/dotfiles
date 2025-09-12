@@ -8,7 +8,7 @@ require("jellybeans").setup({
         auto = true,
     },
     background = {
-        dark = "jellybeans_mono",
+        dark = "jellybeans_muted",
         light = "jellybeans_light",
     },
     on_colors = function(c)
