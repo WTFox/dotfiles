@@ -17,6 +17,7 @@ require("fzf-lua").setup({
         },
     },
     files = {
+        formatter = 'path.filename_first',
         cwd_prompt = false,
         actions = {
             ["alt-i"] = { actions.toggle_ignore },
@@ -49,5 +50,15 @@ require("fzf-lua").setup({
             ["enter"] = actions.file_edit_or_qf,
         },
     },
+    previewers = {
+        builtin = {
+            extensions = {
+                ['png'] = { "chafa", "{file}", "--format=symbols" },
+                ['jpg'] = { "chafa", "{file}", "--format=symbols" },
+                ['jpeg'] = { "chafa", "{file}", "--format=symbols" },
+                ['gif'] = { "chafa", "{file}", "--format=symbols" },
+                ['webp'] = { "chafa", "{file}", "--format=symbols" },
+            },
+        },
+    },
 })
-
