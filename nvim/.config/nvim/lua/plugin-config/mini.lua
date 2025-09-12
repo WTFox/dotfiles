@@ -51,7 +51,7 @@ require('mini.clue').setup({
 
 local starter = require('mini.starter')
 starter.setup({
-    evaluate_single = true,
+    evaluate_single = false,
     header = [[ i'm sorry, dave. i can't do that. ]],
     items = {
         { name = 'Files', action = 'FzfLua git_files', section = 'Builtin actions' },
