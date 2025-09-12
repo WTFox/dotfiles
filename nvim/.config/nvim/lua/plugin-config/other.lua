@@ -16,7 +16,7 @@ require("toggleterm").setup({
         border = "curved",
         width = math.floor(vim.o.columns * 0.8),
         height = math.floor(vim.o.lines * 0.8),
-        winblend = 3,
+        -- winblend = 3,
     },
 })
 
