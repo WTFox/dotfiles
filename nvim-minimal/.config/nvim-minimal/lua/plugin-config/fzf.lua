@@ -1,6 +1,13 @@
 local actions = require("fzf-lua.actions")
 
 require("fzf-lua").setup({
+    fzf_colors = true,
+    fzf_opts = {
+        ['--no-scrollbar'] = true,
+    },
+    defaults = {
+        formatter = 'path.dirname_first'
+    },
     winopts = {
         height = 1,
         width = 1,
@@ -9,18 +16,29 @@ require("fzf-lua").setup({
             horizontal = "right:70%",
         },
     },
+    files = {
+        cwd_prompt = false,
+        actions = {
+            ["alt-i"] = { actions.toggle_ignore },
+            ["alt-h"] = { actions.toggle_hidden },
+        },
+    },
+    grep = {
+        actions = {
+            ["alt-i"] = { actions.toggle_ignore },
+            ["alt-h"] = { actions.toggle_hidden },
+        },
+    },
     keymap = {
         builtin = {
-            ["<C-f>"] = "preview-page-down",
-            ["<C-b>"] = "preview-page-up",
-            ["<C-p>"] = "toggle-preview",
+            ["<C-d>"] = "preview-page-down",
+            ["<C-u>"] = "preview-page-up",
+            ["<C-i>"] = "toggle-preview",
         },
         fzf = {
             ["ctrl-a"] = "toggle-all",
             ["ctrl-t"] = "first",
             ["ctrl-g"] = "last",
-            ["ctrl-d"] = "half-page-down",
-            ["ctrl-u"] = "half-page-up",
         },
     },
     actions = {
@@ -32,3 +50,4 @@ require("fzf-lua").setup({
         },
     },
 })
+

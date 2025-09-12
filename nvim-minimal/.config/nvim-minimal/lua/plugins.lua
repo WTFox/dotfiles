@@ -13,4 +13,5 @@ return {
     { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
     { src = "https://github.com/nvim-mini/mini.nvim" },
+    { src = "https://github.com/MagicDuck/grug-far.nvim" },
 }

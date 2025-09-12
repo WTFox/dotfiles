@@ -3,10 +3,13 @@ require("jellybeans").setup({
     italics = true,
     bold = true,
     flat_ui = true,
-    plugins = "all",
+    plugins = {
+        all = false,
+        auto = true,
+    },
     background = {
         dark = "jellybeans_mono",
-        light = "jellybeans_muted_light",
+        light = "jellybeans_light",
     },
     on_colors = function(c)
         -- Coffee
@@ -16,7 +19,9 @@ require("jellybeans").setup({
         -- c.accent_color_1 = "#b5d4e3"
         -- c.accent_color_2 = "#b7a88d"
     end,
-    on_highlights = function(hl, c) end,
+    on_highlights = function(hl, c)
+        hl.FzfLuaBorder = { fg = c.background, bg = c.background }
+    end,
 })
 
 vim.cmd.colorscheme("jellybeans")
