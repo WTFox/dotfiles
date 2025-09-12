@@ -40,6 +40,8 @@ map("x", "y", [["+y]], opts)
 
 -- Terminal
 map("t", "<Esc>", "<C-\\><C-N>")
+map("n", "<C-\\>", "<cmd>split | resize " .. math.floor(vim.o.lines * 0.3) .. " | terminal<CR>i", opts)
+map("n", "<leader>tv", "<cmd>vsplit | vertical resize " .. math.floor(vim.o.columns * 0.4) .. " | terminal<CR>i", opts)
 
 -- Directory
 map("n", "<leader>cd", '<cmd>lua vim.fn.chdir(vim.fn.expand("%:p:h"))<CR>')
@@ -69,6 +71,8 @@ map("n", "<leader>e", "<cmd>lua MiniFiles.open()<CR>")
 map("n", "<leader>ps", "<cmd>lua vim.pack.update()<CR>")
 
 -- Fuzzy Finder
+map("n", "grr", "<cmd>FzfLua lsp_references<CR>", ns_opts)
+map("n", "<leader>gs", "<cmd>FzfLua git_status<CR>", ns_opts)
 map("n", "<leader>ss", "<cmd>FzfLua lsp_document_symbols<CR>", ns_opts)
 map("n", "<leader>sS", "<cmd>FzfLua lsp_workspace_symbols<CR>", ns_opts)
 map("n", "<leader>ff", "<cmd>FzfLua files<CR>")
@@ -104,7 +108,6 @@ map({ "n", "x" }, "<leader>gy", require("gh-permalink").yank)
 map("n", "<leader>ghp", function() require("gitsigns").preview_hunk() end, ns_opts)
 map("n", "<leader>ghb", function() require("gitsigns").blame_line() end, ns_opts)
 map("n", "<leader>ghr", function() require("gitsigns").reset_hunk() end, ns_opts)
-map("n", "<leader>gs", "<cmd>Git<CR>", ns_opts)
 map("n", "<leader>gd", "<cmd>Git diffthis<CR>", ns_opts)
 map("n", "<leader>gg", function()
     local buf = vim.api.nvim_create_buf(false, true)
