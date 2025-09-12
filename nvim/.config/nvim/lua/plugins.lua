@@ -1,6 +1,8 @@
+local local_dev = os.getenv("HOME") .. "/dev/nvim-plugins"
+
 return {
     -- Color
-    { src = "https://github.com/wtfox/jellybeans.nvim" },
+    { src = local_dev .. "/jellybeans.nvim" },
     -- LSP
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/mason-org/mason.nvim" },

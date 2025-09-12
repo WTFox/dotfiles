@@ -5,7 +5,6 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
-$fill\
 $cmd_duration\
 $line_break\
 $python\
