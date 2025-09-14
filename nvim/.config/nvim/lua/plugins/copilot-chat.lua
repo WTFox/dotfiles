@@ -67,7 +67,12 @@ return {
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "copilot-chat",
             callback = function()
-                vim.keymap.set("i", "<C-s>", "<CR>", { buffer = true, desc = "Submit", remap = true })
+                vim.keymap.set(
+                    "i",
+                    "<C-s>",
+                    "<CR>",
+                    { buffer = true, desc = "Submit", remap = true }
+                )
             end,
         })
     end,
