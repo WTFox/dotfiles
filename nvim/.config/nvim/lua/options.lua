@@ -1,5 +1,17 @@
 local opt = vim.opt
 
+vim.filetype.add({
+    filename = {
+        [".env"] = "sh",
+        [".env.example"] = "sh",
+        [".envrc"] = "sh",
+        [".envrc.local"] = "sh",
+        ["requirements.txt"] = "config",
+        ["requirements-dev.txt"] = "config",
+        ["requirements-test.txt"] = "config",
+    },
+})
+
 -- UI
 opt.guicursor = "i:block"
 opt.signcolumn = "yes:1"

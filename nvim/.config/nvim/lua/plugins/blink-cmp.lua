@@ -6,19 +6,7 @@ return {
             fuzzy = { implementation = "prefer_rust_with_warning" },
             signature = { enabled = true },
             keymap = {
-                preset = "default",
-                ["<C-space>"] = {},
-                ["<C-p>"] = {},
-                ["<Tab>"] = {},
-                ["<S-Tab>"] = {},
-                ["<C-y>"] = { "show", "show_documentation", "hide_documentation" },
-                ["<C-n>"] = { "select_and_accept" },
-                ["<C-k>"] = { "select_prev", "fallback" },
-                ["<C-j>"] = { "select_next", "fallback" },
-                ["<C-b>"] = { "scroll_documentation_down", "fallback" },
-                ["<C-f>"] = { "scroll_documentation_up", "fallback" },
-                ["<C-l>"] = { "snippet_forward", "fallback" },
-                ["<C-h>"] = { "snippet_backward", "fallback" },
+                preset = "super-tab",
             },
             appearance = {
                 use_nvim_cmp_as_default = true,
@@ -36,7 +24,17 @@ return {
                     ["<CR>"] = { "accept_and_enter", "fallback" },
                 },
             },
-            sources = { default = { "lsp" } },
+            sources = {
+                default = { "copilot", "lsp" },
+                providers = {
+                    copilot = {
+                        name = "copilot",
+                        module = "blink-copilot",
+                        score_offset = 100,
+                        async = true,
+                    },
+                },
+            },
         })
-    end
+    end,
 }
