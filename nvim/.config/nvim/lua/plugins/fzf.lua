@@ -63,6 +63,15 @@ return {
                     ["ctrl-d"] = "half-page-down",
                 },
             },
+            diagnostics = {
+                signs = {
+                    ["Error"] = { text = "", texthl = "DiagnosticSignError" },
+                    ["Warn"] = { text = "", texthl = "DiagnosticSignWarn" },
+                    ["Info"] = { text = "", texthl = "DiagnosticSignInfo" },
+                    ["Hint"] = { text = "", texthl = "DiagnosticSignHint" },
+                },
+                multiline = true,
+            },
             previewers = {
                 builtin = {
                     extensions = {

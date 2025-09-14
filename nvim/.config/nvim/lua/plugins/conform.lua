@@ -5,10 +5,10 @@ return {
             formatters_by_ft = {
                 python = { "isort", "black" },
                 lua = { "stylua" },
-                javascript = { "eslint" },
-                typescript = { "eslint" },
-                javascriptreact = { "eslint" },
-                typescriptreact = { "eslint" },
+                javascript = { "prettier" },
+                typescript = { "prettier" },
+                javascriptreact = { "prettier" },
+                typescriptreact = { "prettier" },
                 json = { "lsp" },
                 html = { "lsp" },
                 css = { "lsp" },
@@ -29,6 +29,9 @@ return {
                 },
                 isort = {
                     prepend_args = { "--profile", "black" },
+                },
+                prettier = {
+                    prepend_args = { "--tab-width", "2", "--use-tabs", "false" },
                 },
             },
         })

@@ -13,7 +13,7 @@ vim.filetype.add({
 })
 
 -- UI
-opt.guicursor = "i:block"
+opt.guicursor = "i:block-blinkwait700-blinkoff400-blinkon250"
 opt.signcolumn = "yes:1"
 opt.termguicolors = true
 opt.number = true
