@@ -76,7 +76,7 @@ local setup_starter = function()
     local starter = require("mini.starter")
     starter.setup({
         evaluate_single = false,
-        header = [[ i'm sorry, dave. i'm afraid i can't do that. ]],
+        header = [[ i'm sorry, dave. i'm afraid i can't do that.  ]],
         footer = "",
         items = {
             {
