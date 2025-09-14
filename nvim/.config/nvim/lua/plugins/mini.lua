@@ -54,6 +54,7 @@ return {
                 miniclue.gen_clues.windows(),
                 miniclue.gen_clues.z(),
                 -- Custom leader key groups
+                { mode = "n", keys = "<Leader>a", desc = "+AI" },
                 { mode = "n", keys = "<Leader>b", desc = "+Buffer" },
                 { mode = "n", keys = "<Leader>c", desc = "+Code" },
                 { mode = "n", keys = "<Leader>d", desc = "+Diagnostics" },

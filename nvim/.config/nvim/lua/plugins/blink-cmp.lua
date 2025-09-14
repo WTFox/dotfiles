@@ -19,10 +19,8 @@ return {
                 },
             },
             cmdline = {
-                keymap = {
-                    preset = "inherit",
-                    ["<CR>"] = { "accept_and_enter", "fallback" },
-                },
+                keymap = { preset = "inherit" },
+                completion = { menu = { auto_show = true } },
             },
             sources = {
                 default = { "copilot", "lsp" },
