@@ -152,12 +152,15 @@ map("n", "<leader>ud", function()
 end, desc_opts("Toggle diagnostics", ns_opts))
 
 -- File Explorer
-map(
-    "n",
-    "<leader>e",
-    "<cmd>lua MiniFiles.open()<CR>",
-    desc_opts("Open file explorer")
-)
+map("n", "<leader>e", function()
+    local minifiles_toggle = function(...)
+        local MiniFiles = require("mini.files")
+        if not MiniFiles.close() then
+            MiniFiles.open(...)
+        end
+    end
+    minifiles_toggle()
+end, desc_opts("Open file explorer"))
 
 -- Sessions
 map("n", "<leader>po", function()
@@ -169,7 +172,9 @@ map("n", "<leader>po", function()
     if handle then
         while true do
             local name, type = vim.loop.fs_scandir_next(handle)
-            if not name then break end
+            if not name then
+                break
+            end
             if type == "file" and name:match("%.vim$") then
                 sessions[#sessions + 1] = name:gsub("%.vim$", "")
             end
