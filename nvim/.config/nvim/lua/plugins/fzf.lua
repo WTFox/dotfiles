@@ -6,10 +6,10 @@ return {
         require("fzf-lua").setup({
             fzf_colors = true,
             fzf_opts = {
-                ['--no-scrollbar'] = true,
+                ["--no-scrollbar"] = true,
             },
             defaults = {
-                formatter = 'path.dirname_first'
+                formatter = "path.dirname_first",
             },
             winopts = {
                 height = 1,
@@ -20,20 +20,22 @@ return {
                 },
             },
             files = {
-                formatter = 'path.filename_first',
+                formatter = "path.filename_first",
                 cwd_prompt = false,
                 actions = {
-                    ["alt-i"] = { actions.toggle_ignore },
-                    ["alt-h"] = { actions.toggle_hidden },
+                    ["ctrl-x"] = actions.file_split,
+                    ["ctrl-v"] = actions.file_vsplit,
+                    ["alt-i"] = actions.toggle_ignore,
+                    ["alt-h"] = actions.toggle_hidden,
                 },
             },
             oldfiles = {
-                formatter = 'path.filename_first',
+                formatter = "path.filename_first",
                 cwd_prompt = false,
             },
             git = {
                 files = {
-                    formatter = 'path.filename_first',
+                    formatter = "path.filename_first",
                     cwd_prompt = false,
                     actions = {
                         ["alt-i"] = { actions.toggle_ignore },
@@ -49,35 +51,29 @@ return {
             },
             keymap = {
                 builtin = {
-                    ["<C-d>"] = "preview-page-down",
-                    ["<C-u>"] = "preview-page-up",
-                    ["<C-i>"] = "toggle-preview",
+                    ["alt-p"] = "toggle-preview",
                 },
                 fzf = {
                     ["ctrl-a"] = "toggle-all",
                     ["ctrl-t"] = "first",
                     ["ctrl-g"] = "last",
-                },
-            },
-            actions = {
-                files = {
-                    ["ctrl-q"] = actions.file_sel_to_qf,
-                    ["ctrl-n"] = actions.toggle_ignore,
-                    ["ctrl-h"] = actions.toggle_hidden,
-                    ["enter"] = actions.file_edit_or_qf,
+                    ["ctrl-n"] = "down",
+                    ["ctrl-p"] = "up",
+                    ["ctrl-u"] = "half-page-up",
+                    ["ctrl-d"] = "half-page-down",
                 },
             },
             previewers = {
                 builtin = {
                     extensions = {
-                        ['png'] = { "chafa", "{file}", "--format=symbols" },
-                        ['jpg'] = { "chafa", "{file}", "--format=symbols" },
-                        ['jpeg'] = { "chafa", "{file}", "--format=symbols" },
-                        ['gif'] = { "chafa", "{file}", "--format=symbols" },
-                        ['webp'] = { "chafa", "{file}", "--format=symbols" },
+                        ["png"] = { "chafa", "{file}", "--format=symbols" },
+                        ["jpg"] = { "chafa", "{file}", "--format=symbols" },
+                        ["jpeg"] = { "chafa", "{file}", "--format=symbols" },
+                        ["gif"] = { "chafa", "{file}", "--format=symbols" },
+                        ["webp"] = { "chafa", "{file}", "--format=symbols" },
                     },
                 },
             },
         })
-    end
+    end,
 }

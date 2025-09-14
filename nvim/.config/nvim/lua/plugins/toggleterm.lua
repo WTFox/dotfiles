@@ -72,9 +72,16 @@ return {
             terminal_cmd("lazygit")()
         end, { desc = "Open Lazygit" })
 
-        vim.keymap.set("n", "<leader>dd", function()
+        vim.keymap.set("n", "<leader>td", function()
             terminal_cmd("lazydocker")()
         end, { desc = "Open Lazydocker" })
+
+        vim.keymap.set("n", "<leader>tc", function()
+            terminal_cmd("claude")()
+        end, { desc = "Open Claude" })
+
+        vim.keymap.set("n", "<leader>ty", function()
+            terminal_cmd("btm")()
+        end, { desc = "Open Yazi" })
     end,
 }
-

@@ -60,31 +60,10 @@ return {
                 { mode = "n", keys = "<Leader>f", desc = "+Find" },
                 { mode = "n", keys = "<Leader>g", desc = "+Git" },
                 { mode = "n", keys = "<Leader>gh", desc = "+Git Hunks" },
+                { mode = "n", keys = "<Leader>p", desc = "+Project" },
                 { mode = "n", keys = "<Leader>s", desc = "+Search" },
                 { mode = "n", keys = "<Leader>t", desc = "+Tabs" },
                 { mode = "n", keys = "<Leader>u", desc = "+UI" },
-            },
-        })
-
-        local starter = require("mini.starter")
-        starter.setup({
-            evaluate_single = false,
-            header = [[ i'm sorry, dave. i can't do that. ]],
-            footer = "",
-            items = {
-                {
-                    name = "Files",
-                    action = "FzfLua git_files",
-                    section = "Builtin actions",
-                },
-                starter.sections.builtin_actions(),
-                starter.sections.recent_files(10, true),
-                starter.sections.sessions(5, true),
-            },
-            content_hooks = {
-                starter.gen_hook.adding_bullet(),
-                starter.gen_hook.indexing("all", { "Builtin actions" }),
-                starter.gen_hook.aligning("center", "center"),
             },
         })
 
@@ -103,6 +82,47 @@ return {
             end
             return project_name .. ".vim"
         end
+
+        local starter = require("mini.starter")
+        starter.setup({
+            evaluate_single = false,
+            header = [[ i'm sorry, dave. i can't do that. ]],
+            footer = "",
+            items = {
+                {
+                    name = "Files",
+                    action = "FzfLua git_files",
+                    section = "Builtin actions",
+                },
+                -- Conditional session action for current directory
+                function()
+                    local session_file = get_session_name()
+                    local session_path = require("mini.sessions").config.directory
+                        .. "/"
+                        .. session_file
+                    if vim.fn.filereadable(session_path) == 1 then
+                        return {
+                            name = "Session",
+                            action = function()
+                                require("mini.sessions").read(session_file)
+                            end,
+                            section = "Session",
+                        }
+                    end
+                    return nil
+                end,
+                starter.sections.builtin_actions(),
+                starter.sections.recent_files(10, true),
+            },
+            content_hooks = {
+                starter.gen_hook.adding_bullet(),
+                starter.gen_hook.indexing(
+                    "all",
+                    { "Builtin actions", "Session" }
+                ),
+                starter.gen_hook.aligning("center", "center"),
+            },
+        })
 
         require("mini.sessions").setup({
             directory = vim.fn.stdpath("data") .. "/sessions",
