@@ -151,16 +151,6 @@ map("n", "<leader>ud", function()
     end
 end, desc_opts("Toggle diagnostics", ns_opts))
 
--- File Explorer
-map("n", "<leader>e", function()
-    local minifiles_toggle = function(...)
-        local MiniFiles = require("mini.files")
-        if not MiniFiles.close() then
-            MiniFiles.open(...)
-        end
-    end
-    minifiles_toggle()
-end, desc_opts("Open file explorer"))
 
 -- Sessions
 map("n", "<leader>po", function()

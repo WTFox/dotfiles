@@ -163,7 +163,7 @@ return {
         require("mini.basics").setup()
         require("mini.bufremove").setup()
         require("mini.diff").setup()
-        require("mini.files").setup()
+        -- require("mini.files").setup()
         require("mini.move").setup()
         require("mini.splitjoin").setup()
         require("mini.trailspace").setup()
