@@ -1,3 +1,17 @@
+local setup_surround = function()
+    require("mini.surround").setup({
+        mappings = {
+            add = "gsa",
+            delete = "gsd",
+            find = "gsf",
+            find_left = "gsF",
+            highlight = "gsh",
+            replace = "gsr",
+            update_n_lines = "gsn",
+        },
+    })
+end
+
 return {
     url = "https://github.com/nvim-mini/mini.nvim",
     config = function()
@@ -10,17 +24,7 @@ return {
         require("mini.splitjoin").setup()
         require("mini.trailspace").setup()
 
-        require("mini.surround").setup({
-            mappings = {
-                add = "gsa",
-                delete = "gsd",
-                find = "gsf",
-                find_left = "gsF",
-                highlight = "gsh",
-                replace = "gsr",
-                update_n_lines = "gsn",
-            },
-        })
+        setup_surround()
 
         local miniclue = require("mini.clue")
         require("mini.clue").setup({
@@ -66,6 +70,7 @@ return {
         starter.setup({
             evaluate_single = false,
             header = [[ i'm sorry, dave. i can't do that. ]],
+            footer = "",
             items = {
                 {
                     name = "Files",
@@ -73,14 +78,13 @@ return {
                     section = "Builtin actions",
                 },
                 starter.sections.builtin_actions(),
-                -- starter.sections.recent_files(10, false),
                 starter.sections.recent_files(10, true),
                 starter.sections.sessions(5, true),
             },
             content_hooks = {
                 starter.gen_hook.adding_bullet(),
                 starter.gen_hook.indexing("all", { "Builtin actions" }),
-                starter.gen_hook.padding(3, 2),
+                starter.gen_hook.aligning("center", "center"),
             },
         })
 
@@ -143,4 +147,3 @@ return {
         })
     end,
 }
-
