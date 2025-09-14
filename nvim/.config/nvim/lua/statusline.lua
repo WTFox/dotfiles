@@ -42,9 +42,9 @@ local function git()
     end
 
     local head = git_info.head
-    local added = (git_info.added and git_info.added > 0) and (" +" .. git_info.added) or ""
-    local changed = (git_info.changed and git_info.changed > 0) and (" ~" .. git_info.changed) or ""
-    local removed = (git_info.removed and git_info.removed > 0) and (" -" .. git_info.removed) or ""
+    local added = (git_info.added and git_info.added > 0) and hl("DiffAdd", " +" .. git_info.added) or ""
+    local changed = (git_info.changed and git_info.changed > 0) and hl("DiffChange", " ~" .. git_info.changed) or ""
+    local removed = (git_info.removed and git_info.removed > 0) and hl("DiffDelete", " -" .. git_info.removed) or ""
 
     if not state.show_branch then
         head = hl(config.placeholder_hl, config.icons.branch_hidden)
