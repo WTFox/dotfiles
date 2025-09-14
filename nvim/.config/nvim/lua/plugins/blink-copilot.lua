@@ -1,3 +1,3 @@
 return {
-    url = "https://github.com/fang2hou/blink-copilot",
+    src = "https://github.com/fang2hou/blink-copilot",
 }

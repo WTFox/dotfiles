@@ -1,5 +1,5 @@
 return {
-    url = "https://github.com/cbochs/grapple.nvim",
+    src = "https://github.com/cbochs/grapple.nvim",
     config = function()
         require("grapple").setup({
             icons = false,

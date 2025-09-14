@@ -1,3 +1,3 @@
 return {
-    url = "https://github.com/vieitesss/gh-permalink.nvim"
+    src = "https://github.com/vieitesss/gh-permalink.nvim"
 }

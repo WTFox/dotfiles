@@ -1,5 +1,5 @@
 return {
-    url = "https://github.com/ibhagwan/fzf-lua",
+    src = "https://github.com/ibhagwan/fzf-lua",
     config = function()
         local actions = require("fzf-lua.actions")
 

@@ -1,5 +1,5 @@
 return {
-    url = "https://github.com/lewis6991/gitsigns.nvim",
+    src = "https://github.com/lewis6991/gitsigns.nvim",
     config = function()
         require("gitsigns").setup({
             signcolumn = false,

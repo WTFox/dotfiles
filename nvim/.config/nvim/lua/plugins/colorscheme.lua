@@ -1,7 +1,7 @@
 local local_dev = os.getenv("HOME") .. "/dev/nvim-plugins"
 
 return {
-    url = local_dev .. "/jellybeans.nvim",
+    src = local_dev .. "/jellybeans.nvim",
     config = function()
         require("jellybeans").setup({
             transparent = false,
@@ -9,7 +9,7 @@ return {
             bold = true,
             flat_ui = true,
             plugins = {
-                all = false,
+                all = true,
                 auto = true,
             },
             background = {
@@ -28,7 +28,7 @@ return {
                 -- FzfLua
                 hl.FzfLuaBorder = { fg = c.background, bg = c.background }
                 -- MiniStarter
-                hl.MiniStarterHeader = { fg = c.biloba_flower, bold = true }
+                hl.MiniStarterHeader = { fg = c.error, bold = true }
             end,
         })
 

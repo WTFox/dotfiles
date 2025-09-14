@@ -1,5 +1,5 @@
 ---@class PluginSpec
----@field url string The plugin URL
+---@field src string The plugin source URL
 ---@field version? string The plugin version
 ---@field build? string|function The build command or function
 ---@field config? function The configuration function
@@ -15,21 +15,21 @@ local M = {}
 ---@param spec PluginSpec
 ---@param plugin_map table<string, PackSpec>
 local function merge_plugin_spec(spec, plugin_map)
-    local url = spec.url
+    local src = spec.src
 
-    if plugin_map[url] then
+    if plugin_map[src] then
         -- Plugin already exists, merge config function
         if spec.config and type(spec.config) == 'function' then
-            table.insert(plugin_map[url].config_fns, spec.config)
+            table.insert(plugin_map[src].config_fns, spec.config)
         end
 
         -- Update version/build if provided (last one wins)
-        if spec.version then plugin_map[url].version = spec.version end
-        if spec.build then plugin_map[url].build = spec.build end
+        if spec.version then plugin_map[src].version = spec.version end
+        if spec.build then plugin_map[src].build = spec.build end
     else
         -- New plugin
         local pack_spec = {
-            src = url,
+            src = src,
             config_fns = {}
         }
 
@@ -42,7 +42,7 @@ local function merge_plugin_spec(spec, plugin_map)
             table.insert(pack_spec.config_fns, spec.config)
         end
 
-        plugin_map[url] = pack_spec
+        plugin_map[src] = pack_spec
     end
 end
 
@@ -51,13 +51,13 @@ end
 local function process_plugin_spec(spec, plugin_map)
     if type(spec) == 'table' then
         -- Check if it's a single plugin spec or an array of specs
-        if spec.url then
+        if spec.src then
             -- Single plugin spec
             merge_plugin_spec(spec, plugin_map)
         elseif #spec > 0 then
             -- Array of plugin specs
             for _, plugin_spec in ipairs(spec) do
-                if type(plugin_spec) == 'table' and plugin_spec.url then
+                if type(plugin_spec) == 'table' and plugin_spec.src then
                     merge_plugin_spec(plugin_spec, plugin_map)
                 end
             end

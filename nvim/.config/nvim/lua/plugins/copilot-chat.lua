@@ -1,5 +1,5 @@
 return {
-    url = "https://github.com/CopilotC-Nvim/CopilotChat.nvim",
+    src = "https://github.com/CopilotC-Nvim/CopilotChat.nvim",
     build = "make tiktoken",
     config = function()
         local chat = require("CopilotChat")

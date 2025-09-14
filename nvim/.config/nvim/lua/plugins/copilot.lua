@@ -1,5 +1,5 @@
 return {
-    url = "https://github.com/zbirenbaum/copilot.lua",
+    src = "https://github.com/zbirenbaum/copilot.lua",
     config = function()
         require("copilot").setup({
             filetypes = {

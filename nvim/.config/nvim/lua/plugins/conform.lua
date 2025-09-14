@@ -1,5 +1,5 @@
 return {
-    url = "https://github.com/stevearc/conform.nvim",
+    src = "https://github.com/stevearc/conform.nvim",
     config = function()
         require("conform").setup({
             formatters_by_ft = {

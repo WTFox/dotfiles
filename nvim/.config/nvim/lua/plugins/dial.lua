@@ -1,5 +1,5 @@
 return {
-    url = "https://github.com/monaqa/dial.nvim",
+    src = "https://github.com/monaqa/dial.nvim",
     config = function()
         local augend = require("dial.augend")
 

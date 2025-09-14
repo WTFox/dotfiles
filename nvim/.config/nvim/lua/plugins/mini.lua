@@ -76,7 +76,7 @@ local setup_starter = function()
     local starter = require("mini.starter")
     starter.setup({
         evaluate_single = false,
-        header = [[ i'm sorry, dave. i can't do that. ]],
+        header = [[ i'm sorry, dave. i'm afraid i can't do that. ]],
         footer = "",
         items = {
             {
@@ -157,7 +157,7 @@ local setup_sessions = function()
 end
 
 return {
-    url = "https://github.com/nvim-mini/mini.nvim",
+    src = "https://github.com/nvim-mini/mini.nvim",
     config = function()
         require("mini.ai").setup()
         require("mini.basics").setup()

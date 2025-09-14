@@ -1,5 +1,5 @@
 return {
-    url = "https://github.com/akinsho/toggleterm.nvim",
+    src = "https://github.com/akinsho/toggleterm.nvim",
     config = function()
         require("toggleterm").setup({
             open_mapping = [[<c-\>]],

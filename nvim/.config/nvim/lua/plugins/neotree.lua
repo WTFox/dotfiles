@@ -1,10 +1,10 @@
 return {
     -- dependencies
-    { url = "https://github.com/nvim-lua/plenary.nvim" },
-    { url = "https://github.com/MunifTanjim/nui.nvim" },
+    { src = "https://github.com/nvim-lua/plenary.nvim" },
+    { src = "https://github.com/MunifTanjim/nui.nvim" },
     -- Neotree
     {
-        url = "https://github.com/nvim-neo-tree/neo-tree.nvim",
+        src = "https://github.com/nvim-neo-tree/neo-tree.nvim",
         version = vim.version.range("3"),
         config = function()
             -- Keymaps

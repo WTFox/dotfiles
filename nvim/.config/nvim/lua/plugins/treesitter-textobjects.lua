@@ -1,5 +1,5 @@
 return {
-    url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+    src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
     config = function()
         require("nvim-treesitter.configs").setup({
             textobjects = {
