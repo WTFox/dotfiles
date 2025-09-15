@@ -73,7 +73,7 @@ return {
                     ["Info"] = { text = "", texthl = "DiagnosticSignInfo" },
                     ["Hint"] = { text = "", texthl = "DiagnosticSignHint" },
                 },
-                multiline = true,
+                multiline = 2,
             },
             previewers = {
                 builtin = {
