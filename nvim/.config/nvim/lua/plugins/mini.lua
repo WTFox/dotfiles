@@ -56,23 +56,23 @@ local setup_clue = function()
     })
 end
 
-local setup_starter = function()
-    -- Helper function to get project-based session name
-    local function get_session_name()
-        local project_name
-        -- Try to use git root as project identifier
-        local git_root = vim.fn
-            .system("git rev-parse --show-toplevel 2>/dev/null")
-            :gsub("\n", "")
-        if vim.v.shell_error == 0 and git_root ~= "" then
-            project_name = vim.fn.fnamemodify(git_root, ":t")
-        else
-            -- Fallback to current directory basename
-            project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-        end
-        return project_name .. ".vim"
+-- Helper function to get project-based session name
+local function get_session_name()
+    local project_name
+    -- Try to use git root as project identifier
+    local git_root = vim.fn
+        .system("git rev-parse --show-toplevel 2>/dev/null")
+        :gsub("\n", "")
+    if vim.v.shell_error == 0 and git_root ~= "" then
+        project_name = vim.fn.fnamemodify(git_root, ":t")
+    else
+        -- Fallback to current directory basename
+        project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
     end
+    return project_name .. ".vim"
+end
 
+local setup_starter = function()
     local starter = require("mini.starter")
     starter.setup({
         evaluate_single = false,
@@ -156,12 +156,14 @@ local setup_sessions = function()
     })
 end
 
+---@type PluginSpec
 return {
     src = "https://github.com/nvim-mini/mini.nvim",
     config = function()
         require("mini.ai").setup()
         require("mini.basics").setup()
         require("mini.bufremove").setup()
+        require("mini.diff").setup()
         require("mini.move").setup()
         require("mini.splitjoin").setup()
         require("mini.trailspace").setup()

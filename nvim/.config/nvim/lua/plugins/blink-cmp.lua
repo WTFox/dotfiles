@@ -1,3 +1,4 @@
+---@type PluginSpec
 return {
     src = "https://github.com/saghen/blink.cmp",
     version = vim.version.range("^1"),

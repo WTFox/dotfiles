@@ -50,7 +50,7 @@ map("n", "<leader>bd", "<cmd>bdelete<CR>", desc_opts("Delete buffer", opts))
 map("n", "<leader>w", "<cmd>w!<CR>", desc_opts("Force save", opts))
 map("n", "<leader>q", "<cmd>q<CR>", desc_opts("Quit", opts))
 map("n", "<leader>qq", "<cmd>qa!<CR>", desc_opts("Force Quit", opts))
-map("n", "Q", "<cmd>qa!<CR>", desc_opts("Force quit", opts))
+map("n", "Q", "<cmd>q<CR>", desc_opts("Force quit", opts))
 map("n", "<C-s>", ":w<CR>", desc_opts("Save file"))
 
 -- Copy/Paste
@@ -150,7 +150,6 @@ map("n", "<leader>ud", function()
         print("Diagnostics enabled")
     end
 end, desc_opts("Toggle diagnostics", ns_opts))
-
 
 -- Sessions
 map("n", "<leader>po", function()
@@ -357,6 +356,17 @@ map("n", "<leader>ub", function()
     else
         vim.o.background = "dark"
         print("Switched to dark mode")
+    end
+end, desc_opts("Toggle background", ns_opts))
+
+-- inlay hints
+map("n", "<leader>uh", function()
+    if vim.lsp.inlay_hint.is_enabled() then
+        vim.lsp.inlay_hint.enable(false)
+        print("Inlay hints disabled")
+    else
+        vim.lsp.inlay_hint.enable(true)
+        print("Inlay hints enabled")
     end
 end, desc_opts("Toggle background", ns_opts))
 

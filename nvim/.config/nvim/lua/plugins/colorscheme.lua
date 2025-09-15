@@ -5,7 +5,7 @@ return {
     config = function()
         require("jellybeans").setup({
             transparent = false,
-            italics = true,
+            italics = false,
             bold = true,
             flat_ui = true,
             plugins = {
@@ -27,8 +27,17 @@ return {
             on_highlights = function(hl, c)
                 -- FzfLua
                 hl.FzfLuaBorder = { fg = c.background, bg = c.background }
+
                 -- MiniStarter
                 hl.MiniStarterHeader = { fg = c.error, bold = true }
+
+                -- Unused variables
+                hl.DiagnosticUnnecessary = {
+                    fg = hl.Comment.fg,
+                    italic = false,
+                    underline = false,
+                    undercurl = false,
+                }
             end,
         })
 

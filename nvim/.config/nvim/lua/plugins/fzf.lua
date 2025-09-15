@@ -11,6 +11,7 @@ return {
             },
             defaults = {
                 formatter = "path.dirname_first",
+                -- path_shorten = 3,
             },
             winopts = {
                 height = 1,
@@ -37,7 +38,6 @@ return {
             git = {
                 files = {
                     formatter = "path.filename_first",
-                    cwd_prompt = false,
                     actions = {
                         ["alt-i"] = { actions.toggle_ignore },
                         ["alt-h"] = { actions.toggle_hidden },
@@ -45,6 +45,8 @@ return {
                 },
             },
             grep = {
+                formatter = "path.filename_first",
+                cwd_prompt = false,
                 actions = {
                     ["alt-i"] = { actions.toggle_ignore },
                     ["alt-h"] = { actions.toggle_hidden },
@@ -52,7 +54,7 @@ return {
             },
             keymap = {
                 builtin = {
-                    ["alt-p"] = "toggle-preview",
+                    ["<M-p>"] = "toggle-preview",
                 },
                 fzf = {
                     ["ctrl-a"] = "toggle-all",

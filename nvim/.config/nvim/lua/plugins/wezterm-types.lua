@@ -1,3 +1,5 @@
+---@type PluginSpec
 return {
-    src = "https://github.com/justinsgithub/wezterm-types"
+    src = "https://github.com/justinsgithub/wezterm-types",
 }
+

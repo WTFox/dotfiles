@@ -2,6 +2,7 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({
     ensure_installed = {
+        "basedpyright",
         "bashls",
         "black",
         "clangd",
@@ -12,39 +13,12 @@ require("mason-tool-installer").setup({
         "isort",
         "jsonls",
         "lua_ls",
-        "pyright",
+        -- "pyright",
         "rust_analyzer",
         "stylua",
         "ts_ls",
     },
 })
-
--- Fix for change_annotations issue with pyright
-local function fix_workspace_edit(workspace_edit)
-    if workspace_edit and workspace_edit.documentChanges then
-        for _, change in ipairs(workspace_edit.documentChanges) do
-            if change.edits then
-                for _, edit in ipairs(change.edits) do
-                    if
-                        edit.annotationId
-                        and not workspace_edit.changeAnnotations
-                    then
-                        edit.annotationId = nil
-                    end
-                end
-            end
-        end
-    end
-    return workspace_edit
-end
-
-local original_apply_workspace_edit = vim.lsp.util.apply_workspace_edit
-vim.lsp.util.apply_workspace_edit = function(workspace_edit, offset_encoding)
-    return original_apply_workspace_edit(
-        fix_workspace_edit(workspace_edit),
-        offset_encoding
-    )
-end
 
 vim.diagnostic.config({
     signs = {
@@ -56,13 +30,43 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.HINT] = "DiagnosticHint",
         },
     },
-    underline = false,
-    virtual_text = {
-        spacing = 4,
-        prefix = "●",
-        suffix = "",
-        format = function(diagnostic)
-            return string.format("%s", diagnostic.message)
-        end,
-    },
+    underline = true,
+    -- virtual_text = {
+    --     spacing = 4,
+    --     prefix = "●",
+    --     suffix = "",
+    --     format = function(diagnostic)
+    --         return string.format("%s", diagnostic.message)
+    --     end,
+    -- },
 })
+
+-- local ignore = {
+--     "basedpyright",
+--     "pyright",
+-- }
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--     group = vim.api.nvim_create_augroup("inlay-hintsAttach", { clear = true }),
+--     callback = function(event)
+--         local client = vim.lsp.get_client_by_id(event.data.client_id)
+--
+--         if client and vim.tbl_contains(ignore, client.name) then
+--             return
+--         end
+--
+--         if client and client.server_capabilities.inlayHintProvider then
+--             vim.api.nvim_create_autocmd("InsertEnter", {
+--                 buffer = event.buf,
+--                 callback = function()
+--                     vim.lsp.inlay_hint.enable(false)
+--                 end,
+--             })
+--             vim.api.nvim_create_autocmd({ "InsertLeave", "LspNotify" }, {
+--                 buffer = event.buf,
+--                 callback = function()
+--                     vim.lsp.inlay_hint.enable(true)
+--                 end,
+--             })
+--         end
+--     end,
+-- })

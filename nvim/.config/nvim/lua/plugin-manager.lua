@@ -1,8 +1,9 @@
 ---@class (exact) PluginSpec
 ---@field src string The plugin source URL
----@field version? string The plugin version
+---@field version? string|vim.VersionRange The plugin version
 ---@field build? string|function The build command or function
 ---@field config? function The configuration function
+---@field [any] 'never'
 
 ---@class (exact) PackSpec
 ---@field src string The source URL for vim.pack.add
