@@ -137,32 +137,6 @@ local setup_sessions = function()
                     .. session_file
                 if vim.fn.filereadable(session_path) == 1 then
                     require("mini.sessions").read(session_file)
-                    -- Preload LSPs for common file types in project after session restore
-                    vim.defer_fn(function()
-                        local common_files = {
-                            { pattern = "*.py", filetype = "python" },
-                            { pattern = "*.js", filetype = "javascript" },
-                            { pattern = "*.ts", filetype = "typescript" },
-                            { pattern = "*.go", filetype = "go" },
-                            { pattern = "*.rs", filetype = "rust" },
-                            { pattern = "*.lua", filetype = "lua" },
-                        }
-
-                        for _, file_info in ipairs(common_files) do
-                            local files = vim.fn.glob(file_info.pattern, false, true)
-                            if #files > 0 then
-                                -- Create temp buffer to trigger LSP startup
-                                local temp_buf = vim.api.nvim_create_buf(false, true)
-                                vim.api.nvim_buf_set_option(temp_buf, 'filetype', file_info.filetype)
-                                -- Clean up temp buffer
-                                vim.defer_fn(function()
-                                    if vim.api.nvim_buf_is_valid(temp_buf) then
-                                        vim.api.nvim_buf_delete(temp_buf, { force = true })
-                                    end
-                                end, 1000)
-                            end
-                        end
-                    end, 100)
                 end
             end
         end,
