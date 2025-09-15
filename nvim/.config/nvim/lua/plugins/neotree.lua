@@ -59,7 +59,10 @@ return {
                 },
                 filesystem = {
                     bind_to_cwd = false,
-                    follow_current_file = { enabled = true, leave_dirs_open = true },
+                    follow_current_file = {
+                        enabled = true,
+                        leave_dirs_open = true,
+                    },
                     use_libuv_file_watcher = true,
                     filtered_items = {
                         visible = true, -- Show hidden files by default
@@ -86,9 +89,12 @@ return {
                         },
                         ["O"] = {
                             function(state)
-                                require("lazy.util").open(
-                                    state.tree:get_node().path,
-                                    { system = true }
+                                local sysname = vim.loop.os_uname().sysname
+                                local open_cmd = sysname == "Darwin" and "open"
+                                    or "xdg-open"
+                                vim.fn.jobstart(
+                                    { open_cmd, state.tree:get_node().path },
+                                    { detach = true }
                                 )
                             end,
                             desc = "Open with System Application",
