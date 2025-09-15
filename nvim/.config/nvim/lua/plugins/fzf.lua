@@ -10,7 +10,7 @@ return {
                 ["--no-scrollbar"] = true,
             },
             defaults = {
-                formatter = "path.dirname_first",
+                -- formatter = "path.dirname_first",
                 -- path_shorten = 3,
             },
             winopts = {
@@ -22,7 +22,7 @@ return {
                 },
             },
             files = {
-                formatter = "path.filename_first",
+                -- formatter = "path.filename_first",
                 cwd_prompt = false,
                 actions = {
                     ["ctrl-x"] = actions.file_split,
@@ -32,12 +32,12 @@ return {
                 },
             },
             oldfiles = {
-                formatter = "path.filename_first",
+                -- formatter = "path.filename_first",
                 cwd_prompt = false,
             },
             git = {
                 files = {
-                    formatter = "path.filename_first",
+                    -- formatter = "path.filename_first",
                     actions = {
                         ["alt-i"] = { actions.toggle_ignore },
                         ["alt-h"] = { actions.toggle_hidden },
@@ -45,7 +45,7 @@ return {
                 },
             },
             grep = {
-                formatter = "path.filename_first",
+                -- formatter = "path.filename_first",
                 cwd_prompt = false,
                 actions = {
                     ["alt-i"] = { actions.toggle_ignore },

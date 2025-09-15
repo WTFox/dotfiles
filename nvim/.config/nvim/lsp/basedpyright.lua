@@ -5,14 +5,13 @@ return {
     filetypes = { "python" },
     settings = {
         basedpyright = {
-            -- Disable type checking for faster startup
             disableOrganizeImports = true,
             analysis = {
                 diagnosticMode = "openFilesOnly",
                 typeCheckingMode = "basic", -- "off", "basic", or "strict"
                 autoImportCompletions = true,
                 autoSearchPaths = true,
-                useLibraryCodeForTypes = false, -- Disable for performance
+                useLibraryCodeForTypes = true,
                 diagnosticSeverityOverrides = {
                     reportUnusedImport = "warning", -- "none", "information", "warning", or "error"
                     reportUnusedVariable = "warning",
@@ -22,4 +21,3 @@ return {
         },
     },
 }
-
