@@ -36,14 +36,14 @@ vim.diagnostic.config({
         },
     },
     underline = true,
-    -- virtual_text = {
-    --     spacing = 4,
-    --     prefix = "●",
-    --     suffix = "",
-    --     format = function(diagnostic)
-    --         return string.format("%s", diagnostic.message)
-    --     end,
-    -- },
+    virtual_text = {
+        spacing = 4,
+        prefix = "●",
+        suffix = "",
+        format = function(diagnostic)
+            return string.format("%s", diagnostic.message)
+        end,
+    },
 })
 
 -- local ignore = {

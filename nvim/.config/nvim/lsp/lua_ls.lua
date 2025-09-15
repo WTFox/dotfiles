@@ -1,4 +1,3 @@
--- ~/.config/nvim-new/lsp/lua_ls.lua
 ---@type vim.lsp.Config
 return {
     cmd = { "lua-language-server" },
@@ -32,8 +31,7 @@ return {
                 library = {
                     vim.env.VIMRUNTIME,
                     "${3rd}/luv/library",
-                    vim.fn.stdpath("data")
-                        .. "/site/pack/core/opt/wezterm-types/lua",
+                    vim.fn.stdpath("data") .. "/site/pack/core/opt/wezterm-types/lua",
                 },
                 checkThirdParty = true,
             },
