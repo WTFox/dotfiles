@@ -347,6 +347,14 @@ map("n", "<leader>ghr", function()
 end, desc_opts("Reset hunk", ns_opts))
 map("n", "<leader>gd", "<cmd>Git diffthis<CR>", desc_opts("Git diff", ns_opts))
 
+-- Git hunk navigation
+map("n", "]h", function()
+    require("gitsigns").nav_hunk("next")
+end, desc_opts("Next git hunk", ns_opts))
+map("n", "[h", function()
+    require("gitsigns").nav_hunk("prev")
+end, desc_opts("Previous git hunk", ns_opts))
+
 -- UI
 -- toggle background
 map("n", "<leader>ub", function()
