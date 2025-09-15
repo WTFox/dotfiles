@@ -1,10 +1,10 @@
----@class PluginSpec
+---@class (exact) PluginSpec
 ---@field src string The plugin source URL
 ---@field version? string The plugin version
 ---@field build? string|function The build command or function
 ---@field config? function The configuration function
 
----@class PackSpec
+---@class (exact) PackSpec
 ---@field src string The source URL for vim.pack.add
 ---@field version? string The plugin version
 ---@field build? string|function The build command or function
@@ -19,26 +19,34 @@ local function merge_plugin_spec(spec, plugin_map)
 
     if plugin_map[src] then
         -- Plugin already exists, merge config function
-        if spec.config and type(spec.config) == 'function' then
+        if spec.config and type(spec.config) == "function" then
             table.insert(plugin_map[src].config_fns, spec.config)
         end
 
         -- Update version/build if provided (last one wins)
-        if spec.version then plugin_map[src].version = spec.version end
-        if spec.build then plugin_map[src].build = spec.build end
+        if spec.version then
+            plugin_map[src].version = spec.version
+        end
+        if spec.build then
+            plugin_map[src].build = spec.build
+        end
     else
         -- New plugin
         local pack_spec = {
             src = src,
-            config_fns = {}
+            config_fns = {},
         }
 
         -- Add optional fields
-        if spec.version then pack_spec.version = spec.version end
-        if spec.build then pack_spec.build = spec.build end
+        if spec.version then
+            pack_spec.version = spec.version
+        end
+        if spec.build then
+            pack_spec.build = spec.build
+        end
 
         -- Add config function if present
-        if spec.config and type(spec.config) == 'function' then
+        if spec.config and type(spec.config) == "function" then
             table.insert(pack_spec.config_fns, spec.config)
         end
 
@@ -49,7 +57,7 @@ end
 ---@param spec PluginSpec|PluginSpec[]
 ---@param plugin_map table<string, PackSpec>
 local function process_plugin_spec(spec, plugin_map)
-    if type(spec) == 'table' then
+    if type(spec) == "table" then
         -- Check if it's a single plugin spec or an array of specs
         if spec.src then
             -- Single plugin spec
@@ -57,7 +65,7 @@ local function process_plugin_spec(spec, plugin_map)
         elseif #spec > 0 then
             -- Array of plugin specs
             for _, plugin_spec in ipairs(spec) do
-                if type(plugin_spec) == 'table' and plugin_spec.src then
+                if type(plugin_spec) == "table" and plugin_spec.src then
                     merge_plugin_spec(plugin_spec, plugin_map)
                 end
             end
@@ -66,7 +74,7 @@ local function process_plugin_spec(spec, plugin_map)
 end
 
 function M.load_plugins()
-    local plugin_dir = vim.fn.stdpath('config') .. '/lua/plugins'
+    local plugin_dir = vim.fn.stdpath("config") .. "/lua/plugins"
     local plugin_map = {}
 
     -- Scan for .lua files in plugins directory
@@ -77,11 +85,13 @@ function M.load_plugins()
 
     while true do
         local name, file_type = vim.loop.fs_scandir_next(handle)
-        if not name then break end
+        if not name then
+            break
+        end
 
-        if file_type == 'file' and name:match('%.lua$') then
-            local plugin_name = name:gsub('%.lua$', '')
-            local ok, spec = pcall(require, 'plugins.' .. plugin_name)
+        if file_type == "file" and name:match("%.lua$") then
+            local plugin_name = name:gsub("%.lua$", "")
+            local ok, spec = pcall(require, "plugins." .. plugin_name)
 
             if ok then
                 process_plugin_spec(spec, plugin_map)

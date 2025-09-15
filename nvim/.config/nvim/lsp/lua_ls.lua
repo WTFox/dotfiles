@@ -23,6 +23,20 @@ return {
             diagnostics = {
                 enable = true,
                 globals = { "vim" },
+                severity = {
+                    ["inject-field"] = "Error",
+                    ["missing-fields"] = "Error",
+                },
+                neededFileStatus = {
+                    ["inject-field"] = "Opened",
+                    ["missing-fields"] = "Opened",
+                    ["type-check"] = "Opened",
+                },
+            },
+            type = {
+                checkTableShape = true,
+                weakNilCheck = false,
+                weakUnionCheck = false,
             },
             workspace = {
                 library = { vim.env.VIMRUNTIME },
