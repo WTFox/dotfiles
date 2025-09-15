@@ -1,3 +1,4 @@
+-- ~/.config/nvim-new/lsp/lua_ls.lua
 ---@type vim.lsp.Config
 return {
     cmd = { "lua-language-server" },
@@ -23,24 +24,21 @@ return {
             diagnostics = {
                 enable = true,
                 globals = { "vim" },
-                severity = {
-                    ["inject-field"] = "Error",
-                    ["missing-fields"] = "Error",
-                },
-                neededFileStatus = {
-                    ["inject-field"] = "Opened",
-                    ["missing-fields"] = "Opened",
-                    ["type-check"] = "Opened",
-                },
             },
-            type = {
-                checkTableShape = true,
-                weakNilCheck = false,
-                weakUnionCheck = false,
+            format = {
+                enable = false, -- Use stylua via conform instead
             },
             workspace = {
-                library = { vim.env.VIMRUNTIME },
-                checkThirdParty = false,
+                library = {
+                    vim.env.VIMRUNTIME,
+                    "${3rd}/luv/library",
+                    vim.fn.stdpath("data")
+                        .. "/site/pack/core/opt/wezterm-types/lua",
+                },
+                checkThirdParty = true,
+            },
+            telemetry = {
+                enable = false,
             },
         },
     },
