@@ -10,7 +10,7 @@ return {
                 ["--no-scrollbar"] = true,
             },
             defaults = {
-                -- formatter = "path.dirname_first",
+                formatter = "path.dirname_first",
                 -- path_shorten = 3,
             },
             winopts = {
@@ -37,7 +37,7 @@ return {
             },
             git = {
                 files = {
-                    -- formatter = "path.filename_first",
+                    formatter = "path.filename_first",
                     actions = {
                         ["alt-i"] = { actions.toggle_ignore },
                         ["alt-h"] = { actions.toggle_hidden },
