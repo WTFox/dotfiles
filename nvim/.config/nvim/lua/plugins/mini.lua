@@ -102,7 +102,7 @@ local setup_starter = function()
                 return nil
             end,
             starter.sections.builtin_actions(),
-            starter.sections.recent_files(10, true),
+            starter.sections.recent_files(5, true),
         },
         content_hooks = {
             starter.gen_hook.adding_bullet(),
