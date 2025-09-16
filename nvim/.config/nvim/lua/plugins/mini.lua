@@ -60,9 +60,7 @@ end
 local function get_session_name()
     local project_name
     -- Try to use git root as project identifier
-    local git_root = vim.fn
-        .system("git rev-parse --show-toplevel 2>/dev/null")
-        :gsub("\n", "")
+    local git_root = vim.fn.system("git rev-parse --show-toplevel 2>/dev/null"):gsub("\n", "")
     if vim.v.shell_error == 0 and git_root ~= "" then
         project_name = vim.fn.fnamemodify(git_root, ":t")
     else
@@ -87,9 +85,7 @@ local setup_starter = function()
             -- Conditional session action for current directory
             function()
                 local session_file = get_session_name()
-                local session_path = require("mini.sessions").config.directory
-                    .. "/"
-                    .. session_file
+                local session_path = require("mini.sessions").config.directory .. "/" .. session_file
                 if vim.fn.filereadable(session_path) == 1 then
                     return {
                         name = "Session",
@@ -117,8 +113,7 @@ local setup_sessions = function()
         directory = vim.fn.stdpath("data") .. "/sessions",
     })
 
-    local sessions_group =
-        vim.api.nvim_create_augroup("MiniSessionsAuto", { clear = true })
+    local sessions_group = vim.api.nvim_create_augroup("MiniSessionsAuto", { clear = true })
 
     -- Auto-read session when vim starts
     vim.api.nvim_create_autocmd("VimEnter", {
@@ -126,15 +121,9 @@ local setup_sessions = function()
         nested = true,
         callback = function()
             -- Only auto-read if no files were opened and we're not in the home directory
-            if
-                vim.fn.argc() == 0
-                and vim.fn.line2byte("$") == -1
-                and vim.fn.getcwd() ~= vim.env.HOME
-            then
+            if vim.fn.argc() == 0 and vim.fn.line2byte("$") == -1 and vim.fn.getcwd() ~= vim.env.HOME then
                 local session_file = get_session_name()
-                local session_path = require("mini.sessions").config.directory
-                    .. "/"
-                    .. session_file
+                local session_path = require("mini.sessions").config.directory .. "/" .. session_file
                 if vim.fn.filereadable(session_path) == 1 then
                     require("mini.sessions").read(session_file)
                 end
@@ -163,6 +152,7 @@ return {
         require("mini.ai").setup()
         require("mini.basics").setup()
         require("mini.bufremove").setup()
+        require("mini.comment").setup()
         require("mini.move").setup()
         require("mini.splitjoin").setup()
         require("mini.trailspace").setup()
