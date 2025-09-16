@@ -2,7 +2,7 @@ local colors = require("colors")
 local fonts = require("lib.fonts")
 local wezterm = require("wezterm")
 
----@type ConfigPart
+---@type StrictConfig
 return {
     font_size = 15,
     line_height = 1,

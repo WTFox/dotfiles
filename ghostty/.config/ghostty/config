@@ -1,14 +1,16 @@
 # appearance
-theme = dark:jellybeans-muted,light:jellybeans-muted-light
+theme = dark:jellybeans-muted,light:jellybeans-light
 window-height = 36
 window-width = 143
 
-background-opacity = 0.85
-background-blur = true
+cursor-style = block
+
+# background-opacity = 0.85
+# background-blur = true
 
 # font
 # font-size = 15
-font-family = Jetbrains Mono
+# font-family = Jetbrains Mono
 # font-feature = "calt"
 # font-feature = "clig"
 # font-feature = "liga"
@@ -25,6 +27,17 @@ font-family = Jetbrains Mono
 # font-feature = "cv16"
 # font-feature = "cv17"
 
+font-size = 16
+font-family = Cascadia Code
+font-feature = "calt"
+font-feature = "clig"
+font-feature = "liga"
+font-feature = "ss01"
+font-feature = "ss20"
+
+shell-integration-features = no-cursor
+
 # keys
 keybind = super+shift+j=write_screen_file:paste
 keybind = super+alt+shift+j=write_screen_file:open
+keybind = global:cmd+backquote=toggle_quick_terminal

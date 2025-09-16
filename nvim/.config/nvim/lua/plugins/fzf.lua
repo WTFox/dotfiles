@@ -37,7 +37,7 @@ return {
             },
             git = {
                 files = {
-                    formatter = "path.filename_first",
+                    -- formatter = "path.filename_first",
                     actions = {
                         ["alt-i"] = { actions.toggle_ignore },
                         ["alt-h"] = { actions.toggle_hidden },

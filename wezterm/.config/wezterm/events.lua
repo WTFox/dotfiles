@@ -1,4 +1,4 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 
----@type ConfigPart
+---@type StrictConfig
 return {}

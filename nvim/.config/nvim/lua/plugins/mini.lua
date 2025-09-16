@@ -145,6 +145,22 @@ local setup_sessions = function()
     })
 end
 
+local setup_hipatterns = function()
+    local hipatterns = require("mini.hipatterns")
+    hipatterns.setup({
+        highlighters = {
+            -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+            fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+            hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
+            todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+            note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+
+            -- Highlight hex color strings (`#rrggbb`) using that color
+            hex_color = hipatterns.gen_highlighter.hex_color(),
+        },
+    })
+end
+
 ---@type PluginSpec
 return {
     src = "https://github.com/nvim-mini/mini.nvim",
@@ -153,10 +169,12 @@ return {
         require("mini.basics").setup()
         require("mini.bufremove").setup()
         require("mini.comment").setup()
+        require("mini.hipatterns").setup()
         require("mini.move").setup()
         require("mini.splitjoin").setup()
         require("mini.trailspace").setup()
 
+        setup_hipatterns()
         setup_surround()
         setup_clue()
         setup_starter()

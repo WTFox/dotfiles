@@ -1,7 +1,7 @@
 local fonts = require("lib.fonts")
 local wezterm = require("wezterm") --[[@as Wezterm]]
 
----@type ConfigPart
+---@type StrictConfig
 return {
     font_size = 16,
     font = wezterm.font_with_fallback({

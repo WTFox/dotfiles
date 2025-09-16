@@ -17,7 +17,7 @@ local mods = {
     S = "SUPER",
 }
 
----@type ConfigPart
+---@type StrictConfig
 return {
     leader = { key = "b", mods = mods.c },
     key_tables = {

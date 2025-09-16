@@ -1,7 +1,7 @@
 local utils = require("lib.utils")
 local wezterm = require("wezterm") --[[@as Wezterm]]
 
----@class (exact) ConfigPart : Config
+---@class (exact) StrictConfig : Config
 ---@field [any] 'never'
 local config = {}
 

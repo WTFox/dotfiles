@@ -38,6 +38,33 @@ return {
                     underline = false,
                     undercurl = false,
                 }
+
+                hl.DiffViewDiffAdd = {
+                    fg = c.git.add.fg,
+                    bg = c.grey_three,
+                }
+                hl.DiffViewDiffDelete = {
+                    fg = c.git.delete.fg,
+                    bg = c.grey_three,
+                }
+                hl.DiffViewDiffChange = {
+                    fg = c.git.change.fg,
+                    bg = c.grey_three,
+                }
+                hl.DiffviewDiffText = {
+                    -- fg = c.info,
+                    bg = c.shuttle_grey,
+                }
+
+                hl.DiagnosticLineNumError = {
+                    fg = c.background,
+                    bg = c.diag.error,
+                }
+
+                hl.DiagnosticLineNumWarn = {
+                    fg = c.background,
+                    bg = c.diag.warning,
+                }
             end,
         })
 

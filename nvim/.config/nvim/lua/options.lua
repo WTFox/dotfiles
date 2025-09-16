@@ -17,7 +17,7 @@ opt.guicursor = "i:block-blinkwait700-blinkoff400-blinkon250"
 opt.signcolumn = "yes:1"
 opt.termguicolors = true
 opt.number = true
-opt.relativenumber = false
+opt.relativenumber = true
 opt.numberwidth = 2
 opt.cursorline = true
 opt.wrap = false
@@ -60,7 +60,7 @@ opt.foldlevel = 99
 opt.foldlevelstart = 99
 
 -- Performance
-opt.timeoutlen = 300
-opt.ttimeoutlen = 0
-opt.updatetime = 250
+-- opt.timeoutlen = 300
+-- opt.ttimeoutlen = 0
+-- opt.updatetime = 250
 opt.lazyredraw = false
