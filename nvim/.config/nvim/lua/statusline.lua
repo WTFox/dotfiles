@@ -134,9 +134,9 @@ local function filepath()
         config.placeholder_hl,
         shorten_path(fpath, {
             short_len = 1,
-            tail_count = 0,
+            tail_count = 1,
             head_max = 3,
-        })
+        }) .. "/"
     )
 end
 
