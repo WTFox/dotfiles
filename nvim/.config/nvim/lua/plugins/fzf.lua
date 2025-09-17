@@ -1,6 +1,6 @@
 ---@type PluginSpec
 return {
-    src = "https://github.com/ibhagwan/fzf-lua",
+    src = "ibhagwan/fzf-lua",
     config = function()
         local actions = require("fzf-lua.actions")
 

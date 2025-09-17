@@ -16,9 +16,10 @@ end
 
 ---@type PluginSpec[]
 return {
-    { src = "https://github.com/nvim-lua/plenary.nvim" },
     {
-        src = "https://github.com/sindrets/diffview.nvim",
+        src = "sindrets/diffview.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        lazy = true,
         config = function()
             require("diffview").setup({
                 use_icons = false,

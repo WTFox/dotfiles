@@ -1,5 +1,6 @@
+---@type PluginSpec
 return {
-    src = "https://github.com/monaqa/dial.nvim",
+    src = "monaqa/dial.nvim",
     config = function()
         local augend = require("dial.augend")
 
@@ -121,5 +122,5 @@ return {
         vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(), { noremap = true })
         vim.keymap.set("v", "g<C-a>", require("dial.map").inc_gvisual(), { noremap = true })
         vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(), { noremap = true })
-    end
+    end,
 }

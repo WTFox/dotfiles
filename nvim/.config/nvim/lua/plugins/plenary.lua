@@ -1,3 +1,5 @@
+---@type PluginSpec
 return {
-    src = "https://github.com/nvim-lua/plenary.nvim"
+    src = "nvim-lua/plenary.nvim",
 }
+

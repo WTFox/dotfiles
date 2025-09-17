@@ -1,3 +1,7 @@
+---@type PluginSpec
 return {
-    src = "https://github.com/vieitesss/gh-permalink.nvim"
+    src = "vieitesss/gh-permalink.nvim",
+    lazy = true,
+    event = "BufReadPost",
 }
+

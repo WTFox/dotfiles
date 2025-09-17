@@ -1,7 +1,9 @@
 local local_dev = os.getenv("HOME") .. "/dev/nvim-plugins"
 
+---@type PluginSpec
 return {
     src = local_dev .. "/jellybeans.nvim",
+    dev = true,
     config = function()
         require("jellybeans").setup({
             transparent = false,

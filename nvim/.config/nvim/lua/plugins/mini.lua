@@ -163,7 +163,7 @@ end
 
 ---@type PluginSpec
 return {
-    src = "https://github.com/nvim-mini/mini.nvim",
+    src = "nvim-mini/mini.nvim",
     config = function()
         require("mini.ai").setup()
         require("mini.basics").setup()

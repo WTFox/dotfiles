@@ -1,5 +1,6 @@
+---@type PluginSpec
 return {
-    src = "https://github.com/akinsho/toggleterm.nvim",
+    src = "akinsho/toggleterm.nvim",
     config = function()
         require("toggleterm").setup({
             open_mapping = [[<c-\>]],
@@ -30,25 +31,14 @@ return {
                     vim.api.nvim_win_set_height(current_win, vim.o.lines - 2)
                 else
                     -- Return to normal size
-                    vim.api.nvim_win_set_width(
-                        current_win,
-                        math.floor(vim.o.columns * 0.8)
-                    )
-                    vim.api.nvim_win_set_height(
-                        current_win,
-                        math.floor(vim.o.lines * 0.8)
-                    )
+                    vim.api.nvim_win_set_width(current_win, math.floor(vim.o.columns * 0.8))
+                    vim.api.nvim_win_set_height(current_win, math.floor(vim.o.lines * 0.8))
                 end
             end
         end
 
         -- Set the keymap for terminal mode
-        vim.keymap.set(
-            "t",
-            "<M-p>",
-            toggle_terminal_size,
-            { desc = "Toggle terminal size" }
-        )
+        vim.keymap.set("t", "<M-p>", toggle_terminal_size, { desc = "Toggle terminal size" })
 
         local terminal_cmd = function(cmd)
             local Terminal = require("toggleterm.terminal").Terminal

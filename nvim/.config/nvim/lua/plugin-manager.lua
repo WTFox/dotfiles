@@ -1,22 +1,63 @@
 ---@class (exact) PluginSpec
 ---@field src string The plugin source URL
+---@field dev? boolean Is this plugin locally loaded?
+---@field lazy? boolean Is this plugin lazy-loaded?
+---@field event? string|string[] The event(s) that trigger loading
 ---@field version? string|vim.VersionRange The plugin version
----@field build? string|function The build command or function
 ---@field config? function The configuration function
+---@field dependencies? string[] List of plugin sources this plugin depends on
 ---@field [any] 'never'
 
 ---@class (exact) PackSpec
 ---@field src string The source URL for vim.pack.add
----@field version? string The plugin version
----@field build? string|function The build command or function
+---@field lazy? boolean Is this plugin lazy-loaded?
+---@field event? string|string[] The event(s) that trigger loading
+---@field version? string|vim.VersionRange The plugin version
 ---@field config_fns function[] The configuration functions to call after loading
+---@field dependencies? string[] List of plugin sources this plugin depends on
 
 local M = {}
+
+local gr = vim.api.nvim_create_augroup("LazyLoad", { clear = true })
+local function lazy_load(callback, event)
+    if event then
+        vim.api.nvim_create_autocmd(event, {
+            pattern = "*",
+            once = true,
+            group = gr,
+            callback = callback,
+        })
+        return
+    end
+    vim.api.nvim_create_autocmd("UIEnter", {
+        pattern = "*",
+        once = true,
+        group = gr,
+        callback = function()
+            vim.defer_fn(callback, 0)
+        end,
+    })
+end
+
+---if spec.src is not a full URL and spec.dev is not true, prepend
+---https://github.com/
+---
+---if spec.src is already a full URL or spec.dev is true, return as is
+---supports urls and absolute file paths.
+---@param spec PluginSpec
+---@return string
+local function get_src(spec)
+    local src = spec.src
+    if string.sub(src, 1, 5) ~= "https" and (spec.dev == nil or spec.dev == false) then
+        return "https://github.com/" .. src
+    end
+    return src
+end
 
 ---@param spec PluginSpec
 ---@param plugin_map table<string, PackSpec>
 local function merge_plugin_spec(spec, plugin_map)
-    local src = spec.src
+    local src = get_src(spec)
 
     if plugin_map[src] then
         -- Plugin already exists, merge config function
@@ -28,8 +69,23 @@ local function merge_plugin_spec(spec, plugin_map)
         if spec.version then
             plugin_map[src].version = spec.version
         end
-        if spec.build then
-            plugin_map[src].build = spec.build
+
+        -- Update lazy loading settings if provided
+        if spec.lazy ~= nil then
+            plugin_map[src].lazy = spec.lazy
+        end
+        if spec.event then
+            plugin_map[src].event = spec.event
+        end
+
+        -- Merge dependencies
+        if spec.dependencies then
+            plugin_map[src].dependencies = plugin_map[src].dependencies or {}
+            for _, dep in ipairs(spec.dependencies) do
+                if not vim.tbl_contains(plugin_map[src].dependencies, dep) then
+                    table.insert(plugin_map[src].dependencies, dep)
+                end
+            end
         end
     else
         -- New plugin
@@ -42,8 +98,14 @@ local function merge_plugin_spec(spec, plugin_map)
         if spec.version then
             pack_spec.version = spec.version
         end
-        if spec.build then
-            pack_spec.build = spec.build
+        if spec.lazy ~= nil then
+            pack_spec.lazy = spec.lazy
+        end
+        if spec.event then
+            pack_spec.event = spec.event
+        end
+        if spec.dependencies then
+            pack_spec.dependencies = vim.deepcopy(spec.dependencies)
         end
 
         -- Add config function if present
@@ -100,20 +162,106 @@ function M.load_plugins()
         end
     end
 
-    -- Convert plugin map to array for vim.pack.add
-    local plugins = {}
-    for _, pack_spec in pairs(plugin_map) do
-        table.insert(plugins, pack_spec)
+    -- Load plugins with dependency resolution
+    local loaded = {}
+    local loading = {}
+
+    local function load_plugin(pack_spec)
+        if loaded[pack_spec.src] or loading[pack_spec.src] then
+            return
+        end
+
+        loading[pack_spec.src] = true
+
+        -- Load dependencies first
+        if pack_spec.dependencies then
+            for _, dep_src in ipairs(pack_spec.dependencies) do
+                -- Convert dependency source to full URL format
+                local dep_full_src = dep_src
+                if string.sub(dep_src, 1, 5) ~= "https" then
+                    dep_full_src = "https://github.com/" .. dep_src
+                end
+
+                local dep_spec = plugin_map[dep_full_src]
+                if dep_spec then
+                    -- Force synchronous loading of dependencies
+                    if not loaded[dep_spec.src] and not loading[dep_spec.src] then
+                        loading[dep_spec.src] = true
+
+                        -- Recursively load dependency's dependencies first
+                        if dep_spec.dependencies then
+                            for _, nested_dep_src in ipairs(dep_spec.dependencies) do
+                                local nested_dep_full_src = nested_dep_src
+                                if string.sub(nested_dep_src, 1, 5) ~= "https" then
+                                    nested_dep_full_src = "https://github.com/" .. nested_dep_src
+                                end
+                                local nested_dep_spec = plugin_map[nested_dep_full_src]
+                                if nested_dep_spec then
+                                    load_plugin(nested_dep_spec)
+                                end
+                            end
+                        end
+
+                        -- Load dependency synchronously regardless of lazy flag
+                        vim.pack.add({ dep_spec }, { confirm = false })
+                        for _, config_fn in ipairs(dep_spec.config_fns) do
+                            config_fn()
+                        end
+                        loaded[dep_spec.src] = true
+                        loading[dep_spec.src] = false
+                    end
+                end
+            end
+        end
+
+        -- Load the plugin
+        if pack_spec.lazy and pack_spec.lazy == true then
+            lazy_load(function()
+                vim.pack.add({ pack_spec }, { confirm = false })
+                for _, config_fn in ipairs(pack_spec.config_fns) do
+                    config_fn()
+                end
+                loaded[pack_spec.src] = true
+            end, pack_spec.event)
+        else
+            vim.pack.add({ pack_spec }, { confirm = false })
+            for _, config_fn in ipairs(pack_spec.config_fns) do
+                config_fn()
+            end
+            loaded[pack_spec.src] = true
+        end
+
+        loading[pack_spec.src] = false
     end
 
-    -- Add all plugins to vim.pack
-    vim.pack.add(plugins)
+    -- Load all plugins
+    for _, pack_spec in pairs(plugin_map) do
+        load_plugin(pack_spec)
+    end
 
-    -- Call all config functions for each plugin
-    for _, plugin in ipairs(plugins) do
-        for _, config_fn in ipairs(plugin.config_fns) do
-            config_fn()
-        end
+    -- -- Add all plugins to vim.pack
+    -- vim.pack.add(plugins)
+    --
+    -- -- Call all config functions for each plugin
+    -- for _, plugin in ipairs(plugins) do
+    --     for _, config_fn in ipairs(plugin.config_fns) do
+    --         config_fn()
+    --     end
+    -- end
+end
+
+local function exec_installation(opts)
+    -- if opts.dependencies then
+    -- 	vim.pack.add(opts.dependencies)
+    -- end
+
+    vim.pack.add({
+        src = opts.src,
+        -- name = opts.name,
+        version = opts.version,
+    })
+    if opts.config then
+        opts.config()
     end
 end
 

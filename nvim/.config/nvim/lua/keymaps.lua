@@ -221,7 +221,10 @@ map("n", "<leader>H", require("grapple").toggle, desc_opts("Toggle grapple tag")
 map("n", "<leader>h", require("grapple").open_tags, desc_opts("Open grapple tags"))
 
 -- Git
-map({ "n", "x" }, "<leader>gy", require("gh-permalink").yank, desc_opts("Yank GitHub permalink"))
+map({ "n", "x" }, "<leader>gy", function()
+    require("gh-permalink").yank()
+end, desc_opts("Yank GitHub permalink"))
+
 map("n", "<leader>ghp", function()
     require("gitsigns").preview_hunk()
 end, desc_opts("Preview hunk", ns_opts))

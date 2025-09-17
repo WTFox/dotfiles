@@ -1,5 +1,6 @@
+---@type PluginSpec
 return {
-    src = "https://github.com/MagicDuck/grug-far.nvim",
+    src = "MagicDuck/grug-far.nvim",
     config = function()
         require("grug-far").setup({
             -- Whether to show the prompt when picking a file
@@ -9,4 +10,3 @@ return {
         })
     end,
 }
-
