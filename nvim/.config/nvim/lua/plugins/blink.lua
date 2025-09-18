@@ -2,6 +2,8 @@ return {
     {
         "saghen/blink.cmp",
         version = "1.*",
+        lazy = true,
+        event = "InsertEnter",
         opts = {
             fuzzy = { implementation = "prefer_rust_with_warning" },
             signature = { enabled = true },
@@ -37,8 +39,10 @@ return {
     },
     {
         "fang2hou/blink-copilot",
+        lazy = true,
         dependencies = {
             "saghen/blink.cmp",
         },
+        event = "InsertEnter",
     },
 }

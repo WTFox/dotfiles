@@ -1,8 +1,9 @@
----@type PluginSpec[]
 return {
     {
         "neovim/nvim-lspconfig",
+        enabled = false,
     },
+
     {
         "mason-org/mason.nvim",
     },

@@ -1,9 +1,16 @@
 return {
     "MagicDuck/grug-far.nvim",
     opts = {
-        -- Whether to show the prompt when picking a file
         show_prompt = true,
-        -- Whether to open the file in a new tab
         open_in_new_tab = false,
+    },
+    keys = {
+        {
+            "<leader>sr",
+            function()
+                require("grug-far").open()
+            end,
+            desc = "Search and open file",
+        },
     },
 }
