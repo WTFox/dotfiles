@@ -1,6 +1,9 @@
 return {
     {
         "saghen/blink.cmp",
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+        },
         version = "1.*",
         lazy = true,
         event = "InsertEnter",
@@ -25,24 +28,44 @@ return {
                 completion = { menu = { auto_show = true } },
             },
             sources = {
-                default = { "copilot", "lsp" },
+                default = {
+                    -- "copilot",
+                    "snippets",
+                    "lsp",
+                },
                 providers = {
-                    copilot = {
-                        name = "copilot",
-                        module = "blink-copilot",
-                        score_offset = 100,
-                        async = true,
+                    snippets = {
+                        opts = {
+                            friendly_snippets = true, -- default
+
+                            -- see the list of frameworks in: https://github.com/rafamadriz/friendly-snippets/tree/main/snippets/frameworks
+                            -- and search for possible languages in: https://github.com/rafamadriz/friendly-snippets/blob/main/package.json
+                            -- the following is just an example, you should only enable the frameworks that you use
+                            extended_filetypes = {
+                                markdown = { "jekyll" },
+                                sh = { "shelldoc" },
+                                php = { "phpdoc" },
+                                cpp = { "unreal" },
+                            },
+                        },
                     },
+                    -- copilot = {
+                    --     name = "copilot",
+                    --     module = "blink-copilot",
+                    --     score_offset = 100,
+                    --     async = true,
+                    -- },
                 },
             },
         },
     },
-    {
-        "fang2hou/blink-copilot",
-        lazy = true,
-        dependencies = {
-            "saghen/blink.cmp",
-        },
-        event = "InsertEnter",
-    },
+    -- {
+    --     "fang2hou/blink-copilot",
+    --     lazy = true,
+    --     enabled = false,
+    --     dependencies = {
+    --         "saghen/blink.cmp",
+    --     },
+    --     event = "InsertEnter",
+    -- },
 }
