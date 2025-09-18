@@ -1,14 +1,17 @@
 return {
+    { "mason-org/mason.nvim", event = "BufReadPre", opts = {} },
     {
-        "neovim/nvim-lspconfig",
-        enabled = false,
-    },
-
-    {
-        "mason-org/mason.nvim",
+        "mason-org/mason-lspconfig.nvim",
+        opts = {},
+        event = "BufReadPre",
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        },
     },
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
+        event = "BufReadPre",
         opts = {
             ensure_installed = {
                 "basedpyright",
@@ -28,8 +31,5 @@ return {
                 "ts_ls",
             },
         },
-    },
-    {
-        "mason-org/mason-lspconfig.nvim",
     },
 }
