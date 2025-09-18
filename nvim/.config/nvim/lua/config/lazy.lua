@@ -31,10 +31,10 @@ require("lazy").setup({
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "jellybeans" } },
     -- automatically check for plugin updates
-    checker = { enabled = true },
+    checker = { enabled = false },
     dev = {
         path = "~/dev/nvim-plugins/",
-        pattern = "*",
+        patterns = { "jellybeans.nvim" },
         fallback = true,
     },
 })
