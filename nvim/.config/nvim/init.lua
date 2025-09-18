@@ -1,6 +1,10 @@
-require("bootstrap")
-require("options")
-require("lsp")
-require("keymaps")
-require("statusline")
-require("autocmds")
+vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
+
+require("config.lazy")
+require("config.options")
+require("config.lsp")
+require("config.keymaps")
+require("config.statusline")
+require("config.autocmds")
+
+vim.cmd.colorscheme("jellybeans")

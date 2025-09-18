@@ -1,7 +1,6 @@
----@type PluginSpec
 return {
-    src = "vieitesss/gh-permalink.nvim",
-    lazy = true,
-    event = "BufReadPost",
+    "vieitesss/gh-permalink.nvim",
+    keys = {
+        { "<leader>gy", function() require("gh-permalink").yank() end, mode = { "n", "x" }, desc = "Yank GitHub permalink" },
+    },
 }
-

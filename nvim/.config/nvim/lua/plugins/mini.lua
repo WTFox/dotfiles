@@ -161,9 +161,8 @@ local setup_hipatterns = function()
     })
 end
 
----@type PluginSpec
 return {
-    src = "nvim-mini/mini.nvim",
+    "nvim-mini/mini.nvim",
     config = function()
         require("mini.ai").setup()
         require("mini.basics").setup()

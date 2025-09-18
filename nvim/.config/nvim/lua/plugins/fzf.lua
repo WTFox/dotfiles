@@ -1,6 +1,74 @@
----@type PluginSpec
 return {
-    src = "ibhagwan/fzf-lua",
+    "ibhagwan/fzf-lua",
+    cmd = "FzfLua",
+    keys = {
+        { "grr", "<cmd>FzfLua lsp_references<CR>", desc = "Find references" },
+        { "<leader>gs", "<cmd>FzfLua git_status<CR>", desc = "Git status" },
+        { "<leader>ss", "<cmd>FzfLua lsp_document_symbols<CR>", desc = "Document symbols" },
+        { "<leader>sS", "<cmd>FzfLua lsp_workspace_symbols<CR>", desc = "Workspace symbols" },
+        { "<leader>ff", "<cmd>FzfLua files<CR>", desc = "Find files" },
+        { "<leader>fr", "<cmd>FzfLua oldfiles<CR>", desc = "Recent files" },
+        { "<leader><leader>", "<cmd>FzfLua files<CR>", desc = "Find files" },
+        { "<leader>sg", "<cmd>FzfLua live_grep<CR>", desc = "Live grep" },
+        { "<leader>sh", "<cmd>FzfLua help_tags<CR>", desc = "Help tags" },
+        { "<leader>/", "<cmd>FzfLua grep_curbuf<CR>", desc = "Search in buffer" },
+        { "<leader>fb", "<cmd>FzfLua buffers<CR>", desc = "Find buffers" },
+        { "<leader>sc", "<cmd>FzfLua commands<CR>", desc = "Commands" },
+        { "<leader>sm", "<cmd>FzfLua marks<CR>", desc = "Marks" },
+        { "<leader>st", "<cmd>FzfLua tabs<CR>", desc = "Tabs" },
+        { "<leader>sw", "<cmd>FzfLua grep_cword<CR>", desc = "Search word under cursor" },
+        { "<leader>sd", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document diagnostics" },
+        { "<leader>sD", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Workspace diagnostics" },
+        { "<leader>sH", "<cmd>FzfLua highlights<cr>", desc = "Highlights" },
+        { "<leader>sj", "<cmd>FzfLua jumps<cr>", desc = "Jump list" },
+        { "<leader>sk", "<cmd>FzfLua keymaps<cr>", desc = "Key mappings" },
+        { "<leader>sl", "<cmd>FzfLua loclist<cr>", desc = "Location list" },
+        { "<leader>sM", "<cmd>FzfLua man_pages<cr>", desc = "Man pages" },
+        { "<leader>sR", "<cmd>FzfLua resume<cr>", desc = "Resume last search" },
+        { "<leader>sq", "<cmd>FzfLua quickfix<cr>", desc = "Quickfix list" },
+        { "<leader>fc", function() require("fzf-lua").git_files({ cwd = vim.fn.expand("~/dotfiles") }) end, desc = "Find config files" },
+        { "<leader>dl", "<cmd>FzfLua diagnostics_document<CR>", desc = "List diagnostics (document)" },
+        { "<leader>dw", "<cmd>FzfLua diagnostics_workspace<CR>", desc = "List diagnostics (workspace)" },
+        { "<leader>uC", function()
+            require("fzf-lua").colorschemes({
+                winopts = { height = 0.6, width = 0.6 },
+                actions = {
+                    ["default"] = function(selected)
+                        vim.cmd("colorscheme " .. selected[1])
+                        print("Colorscheme changed to: " .. selected[1])
+                    end,
+                },
+            })
+        end, desc = "Choose colorscheme" },
+        { "<leader>po", function()
+            local sessions_dir = require("mini.sessions").config.directory
+            local sessions = {}
+            local handle = vim.loop.fs_scandir(sessions_dir)
+            if handle then
+                while true do
+                    local name, type = vim.loop.fs_scandir_next(handle)
+                    if not name then break end
+                    if type == "file" and name:match("%.vim$") then
+                        sessions[#sessions + 1] = name:gsub("%.vim$", "")
+                    end
+                end
+            end
+            if #sessions == 0 then
+                print("No sessions found")
+                return
+            end
+            require("fzf-lua").fzf_exec(sessions, {
+                prompt = "Sessions> ",
+                actions = {
+                    ["default"] = function(selected)
+                        if selected and selected[1] then
+                            require("mini.sessions").read(selected[1] .. ".vim")
+                        end
+                    end,
+                },
+            })
+        end, desc = "Open project session" },
+    },
     config = function()
         local actions = require("fzf-lua.actions")
 
@@ -11,7 +79,6 @@ return {
             },
             defaults = {
                 formatter = "path.dirname_first",
-                -- path_shorten = 3,
             },
             winopts = {
                 height = 1,
@@ -22,7 +89,6 @@ return {
                 },
             },
             files = {
-                -- formatter = "path.filename_first",
                 cwd_prompt = false,
                 actions = {
                     ["ctrl-x"] = actions.file_split,
@@ -32,12 +98,10 @@ return {
                 },
             },
             oldfiles = {
-                -- formatter = "path.filename_first",
                 cwd_prompt = false,
             },
             git = {
                 files = {
-                    -- formatter = "path.filename_first",
                     actions = {
                         ["alt-i"] = { actions.toggle_ignore },
                         ["alt-h"] = { actions.toggle_hidden },
@@ -45,7 +109,6 @@ return {
                 },
             },
             grep = {
-                -- formatter = "path.filename_first",
                 cwd_prompt = false,
                 actions = {
                     ["alt-i"] = { actions.toggle_ignore },

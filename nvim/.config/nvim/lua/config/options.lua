@@ -54,10 +54,13 @@ opt.autoread = true
 opt.clipboard = "unnamedplus"
 
 -- Folding
-opt.foldmethod = "indent"
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldenable = false
 opt.foldlevel = 99
 opt.foldlevelstart = 99
+-- opt.foldcolumn = "1"
+-- opt.foldtext = "v:lua.require('config.folds').foldtext()"
 
 -- Performance
 -- opt.timeoutlen = 300

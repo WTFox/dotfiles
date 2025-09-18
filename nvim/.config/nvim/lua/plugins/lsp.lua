@@ -1,15 +1,34 @@
 ---@type PluginSpec[]
 return {
     {
-        src = "neovim/nvim-lspconfig",
+        "neovim/nvim-lspconfig",
     },
     {
-        src = "mason-org/mason.nvim",
+        "mason-org/mason.nvim",
     },
     {
-        src = "WhoIsSethDaniel/mason-tool-installer.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        opts = {
+            ensure_installed = {
+                "basedpyright",
+                "bashls",
+                "black",
+                "clangd",
+                "cssls",
+                "eslint",
+                "gopls",
+                "html",
+                "isort",
+                "jsonls",
+                "lua_ls",
+                -- "pyright",
+                "rust_analyzer",
+                "stylua",
+                "ts_ls",
+            },
+        },
     },
     {
-        src = "mason-org/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
     },
 }

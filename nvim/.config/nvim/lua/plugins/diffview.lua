@@ -14,26 +14,23 @@ local get_main_branch = function()
     return result:gsub("\n", "")
 end
 
----@type PluginSpec[]
 return {
-    {
-        src = "sindrets/diffview.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        lazy = true,
-        config = function()
-            require("diffview").setup({
-                use_icons = false,
-            })
-
-            vim.keymap.set("n", "<leader>gdd", "<cmd>DiffviewOpen<CR>", { desc = "DiffView" })
-            vim.keymap.set("n", "<leader>gdm", function()
-                local branch = get_main_branch()
-                if branch == "" then
-                    print("Could not get main branch")
-                    return
-                end
-                vim.cmd("DiffviewOpen " .. branch)
-            end, { desc = "DiffView main branch", noremap = true, silent = true })
-        end,
+    "sindrets/diffview.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+    keys = {
+        { "<leader>gdd", "<cmd>DiffviewOpen<CR>", desc = "DiffView" },
+        { "<leader>gd", "<cmd>Git diffthis<CR>", desc = "Git diff" },
+        { "<leader>gdm", function()
+            local branch = get_main_branch()
+            if branch == "" then
+                print("Could not get main branch")
+                return
+            end
+            vim.cmd("DiffviewOpen " .. branch)
+        end, desc = "DiffView main branch" },
+    },
+    opts = {
+        use_icons = false,
     },
 }

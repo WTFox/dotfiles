@@ -1,6 +1,15 @@
----@type PluginSpec
 return {
-    src = "monaqa/dial.nvim",
+    "monaqa/dial.nvim",
+    keys = {
+        { "<C-a>", function() return require("dial.map").inc_normal() end, expr = true, desc = "Increment" },
+        { "<C-x>", function() return require("dial.map").dec_normal() end, expr = true, desc = "Decrement" },
+        { "g<C-a>", function() return require("dial.map").inc_gnormal() end, expr = true, desc = "Increment" },
+        { "g<C-x>", function() return require("dial.map").dec_gnormal() end, expr = true, desc = "Decrement" },
+        { "<C-a>", function() return require("dial.map").inc_visual() end, mode = "v", expr = true, desc = "Increment" },
+        { "<C-x>", function() return require("dial.map").dec_visual() end, mode = "v", expr = true, desc = "Decrement" },
+        { "g<C-a>", function() return require("dial.map").inc_gvisual() end, mode = "v", expr = true, desc = "Increment" },
+        { "g<C-x>", function() return require("dial.map").dec_gvisual() end, mode = "v", expr = true, desc = "Decrement" },
+    },
     config = function()
         local augend = require("dial.augend")
 
@@ -113,14 +122,5 @@ return {
                 }),
             },
         })
-
-        vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
-        vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })
-        vim.keymap.set("n", "g<C-a>", require("dial.map").inc_gnormal(), { noremap = true })
-        vim.keymap.set("n", "g<C-x>", require("dial.map").dec_gnormal(), { noremap = true })
-        vim.keymap.set("v", "<C-a>", require("dial.map").inc_visual(), { noremap = true })
-        vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(), { noremap = true })
-        vim.keymap.set("v", "g<C-a>", require("dial.map").inc_gvisual(), { noremap = true })
-        vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(), { noremap = true })
     end,
 }
