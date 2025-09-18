@@ -17,7 +17,10 @@ return {
             c = { "lsp" },
             cpp = { "lsp" },
             bash = { "lsp" },
-            sh = { "lsp" },
+            sh = {
+                "shfmt",
+                -- "lsp"
+            },
         },
         format_on_save = {
             timeout_ms = 1000,

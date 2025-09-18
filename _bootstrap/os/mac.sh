@@ -26,21 +26,6 @@ install_kitty() {
   brew install kitty
 }
 
-install_nvim() {
-  pushd ~/bin || exit
-  echo "downloading"
-  curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz
-  xattr -c ./nvim-macos-arm64.tar.gz
-  if [ $? -eq 0 ]; then rm -rf nvim-macos; fi
-  tar xzf nvim-macos-arm64.tar.gz
-  mv nvim-macos-arm64 nvim-macos
-  echo "cleaning up "
-  rm -rf nvim-macos-arm64
-  rm nvim-macos-arm64.tar.gz
-  echo "nvim installed!"
-  popd || exit
-}
-
 install_apps() {
   xcode-select --install || true
 

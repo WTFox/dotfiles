@@ -15,6 +15,7 @@ return {
             ensure_installed = {
                 "basedpyright",
                 "bashls",
+                "shfmt",
                 "black",
                 "clangd",
                 "cssls",

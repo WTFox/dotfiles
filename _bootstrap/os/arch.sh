@@ -22,14 +22,6 @@ install_kitty() {
 	sudo pacman --noconfirm -S kitty
 }
 
-install_nvim() {
-	pushd ~/bin || exit
-	curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-	tar xzf nvim-linux64.tar.gz
-	echo "nvim installed!"
-	popd || exit
-}
-
 install_go() {
 	sudo pacman --noconfirm -S go
 }

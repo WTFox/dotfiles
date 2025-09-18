@@ -30,6 +30,8 @@ map("n", "<C-k>", "<C-w>k", desc_opts("Move to top window", opts))
 -- Window Splits
 map("n", "<leader>|", ":vsplit<CR>", desc_opts("Vertical split", opts))
 map("n", "<leader>-", ":split<CR>", desc_opts("Horizontal split", opts))
+-- diff
+map("n", "<leader>ds", "<cmd>windo diffthis<cr>", { desc = "Diff Split" })
 
 -- Buffer Navigation
 map("n", "L", ":bnext<CR>", desc_opts("Next buffer", opts))

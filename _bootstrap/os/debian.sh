@@ -28,28 +28,6 @@ install_go() {
   sudo apt-get install -y golang-go
 }
 
-install_nvim() {
-  # Create ~/bin directory if it doesn't exist
-  mkdir -p ~/bin
-  
-  pushd ~/bin || exit
-  
-  # Download nightly build
-  curl -LO "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz"
-  tar xzf nvim-linux-x86_64.tar.gz
-  
-  # Create symlink for easy PATH access
-  ln -sf ~/bin/nvim-linux-x86_64/bin/nvim ~/bin/nvim
-  
-  # Cleanup
-  rm nvim-linux-x86_64.tar.gz
-  
-  echo "nvim nightly installed!"
-  echo "Make sure ~/bin is in your PATH"
-  
-  popd || exit
-}
-
 install_git_and_gh() {
   sudo apt-get -y install git gh
 }
