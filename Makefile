@@ -16,9 +16,10 @@ push:
 
 pull:
 	@git pull origin main
+	@nvim --headless "+Lazy restore" +qa
 
 update: pull
-	@nvim --headless "+lua vim.pack.update()" +qa
+	@nvim --headless "+Lazy sync" +qa
 
 copy_wezterm_config:
 	@cp -r wezterm/.config/wezterm/* /mnt/c/Users/antho/.config/wezterm/
