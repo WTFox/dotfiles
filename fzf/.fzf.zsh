@@ -27,12 +27,20 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 # --color=border:#1e1e2e \
 # --multi"
 
-# Jellybeans
+# Jellybeans Mono
+# export FZF_DEFAULT_OPTS=" \
+# --color=bg+:#1c1c1c,bg:#151515,spinner:#a0a8b0,hl:#b39066 \
+# --color=fg:#dddddd,header:#b39066,info:#7a8aa6,pointer:#a0a8b0 \
+# --color=marker:#a08070,fg+:#c7c7c7,prompt:#7a8aa6,hl+:#b39066 \
+# --color=border:#151515 \
+# --multi"
+
+# Jellybeans Muted
 export FZF_DEFAULT_OPTS=" \
---color=bg+:#1c1c1c,bg:#151515,spinner:#a0a8b0,hl:#b39066 \
---color=fg:#dddddd,header:#b39066,info:#7a8aa6,pointer:#a0a8b0 \
---color=marker:#a08070,fg+:#c7c7c7,prompt:#7a8aa6,hl+:#b39066 \
---color=border:#151515 \
+--color=bg+:#101010,bg:#101010,spinner:#7a8aa6,hl:#d8a16c \
+--color=fg:#dddddd,header:#d8a16c,info:#83adc3,pointer:#c88a77 \
+--color=marker:#c88a77,fg+:#c7c7c7,prompt:#83adc3,hl+:#d8a16c \
+--color=border:#101010 \
 --multi"
 
 # Catppuccin-Mocha Darker
