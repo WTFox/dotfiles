@@ -105,7 +105,6 @@ map("n", "<leader>ud", function()
     end
 end, desc_opts("Toggle diagnostics", ns_opts))
 
-
 map("n", "<leader>ps", "<cmd>lua vim.pack.update()<CR>", desc_opts("Update packages"))
 
 -- Lazy.nvim
@@ -152,8 +151,6 @@ map("n", "<leader>up", function()
     vim.api.nvim_echo({ { table.concat(lines, "\n"), "Normal" } }, true, {})
 end, desc_opts("Show loaded plugins"))
 
-
-
 -- UI
 -- toggle background
 map("n", "<leader>ub", function()
@@ -176,7 +173,6 @@ map("n", "<leader>uh", function()
         print("Inlay hints enabled")
     end
 end, desc_opts("Toggle background", ns_opts))
-
 
 -- toggle line wrapping
 map("n", "<leader>uw", function()
