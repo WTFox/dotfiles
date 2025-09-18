@@ -214,7 +214,7 @@ install_yazi() {
     echo "Cargo not found. Please install Rust first."
   fi
 
-  cargo install --locked --git https://github.com/sxyazi/yazi.git yazi-fm yazi-cli
+  cargo install --force yazi-build
 }
 
 install_rust() {
