@@ -29,7 +29,6 @@ return {
             },
             sources = {
                 default = {
-                    -- "copilot",
                     "snippets",
                     "lsp",
                 },
@@ -37,35 +36,21 @@ return {
                     snippets = {
                         opts = {
                             friendly_snippets = true, -- default
-
-                            -- see the list of frameworks in: https://github.com/rafamadriz/friendly-snippets/tree/main/snippets/frameworks
-                            -- and search for possible languages in: https://github.com/rafamadriz/friendly-snippets/blob/main/package.json
-                            -- the following is just an example, you should only enable the frameworks that you use
+                            -- frameworks:
+                            -- https://github.com/rafamadriz/friendly-snippets/tree/main/snippets/frameworks
+                            -- languages:
+                            -- https://github.com/rafamadriz/friendly-snippets/blob/main/package.json
                             extended_filetypes = {
                                 markdown = { "jekyll" },
                                 sh = { "shelldoc" },
                                 php = { "phpdoc" },
                                 cpp = { "unreal" },
+                                python = { "django" },
                             },
                         },
                     },
-                    -- copilot = {
-                    --     name = "copilot",
-                    --     module = "blink-copilot",
-                    --     score_offset = 100,
-                    --     async = true,
-                    -- },
                 },
             },
         },
     },
-    -- {
-    --     "fang2hou/blink-copilot",
-    --     lazy = true,
-    --     enabled = false,
-    --     dependencies = {
-    --         "saghen/blink.cmp",
-    --     },
-    --     event = "InsertEnter",
-    -- },
 }

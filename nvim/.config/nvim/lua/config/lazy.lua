@@ -37,4 +37,8 @@ require("lazy").setup({
         patterns = { "jellybeans.nvim" },
         fallback = true,
     },
+    change_detection = {
+        enabled = true,
+        notify = false,
+    },
 })

@@ -1,4 +1,5 @@
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
+vim.g.copilot = false
 
 require("config.lazy")
 require("config.options")
