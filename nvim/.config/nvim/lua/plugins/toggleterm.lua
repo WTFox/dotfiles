@@ -69,38 +69,6 @@ return {
             end,
             desc = "Open Yazi",
         },
-        {
-            "<leader>cc",
-            function()
-                local buf = vim.api.nvim_get_current_buf()
-                local filepath = vim.api.nvim_buf_get_name(buf)
-                local start_line = vim.fn.line("'<")
-                local end_line = vim.fn.line("'>")
-                local selected_text =
-                    table.concat(vim.api.nvim_buf_get_lines(buf, start_line - 1, end_line, false), "\n")
-                local ctx = string.format(
-                    "File: %s\nLines: %d-%d\nSelection:\n%s",
-                    filepath,
-                    start_line,
-                    end_line,
-                    selected_text
-                )
-                vim.ui.input({ prompt = "Enter Claude prompt: " }, function(input)
-                    if input then
-                        local prompt = ctx .. "\n\n-----\n\nQuestion: " .. input
-                        local temp_file = vim.fn.tempname() .. ".md"
-                        local cmd = string.format(
-                            "echo %s | claude -p > %s && nvim -c 'nnoremap <buffer> q :q!<CR>' %s",
-                            vim.fn.shellescape(prompt),
-                            temp_file,
-                            temp_file
-                        )
-                        terminal_cmd(cmd)()
-                    end
-                end)
-            end,
-            mode = { "x", "v", "n" },
-        },
     },
     opts = {
         open_mapping = [[<c-\>]],

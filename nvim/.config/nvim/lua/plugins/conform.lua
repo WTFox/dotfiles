@@ -19,7 +19,6 @@ return {
             bash = { "lsp" },
             sh = {
                 "shfmt",
-                -- "lsp"
             },
         },
         format_on_save = {

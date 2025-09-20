@@ -34,7 +34,7 @@ require("lazy").setup({
     checker = { enabled = false },
     dev = {
         path = "~/dev/nvim-plugins/",
-        patterns = { "jellybeans.nvim" },
+        patterns = { "jellybeans.nvim", "claude-chat.nvim" },
         fallback = true,
     },
     change_detection = {
