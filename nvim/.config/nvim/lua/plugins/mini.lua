@@ -97,6 +97,11 @@ local setup_starter = function()
                 end
                 return nil
             end,
+            {
+                name = "Lazy",
+                action = "Lazy",
+                section = "Builtin actions",
+            },
             starter.sections.builtin_actions(),
             starter.sections.recent_files(5, true),
         },
