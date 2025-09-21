@@ -7,8 +7,8 @@ local state = {
 -- config for placeholders + highlighting
 local config = {
     icons = {
-        -- path = "",
-        branch_hidden = "",
+        -- path = " ",
+        branch_hidden = " ",
         hint = "",
         error = "",
         warn = "",
@@ -130,14 +130,11 @@ local function filepath()
         return string.format("%%<%s/", fpath)
     end
 
-    return hl(
-        config.placeholder_hl,
-        shorten_path(fpath, {
-            short_len = 1,
-            tail_count = 1,
-            head_max = 3,
-        }) .. "/"
-    )
+    return hl(config.placeholder_hl, shorten_path(fpath, {
+        short_len = 1,
+        tail_count = 1,
+        head_max = 3,
+    }) .. "/")
 end
 
 local function git()
