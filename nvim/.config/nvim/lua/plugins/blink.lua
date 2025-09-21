@@ -22,6 +22,18 @@ return {
                     auto_show = true,
                     auto_show_delay_ms = 200,
                 },
+                menu = {
+                    draw = {
+                        padding = { 0, 1 }, -- padding only on right side
+                        components = {
+                            kind_icon = {
+                                text = function(ctx)
+                                    return " " .. ctx.kind_icon .. ctx.icon_gap .. " "
+                                end,
+                            },
+                        },
+                    },
+                },
             },
             cmdline = {
                 keymap = { preset = "inherit" },
