@@ -4,7 +4,7 @@
   "dial.nvim": { "branch": "master", "commit": "f0404ec1f83a03f2c3457e60087c6331d1cbb83f" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
-  "fzf-lua": { "branch": "main", "commit": "4cb7d7c614a55d55dcc175c2457b7be0cbbdecec" },
+  "fzf-lua": { "branch": "main", "commit": "8d6c9cf1af8aa284e361519f9f9ebdba16f20f28" },
   "gh-permalink.nvim": { "branch": "main", "commit": "9e337278ab5218d17b86f611c77be5fb5e6a263d" },
   "gitsigns.nvim": { "branch": "main", "commit": "f780609807eca1f783a36a8a31c30a48fbe150c5" },
   "grapple.nvim": { "branch": "main", "commit": "b41ddfc1c39f87f3d1799b99c2f0f1daa524c5f7" },

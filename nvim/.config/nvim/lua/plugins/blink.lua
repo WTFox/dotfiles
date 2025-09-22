@@ -8,10 +8,25 @@ return {
         lazy = true,
         event = "InsertEnter",
         opts = {
-            fuzzy = { implementation = "prefer_rust_with_warning" },
+            fuzzy = {
+                implementation = "prefer_rust_with_warning",
+                sorts = {
+                    -- example custom sorting function, ensuring `_` entries are always last (untested, YMMV)
+                    function(a, b)
+                        if a.label:sub(1, 1) == "_" ~= a.label:sub(1, 1) == "_" then
+                            -- return true to sort `a` after `b`, and vice versa
+                            return not a.label:sub(1, 1) == "_"
+                        end
+                        -- nothing returned, fallback to the next sort
+                    end,
+                    "score", -- Primary sort: by fuzzy matching score
+                    "sort_text", -- Secondary sort: by sortText field if scores are equal
+                    "label", -- Tertiary sort: by label if still tied
+                },
+            },
             signature = { enabled = true },
             keymap = {
-                preset = "super-tab",
+                preset = "enter",
             },
             appearance = {
                 use_nvim_cmp_as_default = false,
@@ -24,16 +39,6 @@ return {
                 },
                 menu = {
                     auto_show = true,
-                    draw = {
-                        padding = { 0, 1 }, -- padding only on right side
-                        components = {
-                            kind_icon = {
-                                text = function(ctx)
-                                    return " " .. ctx.kind_icon .. ctx.icon_gap .. " "
-                                end,
-                            },
-                        },
-                    },
                 },
             },
             cmdline = {
@@ -42,8 +47,10 @@ return {
             },
             sources = {
                 default = {
-                    "snippets",
                     "lsp",
+                    "snippets",
+                    "buffer",
+                    "path",
                 },
                 providers = {
                     snippets = {
