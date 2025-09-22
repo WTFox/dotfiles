@@ -19,10 +19,11 @@ return {
             },
             completion = {
                 documentation = {
-                    auto_show = true,
+                    auto_show = false,
                     auto_show_delay_ms = 200,
                 },
                 menu = {
+                    auto_show = false,
                     draw = {
                         padding = { 0, 1 }, -- padding only on right side
                         components = {
