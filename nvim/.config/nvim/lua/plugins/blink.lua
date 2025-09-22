@@ -14,16 +14,16 @@ return {
                 preset = "super-tab",
             },
             appearance = {
-                use_nvim_cmp_as_default = true,
+                use_nvim_cmp_as_default = false,
                 nerd_font_variant = "normal",
             },
             completion = {
                 documentation = {
-                    auto_show = false,
+                    auto_show = true,
                     auto_show_delay_ms = 200,
                 },
                 menu = {
-                    auto_show = false,
+                    auto_show = true,
                     draw = {
                         padding = { 0, 1 }, -- padding only on right side
                         components = {
