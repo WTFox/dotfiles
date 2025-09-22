@@ -1,3 +1,3 @@
 # == macOS-Specific Exports ==
 
-export PATH="$HOME/bin/nvim-macos/bin:$PATH"
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" 
