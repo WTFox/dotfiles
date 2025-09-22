@@ -1,9 +1,9 @@
 {
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
+  "claude-chat.nvim": { "branch": "main", "commit": "c3dfd4cca8ef018728b3b19050b1d8cf3fd00038" },
   "conform.nvim": { "branch": "master", "commit": "b4aab989db276993ea5dcb78872be494ce546521" },
   "dial.nvim": { "branch": "master", "commit": "f0404ec1f83a03f2c3457e60087c6331d1cbb83f" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
-  "fidget.nvim": { "branch": "main", "commit": "b45d21d33d61ed9295308eb6571c0a5f0f7f3765" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "fzf-lua": { "branch": "main", "commit": "3776d03a4afa967bd6c4b7f78e9e90bc21425236" },
   "gh-permalink.nvim": { "branch": "main", "commit": "9e337278ab5218d17b86f611c77be5fb5e6a263d" },
