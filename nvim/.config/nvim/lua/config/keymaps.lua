@@ -52,6 +52,10 @@ map("n", "yc", "yy:lua MiniComment.operator('n')<CR>p", { noremap = true, silent
 map("v", "<leader>p", '"_dP', desc_opts("Paste without overwriting register"))
 map("x", "y", [["+y]], desc_opts("Copy to system clipboard", opts))
 
+-- Indentation with persistent selection
+map("v", "<", "<gv", desc_opts("Dedent and reselect"))
+map("v", ">", ">gv", desc_opts("Indent and reselect"))
+
 -- Terminal
 map("t", "<Esc>", "<C-\\><C-N>", desc_opts("Exit terminal mode"))
 
