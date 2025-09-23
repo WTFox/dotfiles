@@ -1,5 +1,6 @@
 {
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
+  "claude-chat.nvim": { "branch": "main", "commit": "f6f80d8cee7a324d26d3738e2e373d97f55b69ec" },
   "conform.nvim": { "branch": "master", "commit": "b4aab989db276993ea5dcb78872be494ce546521" },
   "dial.nvim": { "branch": "master", "commit": "f0404ec1f83a03f2c3457e60087c6331d1cbb83f" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
