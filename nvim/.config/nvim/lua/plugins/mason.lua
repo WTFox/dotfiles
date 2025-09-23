@@ -17,6 +17,7 @@ return {
                 "bashls",
                 "shfmt",
                 "black",
+                "flake8",
                 "clangd",
                 "cssls",
                 "eslint",
