@@ -7,7 +7,6 @@ local state = {
 -- config for placeholders + highlighting
 local config = {
     icons = {
-        -- path = " ",
         branch_hidden = " ",
         hint = "",
         error = "",
@@ -162,25 +161,6 @@ local function git()
     })
 end
 
--- local function diagnostics()
---     local status = vim.diagnostic.status()
---
---     if not status or status == "" then
---         return ""
---     end
---
---     return "[" .. status .. "]"
--- end
---
--- Icons (fallbacks if you don't already have config.icons)
-local DIAG_ICONS = {
-    ERROR = (config and config.icons and config.icons.error) or "",
-    WARN = (config and config.icons and config.icons.warn) or "",
-    INFO = (config and config.icons and config.icons.info) or "",
-    HINT = (config and config.icons and config.icons.hint) or "",
-    HEADER = (config and config.icons and config.icons.diagnostics) or "",
-}
-
 local function diagnostics()
     -- Fast path: if the built-in status says empty, bail
     local status = vim.diagnostic.status()
@@ -200,19 +180,6 @@ local function diagnostics()
     -- Build colored chunks (only show nonzero)
     local parts = {}
 
-    -- if counts[severities.ERROR] > 0 then
-    --     table.insert(parts, hl("DiagnosticError", string.format("%s%d", DIAG_ICONS.ERROR, counts[severities.ERROR])))
-    -- end
-    -- if counts[severities.WARN] > 0 then
-    --     table.insert(parts, hl("DiagnosticWarn", string.format(" %s%d", DIAG_ICONS.WARN, counts[severities.WARN])))
-    -- end
-    -- if counts[severities.INFO] > 0 then
-    --     table.insert(parts, hl("DiagnosticInfo", string.format(" %s%d", DIAG_ICONS.INFO, counts[severities.INFO])))
-    -- end
-    -- if counts[severities.HINT] > 0 then
-    --     table.insert(parts, hl("DiagnosticHint", string.format(" %s%d", DIAG_ICONS.HINT, counts[severities.HINT])))
-    -- end
-
     if counts[severities.ERROR] > 0 then
         table.insert(parts, hl("DiagnosticError", string.format("E:%d ", counts[severities.ERROR])))
     end
@@ -230,36 +197,6 @@ local function diagnostics()
         return ""
     end
 
-    -- Optional: also show the most severe diagnostic on the *current line*
-    -- (comment this block out if you don't want it)
-    -- do
-    --     local line = vim.api.nvim_win_get_cursor(0)[1] - 1
-    --     local line_diags = vim.diagnostic.get(bufnr, { lnum = line })
-    --     if #line_diags > 0 then
-    --         local top = line_diags[1]
-    --         for _, d in ipairs(line_diags) do
-    --             if d.severity < top.severity then
-    --                 top = d
-    --             end
-    --         end
-    --         local icon_by_sev = {
-    --             [severities.ERROR] = DIAG_ICONS.ERROR,
-    --             [severities.WARN] = DIAG_ICONS.WARN,
-    --             [severities.INFO] = DIAG_ICONS.INFO,
-    --             [severities.HINT] = DIAG_ICONS.HINT,
-    --         }
-    --         local group_by_sev = {
-    --             [severities.ERROR] = "DiagnosticError",
-    --             [severities.WARN] = "DiagnosticWarn",
-    --             [severities.INFO] = "DiagnosticInfo",
-    --             [severities.HINT] = "DiagnosticHint",
-    --         }
-    --         -- prepend a small marker for "current line has diag"
-    --         table.insert(parts, 1, hl(group_by_sev[top.severity], " " .. icon_by_sev[top.severity]))
-    --     end
-    -- end
-    --
-    -- return "[" .. DIAG_ICONS.HEADER .. table.concat(parts, "") .. " ]"
     return "[" .. table.concat(parts, "") .. "]"
 end
 
