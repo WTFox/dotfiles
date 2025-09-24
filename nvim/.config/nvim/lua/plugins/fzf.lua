@@ -107,6 +107,7 @@ return {
                 },
             },
             files = {
+                hidden = true,
                 cwd_prompt = false,
                 actions = {
                     ["ctrl-x"] = actions.file_split,
@@ -127,6 +128,7 @@ return {
                 },
             },
             grep = {
+                hidden = true,
                 cwd_prompt = false,
                 actions = {
                     ["alt-i"] = { actions.toggle_ignore },

@@ -4,7 +4,7 @@ local wezterm = require("wezterm")
 
 ---@type StrictConfig
 return {
-    font_size = 15,
+    foobar = 15,
     line_height = 1,
     -- font = wezterm.font(fonts.jetbrains_styled),
     default_prog = { "wsl.exe", "~" },

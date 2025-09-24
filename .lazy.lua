@@ -12,6 +12,28 @@ return {
         },
     },
     {
+        "MagicDuck/grug-far.nvim",
+        keys = {
+            {
+                "<leader>sr",
+                function()
+                    local grug = require("grug-far")
+                    local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+                    grug.open({
+                        transient = true,
+                        prefills = {
+                            flags = "--hidden",
+                            paths = vim.fn.expand("%"),
+                            filesFilter = ext and ext ~= "" and "*." .. ext or nil,
+                        },
+                    })
+                end,
+                mode = { "n", "v" },
+                desc = "Search and Replace",
+            },
+        },
+    },
+    {
         "folke/lazydev.nvim",
         dependencies = {
             { "DrKJeff16/wezterm-types", lazy = true },
