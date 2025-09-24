@@ -14,6 +14,7 @@ return {
                     grug.open({
                         transient = true,
                         prefills = {
+                            flags = "--hidden",
                             paths = vim.fn.expand("%"),
                             filesFilter = ext and ext ~= "" and "*." .. ext or nil,
                         },
