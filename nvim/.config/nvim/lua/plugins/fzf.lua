@@ -1,3 +1,6 @@
+-- Search Syntax
+-- https://github.com/junegunn/fzf#search-syntax
+
 return {
     "ibhagwan/fzf-lua",
     lazy = false,
