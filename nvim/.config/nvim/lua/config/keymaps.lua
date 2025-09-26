@@ -192,3 +192,21 @@ end, desc_opts("Toggle line wrapping", ns_opts))
 
 -- redraw / clear highlights
 map("n", "<leader>ur", "<cmd>nohls<CR>", desc_opts("Clear search highlights", ns_opts))
+
+-- Formatting
+map("n", "<leader>cf", function()
+    require("conform").format({ async = true, lsp_format = "fallback" })
+end, desc_opts("Format buffer", ns_opts))
+
+map("n", "<leader>uf", function()
+    local conform = require("conform")
+
+    if vim.g.disable_autoformat or vim.b.disable_autoformat then
+        vim.g.disable_autoformat = false
+        vim.b.disable_autoformat = false
+        print("Auto-format on save enabled")
+    else
+        vim.g.disable_autoformat = true
+        print("Auto-format on save disabled")
+    end
+end, desc_opts("Toggle auto-format on save", ns_opts))
