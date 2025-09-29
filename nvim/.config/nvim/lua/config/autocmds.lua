@@ -50,3 +50,21 @@ autocmd({ "InsertLeave" }, {
         end
     end,
 })
+
+-- Prevent LSP formatting when global autoformat is disabled
+autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client.server_capabilities.documentFormattingProvider then
+            autocmd("BufWritePre", {
+                buffer = args.buf,
+                callback = function()
+                    if not vim.g.disable_autoformat and not vim.b.disable_autoformat then
+                        vim.lsp.buf.format({ async = false })
+                    end
+                end,
+            })
+        end
+    end,
+})
+

@@ -176,6 +176,7 @@ return {
         require("mini.hipatterns").setup()
         require("mini.move").setup()
         require("mini.splitjoin").setup()
+        -- Setup mini.trailspace without autocommands (handled manually in autocmds.lua)
         require("mini.trailspace").setup()
 
         setup_hipatterns()

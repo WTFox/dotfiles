@@ -30,6 +30,16 @@ return {
                 lsp_format = "fallback",
             }
         end,
+        format_after_save = function(bufnr)
+            if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                return
+            end
+            -- Trim trailing whitespace and empty lines after formatting
+            if pcall(require, "mini.trailspace") then
+                require("mini.trailspace").trim()
+                require("mini.trailspace").trim_last_lines()
+            end
+        end,
         formatters = {
             black = {
                 prepend_args = { "--fast" },

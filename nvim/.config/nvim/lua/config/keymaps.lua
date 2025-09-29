@@ -195,18 +195,36 @@ map("n", "<leader>ur", "<cmd>nohls<CR>", desc_opts("Clear search highlights", ns
 
 -- Formatting
 map("n", "<leader>cf", function()
+    -- Comprehensive formatting: conform + LSP + trailspace
     require("conform").format({ async = true, lsp_format = "fallback" })
-end, desc_opts("Format buffer", ns_opts))
+
+    -- Also trim trailing whitespace and empty lines
+    vim.defer_fn(function()
+        if pcall(require, "mini.trailspace") then
+            require("mini.trailspace").trim()
+            require("mini.trailspace").trim_last_lines()
+        end
+    end, 100) -- Small delay to let formatting complete
+end, desc_opts("Format buffer (all sources)", ns_opts))
 
 map("n", "<leader>uf", function()
-    local conform = require("conform")
-
-    if vim.g.disable_autoformat or vim.b.disable_autoformat then
-        vim.g.disable_autoformat = false
+    if vim.b.disable_autoformat then
         vim.b.disable_autoformat = false
-        print("Auto-format on save enabled")
+        print("Buffer auto-formatting on save enabled")
+    else
+        vim.b.disable_autoformat = true
+        print("Buffer auto-formatting on save disabled")
+    end
+end, desc_opts("Toggle buffer auto-format on save", ns_opts))
+
+map("n", "<leader>uF", function()
+    if vim.g.disable_autoformat then
+        vim.g.disable_autoformat = false
+        -- Also clear buffer-local flag to fully enable
+        vim.b.disable_autoformat = false
+        print("Global auto-formatting on save enabled")
     else
         vim.g.disable_autoformat = true
-        print("Auto-format on save disabled")
+        print("Global auto-formatting on save disabled")
     end
-end, desc_opts("Toggle auto-format on save", ns_opts))
+end, desc_opts("Toggle global auto-format on save", ns_opts))
