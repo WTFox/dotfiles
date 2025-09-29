@@ -135,8 +135,8 @@ return {
             -- "ss12", -- thin backslash \\
             "ss13", -- alt $
             "ss14", -- alt &
-            "ss15", -- alt i (no seriffs)
-            "ss16", -- alt r (no seriffs)
+            -- "ss15", -- alt i (no seriffs)
+            -- "ss16", -- alt r (no seriffs)
             -- "ss17", -- alt .= and ..=
             -- "ss18", -- alt @
         },
