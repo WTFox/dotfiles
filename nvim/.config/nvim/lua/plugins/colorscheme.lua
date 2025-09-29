@@ -20,9 +20,10 @@ return {
             -- Coffee
             -- c.accent_color_1 = "#a98467"
             -- c.accent_color_2 = "#b7a88d"
-            -- VSCode Darkish
-            -- c.accent_color_1 = "#b5d4e3"
-            -- c.accent_color_2 = "#b7a88d"
+
+            -- Rose Pine
+            -- c.accent_color_1 = "#b89595"
+            -- c.accent_color_2 = "#7a9085"
         end,
         on_highlights = function(hl, c)
             -- FzfLua
