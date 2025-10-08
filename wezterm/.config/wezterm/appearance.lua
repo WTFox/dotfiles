@@ -15,6 +15,7 @@ return {
     use_fancy_tab_bar = true,
     hide_tab_bar_if_only_one_tab = false,
     default_cursor_style = "BlinkingBlock",
+    cursor_blink_rate = 500, -- Optimize blink rate (ms)
     initial_cols = 114,
     initial_rows = 31,
     bold_brightens_ansi_colors = true,
