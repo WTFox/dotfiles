@@ -22,4 +22,8 @@ return {
     window_decorations = "RESIZE|INTEGRATED_BUTTONS",
     -- window_background_opacity = 0.8,
     -- macos_window_background_blur = 80,
+
+    -- macOS fullscreen behavior
+    native_macos_fullscreen_mode = false, -- Keep fast toggle
+    macos_fullscreen_extend_behind_notch = true, -- Extend behind notch for cleaner look
 }
