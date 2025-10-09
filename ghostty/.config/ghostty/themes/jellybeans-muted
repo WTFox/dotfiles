@@ -1,7 +1,7 @@
 # name = "jellybeans-muted"
 # author = "A. Fox"
 
-palette = 0=#101010
+palette = 0=#505050
 palette = 1=#cc4d4d
 palette = 2=#909c6e
 palette = 3=#e8c88c
@@ -9,7 +9,7 @@ palette = 4=#7a8aa6
 palette = 5=#b8aed3
 palette = 6=#617b87
 palette = 7=#dad6c8
-palette = 8=#7a7a7a
+palette = 8=#aaaaaa
 palette = 9=#7e2e23
 palette = 10=#98b67c
 palette = 11=#d8a16c
@@ -29,3 +29,5 @@ foreground = #dad6c8
 cursor-color = #a6c3d9
 selection-background = #3c3b38
 selection-foreground = #dad6c8
+
+# Note: palette 0 and 8 adjusted for comment visibility against dark background
