@@ -23,6 +23,14 @@ return {
     -- window_background_opacity = 0.8,
     -- macos_window_background_blur = 80,
 
+    -- Remove window padding to eliminate empty space at bottom
+    window_padding = {
+        left = 0,
+        right = 0,
+        top = 0,
+        bottom = 0,
+    },
+
     -- macOS fullscreen behavior
     native_macos_fullscreen_mode = false, -- Keep fast toggle
     macos_fullscreen_extend_behind_notch = true, -- Extend behind notch for cleaner look
