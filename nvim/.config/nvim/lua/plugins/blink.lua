@@ -11,11 +11,11 @@ return {
             fuzzy = {
                 implementation = "prefer_rust_with_warning",
                 sorts = {
-                    -- example custom sorting function, ensuring `_` entries are always last (untested, YMMV)
+                    -- example custom sorting function, ensuring `_` entries are always last
                     function(a, b)
-                        if a.label:sub(1, 1) == "_" ~= a.label:sub(1, 1) == "_" then
+                        if (a.label:sub(1, 1) == "_") ~= (b.label:sub(1, 1) == "_") then
                             -- return true to sort `a` after `b`, and vice versa
-                            return not a.label:sub(1, 1) == "_"
+                            return not (a.label:sub(1, 1) == "_")
                         end
                         -- nothing returned, fallback to the next sort
                     end,

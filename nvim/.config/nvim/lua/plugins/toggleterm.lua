@@ -6,13 +6,21 @@ local function toggle_terminal_size()
     if string.match(buf_name, "toggleterm#") then
         local current_width = vim.api.nvim_win_get_width(current_win)
         local total_columns = vim.o.columns
+        local win_config = vim.api.nvim_win_get_config(current_win)
 
         if current_width < total_columns - 2 then
-            vim.api.nvim_win_set_width(current_win, total_columns)
-            vim.api.nvim_win_set_height(current_win, vim.o.lines - 2)
+            -- Maximize: remove border and go full size
+            win_config.width = total_columns
+            win_config.height = vim.o.lines - 2
+            win_config.border = "none"
+            vim.api.nvim_win_set_config(current_win, win_config)
         else
-            vim.api.nvim_win_set_width(current_win, math.floor(vim.o.columns * 0.8))
-            vim.api.nvim_win_set_height(current_win, math.floor(vim.o.lines * 0.8))
+            -- Restore: add border back and resize
+            -- Use the curved border characters array
+            win_config.width = math.floor(vim.o.columns * 0.8)
+            win_config.height = math.floor(vim.o.lines * 0.8)
+            win_config.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+            vim.api.nvim_win_set_config(current_win, win_config)
         end
     end
 end
@@ -41,6 +49,7 @@ return {
     keys = {
         { [[<c-\>]], "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal", mode = { "n", "t" } },
         { "<M-p>", toggle_terminal_size, mode = "t", desc = "Toggle terminal size" },
+        { "<C-[><C-[>", [[<C-\><C-n>]], desc = "Exit terminal mode", mode = "t" },
         {
             "<leader>gg",
             function()

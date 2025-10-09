@@ -75,6 +75,21 @@ map("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc_opts("Rename sy
 map("n", "<leader>dn", "<cmd>lua vim.diagnostic.jump({count = 1})<CR>", desc_opts("Next diagnostic", ns_opts))
 map("n", "<leader>dp", "<cmd>lua vim.diagnostic.jump({count = -1})<CR>", desc_opts("Previous diagnostic", ns_opts))
 map("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", desc_opts("Open diagnostic float", ns_opts))
+
+-- Jump to diagnostics with auto-popup
+map("n", "]d", function()
+    vim.diagnostic.jump({ count = 1 })
+    vim.defer_fn(function()
+        vim.diagnostic.open_float({ scope = "line" })
+    end, 50)
+end, desc_opts("Next diagnostic + show popup", ns_opts))
+
+map("n", "[d", function()
+    vim.diagnostic.jump({ count = -1 })
+    vim.defer_fn(function()
+        vim.diagnostic.open_float({ scope = "line" })
+    end, 50)
+end, desc_opts("Previous diagnostic + show popup", ns_opts))
 map("n", "<leader>ud", function()
     local config = vim.diagnostic.config() or {}
     local enabled = config.signs ~= false or config.virtual_text ~= false or config.underline ~= false
@@ -178,7 +193,7 @@ map("n", "<leader>uh", function()
         vim.lsp.inlay_hint.enable(true)
         print("Inlay hints enabled")
     end
-end, desc_opts("Toggle background", ns_opts))
+end, desc_opts("Toggle inlay hints", ns_opts))
 
 -- toggle line wrapping
 map("n", "<leader>uw", function()
@@ -189,6 +204,28 @@ map("n", "<leader>uw", function()
         print("Line wrapping disabled")
     end
 end, desc_opts("Toggle line wrapping", ns_opts))
+
+-- toggle window maximize
+map("n", "<leader>wm", function()
+    -- Check if we're in a maximized state (in a non-first tab)
+    if vim.fn.tabpagenr('$') > 1 and vim.fn.tabpagenr() > 1 then
+        -- We're maximized, restore by closing the tab
+        vim.cmd('tabclose')
+        -- Restore tabline setting
+        if vim.g.showtabline_backup ~= nil then
+            vim.o.showtabline = vim.g.showtabline_backup
+            vim.g.showtabline_backup = nil
+        end
+        print("Window restored")
+    else
+        -- Not maximized, create a new tab with current buffer
+        -- Save current tabline setting and hide it
+        vim.g.showtabline_backup = vim.o.showtabline
+        vim.o.showtabline = 0
+        vim.cmd('tab split')
+        print("Window maximized")
+    end
+end, desc_opts("Toggle window maximize", ns_opts))
 
 -- redraw / clear highlights
 map("n", "<leader>ur", "<cmd>nohls<CR>", desc_opts("Clear search highlights", ns_opts))

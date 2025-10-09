@@ -61,6 +61,7 @@ opt.listchars = {
 
 -- Search
 opt.ignorecase = true
+opt.smartcase = true
 opt.hlsearch = false
 opt.inccommand = "nosplit"
 
@@ -91,7 +92,6 @@ opt.foldlevelstart = 99
 -- opt.foldtext = "v:lua.require('config.folds').foldtext()"
 
 -- Performance
--- opt.timeoutlen = 300
--- opt.ttimeoutlen = 0
--- opt.updatetime = 250
+opt.timeoutlen = 300
+opt.updatetime = 250
 opt.lazyredraw = false
