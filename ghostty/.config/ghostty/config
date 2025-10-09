@@ -1,57 +1,17 @@
-# appearance
-theme = dark:jellybeans-muted,light:jellybeans-light
-window-height = 36
-window-width = 143
+# Ghostty Configuration
+# Main config file - modular imports below
 
-cursor-style = block
+# Shell integration
+shell-integration = zsh
+shell-integration-features = true
 
-# background-opacity = 0.85
-# background-blur = true
+# macOS-specific settings
+macos-option-as-alt = true
 
-# font
-# font-size = 15
-# font-family = Jetbrains Mono
-# font-feature = "calt"
-# font-feature = "clig"
-# font-feature = "liga"
-# font-feature = "ss20"
-# font-feature = "cv02"
-# font-feature = "cv03"
-# font-feature = "cv04"
-# font-feature = "cv05"
-# font-feature = "cv06"
-# font-feature = "cv07"
-# font-feature = "cv11"
-# font-feature = "cv14"
-# font-feature = "cv15"
-# font-feature = "cv16"
-# font-feature = "cv17"
-
-# font-size = 16
-# font-family = Cascadia Code
-# font-feature = "calt"
-# font-feature = "clig"
-# font-feature = "liga"
-# font-feature = "ss01"
-# font-feature = "ss20"
-
-font-size = 14
-font-family = MonoLisa
-font-feature = "calt"
-font-feature = "clig"
-font-feature = "liga"
-font-feature = "ss02"
-font-feature = "ss07"
-font-feature = "ss08"
-font-feature = "ss10"
-font-feature = "ss11"
-font-feature = "ss13"
-font-feature = "ss14"
+# Import modular configs
+config-file = appearance.conf
+config-file = fonts.conf
+config-file = keybinds.conf
 
 
-shell-integration-features = no-cursor
-
-# keys
-keybind = super+shift+j=write_screen_file:paste
-keybind = super+alt+shift+j=write_screen_file:open
-keybind = global:cmd+backquote=toggle_quick_terminal
+# vim: filetype=config:tabstop=4:shiftwidth=4:expandtab:
