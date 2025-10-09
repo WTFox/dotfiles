@@ -2,7 +2,7 @@
 # author = "A. Fox"
 
 palette = 0=#151515
-palette = 1=#B05050
+palette = 1=#c95c5c
 palette = 2=#b39066
 palette = 3=#ccc5c4
 palette = 4=#7a8aa6
@@ -11,21 +11,21 @@ palette = 6=#556779
 palette = 7=#e8e8d3
 palette = 8=#888888
 palette = 9=#40000a
-palette = 10=#a08070
-palette = 11=#a0a8b0
+palette = 10=#afd787
+palette = 11=#888888
 palette = 12=#7a8aa6
 palette = 13=#606060
 palette = 14=#a0a8b0
 palette = 15=#f0f0f0
-palette = 16=#B05050
-palette = 17=#b39066
+palette = 16=#c95c5c
+palette = 17=#ffaf00
 palette = 18=#1c1c1c
 palette = 19=#333333
 palette = 20=#606060
 palette = 21=#c7c7c7
 
-background = 151515
-foreground = e8e8d3
-cursor-color = a0a8b0
-selection-background = 404040
-selection-foreground = e8e8d3
+background = #151515
+foreground = #e8e8d3
+cursor-color = #7a8aa6
+selection-background = #404040
+selection-foreground = #e8e8d3

@@ -1,0 +1,31 @@
+# name = "jellybeans-muted-light"
+# author = "A. Fox"
+
+palette = 0=#fdfdfa
+palette = 1=#b84949
+palette = 2=#6d7f59
+palette = 3=#987b40
+palette = 4=#445987
+palette = 5=#655683
+palette = 6=#3c5971
+palette = 7=#2d2c2a
+palette = 8=#787775
+palette = 9=#913a34
+palette = 10=#4d7134
+palette = 11=#a07542
+palette = 12=#334a84
+palette = 13=#542258
+palette = 14=#3a6f8c
+palette = 15=#0f0e0d
+palette = 16=#b84949
+palette = 17=#9a7345
+palette = 18=#ebe7df
+palette = 19=#dcd8d0
+palette = 20=#76766f
+palette = 21=#c0c0bd
+
+background = #f7f3eb
+foreground = #2d2c2a
+cursor-color = #334a84
+selection-background = #c9b99a
+selection-foreground = #2d2c2a
