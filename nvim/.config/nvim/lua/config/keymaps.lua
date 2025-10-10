@@ -39,7 +39,6 @@ map("n", "H", ":bprevious<CR>", desc_opts("Previous buffer", opts))
 map("n", "<leader>bd", "<cmd>bdelete<CR>", desc_opts("Delete buffer", opts))
 
 -- File Operations
-map("n", "<leader>w", "<cmd>w!<CR>", desc_opts("Force save", opts))
 map("n", "<leader>q", "<cmd>q<CR>", desc_opts("Quit", opts))
 map("n", "<leader>qq", "<cmd>qa!<CR>", desc_opts("Force Quit", opts))
 map("n", "Q", "<cmd>q<CR>", desc_opts("Force quit", opts))
@@ -211,17 +210,9 @@ map("n", "<leader>wm", function()
     if vim.fn.tabpagenr('$') > 1 and vim.fn.tabpagenr() > 1 then
         -- We're maximized, restore by closing the tab
         vim.cmd('tabclose')
-        -- Restore tabline setting
-        if vim.g.showtabline_backup ~= nil then
-            vim.o.showtabline = vim.g.showtabline_backup
-            vim.g.showtabline_backup = nil
-        end
         print("Window restored")
     else
         -- Not maximized, create a new tab with current buffer
-        -- Save current tabline setting and hide it
-        vim.g.showtabline_backup = vim.o.showtabline
-        vim.o.showtabline = 0
         vim.cmd('tab split')
         print("Window maximized")
     end

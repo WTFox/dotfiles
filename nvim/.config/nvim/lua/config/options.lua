@@ -50,6 +50,7 @@ opt.numberwidth = 2
 opt.cursorline = true
 opt.wrap = false
 opt.scrolloff = 8
+opt.showtabline = 0
 opt.list = true
 opt.listchars = {
     tab = "  ",
