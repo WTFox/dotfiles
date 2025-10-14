@@ -17,6 +17,9 @@ return {
             light = "jellybeans_light",
         },
         on_colors = function(c)
+            -- OLED mode
+            -- c.background = vim.o.background == "dark" and "#000000" or c.background
+
             -- Coffee
             -- c.accent_color_1 = "#a98467"
             -- c.accent_color_2 = "#b7a88d"
