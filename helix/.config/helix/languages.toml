@@ -2,8 +2,9 @@
 name = "java"
 language-servers = ["jdtls"]
 
-[language-server]
-jdtls = { command = "jdtls", args = [] }
+[language-server.jdtls]
+command = "jdtls"
+args = []
 
 [[language]]
 name = "rust"
@@ -12,5 +13,20 @@ formatter = { command = "rustfmt" }
 
 [[language]]
 name = "python"
+language-id = "python"
+roots = ["pyproject.toml", ".git", ".jj", ".venv/"]
+language-servers = ["ruff", "basedpyright"]
 auto-format = true
-formatter = { command = "black", args = ["--line-length", "88", "-"] }
+formatter = { command = "uvx", args = ["ruff","format", "-" ] }
+file-types = ["py", "ipynb"]
+comment-token = "#"
+shebangs = ["python"]
+
+[language-server.basedpyright]
+command = 'uvx'
+args = ['--from', 'basedpyright', 'basedpyright-langserver', "--stdio"]
+
+[language-server.ruff]
+command = "uvx"
+args = ["ruff","server"]
+environment = { "RUFF_TRACE" = "messages" }
