@@ -1,0 +1,16 @@
+[[language]]
+name = "java"
+language-servers = ["jdtls"]
+
+[language-server]
+jdtls = { command = "jdtls", args = [] }
+
+[[language]]
+name = "rust"
+auto-format = true
+formatter = { command = "rustfmt" }
+
+[[language]]
+name = "python"
+auto-format = true
+formatter = { command = "black", args = ["--line-length", "88", "-"] }

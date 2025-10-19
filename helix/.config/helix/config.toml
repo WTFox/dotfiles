@@ -1,0 +1,11 @@
+theme = "jellybeans"
+
+[editor]
+line-number = "relative"
+true-color = true
+bufferline = "always"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
