@@ -4,9 +4,10 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 ---@type StrictConfig
 return {
     font_size = 16,
+    -- line_height = 1.1,
     font = wezterm.font_with_fallback({
         -- fonts.mononoki,
-        fonts.monolisa,
+        -- fonts.monolisa,
         -- fonts.cascadia_code,
         fonts.jetbrains,
         fonts.jetbrains_styled,
