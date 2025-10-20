@@ -68,8 +68,34 @@ local function optimize_font_size(window, pane)
     return best_size
 end
 
+-- Check if presentation mode is active
+local function is_presentation_mode(window)
+    local overrides = window:get_config_overrides() or {}
+
+    -- Check if font size is outside our normal dynamic range
+    -- This indicates presentation mode (or manual override) is active
+    if overrides.font_size then
+        local font_size = overrides.font_size
+        if font_size < AUTO_RESIZE.min_font_size - 0.5 or font_size > AUTO_RESIZE.max_font_size + 0.5 then
+            return true
+        end
+    end
+
+    -- Also check for common presentation mode overrides
+    if overrides.enable_tab_bar == false or overrides.presentation_mode == true then
+        return true
+    end
+
+    return false
+end
+
 -- Main resize handler
 local function readjust_font_size(window, pane)
+    -- Skip if presentation mode is active
+    if is_presentation_mode(window) then
+        return
+    end
+
     local window_dims = window:get_dimensions()
 
     -- Skip if window size hasn't changed significantly
