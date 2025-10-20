@@ -21,8 +21,8 @@ return {
     initial_rows = 31,
     bold_brightens_ansi_colors = true,
     window_decorations = "RESIZE|INTEGRATED_BUTTONS",
-    window_background_opacity = 0.9,
-    macos_window_background_blur = 95,
+    -- window_background_opacity = 0.9,
+    -- macos_window_background_blur = 95,
 
     -- Remove window padding to eliminate empty space at bottom
     window_padding = {

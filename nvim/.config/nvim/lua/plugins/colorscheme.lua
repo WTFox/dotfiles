@@ -4,10 +4,10 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-        transparent = true,
+        transparent = false,
         italics = false,
         bold = true,
-        flat_ui = false,
+        flat_ui = true,
         plugins = {
             all = true,
             auto = true,
