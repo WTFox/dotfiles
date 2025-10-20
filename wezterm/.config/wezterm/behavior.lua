@@ -24,4 +24,5 @@ return {
     animation_fps = 1, -- Reduce animation overhead (default 10)
     max_fps = 120, -- Limit max frame rate
     scrollback_lines = 10000, -- Reasonable scrollback (default 3500)
+    ssh_domains = wezterm.default_ssh_domains(),
 }
