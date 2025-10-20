@@ -11,7 +11,7 @@ local function toggle_terminal_size()
         if current_width < total_columns - 2 then
             -- Maximize: remove border and go full size
             win_config.width = total_columns
-            win_config.height = vim.o.lines - 2
+            win_config.height = vim.o.lines - 1
             win_config.border = "none"
             vim.api.nvim_win_set_config(current_win, win_config)
         else
@@ -33,8 +33,12 @@ local terminal_cmd = function(cmd)
         close_on_exit = true,
         float_opts = {
             border = "curved",
-            width = math.floor(vim.o.columns * 0.8),
-            height = math.floor(vim.o.lines * 0.8),
+            width = function()
+                return math.floor(vim.o.columns * 0.9)
+            end,
+            height = function()
+                return math.floor(vim.o.lines * 0.9)
+            end,
             winblend = 3,
         },
     })
@@ -84,8 +88,12 @@ return {
         direction = "float",
         float_opts = {
             border = "curved",
-            width = math.floor(vim.o.columns * 0.8),
-            height = math.floor(vim.o.lines * 0.8),
+            width = function()
+                return math.floor(vim.o.columns * 0.8)
+            end,
+            height = function()
+                return math.floor(vim.o.lines * 0.8)
+            end,
         },
     },
 }
