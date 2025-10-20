@@ -63,7 +63,7 @@ opt.listchars = {
 -- Search
 opt.ignorecase = true
 opt.smartcase = true
-opt.hlsearch = false
+opt.hlsearch = true
 opt.inccommand = "nosplit"
 
 -- Editing
