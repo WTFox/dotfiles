@@ -20,9 +20,9 @@ return {
             -- OLED mode
             -- c.background = vim.o.background == "dark" and "#000000" or c.background
 
-            c.accent_color_1 = "#83adc3"
+            -- c.accent_color_1 = "#83adc3"
             -- c.accent_color_2 = "#c88a77"
-            c.accent_color_2 = "#a98467"
+            -- c.accent_color_2 = "#a98467"
             c.str = "#909c6e"
             c.background = vim.o.background == "dark" and "#101010" or c.background
 

@@ -62,6 +62,18 @@ return {
             desc = "Open Lazygit",
         },
         {
+            "<leader>gf",
+            function()
+                local file = vim.fn.expand("%")
+                if file == "" then
+                    print("No file open")
+                    return
+                end
+                terminal_cmd("lazygit -f " .. file)()
+            end,
+            desc = "File history (lazygit)",
+        },
+        {
             "<leader>td",
             function()
                 terminal_cmd("lazydocker")()
