@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-vim.cmd.colorscheme("jellybeans")
+vim.cmd.colorscheme("gruvbox-material")
 
 vim.filetype.add({
     filename = {
