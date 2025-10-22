@@ -1,12 +1,11 @@
 {
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
-  "claude-chat.nvim": { "branch": "main", "commit": "c83a1d1c32568ccc7d6342749699240b2af65adf" },
   "conform.nvim": { "branch": "master", "commit": "235dd79731c1dc51ec04abb4045cbc54727a172a" },
   "dial.nvim": { "branch": "master", "commit": "f0404ec1f83a03f2c3457e60087c6331d1cbb83f" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "fidget.nvim": { "branch": "main", "commit": "3f5475949679953af6d78654db29b944fa826e6a" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
-  "fzf-lua": { "branch": "main", "commit": "c102a4eeb10a04ed7e69ce80918923c4175c19d8" },
+  "fzf-lua": { "branch": "main", "commit": "f2968f3c3b96ad73365de90fad26756fc77bafd0" },
   "gh-permalink.nvim": { "branch": "main", "commit": "9e337278ab5218d17b86f611c77be5fb5e6a263d" },
   "gitsigns.nvim": { "branch": "main", "commit": "20ad4419564d6e22b189f6738116b38871082332" },
   "grapple.nvim": { "branch": "main", "commit": "b41ddfc1c39f87f3d1799b99c2f0f1daa524c5f7" },

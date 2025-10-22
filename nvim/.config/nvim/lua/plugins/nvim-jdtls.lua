@@ -1,9 +1,9 @@
 local Utils = require("utils")
 
--- local paths = {
---     mac = "/opt/homebrew/opt/openjdk@21/bin/java",
---     linux = "/usr/lib/jvm/java-25-openjdk-amd64/bin/java",
--- }
+local paths = {
+    mac = "/opt/homebrew/opt/openjdk@21/bin/java",
+    linux = "/usr/lib/jvm/java-25-openjdk-amd64/bin/java",
+}
 
 return {
     "mfussenegger/nvim-jdtls",
@@ -14,7 +14,7 @@ return {
             cmd = {
                 vim.fn.stdpath("data") .. "/mason/bin/jdtls",
                 "--java-executable",
-                "java",
+                Utils.is_wsl() and paths["linux"] or paths["mac"],
             },
 
             -- Root directory detection
