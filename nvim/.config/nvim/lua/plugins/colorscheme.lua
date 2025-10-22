@@ -5,7 +5,7 @@ return {
     priority = 1000,
     opts = {
         transparent = false,
-        italics = false,
+        italics = true,
         bold = true,
         flat_ui = true,
         plugins = {
@@ -13,12 +13,18 @@ return {
             auto = true,
         },
         background = {
-            dark = "jellybeans_muted",
+            dark = "jellybeans_mono",
             light = "jellybeans_light",
         },
         on_colors = function(c)
             -- OLED mode
             -- c.background = vim.o.background == "dark" and "#000000" or c.background
+
+            c.accent_color_1 = "#83adc3"
+            -- c.accent_color_2 = "#c88a77"
+            c.accent_color_2 = "#a98467"
+            c.str = "#909c6e"
+            c.background = vim.o.background == "dark" and "#101010" or c.background
 
             -- Coffee
             -- c.accent_color_1 = "#a98467"
