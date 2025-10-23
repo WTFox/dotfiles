@@ -55,7 +55,7 @@ return {
                 zindex = 100,
             },
         },
-        notifier = { enabled = false },
+        notifier = { enabled = true, timeout = 3000 },
         picker = {
             enabled = true,
             layout = {
@@ -287,13 +287,6 @@ return {
             desc = "Git Log File",
         },
         -- Grep
-        {
-            "<leader>sb",
-            function()
-                Snacks.picker.lines()
-            end,
-            desc = "Buffer Lines",
-        },
         {
             "<leader>sB",
             function()
@@ -566,6 +559,13 @@ return {
             desc = "Delete Buffer",
         },
         {
+            "<leader>ca",
+            function()
+                vim.lsp.buf.code_action()
+            end,
+            desc = "Code Actions",
+        },
+        {
             "<leader>cR",
             function()
                 Snacks.rename.rename_file()
@@ -723,6 +723,12 @@ return {
                 Snacks.toggle.inlay_hints():map("<leader>uh")
                 Snacks.toggle.indent():map("<leader>ug")
                 Snacks.toggle.dim():map("<leader>uD")
+                Snacks.toggle.profiler():map("<leader>pp")
+                Snacks.toggle.profiler_highlights():map("<leader>ph")
+                -- Dismiss notifications
+                vim.keymap.set("n", "<leader>un", function()
+                    Snacks.notifier.hide()
+                end, { desc = "Dismiss Notifications" })
             end,
         })
     end,

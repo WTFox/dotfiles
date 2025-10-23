@@ -70,12 +70,10 @@ map(
 -- gd, gD, gr, gI, gy, gai, gao - See snacks.lua for full list
 map("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc_opts("Rename symbol", ns_opts))
 
--- Diagnostics
+-- Diagnostics (picker versions are in snacks.lua as <leader>sd and <leader>sD)
 map("n", "<leader>dn", "<cmd>lua vim.diagnostic.jump({count = 1})<CR>", desc_opts("Next diagnostic", ns_opts))
 map("n", "<leader>dp", "<cmd>lua vim.diagnostic.jump({count = -1})<CR>", desc_opts("Previous diagnostic", ns_opts))
 map("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", desc_opts("Open diagnostic float", ns_opts))
-map("n", "<leader>dl", function() Snacks.picker.diagnostics_buffer() end, desc_opts("List diagnostics (document)", ns_opts))
-map("n", "<leader>dw", function() Snacks.picker.diagnostics() end, desc_opts("List diagnostics (workspace)", ns_opts))
 
 -- Jump to diagnostics with auto-popup
 map("n", "]d", function()
@@ -92,7 +90,6 @@ map("n", "[d", function()
     end, 50)
 end, desc_opts("Previous diagnostic + show popup", ns_opts))
 
-map("n", "<leader>ps", "<cmd>lua vim.pack.update()<CR>", desc_opts("Update packages"))
 
 -- Lazy.nvim
 map("n", "<leader>l", "<cmd>Lazy<CR>", desc_opts("Open Lazy"))
