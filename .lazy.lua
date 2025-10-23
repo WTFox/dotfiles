@@ -19,10 +19,11 @@ return {
     },
     {
         "folke/lazydev.nvim",
+        lazy = true,
+        ft = "lua", -- only load on lua files
         dependencies = {
             { "DrKJeff16/wezterm-types", lazy = true },
         },
-        ft = "lua", -- only load on lua files
         opts = {
             library = {
                 -- Library paths can be absolute
@@ -52,10 +53,18 @@ return {
             -- end,
         },
     },
-    { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
-    { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
+    {
+        "Bilal2453/luvit-meta",
+        lazy = true,
+    }, -- optional `vim.uv` typings
+    {
+        "folke/neodev.nvim",
+        enabled = false,
+    }, -- make sure to uninstall or disable neodev.nvim
     { -- optional blink completion source for require statements and module annotations
         "saghen/blink.cmp",
+        optional = true,
+        lazy = true,
         opts = {
             sources = {
                 -- add lazydev to your completion providers

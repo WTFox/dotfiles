@@ -8,6 +8,7 @@ return {
         bufdelete = { enabled = true },
         dashboard = {
             enabled = true,
+            project = true,
             formats = {
                 key = function(item)
                     return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } }
@@ -71,9 +72,23 @@ return {
                     },
                 },
             },
+            -- Git configuration with performance optimizations
+            git = {
+                extra_args = { "--no-optional-locks" },
+            },
+            -- Live search optimization
+            live = {
+                limit = 5000,
+            },
             sources = {
                 explorer = {
-                    layout = { layout = { position = "right" } },
+                    layout = {
+                        layout = { position = "right" },
+                        -- Dynamic width based on column count
+                        width = function()
+                            return math.floor(vim.o.columns * 0.25)
+                        end,
+                    },
                     formatters = {
                         file = {
                             filename_first = true,
@@ -299,11 +314,18 @@ return {
             desc = "Git Stash",
         },
         {
-            "<leader>gd",
+            "<leader>gdd",
             function()
                 Snacks.picker.git_diff()
             end,
             desc = "Git Diff (Hunks)",
+        },
+        {
+            "<leader>gdm",
+            function()
+                Snacks.picker.git_diff({ merge_base = true })
+            end,
+            desc = "Git Diff (vs Main Branch)",
         },
         {
             "<leader>gf",

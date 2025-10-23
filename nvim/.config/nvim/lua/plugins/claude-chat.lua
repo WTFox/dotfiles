@@ -1,5 +1,10 @@
 return {
     "wtfox/claude-chat.nvim",
+    lazy = true,
+    keys = {
+        { "<C-.>", desc = "Claude Chat" },
+    },
+    cmd = { "ClaudeChat", "ClaudeChatOpen", "ClaudeChatToggle", "ClaudeChatReset" },
     config = true,
     dev = true,
     ---@type claude-chat.Config

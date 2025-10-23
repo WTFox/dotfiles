@@ -96,3 +96,6 @@ opt.foldlevelstart = 99
 opt.timeoutlen = 300
 opt.updatetime = 250
 opt.lazyredraw = false
+
+-- UI - Window borders
+opt.winborder = "rounded"
