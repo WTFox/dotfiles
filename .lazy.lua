@@ -1,5 +1,23 @@
 return {
     {
+        "folke/snacks.nvim",
+        opts = {
+            picker = {
+                sources = {
+                    grep = {
+                        hidden = true,
+                    },
+                    files = {
+                        hidden = true,
+                    },
+                    explorer = {
+                        hidden = true,
+                    },
+                },
+            },
+        },
+    },
+    {
         "folke/lazydev.nvim",
         dependencies = {
             { "DrKJeff16/wezterm-types", lazy = true },

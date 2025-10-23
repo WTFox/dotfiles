@@ -14,11 +14,10 @@ return {
                 end,
             },
             sections = {
-                -- { section = "terminal", cmd = "fortune -s | cowsay", hl = "header", padding = 1, indent = 8 },
-                { title = "MRU ", file = vim.fn.fnamemodify(".", ":~"), padding = 1 },
+                { section = "keys", padding = 1 },
+                -- { title = "Recent ", file = vim.fn.fnamemodify(".", ":~"), padding = 1 },
                 { section = "recent_files", cwd = true, limit = 4, padding = 1 },
-                { title = "Bookmarks", padding = 1 },
-                { section = "keys" },
+                { section = "startup" },
             },
         },
         explorer = {
@@ -108,6 +107,33 @@ return {
             },
             opts = {
                 interactive = true, -- start_insert + auto_close + auto_insert
+            },
+        },
+        zen = {
+            -- show = {
+            --     statusline = false,
+            --     tabline = false,
+            --     signcolumn = false,
+            --     number = false,
+            --     relativenumber = false,
+            -- },
+            -- toggles = {},
+            win = {
+                style = "zen",
+                -- enter = true,
+                -- fixbuf = false,
+                -- minimal = true,
+                -- width = 0,
+                -- height = 0,
+                -- backdrop = { transparent = false, blend = 40 },
+                -- keys = { q = false },
+                -- zindex = 40,
+                -- wo = {
+                --     winhighlight = "NormalFloat:Normal",
+                -- },
+                -- w = {
+                --     snacks_main = true,
+                -- },
             },
         },
     },
@@ -524,14 +550,14 @@ return {
         },
         -- Other
         {
-            "<leader>z",
+            "<leader>uz",
             function()
                 Snacks.zen()
             end,
             desc = "Toggle Zen Mode",
         },
         {
-            "<leader>Z",
+            "<leader>uZ",
             function()
                 Snacks.zen.zoom()
             end,
@@ -684,6 +710,13 @@ return {
                     },
                 })
             end,
+        },
+        {
+            "<leader>n",
+            function()
+                Snacks.notifier.show_history()
+            end,
+            desc = "Notification History",
         },
     },
     init = function()
