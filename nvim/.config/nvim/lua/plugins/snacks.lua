@@ -77,9 +77,9 @@ return {
                 extra_args = { "--no-optional-locks" },
             },
             -- Live search optimization
-            live = {
-                limit = 5000,
-            },
+            -- live = {
+            --     limit = 5000,
+            -- },
             sources = {
                 explorer = {
                     layout = {
@@ -521,7 +521,7 @@ return {
             desc = "Goto Declaration",
         },
         {
-            "gr",
+            "grr",
             function()
                 Snacks.picker.lsp_references()
             end,
@@ -529,14 +529,14 @@ return {
             desc = "References",
         },
         {
-            "gI",
+            "gri",
             function()
                 Snacks.picker.lsp_implementations()
             end,
             desc = "Goto Implementation",
         },
         {
-            "gy",
+            "grt",
             function()
                 Snacks.picker.lsp_type_definitions()
             end,

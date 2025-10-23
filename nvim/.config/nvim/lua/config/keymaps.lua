@@ -67,7 +67,6 @@ map(
 )
 
 -- LSP keybinds for navigation are provided by Snacks.nvim
--- gd, gD, gr, gI, gy, gai, gao - See snacks.lua for full list
 map("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc_opts("Rename symbol", ns_opts))
 
 -- Diagnostics (picker versions are in snacks.lua as <leader>sd and <leader>sD)
@@ -89,7 +88,6 @@ map("n", "[d", function()
         vim.diagnostic.open_float({ scope = "line" })
     end, 50)
 end, desc_opts("Previous diagnostic + show popup", ns_opts))
-
 
 -- Lazy.nvim
 map("n", "<leader>l", "<cmd>Lazy<CR>", desc_opts("Open Lazy"))
@@ -134,19 +132,6 @@ map("n", "<leader>up", function()
 
     vim.api.nvim_echo({ { table.concat(lines, "\n"), "Normal" } }, true, {})
 end, desc_opts("Show loaded plugins"))
-
--- UI toggles are provided by Snacks.nvim
--- <leader>us  - Spelling
--- <leader>uw  - Wrap
--- <leader>uL  - Relative Number
--- <leader>ud  - Diagnostics
--- <leader>ul  - Line Numbers
--- <leader>uc  - Conceal Level
--- <leader>uT  - Treesitter
--- <leader>ub  - Dark Background
--- <leader>uh  - Inlay Hints
--- <leader>ug  - Indent Guides
--- <leader>uD  - Dim
 
 -- redraw / clear highlights
 map("n", "<leader>ur", "<cmd>nohls<CR>", desc_opts("Clear search highlights", ns_opts))
