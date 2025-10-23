@@ -32,10 +32,13 @@ local ignored_filetypes = {
     "snacks_dashboard",
     "snacks_picker_list",
 }
+
+local relative_number_group = augroup("RelativeNumberToggle", { clear = true })
 autocmd({ "InsertEnter" }, {
     pattern = "*",
+    group = relative_number_group,
     callback = function()
-        if not Utils.contains(ignored_filetypes, vim.bo.filetype) then
+        if vim.g.relnum_enabled ~= false and not Utils.contains(ignored_filetypes, vim.bo.filetype) then
             vim.opt.relativenumber = false
         end
     end,
@@ -44,8 +47,9 @@ autocmd({ "InsertEnter" }, {
 -- and absolute line numbers in insert mode
 autocmd({ "InsertLeave" }, {
     pattern = "*",
+    group = relative_number_group,
     callback = function()
-        if not Utils.contains(ignored_filetypes, vim.bo.filetype) then
+        if vim.g.relnum_enabled ~= false and not Utils.contains(ignored_filetypes, vim.bo.filetype) then
             vim.opt.relativenumber = true
         end
     end,
@@ -75,4 +79,3 @@ autocmd("VimResized", {
         vim.cmd("wincmd =")
     end,
 })
-

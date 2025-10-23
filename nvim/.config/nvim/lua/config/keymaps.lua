@@ -204,6 +204,23 @@ map("n", "<leader>uw", function()
     end
 end, desc_opts("Toggle line wrapping", ns_opts))
 
+-- toggle line numbers (zen mode)
+map("n", "<leader>ul", function()
+    if vim.o.number or vim.o.relativenumber then
+        -- Disable line numbers completely
+        vim.o.number = false
+        vim.o.relativenumber = false
+        vim.g.relnum_enabled = false
+        print("Zen mode: line numbers hidden")
+    else
+        -- Re-enable line numbers with normal autocmd behavior
+        vim.o.number = true
+        vim.g.relnum_enabled = true
+        vim.cmd("doautocmd InsertLeave")
+        print("Line numbers enabled")
+    end
+end, desc_opts("Toggle line numbers (zen mode)", ns_opts))
+
 -- toggle window maximize
 map("n", "<leader>wm", function()
     -- Check if we're in a maximized state (in a non-first tab)
@@ -256,3 +273,9 @@ map("n", "<leader>uF", function()
         print("Global auto-formatting on save disabled")
     end
 end, desc_opts("Toggle global auto-format on save", ns_opts))
+
+-- Undo tree
+map("n", "<leader>fu", function()
+    vim.cmd("packadd nvim.undotree")
+    vim.cmd("Undotree")
+end, desc_opts("Undo tree"))
