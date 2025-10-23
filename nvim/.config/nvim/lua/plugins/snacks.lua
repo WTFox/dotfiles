@@ -231,6 +231,13 @@ return {
         {
             "<leader>gb",
             function()
+                Snacks.git.blame_line()
+            end,
+            desc = "Git Blame",
+        },
+        {
+            "<leader>ga",
+            function()
                 Snacks.picker.git_branches()
             end,
             desc = "Git Branches",

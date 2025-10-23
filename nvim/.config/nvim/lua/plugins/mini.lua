@@ -109,6 +109,7 @@ end
 
 return {
     "nvim-mini/mini.nvim",
+    event = "VeryLazy",
     config = function()
         require("mini.icons").setup()
         require("mini.ai").setup()
