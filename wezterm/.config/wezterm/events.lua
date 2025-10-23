@@ -3,6 +3,21 @@
 
 local wezterm = require("wezterm")
 
+-- wezterm.on("update-right-status", function(window, pane)
+--     local dimensions = pane:get_dimensions()
+--
+--     local cols = dimensions and dimensions.cols or "N/A"
+--     local rows = dimensions and dimensions.viewport_rows or "N/A"
+--
+--     -- Create a status text with window size
+--     local status_text = string.format("  %sx%s", cols, rows)
+--
+--     -- Set the status text to display in the right status area
+--     window:set_right_status(wezterm.format({
+--         { Text = status_text },
+--     }))
+-- end)
+--
 -- Configuration for auto-resize
 local AUTO_RESIZE = {
     target_size = 16.0, -- Target font size
@@ -10,7 +25,7 @@ local AUTO_RESIZE = {
     max_font_size = 17.0, -- Maximum allowed (tight range)
     step_size = 0.1, -- Fine adjustments
     pixel_tolerance = 0, -- Zero wasted pixels
-    debounce_ms = 50, -- Prevent flicker
+    debounce_ms = 500, -- Prevent flicker
 }
 
 -- State tracking

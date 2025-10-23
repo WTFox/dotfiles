@@ -3,7 +3,7 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 
 ---@type StrictConfig
 return {
-    -- font_size = 16,
+    font_size = 15.1,
     -- line_height = 1.1,
     font = wezterm.font_with_fallback({
         -- fonts.mononoki,
@@ -17,8 +17,8 @@ return {
     hide_tab_bar_if_only_one_tab = false,
     default_cursor_style = "BlinkingBlock",
     cursor_blink_rate = 500, -- Optimize blink rate (ms)
-    initial_cols = 114,
-    initial_rows = 31,
+    initial_cols = 136,
+    initial_rows = 35,
     bold_brightens_ansi_colors = true,
     window_decorations = "RESIZE|INTEGRATED_BUTTONS",
     -- window_background_opacity = 0.9,
