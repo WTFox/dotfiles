@@ -5,7 +5,7 @@ return {
     priority = 1000,
     opts = {
         transparent = false,
-        italics = false,
+        italics = true,
         bold = true,
         flat_ui = true,
         plugins = {
@@ -37,8 +37,12 @@ return {
         on_highlights = function(hl, c)
             -- FzfLua
             hl.FzfLuaBorder = { fg = c.background, bg = c.background }
+
             -- MiniStarter
             hl.MiniStarterHeader = { fg = c.error, bold = true }
+
+            hl.RenderMarkdownH1Bg = { fg = c.perano }
+
             -- Unused variables
             hl.DiagnosticUnnecessary = {
                 fg = hl.Comment.fg,
