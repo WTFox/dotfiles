@@ -5,6 +5,7 @@ return {
     ---@type snacks.Config
     opts = {
         bigfile = { enabled = true },
+        bufdelete = { enabled = true },
         dashboard = {
             enabled = true,
             formats = {
@@ -202,7 +203,8 @@ return {
                             break
                         end
                         if type == "file" and name:match("%.vim$") then
-                            table.insert(sessions, name:gsub("%.vim$", ""))
+                            local session_name = name:gsub("%.vim$", "")
+                            table.insert(sessions, session_name)
                         end
                     end
                 end

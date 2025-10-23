@@ -1,6 +1,6 @@
 return {
     "vieitesss/gh-permalink.nvim",
-    enabled = false,
+    enabled = true,
     keys = {
         {
             "<leader>gy",
