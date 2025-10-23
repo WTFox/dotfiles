@@ -70,49 +70,6 @@ local function get_session_name()
     return project_name .. ".vim"
 end
 
-local setup_starter = function()
-    local starter = require("mini.starter")
-    starter.setup({
-        evaluate_single = false,
-        header = [[ i'm sorry, dave. i'm afraid i can't do that.  ]],
-        footer = "",
-        items = {
-            {
-                name = "Files",
-                action = "FzfLua git_files",
-                section = "Builtin actions",
-            },
-            -- Conditional session action for current directory
-            function()
-                local session_file = get_session_name()
-                local session_path = require("mini.sessions").config.directory .. "/" .. session_file
-                if vim.fn.filereadable(session_path) == 1 then
-                    return {
-                        name = "Session",
-                        action = function()
-                            require("mini.sessions").read(session_file)
-                        end,
-                        section = "Session",
-                    }
-                end
-                return nil
-            end,
-            {
-                name = "Lazy",
-                action = "Lazy",
-                section = "Builtin actions",
-            },
-            starter.sections.builtin_actions(),
-            starter.sections.recent_files(5, true),
-        },
-        content_hooks = {
-            starter.gen_hook.adding_bullet(),
-            starter.gen_hook.indexing("all", { "Builtin actions", "Session" }),
-            starter.gen_hook.aligning("center", "center"),
-        },
-    })
-end
-
 local setup_sessions = function()
     require("mini.sessions").setup({
         directory = vim.fn.stdpath("data") .. "/sessions",
@@ -120,23 +77,7 @@ local setup_sessions = function()
 
     local sessions_group = vim.api.nvim_create_augroup("MiniSessionsAuto", { clear = true })
 
-    -- Auto-read session when vim starts
-    vim.api.nvim_create_autocmd("VimEnter", {
-        group = sessions_group,
-        nested = true,
-        callback = function()
-            -- Only auto-read if no files were opened and we're not in the home directory
-            if vim.fn.argc() == 0 and vim.fn.line2byte("$") == -1 and vim.fn.getcwd() ~= vim.env.HOME then
-                local session_file = get_session_name()
-                local session_path = require("mini.sessions").config.directory .. "/" .. session_file
-                if vim.fn.filereadable(session_path) == 1 then
-                    require("mini.sessions").read(session_file)
-                end
-            end
-        end,
-    })
-
-    -- Auto-write session when vim exits
+    -- Auto-write session when vim exits (but don't auto-read on startup - let dashboard show instead)
     vim.api.nvim_create_autocmd("VimLeavePre", {
         group = sessions_group,
         callback = function()
@@ -169,6 +110,7 @@ end
 return {
     "nvim-mini/mini.nvim",
     config = function()
+        require("mini.icons").setup()
         require("mini.ai").setup()
         require("mini.basics").setup()
         require("mini.bufremove").setup()
@@ -176,13 +118,11 @@ return {
         require("mini.hipatterns").setup()
         require("mini.move").setup()
         require("mini.splitjoin").setup()
-        -- Setup mini.trailspace without autocommands (handled manually in autocmds.lua)
         require("mini.trailspace").setup()
 
         setup_hipatterns()
         setup_surround()
         setup_clue()
-        setup_starter()
         setup_sessions()
     end,
 }

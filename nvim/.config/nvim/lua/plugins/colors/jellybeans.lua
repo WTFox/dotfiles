@@ -7,7 +7,7 @@ return {
         transparent = false,
         italics = true,
         bold = true,
-        flat_ui = true,
+        flat_ui = false,
         plugins = {
             all = true,
             auto = true,

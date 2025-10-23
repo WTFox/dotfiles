@@ -36,7 +36,7 @@ map("n", "<leader>ds", "<cmd>windo diffthis<cr>", { desc = "Diff Split" })
 -- Buffer Navigation
 map("n", "L", ":bnext<CR>", desc_opts("Next buffer", opts))
 map("n", "H", ":bprevious<CR>", desc_opts("Previous buffer", opts))
-map("n", "<leader>bd", "<cmd>bdelete<CR>", desc_opts("Delete buffer", opts))
+-- <leader>bd is provided by Snacks.nvim (Snacks.bufdelete())
 
 -- File Operations
 map("n", "<leader>q", "<cmd>q<CR>", desc_opts("Quit", opts))
@@ -66,14 +66,16 @@ map(
     desc_opts("Change to current file's directory")
 )
 
--- LSP
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc_opts("Go to definition", ns_opts))
+-- LSP keybinds for navigation are provided by Snacks.nvim
+-- gd, gD, gr, gI, gy, gai, gao - See snacks.lua for full list
 map("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc_opts("Rename symbol", ns_opts))
 
 -- Diagnostics
 map("n", "<leader>dn", "<cmd>lua vim.diagnostic.jump({count = 1})<CR>", desc_opts("Next diagnostic", ns_opts))
 map("n", "<leader>dp", "<cmd>lua vim.diagnostic.jump({count = -1})<CR>", desc_opts("Previous diagnostic", ns_opts))
 map("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", desc_opts("Open diagnostic float", ns_opts))
+map("n", "<leader>dl", function() Snacks.picker.diagnostics_buffer() end, desc_opts("List diagnostics (document)", ns_opts))
+map("n", "<leader>dw", function() Snacks.picker.diagnostics() end, desc_opts("List diagnostics (workspace)", ns_opts))
 
 -- Jump to diagnostics with auto-popup
 map("n", "]d", function()
@@ -89,41 +91,6 @@ map("n", "[d", function()
         vim.diagnostic.open_float({ scope = "line" })
     end, 50)
 end, desc_opts("Previous diagnostic + show popup", ns_opts))
-map("n", "<leader>ud", function()
-    local config = vim.diagnostic.config() or {}
-    local enabled = config.signs ~= false or config.virtual_text ~= false or config.underline ~= false
-
-    if enabled then
-        vim.diagnostic.config({
-            signs = false,
-            virtual_text = false,
-            underline = false,
-        })
-        print("Diagnostics disabled")
-    else
-        vim.diagnostic.config({
-            signs = {
-                linehl = {},
-                numhl = {
-                    [vim.diagnostic.severity.ERROR] = "DiagnosticLineNrError",
-                    [vim.diagnostic.severity.WARN] = "DiagnosticLineNrWarn",
-                    [vim.diagnostic.severity.INFO] = "DiagnosticLineNrInfo",
-                    [vim.diagnostic.severity.HINT] = "DiagnosticLineNrHint",
-                },
-            },
-            virtual_text = {
-                spacing = 4,
-                prefix = "●",
-                suffix = "",
-                format = function(diagnostic)
-                    return string.format("%s", diagnostic.message)
-                end,
-            },
-            underline = false,
-        })
-        print("Diagnostics enabled")
-    end
-end, desc_opts("Toggle diagnostics", ns_opts))
 
 map("n", "<leader>ps", "<cmd>lua vim.pack.update()<CR>", desc_opts("Update packages"))
 
@@ -171,69 +138,18 @@ map("n", "<leader>up", function()
     vim.api.nvim_echo({ { table.concat(lines, "\n"), "Normal" } }, true, {})
 end, desc_opts("Show loaded plugins"))
 
--- UI
--- toggle background
-map("n", "<leader>ub", function()
-    if vim.o.background == "dark" then
-        vim.o.background = "light"
-        print("Switched to light mode")
-    else
-        vim.o.background = "dark"
-        print("Switched to dark mode")
-    end
-end, desc_opts("Toggle background", ns_opts))
-
--- inlay hints
-map("n", "<leader>uh", function()
-    if vim.lsp.inlay_hint.is_enabled() then
-        vim.lsp.inlay_hint.enable(false)
-        print("Inlay hints disabled")
-    else
-        vim.lsp.inlay_hint.enable(true)
-        print("Inlay hints enabled")
-    end
-end, desc_opts("Toggle inlay hints", ns_opts))
-
--- toggle line wrapping
-map("n", "<leader>uw", function()
-    vim.o.wrap = not vim.o.wrap
-    if vim.o.wrap then
-        print("Line wrapping enabled")
-    else
-        print("Line wrapping disabled")
-    end
-end, desc_opts("Toggle line wrapping", ns_opts))
-
--- toggle line numbers (zen mode)
-map("n", "<leader>ul", function()
-    if vim.o.number or vim.o.relativenumber then
-        -- Disable line numbers completely
-        vim.o.number = false
-        vim.o.relativenumber = false
-        vim.g.relnum_enabled = false
-        print("Zen mode: line numbers hidden")
-    else
-        -- Re-enable line numbers with normal autocmd behavior
-        vim.o.number = true
-        vim.g.relnum_enabled = true
-        vim.cmd("doautocmd InsertLeave")
-        print("Line numbers enabled")
-    end
-end, desc_opts("Toggle line numbers (zen mode)", ns_opts))
-
--- toggle window maximize
-map("n", "<leader>wm", function()
-    -- Check if we're in a maximized state (in a non-first tab)
-    if vim.fn.tabpagenr('$') > 1 and vim.fn.tabpagenr() > 1 then
-        -- We're maximized, restore by closing the tab
-        vim.cmd('tabclose')
-        print("Window restored")
-    else
-        -- Not maximized, create a new tab with current buffer
-        vim.cmd('tab split')
-        print("Window maximized")
-    end
-end, desc_opts("Toggle window maximize", ns_opts))
+-- UI toggles are provided by Snacks.nvim
+-- <leader>us  - Spelling
+-- <leader>uw  - Wrap
+-- <leader>uL  - Relative Number
+-- <leader>ud  - Diagnostics
+-- <leader>ul  - Line Numbers
+-- <leader>uc  - Conceal Level
+-- <leader>uT  - Treesitter
+-- <leader>ub  - Dark Background
+-- <leader>uh  - Inlay Hints
+-- <leader>ug  - Indent Guides
+-- <leader>uD  - Dim
 
 -- redraw / clear highlights
 map("n", "<leader>ur", "<cmd>nohls<CR>", desc_opts("Clear search highlights", ns_opts))
