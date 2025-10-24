@@ -232,9 +232,9 @@ end
 vim.keymap.set("n", "<leader>sp", function()
     Statusline.toggle_path()
 end, { desc = "Toggle statusline path" })
-vim.keymap.set("n", "<leader>sb", function()
-    Statusline.toggle_branch()
-end, { desc = "Toggle statusline git branch" })
+-- vim.keymap.set("n", "<leader>sb", function()
+--     Statusline.toggle_branch()
+-- end, { desc = "Toggle statusline git branch" })
 
 local group = vim.api.nvim_create_augroup("Statusline", { clear = true })
 
