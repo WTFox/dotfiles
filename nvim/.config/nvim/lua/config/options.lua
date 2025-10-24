@@ -84,13 +84,13 @@ opt.autoread = true
 opt.clipboard = "unnamedplus"
 
 -- Folding
+opt.foldcolumn = "0"
 opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-opt.foldenable = false
 opt.foldlevel = 99
 opt.foldlevelstart = 99
--- opt.foldcolumn = "1"
--- opt.foldtext = "v:lua.require('config.folds').foldtext()"
+opt.foldenable = true
+opt.foldtext = "" -- Use Treesitter for syntax-highlighted folds (Neovim 0.10+)
 
 -- Performance
 opt.timeoutlen = 300
