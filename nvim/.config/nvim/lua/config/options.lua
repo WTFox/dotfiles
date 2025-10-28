@@ -13,24 +13,32 @@ vim.filetype.add({
         ["requirements-test.txt"] = "config",
     },
 })
-
 vim.diagnostic.config({
+    severity_sort = true,
+    underline = true,
+    virtual_text = false, -- needed for tiny-inline-diagnostics
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = "",
-            [vim.diagnostic.severity.WARN] = "",
-            [vim.diagnostic.severity.INFO] = "",
-            [vim.diagnostic.severity.HINT] = "",
+            -- [vim.diagnostic.severity.ERROR] = "",
+            -- [vim.diagnostic.severity.WARN] = "",
+            -- [vim.diagnostic.severity.INFO] = "",
+            -- [vim.diagnostic.severity.HINT] = "",
+            -- [vim.diagnostic.severity.ERROR] = "󰅚 ",
+            -- [vim.diagnostic.severity.WARN] = "󰀪 ",
+            -- [vim.diagnostic.severity.INFO] = "󰋽 ",
+            -- [vim.diagnostic.severity.HINT] = "󰌶 ",
+            [vim.diagnostic.severity.ERROR] = " ●",
+            [vim.diagnostic.severity.WARN] = " ●",
+            [vim.diagnostic.severity.INFO] = " ●",
+            [vim.diagnostic.severity.HINT] = " ●",
         },
-        numhl = {
-            [vim.diagnostic.severity.ERROR] = "DiagnosticLIneNumError",
-            [vim.diagnostic.severity.WARN] = "DiagnosticLineNumWarn",
-            [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
-            [vim.diagnostic.severity.HINT] = "DiagnosticHint",
-        },
+        -- numhl = {
+        --     [vim.diagnostic.severity.ERROR] = "DiagnosticLIneNumError",
+        --     [vim.diagnostic.severity.WARN] = "DiagnosticLineNumWarn",
+        --     [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+        --     [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+        -- },
     },
-    underline = true,
-    virtual_text = false,
     -- virtual_text = {
     --     spacing = 4,
     --     prefix = "●",
@@ -43,7 +51,7 @@ vim.diagnostic.config({
 
 -- UI
 opt.guicursor = "i:block-blinkwait700-blinkoff400-blinkon250"
-opt.signcolumn = "yes:1"
+opt.signcolumn = "yes"
 opt.termguicolors = true
 opt.number = true
 opt.relativenumber = true

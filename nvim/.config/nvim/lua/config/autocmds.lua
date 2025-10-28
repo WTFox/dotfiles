@@ -78,12 +78,12 @@ autocmd("VimResized", {
     end,
 })
 
--- Disable diagnostics on Snacks UI windows to prevent red lines
-local diagnostic_ui_group = augroup("DiagnosticUI", { clear = true })
-autocmd("FileType", {
-    group = diagnostic_ui_group,
-    pattern = { "snacks_dashboard", "snacks_picker_list", "snacks_explorer" },
-    callback = function(args)
-        vim.diagnostic.enable(false, { bufnr = args.buf })
-    end,
-})
+-- -- Disable diagnostics on Snacks UI windows to prevent red lines
+-- local diagnostic_ui_group = augroup("DiagnosticUI", { clear = true })
+-- autocmd("FileType", {
+--     group = diagnostic_ui_group,
+--     pattern = { "snacks_dashboard", "snacks_picker_list", "snacks_explorer" },
+--     callback = function(args)
+--         vim.diagnostic.enable(false, { bufnr = args.buf })
+--     end,
+-- })

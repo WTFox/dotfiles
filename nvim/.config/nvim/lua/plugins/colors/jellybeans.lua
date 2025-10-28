@@ -44,12 +44,12 @@ return {
             hl.RenderMarkdownH1Bg = { fg = c.perano }
 
             -- Unused variables
-            hl.DiagnosticUnnecessary = {
-                fg = hl.Comment.fg,
-                italic = false,
-                underline = false,
-                undercurl = false,
-            }
+            -- hl.DiagnosticUnnecessary = {
+            --     fg = hl.Comment.fg,
+            --     italic = false,
+            --     underline = false,
+            --     undercurl = false,
+            -- }
 
             hl.DiffViewDiffAdd = {
                 fg = c.git.add.fg,
@@ -68,15 +68,15 @@ return {
                 bg = c.shuttle_grey,
             }
 
-            hl.DiagnosticLineNumError = {
-                fg = c.background,
-                bg = c.diag.error,
-            }
-
-            hl.DiagnosticLineNumWarn = {
-                fg = c.background,
-                bg = c.diag.warning,
-            }
+            -- hl.DiagnosticLineNumError = {
+            --     fg = c.background,
+            --     bg = c.diag.error,
+            -- }
+            --
+            -- hl.DiagnosticLineNumWarn = {
+            --     fg = c.background,
+            --     bg = c.diag.warning,
+            -- }
 
             hl.Folded = {
                 fg = c.ship_cove,

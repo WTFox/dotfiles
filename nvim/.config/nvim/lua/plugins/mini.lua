@@ -113,7 +113,6 @@ return {
     config = function()
         require("mini.ai").setup()
         require("mini.basics").setup()
-        -- require("mini.bufremove").setup()
         require("mini.comment").setup()
         require("mini.hipatterns").setup()
         require("mini.icons").setup()

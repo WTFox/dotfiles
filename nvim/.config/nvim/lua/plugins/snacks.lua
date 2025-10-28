@@ -37,7 +37,7 @@ return {
                 {
                     win = "input",
                     height = 1,
-                    border = "rounded",
+                    border = "none",
                     title = "{title} {live} {flags}",
                     title_pos = "center",
                 },
