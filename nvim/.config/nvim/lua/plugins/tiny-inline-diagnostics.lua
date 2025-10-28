@@ -7,8 +7,8 @@ return {
             options = {
                 show_source = { enabled = true },
                 multilines = { enabled = true },
+                add_messages = { display_count = true },
             },
         })
-        vim.diagnostic.config({ virtual_text = false }) -- Disable Neovim's default virtual text diagnostics
     end,
 }
