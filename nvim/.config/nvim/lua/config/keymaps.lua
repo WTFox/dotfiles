@@ -77,16 +77,16 @@ map("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", desc_opts("Op
 -- Jump to diagnostics with auto-popup
 map("n", "]d", function()
     vim.diagnostic.jump({ count = 1 })
-    vim.defer_fn(function()
-        vim.diagnostic.open_float({ scope = "line" })
-    end, 50)
+    -- vim.defer_fn(function()
+    --     vim.diagnostic.open_float({ scope = "line" })
+    -- end, 50)
 end, desc_opts("Next diagnostic + show popup", ns_opts))
 
 map("n", "[d", function()
     vim.diagnostic.jump({ count = -1 })
-    vim.defer_fn(function()
-        vim.diagnostic.open_float({ scope = "line" })
-    end, 50)
+    -- vim.defer_fn(function()
+    --     vim.diagnostic.open_float({ scope = "line" })
+    -- end, 50)
 end, desc_opts("Previous diagnostic + show popup", ns_opts))
 
 -- Lazy.nvim
