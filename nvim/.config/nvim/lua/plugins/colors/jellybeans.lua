@@ -78,11 +78,15 @@ return {
             --     bg = c.diag.warning,
             -- }
 
-            hl.Folded = {
-                fg = c.ship_cove,
-                bg = c.grey_three,
-                italic = false,
-                bold = false,
+            -- hl.Folded = {
+            --     fg = c.ship_cove,
+            --     bg = c.grey_three,
+            --     italic = false,
+            --     bold = false,
+            -- }
+
+            hl.CursorLineNr = {
+                fg = c.koromiko,
             }
 
             hl.Pmenu = { fg = "#dcd7ba", bg = "#223249" }
