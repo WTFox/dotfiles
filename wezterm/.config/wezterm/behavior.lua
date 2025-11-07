@@ -10,6 +10,7 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 
 ---@type StrictConfig
 return {
+    max_fps = 120,
     force_reverse_video_cursor = true,
     term = "xterm-256color",
     hyperlink_rules = wezterm.default_hyperlink_rules(),
