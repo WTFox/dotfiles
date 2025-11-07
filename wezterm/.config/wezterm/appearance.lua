@@ -9,6 +9,8 @@ return {
         -- fonts.mononoki,
         -- fonts.monolisa,
         -- fonts.cascadia_code,
+        -- fonts.ioskeley_mono,
+        fonts.berkeley_mono,
         fonts.jetbrains,
         fonts.jetbrains_styled,
     }),

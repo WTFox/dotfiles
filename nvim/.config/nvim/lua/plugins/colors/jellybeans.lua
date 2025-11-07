@@ -35,6 +35,8 @@ return {
             -- c.accent_color_2 = "#7a9085"
         end,
         on_highlights = function(hl, c)
+            hl.NormalFloat = hl.Normal
+
             -- FzfLua
             hl.FzfLuaBorder = { fg = c.background, bg = c.background }
 

@@ -12,7 +12,6 @@ directories_to_stow=(
   "ghostty/"
   "helix/"
   "nvim/"
-  "nvim-old/"
   "starship/"
   "tmux/"
   "wezterm/"
