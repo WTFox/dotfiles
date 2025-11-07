@@ -6,12 +6,14 @@ return {
         weight = "Regular",
     },
     berkeley_mono = {
-        family = "TX-02",
+        family = "Berkeley Mono",
         weight = "Regular",
         harfbuzz_features = {
             "calt",
             "clig",
             "liga",
+            "ss02",
+            "ss04",
         },
     },
     cascadia_code = {

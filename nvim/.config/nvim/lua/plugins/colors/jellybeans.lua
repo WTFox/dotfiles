@@ -124,8 +124,8 @@ return {
             hl.BlinkCmpSource = { fg = "#c8c093", bold = true }
 
             -- Documentation window
-            hl.BlinkCmpDoc = { fg = "#dcd7ba", bg = c.grey_three }
-            hl.BlinkCmpDocBorder = { fg = c.shuttle_grey, bg = c.grey_three }
+            hl.BlinkCmpDoc = { fg = "#dcd7ba", bg = c.bg }
+            hl.BlinkCmpDocBorder = { fg = c.shuttle_grey, bg = c.bg }
             hl.BlinkCmpDocSeparator = { fg = c.shuttle_grey }
             hl.BlinkCmpDocCursorLine = { bg = "#2d4f67" }
 

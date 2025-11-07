@@ -44,7 +44,7 @@ return {
                 { win = "list", border = "none" },
             },
         },
-        indent = { enabled = true },
+        indent = { enabled = false },
         input = { enabled = true },
         lazygit = {
             enabled = true,
