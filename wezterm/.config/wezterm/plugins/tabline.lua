@@ -2,9 +2,9 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 
 local M = {}
 
-local bg = "#101010"
-local blue = "#83adc3"
-local yellow = "#d8a16c"
+local bg = "#141415"
+local blue = "#6e94b2"
+local yellow = "#f3be7c"
 
 M.setup = function(config)
     local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
@@ -14,28 +14,28 @@ M.setup = function(config)
             theme_overrides = {
                 normal_mode = {
                     a = { fg = bg, bg = blue },
-                    b = { fg = blue, bg = "#1f1f1f" },
-                    c = { fg = "#c6b6ee", bg = bg },
+                    b = { fg = blue, bg = "#252530" },
+                    c = { fg = "#aeaed1", bg = bg },
                 },
                 copy_mode = {
                     a = { fg = bg, bg = yellow },
-                    b = { fg = yellow, bg = "#1f1f1f" },
-                    c = { fg = "#c6b6ee", bg = "#151515" },
+                    b = { fg = yellow, bg = "#252530" },
+                    c = { fg = "#aeaed1", bg = "#252530" },
                 },
                 search_mode = {
-                    a = { fg = "#000000", bg = "#d2ebbe" },
-                    b = { fg = "#d2ebbe", bg = "#313244" },
-                    c = { fg = "#c6b6ee", bg = "#151515" },
+                    a = { fg = "#141415", bg = "#7fa563" },
+                    b = { fg = "#7fa563", bg = "#252530" },
+                    c = { fg = "#aeaed1", bg = "#252530" },
                 },
                 window_mode = {
-                    a = { fg = bg, bg = "#cba6f7" },
-                    b = { fg = "#cba6f7", bg = "#313244" },
-                    c = { fg = "#cdd6f4", bg = "#181825" },
+                    a = { fg = bg, bg = "#bb9dbd" },
+                    b = { fg = "#bb9dbd", bg = "#252530" },
+                    c = { fg = "#cdcdcd", bg = "#252530" },
                 },
                 tab = {
                     active = { fg = bg, bg = yellow },
-                    inactive = { fg = "#cdd6f4", bg = bg },
-                    inactive_hover = { fg = "#f5c2e7", bg = "#181825" },
+                    inactive = { fg = "#606079", bg = bg },
+                    inactive_hover = { fg = "#d8647e", bg = "#252530" },
                 },
             },
             section_separators = {

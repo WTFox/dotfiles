@@ -1,0 +1,51 @@
+[metadata]
+name = "vague"
+author = "vague-theme"
+origin_url = "https://github.com/vague-theme/vague-wezterm"
+
+[colors]
+foreground = "#cdcdcd"
+background = "#141415"
+cursor_fg = "#141415"
+cursor_bg = "#cdcdcd"
+cursor_border = "#cdcdcd"
+selection_fg = "#cdcdcd"
+selection_bg = "#252530"
+scrollbar_thumb = "#252530"
+split = "#252530"
+
+ansi = [
+  "#252530", # black
+  "#d8647e", # red
+  "#7fa563", # green
+  "#f3be7c", # yellow
+  "#6e94b2", # blue
+  "#bb9dbd", # magenta
+  "#aeaed1", # cyan
+  "#cdcdcd", # white
+]
+
+brights = [
+  "#606079", # bright black
+  "#e08398", # bright red
+  "#99b782", # bright green
+  "#f5cb96", # bright yellow
+  "#8ba9c1", # bright blue
+  "#c9b1ca", # bright magenta
+  "#bebeda", # bright cyan
+  "#d7d7d7", # bright white
+]
+
+[colors.tab_bar]
+background = "#141415"
+active_tab.bg_color = "#252530"
+active_tab.fg_color = "#cdcdcd"
+inactive_tab.bg_color = "#141415"
+inactive_tab.fg_color = "#606079"
+inactive_tab_hover.bg_color = "#252530"
+inactive_tab_hover.fg_color = "#cdcdcd"
+new_tab.bg_color = "#141415"
+new_tab.fg_color = "#6e94b2"
+new_tab_hover.bg_color = "#252530"
+new_tab_hover.fg_color = "#8ba9c1"
+inactive_tab_edge = "#252530"
