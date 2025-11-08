@@ -3,12 +3,45 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    # selected=$(find ~/work/builds ~/projects ~/ ~/work ~/personal ~/personal/yt -mindepth 1 -maxdepth 1 -type d | fzf)
-    selected=$(zoxide query -i)
-fi
+    # Get all directories from zoxide
+    mapfile -t directories < <(zoxide query -l)
 
-if [[ -z $selected ]]; then
-    exit 0
+    # Get all existing tmux sessions into an associative array for O(1) lookup
+    declare -A sessions_map
+    while IFS= read -r session_name; do
+        sessions_map["$session_name"]=1
+    done < <(tmux list-sessions -F "#{session_name}" 2>/dev/null)
+
+    # Build list with indicators, sorting open sessions first
+    declare -a open_dirs
+    declare -a closed_dirs
+
+    for dir in "${directories[@]}"; do
+        session_name=$(basename "$dir" | tr . _)
+
+        if [[ -n "${sessions_map[$session_name]}" ]]; then
+            open_dirs+=("* $dir")
+        else
+            closed_dirs+=("  $dir")
+        fi
+    done
+
+    # Combine lists with open sessions first
+    all_options=("${open_dirs[@]}" "${closed_dirs[@]}")
+
+    if [[ ${#all_options[@]} -eq 0 ]]; then
+        exit 0
+    fi
+
+    # Use fzf to select, with preview showing the indicator
+    selection=$(printf '%s\n' "${all_options[@]}" | fzf --preview 'echo {}' --preview-window=right:0)
+
+    if [[ -z $selection ]]; then
+        exit 0
+    fi
+
+    # Extract the path (remove the indicator)
+    selected="${selection#* }"
 fi
 
 selected_name=$(basename "$selected" | tr . _)

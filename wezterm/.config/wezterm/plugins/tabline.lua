@@ -52,10 +52,7 @@ M.setup = function(config)
             },
         },
         sections = {
-            tabline_a = {
-                -- "mode"
-                "hostname",
-            },
+            tabline_a = {},
             tabline_b = {
                 "workspace",
             },
@@ -65,8 +62,6 @@ M.setup = function(config)
             tab_active = {
                 "index",
                 { "process", padding = { right = 1 } },
-                -- "/",
-                -- { "cwd", padding = { left = 0 } },
                 { "zoomed", padding = 0 },
             },
             tab_inactive = {
@@ -74,15 +69,7 @@ M.setup = function(config)
                 { "process", padding = { left = 0, right = 1 } },
             },
             tabline_x = {},
-            tabline_y = {
-                "ram",
-                {
-                    "cpu",
-                    throttle = 3, -- How often in seconds the component updates, set to 0 to disable throttling
-                    use_pwsh = false, -- If you want use powershell, set to true. default is false
-                },
-                -- "battery",
-            },
+            tabline_y = {},
             tabline_z = {
                 { "datetime", style = "%I:%M %p" },
             },
