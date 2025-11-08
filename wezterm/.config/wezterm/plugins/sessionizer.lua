@@ -44,18 +44,16 @@ M.setup = function(config)
 							-- Check if this path corresponds to an active workspace
 							local is_active = active_workspaces[entry.id] or active_workspaces[entry.label] or false
 
-							-- Choose icon and colors based on active status
-							local icon = is_active
-								and wezterm.nerdfonts.md_checkbox_marked_circle .. "  "
-								or wezterm.nerdfonts.cod_folder_opened .. "  "
+							-- Choose dot indicator and colors based on active status
+							local dot = is_active and "● " or "○ "
 
-							local icon_color = is_active and "#7fa563" or "#6e94b2"
-							local text_color = is_active and "#a8d97f" or "#8a8a8a"
+							local dot_color = is_active and "#bb9dbd" or "#9ca3af"
+							local text_color = is_active and "#bb9dbd" or "#9ca3af"
 
-							-- Format with icon and appropriate colors
+							-- Format with dot indicator and appropriate colors
 							entry.label = wezterm.format({
-								{ Foreground = { Color = icon_color } },
-								{ Text = icon },
+								{ Foreground = { Color = dot_color } },
+								{ Text = dot },
 								{ Foreground = { Color = text_color } },
 								{ Attribute = { Intensity = is_active and "Bold" or "Normal" } },
 								{ Text = display_path },
