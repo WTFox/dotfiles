@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# Vague theme for tmux
+# Based on the Vague Neovim theme palette
+# https://github.com/vague-theme/vague.nvim
+
+# Core colors from vague palette
+thm_bg="#141415"
+thm_fg="#cdcdcd"
+thm_black="#0a0a0b"
+thm_red="#d8647e"
+thm_green="#7fa563"
+thm_yellow="#f3be7c"
+thm_blue="#6e94b2"
+thm_magenta="#bb9dbd"
+thm_cyan="#b4d4cf"
+thm_white="#878787"
+thm_orange="#e8b589"
+
+# UI colors
+thm_inactive_bg="#1c1c24"
+thm_border="#252530"
+thm_active_border="#9bb4bc"
+thm_highlight="#333738"
+thm_gray="#606079"
+thm_statusline_bg="#1c1c24"
+thm_statusline_fg="#cdcdcd"
+
+# Extended colors
+thm_bright_blue="#7e98e8"
+thm_bright_cyan="#b4d4cf"
+thm_bright_white="#ffffff"
+
+# LuaLine-specific colors
+thm_accent="#9bb4bc"         # Type color as accent
+thm_total_black="#000000"    # For text on accent background
+
+# Specialized colors
+thm_cursor="#cdcdcd"
+thm_visual="#333738"
+thm_error="#d8647e"
+thm_warning="#f3be7c"
+thm_info="#7e98e8"
