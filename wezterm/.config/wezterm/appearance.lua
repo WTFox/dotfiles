@@ -4,6 +4,7 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 ---@type StrictConfig
 return {
     font = wezterm.font_with_fallback({ fonts.berkeley_mono }),
+    font_size = 15.0,
     adjust_window_size_when_changing_font_size = false,
     use_fancy_tab_bar = true,
     hide_tab_bar_if_only_one_tab = false,

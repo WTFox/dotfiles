@@ -1,3 +1,7 @@
+if true then
+    return {}
+end
+
 -- Auto-resize event for WezTerm to maximize space usage
 -- Targets font size around 16 with tight constraints
 
