@@ -16,10 +16,35 @@ M.setup = function(config)
 		return active
 	end
 
-	local schema = {
-		sessionizer.AllActiveWorkspaces(), -- Put active workspaces first
-		M.zoxide(),
-	}
+	-- Function to get deduplicated items from all sources
+	local function get_deduped_schema()
+		return function()
+			local items = {}
+			local seen = {}
+
+			-- Add active workspaces first
+			local active_items = sessionizer.AllActiveWorkspaces()()
+			for _, item in ipairs(active_items) do
+				if not seen[item.id] and not seen[item.label] then
+					table.insert(items, item)
+					seen[item.id] = true
+					seen[item.label] = true
+				end
+			end
+
+			-- Add zoxide items (skip duplicates)
+			local zoxide_items = M.zoxide()()
+			for _, item in ipairs(zoxide_items) do
+				if not seen[item.id] and not seen[item.label] then
+					table.insert(items, item)
+					seen[item.id] = true
+					seen[item.label] = true
+				end
+			end
+
+			return items
+		end
+	end
 
 	for _, key_mapping in ipairs({
 		{ key = "P", mods = "LEADER", action = wezterm.action.ShowLauncherArgs({ flags = "WORKSPACES" }) },
@@ -31,7 +56,7 @@ M.setup = function(config)
 				local active_workspaces = get_active_workspaces()
 
 				local action = sessionizer.show({
-					schema = schema,
+					schema = { get_deduped_schema() },
 					options = {
 						title = "Switch Workspace",
 						prompt = " ",
