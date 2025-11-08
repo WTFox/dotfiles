@@ -5,6 +5,7 @@ local M = {}
 local bg = "#141415"
 local blue = "#6e94b2"
 local yellow = "#f3be7c"
+local purple = "#bb9dbd"
 
 M.setup = function(config)
     local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
@@ -52,7 +53,7 @@ M.setup = function(config)
             },
         },
         sections = {
-            tabline_a = {},
+            tabline_a = { "hostname" },
             tabline_b = {
                 "workspace",
             },
@@ -69,9 +70,9 @@ M.setup = function(config)
                 { "process", padding = { left = 0, right = 1 } },
             },
             tabline_x = {},
-            tabline_y = {},
+            tabline_y = { "ram", "cpu" },
             tabline_z = {
-                { "datetime", style = "%I:%M %p" },
+                { "datetime", style = "%H:%M" },
             },
         },
         extensions = { "presentation" },
