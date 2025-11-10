@@ -10,4 +10,8 @@ if command -v cmatrix &>/dev/null; then
   commands+=("cmatrix -bsC blue")
 fi
 
-eval "${commands[$RANDOM % ${#commands[@]}]}"
+if [ ${#commands[@]} -gt 0 ]; then
+  eval "${commands[$RANDOM % ${#commands[@]}]}"
+else
+  echo "No screensaver commands available"
+fi
