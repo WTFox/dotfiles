@@ -126,7 +126,7 @@ return {
             key = "m",
             mods = mods.l,
             action = act.SpawnCommandInNewTab({
-                args = { utils.get_cmd("cmatrix -bsC blue") },
+                args = { utils.get_cmd("screensaver.sh") },
             }),
         },
         {
