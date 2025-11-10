@@ -8,12 +8,13 @@ return {
     berkeley_mono = {
         family = "Berkeley Mono",
         weight = "Regular",
+        -- https://usgraphics.com/static/products/TX-02/datasheet/TX-02-datasheet.a43c0c7f8d8c.pdf
         harfbuzz_features = {
             "calt",
             "clig",
             "liga",
-            "ss02",
-            "ss04",
+            "ss03", -- broken zero
+            "ss04", -- slashed 7
         },
     },
     cascadia_code = {
