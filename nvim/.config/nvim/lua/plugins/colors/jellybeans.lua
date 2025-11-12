@@ -1,7 +1,7 @@
 return {
     "wtfox/jellybeans.nvim",
     dev = true,
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {
         transparent = false,
