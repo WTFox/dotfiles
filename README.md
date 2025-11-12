@@ -18,9 +18,3 @@ This repository contains my personal configuration for all the tools and applica
 git clone https://github.com/wtfox/dotfiles.git ~/dotfiles/ && cd ~/dotfiles/
 ./bootstrap.sh
 ```
-
-## Screenshots
-
-![](_assets/vim-1.png)
-![](_assets/vim-2.png)
-![](_assets/vim-3.png)
