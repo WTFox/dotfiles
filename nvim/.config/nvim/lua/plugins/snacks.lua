@@ -108,7 +108,7 @@ return {
         scope = { enabled = true },
         scroll = { enabled = true },
         statuscolumn = { enabled = false },
-        words = { enabled = true },
+        words = { enabled = false },
         terminal = {
             enabled = true,
             win = {
