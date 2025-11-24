@@ -2,7 +2,7 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 
 local M = {}
 
-local bg = "#141415"
+local bg = "#101010"
 local blue = "#6e94b2"
 local yellow = "#f3be7c"
 local purple = "#bb9dbd"

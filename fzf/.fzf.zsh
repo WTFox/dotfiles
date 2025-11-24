@@ -27,31 +27,31 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 # --color=border:#1e1e2e \
 # --multi"
 
-# Jellybeans Mono
-# export FZF_DEFAULT_OPTS=" \
-# --color=bg+:#1c1c1c,bg:#151515,spinner:#a0a8b0,hl:#b39066 \
-# --color=fg:#dddddd,header:#b39066,info:#7a8aa6,pointer:#a0a8b0 \
-# --color=marker:#a08070,fg+:#c7c7c7,prompt:#7a8aa6,hl+:#b39066 \
-# --color=border:#151515 \
-# --multi"
+# Jellybeans
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#1c1c1c,bg:#101010,spinner:#668799,hl:#cf6a4c \
+--color=fg:#e8e8d3,header:#cf6a4c,info:#8197bf,pointer:#668799 \
+--color=marker:#99ad6a,fg+:#c7c7c7,prompt:#8197bf,hl+:#cf6a4c \
+--color=border:#151515 \
+--multi"
 
 # Vague Theme
-export FZF_DEFAULT_OPTS=" \
---color=fg:#cdcdcd \
---color=bg:#141415 \
---color=hl:#f3be7c \
---color=fg+:#aeaed1 \
---color=bg+:#252530 \
---color=hl+:#f3be7c \
---color=border:#606079 \
---color=header:#6e94b2 \
---color=gutter:#141415 \
---color=spinner:#7fa563 \
---color=info:#f3be7c \
---color=pointer:#aeaed1 \
---color=marker:#d8647e \
---color=prompt:#bb9dbd \
---multi"
+# export FZF_DEFAULT_OPTS=" \
+# --color=fg:#cdcdcd \
+# --color=bg:#141415 \
+# --color=hl:#f3be7c \
+# --color=fg+:#aeaed1 \
+# --color=bg+:#252530 \
+# --color=hl+:#f3be7c \
+# --color=border:#606079 \
+# --color=header:#6e94b2 \
+# --color=gutter:#141415 \
+# --color=spinner:#7fa563 \
+# --color=info:#f3be7c \
+# --color=pointer:#aeaed1 \
+# --color=marker:#d8647e \
+# --color=prompt:#bb9dbd \
+# --multi"
 
 # Catppuccin-Mocha Darker
 # export FZF_DEFAULT_OPTS=" \

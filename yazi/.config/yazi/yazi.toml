@@ -8,65 +8,65 @@ play = [
 ]
 
 [theme]
-# Color consistency with fzf and wezterm - Vague Theme
+# Color consistency with fzf and wezterm - Jellybeans Theme
 [theme.manager]
-cwd = { fg = "#6e94b2" }
-hovered = { fg = "#141415", bg = "#f3be7c" }
-preview_hovered = { fg = "#141415", bg = "#f3be7c" }
+cwd = { fg = "#8197bf" }
+hovered = { fg = "#151515", bg = "#dad085" }
+preview_hovered = { fg = "#151515", bg = "#dad085" }
 
 [theme.status]
 separator_open = ""
 separator_close = ""
 
 [theme.select]
-border = { fg = "#6e94b2" }
-active = { fg = "#141415", bg = "#f3be7c" }
-inactive = { fg = "#cdcdcd" }
+border = { fg = "#8197bf" }
+active = { fg = "#151515", bg = "#dad085" }
+inactive = { fg = "#e8e8d3" }
 
 [theme.input]
-border = { fg = "#6e94b2" }
-title = { fg = "#6e94b2" }
-value = { fg = "#cdcdcd" }
-selected = { fg = "#141415", bg = "#f3be7c" }
+border = { fg = "#8197bf" }
+title = { fg = "#8197bf" }
+value = { fg = "#e8e8d3" }
+selected = { fg = "#151515", bg = "#dad085" }
 
 [theme.completion]
-border = { fg = "#6e94b2" }
-active = { fg = "#141415", bg = "#f3be7c" }
-inactive = { fg = "#cdcdcd" }
+border = { fg = "#8197bf" }
+active = { fg = "#151515", bg = "#dad085" }
+inactive = { fg = "#e8e8d3" }
 
 [theme.tasks]
-border = { fg = "#6e94b2" }
-title = { fg = "#6e94b2" }
-hovered = { fg = "#141415", bg = "#f3be7c" }
+border = { fg = "#8197bf" }
+title = { fg = "#8197bf" }
+hovered = { fg = "#151515", bg = "#dad085" }
 
 [theme.which]
-rest = { fg = "#cdcdcd" }
-cand = { fg = "#f3be7c" }
-desc = { fg = "#6e94b2" }
+rest = { fg = "#e8e8d3" }
+cand = { fg = "#dad085" }
+desc = { fg = "#8197bf" }
 separator = "  "
 
 [theme.help]
-on = { fg = "#f3be7c" }
-exec = { fg = "#6e94b2" }
-desc = { fg = "#cdcdcd" }
-hovered = { fg = "#141415", bg = "#f3be7c" }
-footer = { fg = "#cdcdcd", bg = "#141415" }
+on = { fg = "#dad085" }
+exec = { fg = "#8197bf" }
+desc = { fg = "#e8e8d3" }
+hovered = { fg = "#151515", bg = "#dad085" }
+footer = { fg = "#e8e8d3", bg = "#151515" }
 
 [theme.filetype]
 rules = [
-  { mime = "image/*", fg = "#f3be7c" },
-  { mime = "video/*", fg = "#6e94b2" },
-  { mime = "audio/*", fg = "#d8647e" },
-  { mime = "application/zip", fg = "#f3be7c" },
-  { mime = "application/gzip", fg = "#f3be7c" },
-  { mime = "application/x-tar", fg = "#f3be7c" },
-  { mime = "application/x-bzip", fg = "#f3be7c" },
-  { mime = "application/x-bzip2", fg = "#f3be7c" },
-  { mime = "application/x-7z-compressed", fg = "#f3be7c" },
-  { mime = "application/x-rar", fg = "#f3be7c" },
-  { name = "*", is = "dir", fg = "#6e94b2" },
-  { name = "*", is = "exec", fg = "#d8647e" },
-  { name = "*/", fg = "#6e94b2" },
+  { mime = "image/*", fg = "#dad085" },
+  { mime = "video/*", fg = "#8197bf" },
+  { mime = "audio/*", fg = "#cf6a4c" },
+  { mime = "application/zip", fg = "#dad085" },
+  { mime = "application/gzip", fg = "#dad085" },
+  { mime = "application/x-tar", fg = "#dad085" },
+  { mime = "application/x-bzip", fg = "#dad085" },
+  { mime = "application/x-bzip2", fg = "#dad085" },
+  { mime = "application/x-7z-compressed", fg = "#dad085" },
+  { mime = "application/x-rar", fg = "#dad085" },
+  { name = "*", is = "dir", fg = "#99ad6a" },
+  { name = "*", is = "exec", fg = "#cf6a4c" },
+  { name = "*/", fg = "#99ad6a" },
 ]
 
 [plugin]
