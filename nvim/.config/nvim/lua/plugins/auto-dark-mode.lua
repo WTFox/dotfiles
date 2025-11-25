@@ -1,5 +1,7 @@
+---@type LazySpec
 return {
     "f-person/auto-dark-mode.nvim",
+    enabled = false,
     config = function()
         require("auto-dark-mode").setup({
             set_dark_mode = function()
