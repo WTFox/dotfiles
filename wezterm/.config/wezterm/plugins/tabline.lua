@@ -70,7 +70,10 @@ M.setup = function(config)
                 { "process", padding = { left = 0, right = 1 } },
             },
             tabline_x = {},
-            tabline_y = { "ram", "cpu" },
+            tabline_y = {
+                -- "ram",
+                -- "cpu"
+            },
             tabline_z = {
                 { "datetime", style = "%H:%M" },
             },
