@@ -1,17 +1,10 @@
 # Ghostty Configuration
 # Main config file - modular imports below
 
-# Shell integration
-shell-integration = zsh
-shell-integration-features = true
-
-# macOS-specific settings
-macos-option-as-alt = true
-
 # Import modular configs
 config-file = appearance.conf
+config-file = behavior.conf
 config-file = fonts.conf
 config-file = keybinds.conf
-
 
 # vim: filetype=config:tabstop=4:shiftwidth=4:expandtab:
