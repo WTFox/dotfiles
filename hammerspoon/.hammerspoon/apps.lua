@@ -2,7 +2,7 @@ local utils = require("utils")
 
 local prefix = { "ctrl" }
 local mappings = {
-    { key = "`", app = "Wezterm" },
+    { key = "`", app = "Ghostty" },
     { key = "1", app = "Firefox" },
 }
 
