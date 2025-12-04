@@ -17,6 +17,16 @@ function load_nvm() {
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 }
 
+# Auto-attach to existing tmux session, or create one if none exist
+tmux() {
+    if [[ $# -eq 0 ]]; then
+        # No arguments - attach to existing session or create new
+        command tmux attach 2>/dev/null || command tmux new-session
+    else
+        command tmux "$@"
+    fi
+}
+
 function ubuntu(){
   docker run -it -w '/entrypoint/' -v "$(pwd)":/entrypoint ubuntu:latest
 }

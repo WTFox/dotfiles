@@ -67,8 +67,8 @@ bindkey "^O" run_ya
 
 _run-tmux-sessionizer() {
     zle -I
-    exec < /dev/tty
-    ~/bin/tmux-sessionizer
+    BUFFER="~/bin/tmux-sessionizer"
+    zle accept-line
 }
 zle -N _run-tmux-sessionizer
 bindkey "^T" _run-tmux-sessionizer
