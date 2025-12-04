@@ -73,8 +73,8 @@ _run-tmux-sessionizer() {
 zle -N _run-tmux-sessionizer
 bindkey "^T" _run-tmux-sessionizer
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
