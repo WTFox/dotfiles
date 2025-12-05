@@ -78,12 +78,12 @@ autocmd("VimResized", {
     end,
 })
 
--- -- Disable diagnostics on Snacks UI windows to prevent red lines
--- local diagnostic_ui_group = augroup("DiagnosticUI", { clear = true })
--- autocmd("FileType", {
---     group = diagnostic_ui_group,
---     pattern = { "snacks_dashboard", "snacks_picker_list", "snacks_explorer" },
---     callback = function(args)
---         vim.diagnostic.enable(false, { bufnr = args.buf })
---     end,
--- })
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "User: fix backdrop for lazy window",
+    pattern = "lazy_backdrop",
+    group = vim.api.nvim_create_augroup("lazynvim-fix", { clear = true }),
+    callback = function(ctx)
+        local win = vim.fn.win_findbuf(ctx.buf)[1]
+        vim.api.nvim_win_set_config(win, { border = "none" })
+    end,
+})
