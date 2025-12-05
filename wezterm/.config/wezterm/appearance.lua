@@ -7,7 +7,7 @@ return {
     font_size = 15.0,
     adjust_window_size_when_changing_font_size = false,
     use_fancy_tab_bar = true,
-    hide_tab_bar_if_only_one_tab = false,
+    hide_tab_bar_if_only_one_tab = true,
     default_cursor_style = "BlinkingBlock",
     cursor_blink_rate = 1000,
     initial_cols = 136,
