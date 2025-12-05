@@ -20,4 +20,7 @@ return {
     front_end = "WebGpu",
     scrollback_lines = 10000,
     ssh_domains = wezterm.default_ssh_domains(),
+    -- Ensure Alt key combinations work properly, especially over SSH
+    -- Use CSI encoding for better compatibility with tmux/readline
+    send_composed_key_when_alt_is_pressed = true,
 }
