@@ -105,6 +105,3 @@ opt.foldtext = "" -- Use Treesitter for syntax-highlighted folds (Neovim 0.10+)
 opt.timeoutlen = 300
 opt.updatetime = 250
 opt.lazyredraw = false
-
--- UI - Window borders
-opt.winborder = "rounded"
