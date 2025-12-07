@@ -1,10 +1,8 @@
 # Ghostty Configuration
 # Main config file - modular imports below
 
-# Import modular configs
 config-file = appearance.conf
 config-file = behavior.conf
-config-file = fonts.conf
 config-file = keybinds.conf
 
 # vim: filetype=config:tabstop=4:shiftwidth=4:expandtab:
