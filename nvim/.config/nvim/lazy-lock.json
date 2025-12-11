@@ -28,5 +28,5 @@
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "9b55d36b797875b6e513f6bcc526e17cb9fe31f4" },
   "vague.nvim": { "branch": "main", "commit": "dba28050887c2810b5ebf9e0143b4e919bd55757" },
-  "wezterm-types": { "branch": "main", "commit": "911f2fee3f688cc5d60eb2eac72671dbe0bfdb4f" }
+  "wezterm-types": { "branch": "main", "commit": "471bb704769bcbef009f39b414f764053f08e21a" }
 }
