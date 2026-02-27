@@ -1,6 +1,5 @@
 return {
     "wtfox/claude-chat.nvim",
-    lazy = true,
     keys = {
         { "<C-.>", desc = "Claude Chat" },
     },
