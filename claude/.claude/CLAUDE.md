@@ -13,6 +13,7 @@
 - Run tests before and after making changes. If no test command is obvious from the repo, ask.
 - Read files before modifying them.
 - When renaming or moving something, search for all references first.
+- Prefer `git switch -c` over `git checkout -b`
 
 ## Things to Never Do
 
