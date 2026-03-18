@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash(find:*), Bash(ls:*), Bash(tree:*), Bash(grep:*), Bash(wc:*), Bash(du:*), Bash(head:*), Bash(tail:*), Bash(cat:*), Bash(touch:*)
+allowed-tools: Read, Glob, Grep, Write, Bash(find:*), Bash(ls:*), Bash(tree:*), Bash(grep:*), Bash(wc:*), Bash(du:*), Bash(head:*), Bash(tail:*), Bash(cat:*)
 description: Generate comprehensive analysis and documentation of entire codebase
 ---
 
@@ -19,16 +19,17 @@ description: Generate comprehensive analysis and documentation of entire codebas
 
 - Total files: !`find . -type f -not -path "./node_modules/*" -not -path "./.git/*" | wc -l`
 - Code files: !`find . -name "*.js" -o -name "*.ts" -o -name "*.jsx" -o -name "*.tsx" -o -name "*.py" -o -name "*.java" -o -name "*.php" -o -name "*.rb" -o -name "*.go" -o -name "*.rs" -o -name "*.cpp" -o -name "*.c" | grep -v node_modules | wc -l`
-- Project size: !`du -sh . --exclude=node_modules --exclude=.git --exclude=dist --exclude=build`
+- Project size: !`find . -type f -not -path "*/node_modules/*" -not -path "*/.git/*" -not -path "*/dist/*" -not -path "*/build/*" | xargs du -ch 2>/dev/null | tail -1`
 
 ## Configuration Files Analysis
 
 ### Package Management
 
 - Package.json: @package.json
-- Package-lock.json exists: !`ls package-lock.json 2>/dev/null || echo "Not found"`
-- Yarn.lock exists: !`ls yarn.lock 2>/dev/null || echo "Not found"`
+- Lock files: !`ls package-lock.json yarn.lock pnpm-lock.yaml bun.lockb 2>/dev/null || echo "None found"`
 - Requirements.txt: @requirements.txt
+- Pyproject.toml: @pyproject.toml
+- uv.lock / poetry.lock: !`ls uv.lock poetry.lock 2>/dev/null || echo "Not found"`
 - Gemfile: @Gemfile
 - Cargo.toml: @Cargo.toml
 - Go.mod: @go.mod
