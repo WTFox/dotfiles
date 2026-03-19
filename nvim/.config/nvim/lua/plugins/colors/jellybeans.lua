@@ -32,35 +32,6 @@ return {
             -- end
         end,
         on_highlights = function(hl, c)
-            hl.NormalFloat = hl.Normal
-
-            -- Light mode keyword and comment colors
-            if vim.o.background == "light" then
-                hl.Keyword = { fg = "#0048ff" }
-                hl.Comment = { fg = "#666666" }
-            end
-
-            hl.RenderMarkdownH1Bg = { fg = c.perano }
-            hl.DiffViewDiffAdd = {
-                fg = c.git.add.fg,
-                bg = c.grey_three,
-            }
-            hl.DiffViewDiffDelete = {
-                fg = c.git.delete.fg,
-                bg = c.grey_three,
-            }
-            hl.DiffViewDiffChange = {
-                fg = c.git.change.fg,
-                bg = c.grey_three,
-            }
-            hl.DiffviewDiffText = {
-                -- fg = c.info,
-                bg = c.shuttle_grey,
-            }
-            hl.CursorLineNr = {
-                fg = vim.o.background == "dark" and "#d59455" or "#223249",
-            }
-
             hl.Pmenu = { fg = "#dcd7ba", bg = "#223249" }
             hl.PmenuSel = { bg = "#2d4f67" }
             hl.PmenuSbar = { bg = "#223249" }
