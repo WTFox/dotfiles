@@ -106,7 +106,7 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         opts = {
             enable = true,
-            multiwindow = false,
+            multiwindow = true,
             max_lines = 2,
             min_window_height = 0,
             line_numbers = false,
