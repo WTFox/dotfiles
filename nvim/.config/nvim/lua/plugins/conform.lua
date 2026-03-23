@@ -3,7 +3,23 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
         formatters_by_ft = {
-            python = { "isort", "black" },
+            python = function(bufnr)
+                local root = vim.fs.root(bufnr, { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" })
+                if root then
+                    if vim.fn.filereadable(root .. "/ruff.toml") == 1 or vim.fn.filereadable(root .. "/.ruff.toml") == 1 then
+                        return { "ruff_fix", "ruff_format" }
+                    end
+                    local pyproject = root .. "/pyproject.toml"
+                    if vim.fn.filereadable(pyproject) == 1 then
+                        for _, line in ipairs(vim.fn.readfile(pyproject)) do
+                            if line:match("%[tool%.ruff") then
+                                return { "ruff_fix", "ruff_format" }
+                            end
+                        end
+                    end
+                end
+                return { "isort", "black" }
+            end,
             lua = { "stylua" },
             javascript = { "prettier" },
             typescript = { "prettier" },
