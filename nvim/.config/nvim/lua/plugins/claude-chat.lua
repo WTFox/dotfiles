@@ -1,11 +1,9 @@
 return {
     "wtfox/claude-chat.nvim",
-    keys = {
-        { "<C-.>", desc = "Claude Chat" },
-    },
-    cmd = { "ClaudeChat", "ClaudeChatOpen", "ClaudeChatToggle", "ClaudeChatReset" },
-    config = true,
     dev = true,
+    keys = {
+        { "<leader>cc", ":ClaudeChat<CR>", desc = "Claude Chat", mode = { "n", "v" } },
+    },
     ---@type claude-chat.Config
     opts = {
         split = "vsplit",
@@ -20,10 +18,10 @@ return {
             title_pos = "center",
         },
         keymaps = {
-            global = "<C-.>", -- Global keymap for ClaudeChat command (set to nil to disable)
+            global = "<leader>cc",
             terminal = {
                 close = "<C-q>", -- Close chat from terminal mode
-                toggle = "<C-.>", -- Toggle chat window visibility
+                toggle = "<C-q>", -- Toggle chat window visibility
                 normal_mode = "<Esc><Esc>", -- Exit terminal mode to normal mode
                 insert_file = "<C-f>", -- Insert current file path
                 interrupt = "<C-c>", -- Interrupt/close chat
