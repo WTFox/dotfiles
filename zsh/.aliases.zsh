@@ -31,7 +31,7 @@ alias notebook="uvx --from jupyter-core --with jupyter --with pandas jupyter-lab
 alias icat="wezterm imgcat"
 
 # == Text Editors ==
-alias nvim="bob run nightly"
+alias nvim="bob run stable"
 alias n.="nvim ."
 alias v="vim"
 alias v.="vim ."
