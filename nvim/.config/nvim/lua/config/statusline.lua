@@ -242,6 +242,9 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
     group = group,
     desc = "Activate statusline on focus",
     callback = function()
+        if vim.api.nvim_win_get_config(0).relative ~= "" then
+            return
+        end
         vim.opt_local.statusline = "%!v:lua.Statusline.active()"
     end,
 })
@@ -250,6 +253,9 @@ vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
     group = group,
     desc = "Deactivate statusline when unfocused",
     callback = function()
+        if vim.api.nvim_win_get_config(0).relative ~= "" then
+            return
+        end
         vim.opt_local.statusline = "%!v:lua.Statusline.inactive()"
     end,
 })
