@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-vim.g.dark_theme = "jellybeans-muted"
+vim.g.dark_theme = "jellybeans-hc"
 vim.g.light_theme = "jellybeans-muted-light"
 
 vim.filetype.add({
