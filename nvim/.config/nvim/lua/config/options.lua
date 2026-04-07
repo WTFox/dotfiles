@@ -1,7 +1,7 @@
 local opt = vim.opt
 
 vim.g.dark_theme = "jellybeans-hc"
-vim.g.light_theme = "jellybeans-muted-light"
+vim.g.light_theme = "jellybeans-hc-light"
 
 vim.filetype.add({
     filename = {

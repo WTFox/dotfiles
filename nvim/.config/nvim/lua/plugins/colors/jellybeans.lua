@@ -13,8 +13,8 @@ return {
             auto = true,
         },
         background = {
-            dark = "jellybeans_muted",
-            light = "jellybeans_muted_light",
+            dark = "jellybeans_hc",
+            light = "jellybeans_hc_light",
         },
         on_colors = function(c)
             -- Dark mode: amber + green - retro terminal vibes
