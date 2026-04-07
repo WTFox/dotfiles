@@ -45,45 +45,103 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         event = { "BufReadPre", "BufNewFile" },
-        config = function()
-            -- main branch: nested config inside nvim-treesitter.configs is gone
-            -- textobjects has its own setup + explicit keymaps
-            local sel = require("nvim-treesitter-textobjects.select")
-            local move = require("nvim-treesitter-textobjects.move")
-            local swap = require("nvim-treesitter-textobjects.swap")
-
-            require("nvim-treesitter-textobjects").setup({
-                select = { lookahead = true },
-                move = { set_jumps = true },
-            })
-
-            local km = vim.keymap.set
-
-            -- select
-            km({ "x", "o" }, "af", function() sel.select_textobject("@function.outer", "textobjects") end)
-            km({ "x", "o" }, "if", function() sel.select_textobject("@function.inner", "textobjects") end)
-            km({ "x", "o" }, "ac", function() sel.select_textobject("@class.outer", "textobjects") end)
-            km({ "x", "o" }, "ic", function() sel.select_textobject("@class.inner", "textobjects") end)
-            km({ "x", "o" }, "al", function() sel.select_textobject("@loop.outer", "textobjects") end)
-            km({ "x", "o" }, "il", function() sel.select_textobject("@loop.inner", "textobjects") end)
-            km({ "x", "o" }, "aa", function() sel.select_textobject("@parameter.outer", "textobjects") end)
-            km({ "x", "o" }, "ia", function() sel.select_textobject("@parameter.inner", "textobjects") end)
-            km({ "x", "o" }, "as", function() sel.select_textobject("@statement.outer", "textobjects") end)
-
-            -- move
-            km({ "n", "x", "o" }, "]m", function() move.goto_next_start("@function.outer", "textobjects") end)
-            km({ "n", "x", "o" }, "]]", function() move.goto_next_start("@class.outer", "textobjects") end)
-            km({ "n", "x", "o" }, "]M", function() move.goto_next_end("@function.outer", "textobjects") end)
-            km({ "n", "x", "o" }, "][", function() move.goto_next_end("@class.outer", "textobjects") end)
-            km({ "n", "x", "o" }, "[m", function() move.goto_previous_start("@function.outer", "textobjects") end)
-            km({ "n", "x", "o" }, "[[", function() move.goto_previous_start("@class.outer", "textobjects") end)
-            km({ "n", "x", "o" }, "[M", function() move.goto_previous_end("@function.outer", "textobjects") end)
-            km({ "n", "x", "o" }, "[]", function() move.goto_previous_end("@class.outer", "textobjects") end)
-
-            -- swap
-            km("n", "<leader>a", function() swap.swap_next("@parameter.inner", "textobjects") end)
-            km("n", "<leader>A", function() swap.swap_previous("@parameter.inner", "textobjects") end)
-        end,
+        branch = "main",
+        opts = {
+            select = {
+                -- Automatically jump forward to textobj, similar to targets.vim
+                lookahead = true,
+                -- You can choose the select mode (default is charwise 'v')
+                --
+                -- Can also be a function which gets passed a table with the keys
+                -- * query_string: eg '@function.inner'
+                -- * method: eg 'v' or 'o'
+                -- and should return the mode ('v', 'V', or '<c-v>') or a table
+                -- mapping query_strings to modes.
+                selection_modes = {
+                    ["@parameter.outer"] = "v", -- charwise
+                    ["@function.outer"] = "V", -- linewise
+                    -- ['@class.outer'] = '<c-v>', -- blockwise
+                },
+                -- If you set this to `true` (default is `false`) then any textobject is
+                -- extended to include preceding or succeeding whitespace. Succeeding
+                -- whitespace has priority in order to act similarly to eg the built-in
+                -- `ap`.
+                --
+                -- Can also be a function which gets passed a table with the keys
+                -- * query_string: eg '@function.inner'
+                -- * selection_mode: eg 'v'
+                -- and should return true of false
+                include_surrounding_whitespace = false,
+            },
+        },
+        keys = {
+            {
+                "]m",
+                function()
+                    require("nvim-treesitter-textobjects.move").goto_next_start(
+                        { "@function.outer", "@class.outer" },
+                        "textobjects"
+                    )
+                end,
+                mode = { "n", "x", "o" },
+            },
+            {
+                "[m",
+                function()
+                    require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+                end,
+                mode = { "n", "x", "o" },
+            },
+            {
+                "]]",
+                function()
+                    require("nvim-treesitter-textobjects.move").goto_next_start(
+                        { "@class.outer", "@function.outer" },
+                        "textobjects"
+                    )
+                end,
+                mode = { "n", "x", "o" },
+            },
+            {
+                "[[",
+                function()
+                    require("nvim-treesitter-textobjects.move").goto_previous_start(
+                        { "@class.outer", "@function.outer" },
+                        "textobjects"
+                    )
+                end,
+                mode = { "n", "x", "o" },
+            },
+            -- selections
+            {
+                "am",
+                function()
+                    require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+                end,
+                mode = { "x", "o" },
+            },
+            {
+                "im",
+                function()
+                    require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+                end,
+                mode = { "x", "o" },
+            },
+            {
+                "ac",
+                function()
+                    require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
+                end,
+                mode = { "x", "o" },
+            },
+            {
+                "ic",
+                function()
+                    require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
+                end,
+                mode = { "x", "o" },
+            },
+        },
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
