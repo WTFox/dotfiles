@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# git-diagnose — Quick codebase diagnostics via git history
+# Inspired by: https://piechowski.io/post/git-commands-before-reading-code/
+#
+# Place in your dotfiles bin/ and ensure it's on your PATH.
+# Requires: git, fzf
+
+set -euo pipefail
+
+if ! command -v fzf &>/dev/null; then
+  echo "Error: fzf is required but not installed." >&2
+  exit 1
+fi
+
+if ! git rev-parse --is-inside-work-tree &>/dev/null 2>&1; then
+  echo "Error: not inside a git repository." >&2
+  exit 1
+fi
+
+declare -A commands
+declare -A descriptions
+
+commands=(
+  ["Churn Hotspots"]='git log --format=format: --name-only --since="1 year ago" | grep -v "^$" | sort | uniq -c | sort -nr | head -20'
+  ["Bus Factor (all time)"]='git shortlog -sn --no-merges'
+  ["Bus Factor (6 months)"]='git shortlog -sn --no-merges --since="6 months ago"'
+  ["Bug Clusters"]='git log -i -E --grep="fix|bug|broken" --name-only --format="" | grep -v "^$" | sort | uniq -c | sort -nr | head -20'
+  ["Commit Velocity"]='git log --format="%ad" --date=format:"%Y-%m" | sort | uniq -c'
+  ["Firefighting Frequency"]='git log --oneline --since="1 year ago" | grep -iE "revert|hotfix|emergency|rollback"'
+)
+
+descriptions=(
+  ["Churn Hotspots"]="Top 20 most-changed files in the last year. High churn + nobody wants to own it = codebase drag."
+  ["Bus Factor (all time)"]="Contributors ranked by commit count. If one person is 60%+, that's your bus factor."
+  ["Bus Factor (6 months)"]="Recent contributors only. Compare with all-time to spot departed key authors."
+  ["Bug Clusters"]="Files most often touched in bug-fix commits. Cross-reference with churn for highest risk."
+  ["Commit Velocity"]="Commits per month over project history. Look for drops (someone left) or declining curves."
+  ["Firefighting Frequency"]="Reverts, hotfixes, and rollbacks in the last year. Frequent = team doesn't trust deploys."
+)
+
+# Ordered menu keys
+keys=(
+  "Churn Hotspots"
+  "Bus Factor (all time)"
+  "Bus Factor (6 months)"
+  "Bug Clusters"
+  "Commit Velocity"
+  "Firefighting Frequency"
+)
+
+# Build fzf input: "Name  —  Description"
+menu=""
+for key in "${keys[@]}"; do
+  menu+="${key}  —  ${descriptions[$key]}"$'\n'
+done
+
+selection=$(printf '%s' "$menu" | fzf \
+  --height=40% \
+  --layout=reverse \
+  --border \
+  --prompt="git-diagnose> " \
+  --header="Pick a diagnostic to run (ESC to quit)" \
+  --header-first)
+
+# Extract the command name (everything before the em dash)
+name="${selection%%  —  *}"
+
+cmd="${commands[$name]}"
+
+echo ""
+echo "▸ $name"
+echo "  ${descriptions[$name]}"
+echo ""
+echo "  \$ $cmd"
+echo ""
+
+eval "$cmd"
