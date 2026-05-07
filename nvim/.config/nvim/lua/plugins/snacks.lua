@@ -195,6 +195,13 @@ return {
             end,
             desc = "File Explorer",
         },
+        {
+            "<leader>E",
+            function()
+                Snacks.explorer({ cwd = vim.fn.expand("%:p:h") })
+            end,
+            desc = "File Explorer (buffer dir)",
+        },
         -- find
         {
             "<leader>fb",
