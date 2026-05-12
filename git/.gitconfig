@@ -9,7 +9,7 @@
 [core]
 	excludesfile = ~/.config/git/ignore
 	editor = nvim
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = hunk pager
 
 [diff]
 	tool = diff-so-fancy
