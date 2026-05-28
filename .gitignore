@@ -29,3 +29,4 @@ pgcli/.config/pgcli/log
 
 tmux-client-*.log
 tmux/.tmux/plugins/
+tmux/.config/tmux-sessionizer/tmux-sessionizer.local.conf

@@ -36,6 +36,11 @@ if [[ -f "$CONFIG_FILE" ]]; then
     source "$CONFIG_FILE"
 fi
 
+LOCAL_CONFIG_FILE="$CONFIG_DIR/${CONFIG_FILE_NAME%.conf}.local.conf"
+if [[ -f "$LOCAL_CONFIG_FILE" ]]; then
+    source "$LOCAL_CONFIG_FILE"
+fi
+
 if [[ -f "$CONFIG_FILE_NAME" ]]; then
     source "$CONFIG_FILE_NAME"
 fi
