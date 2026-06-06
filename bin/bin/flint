@@ -1,0 +1,153 @@
+#!/usr/bin/env bash
+# flac-check.sh — FLAC quality diagnostics
+# Requires: flac, ffprobe (ffmpeg), sox
+# Install: brew install flac ffmpeg sox
+
+# Note: no set -e here intentionally — we handle errors per-step
+set -uo pipefail
+
+# ── colors ───────────────────────────────────────────────────────────────────
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+DIM='\033[2m'
+RESET='\033[0m'
+
+# ── helpers ──────────────────────────────────────────────────────────────────
+require() { command -v "$1" &>/dev/null || {
+    echo -e "${RED}missing: $1 (brew install $2)${RESET}"
+    exit 1
+}; }
+hr() { echo -e "${DIM}────────────────────────────────────────────────────${RESET}"; }
+
+require flac flac
+require ffprobe ffmpeg
+require sox sox
+
+# ── args ──────────────────────────────────────────────────────────────────────
+if [[ $# -eq 0 ]]; then
+    mapfile -d '' FILES < <(find . -maxdepth 1 -name "*.flac" -print0 | sort -z)
+    if [[ ${#FILES[@]} -eq 0 ]]; then
+        echo "Usage: $0 [file.flac ...] [directory]"
+        exit 1
+    fi
+elif [[ -d "$1" ]]; then
+    mapfile -d '' FILES < <(find "$1" -name "*.flac" -print0 | sort -z)
+else
+    FILES=("$@")
+fi
+
+TOTAL=${#FILES[@]}
+PASS=0
+FAIL=0
+WARN=0
+
+echo -e "\n${BOLD}FLAC Diagnostics${RESET} — ${TOTAL} file(s)\n"
+
+for FILE in "${FILES[@]}"; do
+    [[ "$FILE" == *.flac ]] || {
+        echo -e "${YELLOW}skipping non-FLAC: $FILE${RESET}"
+        continue
+    }
+    [[ -f "$FILE" ]] || {
+        echo -e "${RED}not found: $FILE${RESET}"
+        continue
+    }
+
+    BASENAME=$(basename "$FILE")
+    echo -e "${BOLD}${CYAN}▶ ${BASENAME}${RESET}"
+
+    # ── 1. Structural integrity ───────────────────────────────────────────────
+    if flac --test --silent "$FILE" 2>/dev/null; then
+        echo -e "  ${GREEN}✓ structure${RESET}  FLAC container valid"
+    else
+        echo -e "  ${RED}✗ structure${RESET}  CORRUPTED — bitstream errors detected"
+        ((FAIL++)) || true
+        hr
+        continue
+    fi
+
+    # ── 2. Technical metadata ─────────────────────────────────────────────────
+    INFO=$(ffprobe -v quiet -show_streams -select_streams a "$FILE" 2>/dev/null)
+    SAMPLE_RATE=$(echo "$INFO" | grep sample_rate | cut -d= -f2 | head -1)
+    BIT_DEPTH=$(echo "$INFO" | grep bits_per_raw_sample | cut -d= -f2 | head -1)
+    CHANNELS=$(echo "$INFO" | grep "^channels=" | cut -d= -f2 | head -1)
+    DURATION=$(echo "$INFO" | grep duration= | cut -d= -f2 | head -1 | xargs printf "%.1f" 2>/dev/null || echo "?")
+    BIT_RATE=$(echo "$INFO" | grep "^bit_rate=" | cut -d= -f2 | head -1)
+
+    [[ -z "$BIT_DEPTH" ]] && BIT_DEPTH=$(echo "$INFO" | grep bits_per_sample | cut -d= -f2 | head -1)
+    SAMPLE_RATE=${SAMPLE_RATE:-0}
+    BIT_DEPTH=${BIT_DEPTH:-?}
+    CHANNELS=${CHANNELS:-?}
+    BIT_RATE=${BIT_RATE:-0}
+
+    if [[ "$SAMPLE_RATE" == "44100" ]]; then
+        SR_LABEL="44.1 kHz (CD)"
+    elif [[ "$SAMPLE_RATE" == "48000" ]]; then
+        SR_LABEL="48 kHz"
+    elif [[ "$SAMPLE_RATE" == "88200" ]]; then
+        SR_LABEL="88.2 kHz (hi-res)"
+    elif [[ "$SAMPLE_RATE" == "96000" ]]; then
+        SR_LABEL="96 kHz (hi-res)"
+    elif [[ "$SAMPLE_RATE" == "176400" ]]; then
+        SR_LABEL="176.4 kHz (hi-res)"
+    elif [[ "$SAMPLE_RATE" == "192000" ]]; then
+        SR_LABEL="192 kHz (hi-res)"
+    else SR_LABEL="${SAMPLE_RATE} Hz"; fi
+
+    BR_KBPS=$(awk -v br="$BIT_RATE" 'BEGIN { printf "%d", br/1000 }')
+
+    echo -e "  ${GREEN}✓ metadata${RESET}   ${SR_LABEL} / ${BIT_DEPTH}-bit / ${CHANNELS}ch  •  ${DURATION}s  •  ~${BR_KBPS} kbps"
+
+    # ── 3. Spectral ceiling (fake-lossless detection) ─────────────────────────
+    NYQUIST=$(awk -v sr="$SAMPLE_RATE" 'BEGIN { print int(sr/2) }')
+
+    SPEC_TMP=$(mktemp /tmp/flac-spec-XXXXXX.dat)
+    sox "$FILE" -n trim 0 30 stat -freq 2>"$SPEC_TMP" || true
+
+    if [[ -s "$SPEC_TMP" ]]; then
+        MAX_PEAK=$(awk 'NF>=2 && $1~/^[0-9]/ {print $1, $2}' "$SPEC_TMP" |
+            awk 'BEGIN{max=-999} $2>-80{if($1+0>max) max=$1+0} END{print max}')
+
+        if [[ -n "$MAX_PEAK" && "$MAX_PEAK" != "-999" && "$MAX_PEAK" != "" ]]; then
+            CEIL_PCT=$(awk -v peak="$MAX_PEAK" -v nyq="$NYQUIST" 'BEGIN { printf "%.0f", (peak/nyq)*100 }')
+            CEIL_KHZ=$(awk -v peak="$MAX_PEAK" 'BEGIN { printf "%.1f", peak/1000 }')
+            CEIL_PCT=${CEIL_PCT:-0}
+            CEIL_KHZ=${CEIL_KHZ:-0}
+
+            if [[ "$CEIL_PCT" -ge 90 ]]; then
+                echo -e "  ${GREEN}✓ spectrum${RESET}   Energy to ~${CEIL_KHZ}kHz (${CEIL_PCT}% of Nyquist) — looks genuine"
+            elif [[ "$CEIL_PCT" -ge 75 ]]; then
+                echo -e "  ${YELLOW}⚠ spectrum${RESET}   Energy to ~${CEIL_KHZ}kHz (${CEIL_PCT}% of Nyquist) — possible lossy source, check spectrogram"
+                ((WARN++)) || true
+            else
+                echo -e "  ${RED}✗ spectrum${RESET}   Energy cuts off at ~${CEIL_KHZ}kHz (${CEIL_PCT}% of Nyquist) — likely transcoded from lossy"
+                ((WARN++)) || true
+            fi
+        else
+            echo -e "  ${DIM}  spectrum   could not analyse${RESET}"
+        fi
+    else
+        echo -e "  ${DIM}  spectrum   sox produced no output${RESET}"
+    fi
+    rm -f "$SPEC_TMP"
+
+    # # ── 4. Spectrogram image ──────────────────────────────────────────────────
+    # PNG="${FILE%.flac}.spectrogram.png"
+    # if sox "$FILE" -n trim 0 60 spectrogram -o "$PNG" 2>/dev/null; then
+    #     echo -e "  ${DIM}  spectrogram → ${PNG}${RESET}"
+    # fi
+
+    ((PASS++)) || true
+    hr
+done
+
+# ── Summary ───────────────────────────────────────────────────────────────────
+echo -e "\n${BOLD}Summary${RESET}"
+echo -e "  Files checked : ${TOTAL}"
+echo -e "  ${GREEN}Passed${RESET}        : ${PASS}"
+[[ $WARN -gt 0 ]] && echo -e "  ${YELLOW}Warnings${RESET}      : ${WARN} (inspect spectrograms)"
+[[ $FAIL -gt 0 ]] && echo -e "  ${RED}Failed${RESET}        : ${FAIL} (corrupted)"
+echo
