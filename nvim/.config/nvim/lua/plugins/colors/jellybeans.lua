@@ -13,23 +13,23 @@ return {
             auto = true,
         },
         background = {
-            dark = "jellybeans_hc",
+            dark = "jellybeans_muted",
             light = "jellybeans_hc_light",
         },
         on_colors = function(c)
             -- Dark mode: amber + green - retro terminal vibes
-            -- if vim.o.background == "dark" then
-            --     c.accent_color_1 = "#7a9fb0" -- dusty slate blue for types
-            --     c.accent_color_2 = "#d59455" -- warm terracotta for functions
-            --     c.str = "#6ba84f" -- muted sage green for strings
-            --     c.background = "#101010"
-            -- else
-            --     -- Light mode: inspired by Studio98 - clean, high contrast
-            --     c.accent_color_1 = "#0030c0" -- darker blue for types
-            --     c.accent_color_2 = "#d47a1f" -- darker orange for functions
-            --     c.str = "#1a4a0f" -- darker sage green for strings
-            --     -- Keep jellybeans_light background which is likely #f5f5f5
-            -- end
+            if vim.o.background == "dark" then
+                -- c.accent_color_1 = "#7a9fb0" -- dusty slate blue for types
+                -- c.accent_color_2 = "#d59455" -- warm terracotta for functions
+                -- c.str = "#6ba84f" -- muted sage green for strings
+                c.background = "#000000"
+                -- else
+                --     -- Light mode: inspired by Studio98 - clean, high contrast
+                --     c.accent_color_1 = "#0030c0" -- darker blue for types
+                --     c.accent_color_2 = "#d47a1f" -- darker orange for functions
+                --     c.str = "#1a4a0f" -- darker sage green for strings
+                --     -- Keep jellybeans_light background which is likely #f5f5f5
+            end
         end,
         on_highlights = function(hl, c)
             hl.Pmenu = { fg = "#dcd7ba", bg = "#223249" }
