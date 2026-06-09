@@ -18,3 +18,6 @@ export FZF_DEFAULT_OPTS=" \
 --color=marker:#ff5050,fg+:#d8c8ff,prompt:#ffc060,hl+:#ffc060 \
 --color=border:#060606 \
 --multi"
+
+# tmux pop up for tab completions in zsh (via fzf-tab plugin)
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup

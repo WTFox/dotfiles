@@ -6,16 +6,23 @@ function load_pyenv() {
   eval "$(pyenv virtualenv-init -)"
 }
 
-function load_nvm() {
-  if type nvm > /dev/null 2>&1; then
-      return
-  fi
-  export NVM_DIR="$HOME/.nvm"
-
-  [ -s "$HOME/.nvm/nvm.sh" ] && \. "$HOME/.nvm/nvm.sh"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+nvm() {
+    unset -f nvm
+    [ -s "$HOME/.nvm/nvm.sh" ] && \. "$HOME/.nvm/nvm.sh" --no-use
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+    nvm "$@"
 }
+
+# function load_nvm() {
+#   if type nvm > /dev/null 2>&1; then
+#       return
+#   fi
+#   export NVM_DIR="$HOME/.nvm"
+#
+#   [ -s "$HOME/.nvm/nvm.sh" ] && \. "$HOME/.nvm/nvm.sh"
+#   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+#   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# }
 
 # Auto-attach to existing tmux session, or create one if none exist
 tmux() {
@@ -46,10 +53,10 @@ help() {
     echo "Usage: help command [args]"
     return 1
   fi
-  
+
   local cmd="$1"
   shift
-  
+
   if [[ "$@" == *"-h"* || "$@" == *"--help"* ]]; then
     # Command already has help flag, just run and pipe to bat
     $cmd "$@" 2>&1 | bat --plain --language=help
@@ -59,4 +66,3 @@ help() {
     $cmd -h 2>&1 | bat --plain --language=help
   fi
 }
-

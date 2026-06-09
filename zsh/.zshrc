@@ -1,13 +1,23 @@
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="minimal"
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 
 plugins=(
-  git gh extract zsh-autosuggestions zsh-syntax-highlighting fzf direnv poetry universalarchive urltools eza autoupdate zsh-completions
+  fzf-tab
+  fzf
+  git
+  # gh
+  extract
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  direnv
+  poetry
+  urltools
+  eza
+  autoupdate
 )
-fpath=(/usr/local/share/zsh-completions $fpath)
 source $ZSH/oh-my-zsh.sh
 
 source $HOME/dotfiles/_bootstrap/os/common.sh
@@ -34,22 +44,22 @@ fi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-_run-cdi() {
-    local dir="$(eval "zoxide query -i")"
-    if [[ -z "$dir" ]]; then
-        zle redisplay
-        return 0
-    fi
-    zle push-line
-    BUFFER="builtin cd -- ${(q)dir}"
-    zle accept-line
-    local ret=$?
-    unset dir
-    zle reset-prompt
-    return $ret
-}
-zle -N _run-cdi
-bindkey "^G" _run-cdi
+# _run-cdi() {
+#     local dir="$(eval "zoxide query -i")"
+#     if [[ -z "$dir" ]]; then
+#         zle redisplay
+#         return 0
+#     fi
+#     zle push-line
+#     BUFFER="builtin cd -- ${(q)dir}"
+#     zle accept-line
+#     local ret=$?
+#     unset dir
+#     zle reset-prompt
+#     return $ret
+# }
+# zle -N _run-cdi
+# bindkey "^G" _run-cdi
 
 run_ya() {
     zle -I
@@ -75,6 +85,6 @@ bindkey "^T" _run-tmux-sessionizer
 
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
-eval "$(zoxide init zsh)"
-eval "$(direnv hook zsh)"
+# eval "$(zoxide init zsh)"
+# eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
