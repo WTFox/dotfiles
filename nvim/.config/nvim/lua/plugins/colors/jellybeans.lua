@@ -40,48 +40,48 @@ local function apply_syntax_highlights(hl, c)
 end
 
 local function apply_completion_menu_highlights(hl, c)
-    -- hl.Pmenu = { fg = "#dcd7ba", bg = "#223249" }
-    -- hl.PmenuSel = { bg = "#2d4f67" }
-    -- hl.PmenuSbar = { bg = "#223249" }
-    -- hl.PmenuThumb = { bg = "#2d4f67" }
-    -- hl.PmenuKind = { fg = "#c8c093", bg = "#223249" }
-    -- hl.PmenuKindSel = { fg = "#c8c093", bg = "#2d4f67" }
-    -- hl.PmenuExtra = { fg = "#7a8382", bg = "#223249" }
-    -- hl.PmenuExtraSel = { fg = "#7a8382", bg = "#2d4f67" }
-    --
-    -- -- Blink completion menu
-    -- hl.BlinkCmpMenu = { fg = "#dcd7ba", bg = "#223249" }
-    -- hl.BlinkCmpMenuSelection = { bg = "#2d4f67" }
-    -- hl.BlinkCmpMenuBorder = { fg = "#223249", bg = "#223249" }
-    -- hl.BlinkCmpScrollBarGutter = { bg = "#223249" }
-    -- hl.BlinkCmpScrollBarThumb = { bg = "#2d4f67" }
-    --
-    -- -- Labels and text
-    -- hl.BlinkCmpLabel = { fg = "#dcd7ba" }
-    -- hl.BlinkCmpLabelMatch = { fg = "#ffb454", bold = true }
-    -- hl.BlinkCmpLabelDetail = { fg = "#7a8382" }
-    -- hl.BlinkCmpLabelDescription = { fg = "#7a8382" }
-    -- hl.BlinkCmpLabelDeprecated = { fg = "#7a8382", strikethrough = true }
-    --
-    -- -- Kind icons
-    -- hl.BlinkCmpKind = { fg = "#c8c093" }
-    --
-    -- -- Ghost text (inline completion preview)
-    -- hl.BlinkCmpGhostText = { fg = "#7a8382", italic = true }
-    --
-    -- -- Source badges (LSP, Buffer, etc.)
-    -- hl.BlinkCmpSource = { fg = "#c8c093", bold = true }
-    --
-    -- -- Documentation window
-    -- hl.BlinkCmpDoc = { fg = "#dcd7ba", bg = c.bg }
-    -- hl.BlinkCmpDocBorder = { fg = c.shuttle_grey, bg = c.bg }
-    -- hl.BlinkCmpDocSeparator = { fg = c.shuttle_grey }
-    -- hl.BlinkCmpDocCursorLine = { bg = "#2d4f67" }
-    --
-    -- -- Signature help
-    -- hl.BlinkCmpSignatureHelp = { fg = c.fg, bg = c.grey_three }
-    -- hl.BlinkCmpSignatureHelpBorder = { fg = c.shuttle_grey, bg = c.grey_three }
-    -- hl.BlinkCmpSignatureHelpActiveParameter = { fg = "#ffb454", bold = true }
+    hl.Pmenu = { fg = "#dcd7ba", bg = "#223249" }
+    hl.PmenuSel = { bg = "#2d4f67" }
+    hl.PmenuSbar = { bg = "#223249" }
+    hl.PmenuThumb = { bg = "#2d4f67" }
+    hl.PmenuKind = { fg = "#c8c093", bg = "#223249" }
+    hl.PmenuKindSel = { fg = "#c8c093", bg = "#2d4f67" }
+    hl.PmenuExtra = { fg = "#7a8382", bg = "#223249" }
+    hl.PmenuExtraSel = { fg = "#7a8382", bg = "#2d4f67" }
+
+    -- Blink completion menu
+    hl.BlinkCmpMenu = { fg = "#dcd7ba", bg = "#223249" }
+    hl.BlinkCmpMenuSelection = { bg = "#2d4f67" }
+    hl.BlinkCmpMenuBorder = { fg = "#223249", bg = "#223249" }
+    hl.BlinkCmpScrollBarGutter = { bg = "#223249" }
+    hl.BlinkCmpScrollBarThumb = { bg = "#2d4f67" }
+
+    -- Labels and text
+    hl.BlinkCmpLabel = { fg = "#dcd7ba" }
+    hl.BlinkCmpLabelMatch = { fg = "#ffb454", bold = true }
+    hl.BlinkCmpLabelDetail = { fg = "#7a8382" }
+    hl.BlinkCmpLabelDescription = { fg = "#7a8382" }
+    hl.BlinkCmpLabelDeprecated = { fg = "#7a8382", strikethrough = true }
+
+    -- Kind icons
+    hl.BlinkCmpKind = { fg = "#c8c093" }
+
+    -- Ghost text (inline completion preview)
+    hl.BlinkCmpGhostText = { fg = "#7a8382", italic = true }
+
+    -- Source badges (LSP, Buffer, etc.)
+    hl.BlinkCmpSource = { fg = "#c8c093", bold = true }
+
+    -- Documentation window
+    hl.BlinkCmpDoc = { fg = "#dcd7ba", bg = c.background }
+    hl.BlinkCmpDocBorder = { fg = c.shuttle_grey, bg = c.background }
+    hl.BlinkCmpDocSeparator = { fg = c.shuttle_grey }
+    hl.BlinkCmpDocCursorLine = { bg = "#2d4f67" }
+
+    -- Signature help
+    hl.BlinkCmpSignatureHelp = { fg = c.foreground, bg = c.background }
+    hl.BlinkCmpSignatureHelpBorder = { fg = c.shuttle_grey, bg = c.background }
+    hl.BlinkCmpSignatureHelpActiveParameter = { fg = "#ffb454", bold = true }
 end
 
 local function on_highlights(hl, c)
