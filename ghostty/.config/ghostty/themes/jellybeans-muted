@@ -1,7 +1,8 @@
 # name = "jellybeans-muted"
 # author = "A. Fox"
 
-palette = 0=#505050
+# palette = 0=#505050
+palette = 0=#060606
 palette = 1=#cc4d4d
 palette = 2=#909c6e
 palette = 3=#e8c88c
@@ -24,7 +25,8 @@ palette = 19=#3c3936
 palette = 20=#6f6f6c
 palette = 21=#bebebe
 
-background = #101010
+# background = #101010
+background = #060606
 foreground = #dad6c8
 cursor-color = #a6c3d9
 selection-background = #3c3b38
