@@ -39,56 +39,63 @@ local function apply_syntax_highlights(hl, c)
     hl["@punctuation.special"] = { fg = punct }
 end
 
-local function apply_completion_menu_highlights(hl, c)
-    hl.Pmenu = { fg = "#dcd7ba", bg = "#223249" }
-    hl.PmenuSel = { bg = "#2d4f67" }
-    hl.PmenuSbar = { bg = "#223249" }
-    hl.PmenuThumb = { bg = "#2d4f67" }
-    hl.PmenuKind = { fg = "#c8c093", bg = "#223249" }
-    hl.PmenuKindSel = { fg = "#c8c093", bg = "#2d4f67" }
-    hl.PmenuExtra = { fg = "#7a8382", bg = "#223249" }
-    hl.PmenuExtraSel = { fg = "#7a8382", bg = "#2d4f67" }
+-- Non-flat floats across this theme share one language (editor.lua's FloatBorder):
+-- background matches the editor (c.background), definition comes from a visible
+-- c.float_border edge, and selection reads via c.bright_grey (same as LspReference*).
+-- These helpers apply that language to the native and Blink completion menus, and
+-- route the "vibrant" accents onto the couple of spots that benefit from a pop:
+-- fuzzy-match text, kind icons, source badges, and the active signature parameter.
+local function apply_native_pmenu_highlights(hl, c)
+    hl.Pmenu = { fg = c.foreground, bg = c.background }
+    hl.PmenuSel = { bg = c.bright_grey }
+    hl.PmenuSbar = { bg = c.background }
+    hl.PmenuThumb = { bg = c.float_border }
+    hl.PmenuKind = { fg = accents.func, bg = c.background }
+    hl.PmenuKindSel = { fg = accents.func, bg = c.bright_grey }
+    hl.PmenuExtra = { fg = c.grey_chateau, bg = c.background }
+    hl.PmenuExtraSel = { fg = c.grey_chateau, bg = c.bright_grey }
+end
 
-    -- Blink completion menu
-    hl.BlinkCmpMenu = { fg = "#dcd7ba", bg = "#223249" }
-    hl.BlinkCmpMenuSelection = { bg = "#2d4f67" }
-    hl.BlinkCmpMenuBorder = { fg = "#223249", bg = "#223249" }
-    hl.BlinkCmpScrollBarGutter = { bg = "#223249" }
-    hl.BlinkCmpScrollBarThumb = { bg = "#2d4f67" }
+local function apply_blink_highlights(hl, c)
+    -- Menu
+    hl.BlinkCmpMenu = { fg = c.foreground, bg = c.background }
+    hl.BlinkCmpMenuBorder = { fg = c.float_border, bg = c.background }
+    hl.BlinkCmpMenuSelection = { bg = c.bright_grey }
+    hl.BlinkCmpScrollBarGutter = { bg = c.background }
+    hl.BlinkCmpScrollBarThumb = { bg = c.float_border }
 
     -- Labels and text
-    hl.BlinkCmpLabel = { fg = "#dcd7ba" }
-    hl.BlinkCmpLabelMatch = { fg = "#ffb454", bold = true }
-    hl.BlinkCmpLabelDetail = { fg = "#7a8382" }
-    hl.BlinkCmpLabelDescription = { fg = "#7a8382" }
-    hl.BlinkCmpLabelDeprecated = { fg = "#7a8382", strikethrough = true }
+    hl.BlinkCmpLabel = { fg = c.foreground }
+    hl.BlinkCmpLabelMatch = { fg = accents.keyword, bold = true }
+    hl.BlinkCmpLabelDetail = { fg = c.grey_chateau }
+    hl.BlinkCmpLabelDescription = { fg = c.grey_chateau }
+    hl.BlinkCmpLabelDeprecated = { fg = accents.comment, strikethrough = true }
 
-    -- Kind icons
-    hl.BlinkCmpKind = { fg = "#c8c093" }
+    -- Kind icons and source badges
+    hl.BlinkCmpKind = { fg = accents.func }
+    hl.BlinkCmpSource = { fg = accents.type_name, bold = true }
 
-    -- Ghost text (inline completion preview)
-    hl.BlinkCmpGhostText = { fg = "#7a8382", italic = true }
-
-    -- Source badges (LSP, Buffer, etc.)
-    hl.BlinkCmpSource = { fg = "#c8c093", bold = true }
+    -- Ghost text (inline completion preview) - reuse Comment, already accent-driven
+    hl.BlinkCmpGhostText = { link = "Comment" }
 
     -- Documentation window
-    hl.BlinkCmpDoc = { fg = "#dcd7ba", bg = c.background }
-    hl.BlinkCmpDocBorder = { fg = c.shuttle_grey, bg = c.background }
-    hl.BlinkCmpDocSeparator = { fg = c.shuttle_grey }
-    hl.BlinkCmpDocCursorLine = { bg = "#2d4f67" }
+    hl.BlinkCmpDoc = { fg = c.foreground, bg = c.background }
+    hl.BlinkCmpDocBorder = { fg = c.float_border, bg = c.background }
+    hl.BlinkCmpDocSeparator = { fg = c.float_border }
+    hl.BlinkCmpDocCursorLine = { bg = c.bright_grey }
 
     -- Signature help
     hl.BlinkCmpSignatureHelp = { fg = c.foreground, bg = c.background }
-    hl.BlinkCmpSignatureHelpBorder = { fg = c.shuttle_grey, bg = c.background }
-    hl.BlinkCmpSignatureHelpActiveParameter = { fg = "#ffb454", bold = true }
+    hl.BlinkCmpSignatureHelpBorder = { fg = c.float_border, bg = c.background }
+    hl.BlinkCmpSignatureHelpActiveParameter = { fg = accents.number, bold = true }
 end
 
 local function on_highlights(hl, c)
     if vim.o.background == "dark" then
         apply_syntax_highlights(hl, c)
+        apply_native_pmenu_highlights(hl, c)
+        apply_blink_highlights(hl, c)
     end
-    apply_completion_menu_highlights(hl, c)
 end
 
 return {
