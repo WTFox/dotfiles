@@ -26,7 +26,6 @@ return {
                 "jdtls",
                 "jsonls",
                 "lua_ls",
-                "rust_analyzer",
                 "shfmt",
                 "stylua",
                 "ts_ls",
