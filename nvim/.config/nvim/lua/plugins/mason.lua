@@ -2,7 +2,11 @@ return {
     { "mason-org/mason.nvim", event = "BufReadPre", opts = {} },
     {
         "mason-org/mason-lspconfig.nvim",
-        opts = {},
+        opts = {
+            -- stylua is a formatter, not a language server; jdtls is started by
+            -- nvim-jdtls instead of the bundled lspconfig default
+            automatic_enable = { exclude = { "stylua", "jdtls" } },
+        },
         event = "BufReadPre",
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
@@ -11,25 +15,30 @@ return {
     },
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
+        event = "BufReadPre",
+        dependencies = { "mason-org/mason.nvim" },
         opts = {
             ensure_installed = {
+                -- servers
                 "basedpyright",
                 "bashls",
-                "black",
                 "clangd",
                 "cssls",
                 "eslint",
                 "gopls",
                 "html",
-                "isort",
-                "ruff",
                 "jdtls",
                 "jsonls",
                 "lua_ls",
+                "rust_analyzer",
+                "ts_ls",
+                "yamlls",
+                -- formatters
+                "black",
+                "isort",
+                "prettier",
                 "shfmt",
                 "stylua",
-                "ts_ls",
-                -- "pyright",
             },
         },
     },

@@ -1,78 +1,26 @@
+local function dial(fn)
+    return function()
+        return require("dial.map")[fn]()
+    end
+end
+
 return {
     "monaqa/dial.nvim",
     keys = {
-        {
-            "<C-a>",
-            function()
-                return require("dial.map").inc_normal()
-            end,
-            expr = true,
-            desc = "Increment",
-        },
-        {
-            "<C-x>",
-            function()
-                return require("dial.map").dec_normal()
-            end,
-            expr = true,
-            desc = "Decrement",
-        },
-        {
-            "g<C-a>",
-            function()
-                return require("dial.map").inc_gnormal()
-            end,
-            expr = true,
-            desc = "Increment",
-        },
-        {
-            "g<C-x>",
-            function()
-                return require("dial.map").dec_gnormal()
-            end,
-            expr = true,
-            desc = "Decrement",
-        },
-        {
-            "<C-a>",
-            function()
-                return require("dial.map").inc_visual()
-            end,
-            mode = "v",
-            expr = true,
-            desc = "Increment",
-        },
-        {
-            "<C-x>",
-            function()
-                return require("dial.map").dec_visual()
-            end,
-            mode = "v",
-            expr = true,
-            desc = "Decrement",
-        },
-        {
-            "g<C-a>",
-            function()
-                return require("dial.map").inc_gvisual()
-            end,
-            mode = "v",
-            expr = true,
-            desc = "Increment",
-        },
-        {
-            "g<C-x>",
-            function()
-                return require("dial.map").dec_gvisual()
-            end,
-            mode = "v",
-            expr = true,
-            desc = "Decrement",
-        },
+        { "<C-a>", dial("inc_normal"), expr = true, desc = "Increment" },
+        { "<C-x>", dial("dec_normal"), expr = true, desc = "Decrement" },
+        { "g<C-a>", dial("inc_gnormal"), expr = true, desc = "Increment" },
+        { "g<C-x>", dial("dec_gnormal"), expr = true, desc = "Decrement" },
+        { "<C-a>", dial("inc_visual"), mode = "v", expr = true, desc = "Increment" },
+        { "<C-x>", dial("dec_visual"), mode = "v", expr = true, desc = "Decrement" },
+        { "g<C-a>", dial("inc_gvisual"), mode = "v", expr = true, desc = "Increment" },
+        { "g<C-x>", dial("dec_gvisual"), mode = "v", expr = true, desc = "Decrement" },
     },
     config = function()
         local augend = require("dial.augend")
 
+        -- Note: only `default` is reachable — the keymaps above always call the
+        -- bare inc/dec functions with no group argument.
         require("dial.config").augends:register_group({
             default = {
                 augend.integer.alias.decimal,
@@ -83,8 +31,6 @@ return {
                 augend.date.alias["%Y-%m-%d"],
                 augend.date.alias["%-m/%-d"],
                 augend.date.alias["%Y年%-m月%-d日"],
-                -- augend.constant.alias.alpha,
-                -- augend.constant.alias.Alpha,
                 augend.constant.new({
                     elements = { "and", "or" },
                     word = true,
@@ -108,75 +54,6 @@ return {
                 augend.semver.alias.semver,
                 augend.constant.new({
                     elements = { "let", "const" },
-                    word = true,
-                    cyclic = true,
-                }),
-            },
-
-            typescript = {
-                augend.integer.alias.decimal,
-                augend.integer.alias.hex,
-                augend.constant.new({
-                    elements = { "let", "const" },
-                    word = true,
-                    cyclic = true,
-                }),
-            },
-
-            vue = {
-                augend.integer.alias.decimal,
-                augend.integer.alias.hex,
-                augend.constant.new({
-                    elements = { "let", "const" },
-                    word = true,
-                    cyclic = true,
-                }),
-                augend.hexcolor.new({
-                    case = "lower",
-                }),
-            },
-
-            css = {
-                augend.integer.alias.decimal,
-                augend.integer.alias.hex,
-                augend.hexcolor.new({
-                    case = "lower",
-                }),
-            },
-
-            markdown = {
-                augend.integer.alias.decimal,
-                augend.misc.alias.markdown_header,
-                augend.constant.new({
-                    elements = { "[ ]", "[x]" },
-                    word = false,
-                    cyclic = true,
-                }),
-            },
-
-            json = {
-                augend.integer.alias.decimal,
-                augend.semver.alias.semver,
-            },
-
-            lua = {
-                augend.integer.alias.decimal,
-                augend.constant.new({
-                    elements = { "and", "or" },
-                    word = true,
-                    cyclic = true,
-                }),
-            },
-
-            python = {
-                augend.integer.alias.decimal,
-                augend.constant.new({
-                    elements = { "and", "or" },
-                    word = true,
-                    cyclic = true,
-                }),
-                augend.constant.new({
-                    elements = { "True", "False" },
                     word = true,
                     cyclic = true,
                 }),

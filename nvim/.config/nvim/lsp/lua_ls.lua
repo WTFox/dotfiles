@@ -15,7 +15,7 @@ return {
     settings = {
         Lua = {
             runtime = {
-                version = "Lua 5.4",
+                version = "LuaJIT",
             },
             completion = {
                 enable = true,
@@ -27,14 +27,7 @@ return {
             format = {
                 enable = false, -- Use stylua via conform instead
             },
-            workspace = {
-                library = {
-                    vim.env.VIMRUNTIME,
-                    "${3rd}/luv/library",
-                    vim.fn.stdpath("data") .. "/site/pack/core/opt/wezterm-types/lua",
-                },
-                checkThirdParty = true,
-            },
+            -- vim/luv/wezterm library types are supplied by lazydev.nvim
             telemetry = {
                 enable = false,
             },

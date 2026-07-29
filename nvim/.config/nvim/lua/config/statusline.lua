@@ -1,18 +1,10 @@
 -- internal state for toggles
 local state = {
     show_path = false,
-    show_branch = true,
 }
 
 -- config for placeholders + highlighting
 local config = {
-    icons = {
-        branch_hidden = " ",
-        hint = "",
-        error = "",
-        warn = "",
-        info = "",
-    },
     placeholder_hl = "StatusLineDim", -- a dim highlight group we define below
 }
 
@@ -24,98 +16,24 @@ end
 -- set dim highlight group
 vim.api.nvim_set_hl(0, config.placeholder_hl, { link = "Comment" })
 
-local function shorten_path(path, opts)
-    opts = opts or {}
-    local short_len = opts.short_len or 1
-    local tail_count = opts.tail_count or 2
-    local head_max = opts.head_max or 0
-    local relative = (opts.relative == nil) and true or opts.relative
-    local return_tbl = opts.return_table or false
-
-    -- Normalize to relative if requested
-    if relative then
-        path = vim.fn.fnamemodify(path, ":.")
-    end
-
-    -- OS path separator (same thing plenary.path.sep uses)
+-- Shorten a relative directory path to its last component, abbreviating up to
+-- 3 preceding components to a single character each
+-- (e.g. "lua/config/plugins/colors" -> "l/c/p/colors")
+local function shorten_path(path)
     local sep = package.config:sub(1, 1)
-
-    -- Split path quickly; trimempty=true matches vim.split default behavior
     local components = vim.split(path, sep, { plain = true, trimempty = true })
     local n = #components
-
-    -- Single (or empty) component: mirror your old behavior
     if n <= 1 then
-        if return_tbl then
-            return { nil, path }
-        end
         return path
     end
 
-    -- Compute head/tail ranges
-    if tail_count < 0 then
-        tail_count = 0
-    end
-    if tail_count > n then
-        tail_count = n
-    end
-
-    local head_end = n - tail_count
+    local head_start = math.max(1, n - 3)
     local head = {}
-    if head_end > 0 then
-        -- Respect head_max (keep only the LAST head_max elements if exceeding)
-        local head_start = 1
-        if head_max > 0 and head_end > head_max then
-            head_start = head_end - head_max + 1
-        end
-        local hsz = 0
-        for i = head_start, head_end do
-            hsz = hsz + 1
-            head[hsz] = components[i]
-        end
+    for i = head_start, n - 1 do
+        head[#head + 1] = components[i]:sub(1, 1)
     end
 
-    local tail = {}
-    do
-        local tsz = 0
-        for i = head_end + 1, n do
-            tsz = tsz + 1
-            tail[tsz] = components[i]
-        end
-    end
-
-    -- Shorten each head segment to `short_len`, preserving a leading dot
-    local function shorten(seg)
-        if short_len <= 0 then
-            return seg
-        end
-        if seg:sub(1, 1) == "." and #seg > 1 then
-            return "." .. seg:sub(2, 1 + short_len)
-        end
-        return seg:sub(1, short_len)
-    end
-
-    local head_short = nil
-    if #head > 0 then
-        for i = 1, #head do
-            head[i] = shorten(head[i])
-        end
-        head_short = table.concat(head, sep)
-    end
-
-    local tail_str = table.concat(tail, sep)
-
-    if return_tbl then
-        -- Keep same shape as your original: { shortened_head_or_nil, full_tail }
-        return { head_short, tail_str }
-    end
-
-    -- Join like original: "head_short/TAIL..." (or just tail if no head)
-    if head_short and #head_short > 0 then
-        return head_short .. sep .. tail_str
-    else
-        return tail_str
-    end
+    return table.concat(head, sep) .. sep .. components[n]
 end
 
 local function filepath()
@@ -129,11 +47,7 @@ local function filepath()
         return string.format("%%<%s/", fpath)
     end
 
-    return hl(config.placeholder_hl, shorten_path(fpath, {
-        short_len = 1,
-        tail_count = 1,
-        head_max = 3,
-    }) .. "/")
+    return hl(config.placeholder_hl, shorten_path(fpath) .. "/")
 end
 
 local function git()
@@ -142,18 +56,13 @@ local function git()
         return ""
     end
 
-    local head = git_info.head
     local added = (git_info.added and git_info.added > 0) and hl("DiffAdd", " +" .. git_info.added) or ""
     local changed = (git_info.changed and git_info.changed > 0) and hl("DiffChange", " ~" .. git_info.changed) or ""
     local removed = (git_info.removed and git_info.removed > 0) and hl("DiffDelete", " -" .. git_info.removed) or ""
 
-    if not state.show_branch then
-        head = hl(config.placeholder_hl, config.icons.branch_hidden)
-    end
-
     return table.concat({
-        "[ ",
-        head,
+        "[ ",
+        git_info.head,
         added,
         changed,
         removed,
@@ -224,17 +133,8 @@ function Statusline.toggle_path()
     vim.cmd("redrawstatus")
 end
 
-function Statusline.toggle_branch()
-    state.show_branch = not state.show_branch
-    vim.cmd("redrawstatus")
-end
-
-vim.keymap.set("n", "<leader>sp", function()
-    Statusline.toggle_path()
-end, { desc = "Toggle statusline path" })
--- vim.keymap.set("n", "<leader>sb", function()
---     Statusline.toggle_branch()
--- end, { desc = "Toggle statusline git branch" })
+-- <leader>sp is Snacks' "Search for Plugin Spec" (see snacks.lua)
+vim.keymap.set("n", "<leader>uP", Statusline.toggle_path, { desc = "Toggle statusline path" })
 
 local group = vim.api.nvim_create_augroup("Statusline", { clear = true })
 

@@ -1,6 +1,5 @@
 return {
     "oskarnurm/koda.nvim",
-    lazy = false,
-    priority = 1000,
+    lazy = true,
     config = true,
 }

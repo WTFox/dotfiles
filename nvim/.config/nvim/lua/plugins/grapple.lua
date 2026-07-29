@@ -20,9 +20,4 @@ return {
             desc = "Open grapple tags",
         },
     },
-    -- for i = 1, 9 do
-    --     keys[#keys + 1] =
-    --         { "<leader>" .. i, "<cmd>Grapple select index=" .. i .. "<cr>", desc = "Grapple select " .. i }
-    -- end
-    -- return keys
 }

@@ -20,15 +20,18 @@ return {
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     keys = {
         { "<leader>gdd", "<cmd>DiffviewOpen<CR>", desc = "DiffView" },
-        { "<leader>gd", "<cmd>Git diffthis<CR>", desc = "Git diff" },
-        { "<leader>gdm", function()
-            local branch = get_main_branch()
-            if branch == "" then
-                print("Could not get main branch")
-                return
-            end
-            vim.cmd("DiffviewOpen " .. branch)
-        end, desc = "DiffView main branch" },
+        {
+            "<leader>gdm",
+            function()
+                local branch = get_main_branch()
+                if branch == "" then
+                    print("Could not get main branch")
+                    return
+                end
+                vim.cmd("DiffviewOpen " .. branch)
+            end,
+            desc = "DiffView main branch",
+        },
     },
     opts = {
         use_icons = false,

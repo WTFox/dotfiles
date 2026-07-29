@@ -41,7 +41,6 @@ local setup_clue = function()
             miniclue.gen_clues.windows(),
             miniclue.gen_clues.z(),
             -- Custom leader key groups
-            { mode = "n", keys = "<Leader>a", desc = "+AI" },
             { mode = "n", keys = "<Leader>b", desc = "+Buffer" },
             { mode = "n", keys = "<Leader>c", desc = "+Code" },
             { mode = "n", keys = "<Leader>d", desc = "+Diagnostics" },
@@ -89,6 +88,34 @@ local setup_sessions = function()
             end
         end,
     })
+
+    vim.keymap.set("n", "<leader>po", function()
+        local sessions_dir = require("mini.sessions").config.directory
+        local sessions = {}
+        local handle = vim.uv.fs_scandir(sessions_dir)
+        if handle then
+            while true do
+                local name, type = vim.uv.fs_scandir_next(handle)
+                if not name then
+                    break
+                end
+                if type == "file" and name:match("%.vim$") then
+                    table.insert(sessions, name:gsub("%.vim$", ""))
+                end
+            end
+        end
+        if #sessions == 0 then
+            print("No sessions found")
+            return
+        end
+        vim.ui.select(sessions, {
+            prompt = "Restore Session: ",
+        }, function(choice)
+            if choice then
+                require("mini.sessions").read(choice .. ".vim")
+            end
+        end)
+    end, { desc = "Open Project Session" })
 end
 
 local setup_hipatterns = function()
@@ -112,9 +139,11 @@ return {
     event = "VeryLazy",
     config = function()
         require("mini.ai").setup()
-        require("mini.basics").setup()
+        require("mini.basics").setup({
+            mappings = { basic = false },
+            autocommands = { basic = false },
+        })
         require("mini.comment").setup()
-        require("mini.hipatterns").setup()
         require("mini.icons").setup()
         require("mini.move").setup()
         require("mini.splitjoin").setup()

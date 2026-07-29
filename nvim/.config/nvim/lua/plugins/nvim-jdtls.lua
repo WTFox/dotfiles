@@ -1,5 +1,3 @@
-local Utils = require("utils")
-
 local paths = {
     mac = "/opt/homebrew/opt/openjdk@21/bin/java",
     linux = "/usr/lib/jvm/java-25-openjdk-amd64/bin/java",
@@ -14,7 +12,7 @@ return {
             cmd = {
                 vim.fn.stdpath("data") .. "/mason/bin/jdtls",
                 "--java-executable",
-                Utils.is_wsl() and paths["linux"] or paths["mac"],
+                vim.fn.has("mac") == 1 and paths.mac or paths.linux,
             },
 
             -- Root directory detection
@@ -97,6 +95,7 @@ return {
         -- Attach for each java buffer
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "java",
+            group = vim.api.nvim_create_augroup("JdtlsAttach", { clear = true }),
             callback = attach_jdtls,
         })
 
