@@ -47,9 +47,17 @@ else
 	five_pct=$(jq -r '.five_hour.utilization | floor' "$cache" 2>/dev/null)
 	week_pct=$(jq -r '.seven_day.utilization | floor' "$cache" 2>/dev/null)
 	if [ -n "$five_pct" ] && [ "$five_pct" != "null" ]; then
+		resets_at=$(jq -r '.five_hour.resets_at' "$cache" 2>/dev/null)
+		reset_epoch=$(date -j -u -f "%Y-%m-%dT%H:%M:%S" "${resets_at%%.*}" +%s 2>/dev/null)
+		remaining=$((reset_epoch - $(date +%s)))
+		if [ -n "$reset_epoch" ] && [ "$remaining" -gt 0 ]; then
+			reset_str=$(printf "resets %dh%dm" $((remaining / 3600)) $(((remaining % 3600) / 60)))
+		else
+			reset_str=""
+		fi
 		filled=$((five_pct / 10))
 		bar=$(printf "%${filled}s" | tr ' ' '#')$(printf "%$((10 - filled))s" | tr ' ' '.')
-		printf "5h [%s] %d%% | 7d %d%% | ctx %d%%\n" "$bar" "$five_pct" "$week_pct" "$ctx_pct"
+		printf "5h [%s] %d%% (%s) | 7d %d%% | ctx %d%%\n" "$bar" "$five_pct" "$reset_str" "$week_pct" "$ctx_pct"
 	else
 		printf "ctx %d%%\n" "$ctx_pct"
 	fi
