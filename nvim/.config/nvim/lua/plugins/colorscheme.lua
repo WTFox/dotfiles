@@ -6,5 +6,6 @@ return {
     { import = "plugins.colors.jellybeans" },
     { import = "plugins.colors.koda" },
     { import = "plugins.colors.modus" },
+    { import = "plugins.colors.monofox" },
     { import = "plugins.colors.vague" },
 }

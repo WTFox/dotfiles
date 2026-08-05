@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+#
+# Interactive fzf browser for all running Claude Code panes across every
+# tmux session/window. Shows each pane's directory, topic (from its title),
+# and busy/idle status, with a live capture-pane preview. Enter jumps there.
+
+set -euo pipefail
+
+# Unicode glob ranges below (braille spinner detection) require a UTF-8 locale.
+export LC_ALL="${LC_ALL:-en_US.UTF-8}"
+
+sanity_check() {
+    if ! command -v tmux &>/dev/null; then
+        echo "tmux is not installed. Please install it first."
+        exit 1
+    fi
+
+    if ! command -v fzf &>/dev/null; then
+        echo "fzf is not installed. Please install it first."
+        exit 1
+    fi
+}
+
+sanity_check
+
+# The `claude` binary is a symlink to a version-named executable
+# (~/.local/share/claude/versions/2.1.222), so tmux's automatic-rename sets
+# pane_current_command to something like "2.1.222", not "claude". Match on
+# that shape rather than the literal name.
+is_claude_cmd() {
+    local cmd="$1"
+    [[ "$cmd" == "claude" ]] && return 0
+    [[ "$cmd" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] && return 0
+    return 1
+}
+
+enumerate() {
+    while IFS=$'\t' read -r pane_id cmd target path title; do
+        is_claude_cmd "$cmd" || continue
+
+        # Claude prefixes the pane title with a braille spinner glyph
+        # (U+2800-U+28FF) while it's actively working.
+        status="○"
+        topic="$title"
+        if [[ "$title" == [⠀-⣿]* ]]; then
+            status="●"
+            topic="${title#? }"
+        fi
+
+        display_path="${path/#$HOME/\~}"
+
+        # Claude hasn't set a topic yet; title is still just the hostname.
+        if [[ "$topic" == "$(hostname -s)" || -z "$topic" ]]; then
+            topic="($(basename "$path"))"
+        fi
+
+        printf '%s\t%s  %-12s %-40s %s\n' "$pane_id" "$status" "$target" "$display_path" "$topic"
+    done < <(tmux list-panes -a -F '#{pane_id}	#{pane_current_command}	#{session_name}:#{window_index}.#{pane_index}	#{pane_current_path}	#{pane_title}')
+}
+
+if [[ "${1:-}" == "--enumerate" ]]; then
+    enumerate
+    exit 0
+fi
+
+self="$0"
+
+selection=$(enumerate | fzf \
+    --delimiter '\t' \
+    --with-nth 2.. \
+    --preview "tmux capture-pane -p -t {1} -S -50" \
+    --preview-window 'right:60%:wrap' \
+    --bind "ctrl-r:reload($self --enumerate)" \
+    --header 'enter: jump   ctrl-r: refresh' \
+    || true)
+
+if [[ -z "$selection" ]]; then
+    exit 0
+fi
+
+pane_id="${selection%%$'\t'*}"
+
+if ! tmux list-panes -a -F '#{pane_id}' | grep -qFx "$pane_id"; then
+    tmux display-message "No Claude Code panes running"
+    exit 0
+fi
+
+session=$(tmux display-message -p -t "$pane_id" '#{session_name}')
+
+if [[ -z ${TMUX:-} ]]; then
+    tmux attach-session -t "$session"
+else
+    tmux switch-client -t "$session"
+fi
+
+tmux select-window -t "$pane_id"
+tmux select-pane -t "$pane_id"

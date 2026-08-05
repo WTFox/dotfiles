@@ -23,7 +23,7 @@ vim.g.maplocalleader = "\\"
 
 -- Set before lazy.nvim setup: auto-dark-mode.lua loads eagerly during this
 -- call and reads these on its first mode check.
-vim.g.dark_theme = "jellybeans"
+vim.g.dark_theme = "monofox"
 vim.g.light_theme = "modus_operandi"
 
 -- Setup lazy.nvim
@@ -39,7 +39,11 @@ require("lazy").setup({
     checker = { enabled = false },
     dev = {
         path = "~/dev/nvim-plugins/",
-        patterns = { "jellybeans.nvim", "claude-chat.nvim" },
+        patterns = {
+            "monofox.nvim",
+            "jellybeans.nvim",
+            "claude-chat.nvim",
+        },
         fallback = true,
     },
     change_detection = {
