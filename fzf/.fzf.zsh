@@ -13,9 +13,9 @@ source "${HOME}/.fzf/shell/completion.zsh"
 source "${HOME}/.fzf/shell/key-bindings.zsh"
 
 export FZF_DEFAULT_OPTS=" \
---color=bg+:#282828,bg:#060606,spinner:#aad4f8,hl:#ffc060 \
---color=fg:#d8d8d8,header:#ffc060,info:#98b0e0,pointer:#aad4f8 \
---color=marker:#ff5050,fg+:#d8c8ff,prompt:#ffc060,hl+:#ffc060 \
+--color=bg+:#1c1c1c,bg:#060606,spinner:#a0a8b0,hl:#c2916a \
+--color=fg:#dddddd,header:#c2916a,info:#7a8aa6,pointer:#a0a8b0 \
+--color=marker:#a08070,fg+:#c7c7c7,prompt:#7a8aa6,hl+:#c2916a \
 --color=border:#060606 \
 --multi"
 

@@ -1,0 +1,31 @@
+# name = "monofox"
+# author = "wtfox"
+
+palette = 0=#000000
+palette = 1=#c95c5c
+palette = 2=#afd787
+palette = 3=#c4a8d6
+palette = 4=#7fb0c2
+palette = 5=#a0a8b0
+palette = 6=#7a8aa6
+palette = 7=#c7c7c7
+palette = 8=#e19067
+palette = 9=#c95c5c
+palette = 10=#afd787
+palette = 11=#d9a35a
+palette = 12=#7a8aa6
+palette = 13=#c7c7c7
+palette = 14=#7a8aa6
+palette = 15=#ffffff
+palette = 16=#a0a8b0
+palette = 17=#c2916a
+palette = 18=#1c1c1c
+palette = 19=#404040
+palette = 20=#888888
+palette = 21=#c7c7c7
+
+background = #060606
+foreground = #e4e4e8
+cursor-color = #e4e4e8
+selection-background = #404040
+selection-foreground = #e4e4e8
