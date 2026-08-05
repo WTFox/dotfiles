@@ -35,15 +35,22 @@ if [ ! -f "$cache" ] || [ $(($(date +%s) - $(stat -f %m "$cache" 2>/dev/null || 
 	echo "$resp" | jq -e '.extra_usage != null' >/dev/null 2>&1 && echo "$resp" >"$cache"
 fi
 
-used=$(jq -r '.extra_usage.used_credits / 100' "$cache" 2>/dev/null)
-limit=$(jq -r '.extra_usage.monthly_limit / 100' "$cache" 2>/dev/null)
 pct=$(jq -r '.extra_usage.utilization | floor' "$cache" 2>/dev/null)
 
-if [ -n "$pct" ]; then
+if [ -n "$pct" ] && [ "$pct" != "null" ]; then
+	used=$(jq -r '.extra_usage.used_credits / 100' "$cache" 2>/dev/null)
+	limit=$(jq -r '.extra_usage.monthly_limit / 100' "$cache" 2>/dev/null)
 	filled=$((pct / 10))
 	bar=$(printf "%${filled}s" | tr ' ' '#')$(printf "%$((10 - filled))s" | tr ' ' '.')
 	printf "spend [%s] %d%% (\$%.2f/\$%.2f) | ctx %d%%\n" "$bar" "$pct" "$used" "$limit" "$ctx_pct"
 else
-	printf "ctx %d%%\n" "$ctx_pct"
+	five_pct=$(jq -r '.five_hour.utilization | floor' "$cache" 2>/dev/null)
+	week_pct=$(jq -r '.seven_day.utilization | floor' "$cache" 2>/dev/null)
+	if [ -n "$five_pct" ] && [ "$five_pct" != "null" ]; then
+		filled=$((five_pct / 10))
+		bar=$(printf "%${filled}s" | tr ' ' '#')$(printf "%$((10 - filled))s" | tr ' ' '.')
+		printf "5h [%s] %d%% | 7d %d%% | ctx %d%%\n" "$bar" "$five_pct" "$week_pct" "$ctx_pct"
+	else
+		printf "ctx %d%%\n" "$ctx_pct"
+	fi
 fi
-test line
