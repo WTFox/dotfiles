@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+input=$(cat)
+
+model=$(jq -r '.model.display_name' <<<"$input")
+dir=$(jq -r '.workspace.current_dir' <<<"$input")
+session_id=$(jq -r '.session_id' <<<"$input")
+ctx_pct=$(jq -r '.context_window.used_percentage // 0' <<<"$input" | cut -d. -f1)
+
+git_cache="/tmp/claude-git-cache-$session_id"
+if [ ! -f "$git_cache" ] || [ $(($(date +%s) - $(stat -f %m "$git_cache" 2>/dev/null || stat -c %Y "$git_cache"))) -gt 5 ]; then
+    if git -C "$dir" rev-parse --git-dir >/dev/null 2>&1; then
+        branch=$(git -C "$dir" branch --show-current 2>/dev/null)
+        added=$(git -C "$dir" diff --numstat 2>/dev/null | awk '{a+=$1} END{print a+0}')
+        removed=$(git -C "$dir" diff --numstat 2>/dev/null | awk '{r+=$2} END{print r+0}')
+        echo "$branch|$added|$removed" >"$git_cache"
+    else
+        echo "||" >"$git_cache"
+    fi
+fi
+IFS='|' read -r branch added removed <"$git_cache"
+
+line1="[$model] 📁 ${dir##*/}"
+if [ -n "$branch" ]; then
+    line1="$line1 |  $branch"
+    [ "$added" -gt 0 ] || [ "$removed" -gt 0 ] && line1="$line1 (+$added/-$removed)"
+fi
+echo "$line1"
+
+cache="/tmp/claude-spend-cache.json"
+if [ ! -f "$cache" ] || [ $(($(date +%s) - $(stat -f %m "$cache" 2>/dev/null || stat -c %Y "$cache"))) -gt 300 ]; then
+    token=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null | jq -r '.claudeAiOauth.accessToken')
+    resp=$(curl -s --max-time 5 -H "Authorization: Bearer $token" -H "anthropic-beta: oauth-2025-04-20" \
+        "https://api.anthropic.com/api/oauth/usage")
+    echo "$resp" | jq -e '.extra_usage != null' >/dev/null 2>&1 && echo "$resp" >"$cache"
+fi
+
+used=$(jq -r '.extra_usage.used_credits / 100' "$cache" 2>/dev/null)
+limit=$(jq -r '.extra_usage.monthly_limit / 100' "$cache" 2>/dev/null)
+pct=$(jq -r '.extra_usage.utilization | floor' "$cache" 2>/dev/null)
+
+if [ -n "$pct" ]; then
+    filled=$((pct / 10))
+    bar=$(printf "%${filled}s" | tr ' ' '#')$(printf "%$((10 - filled))s" | tr ' ' '.')
+    printf "spend [%s] %d%% (\$%.2f/\$%.2f) | ctx %d%%\n" "$bar" "$pct" "$used" "$limit" "$ctx_pct"
+else
+    printf "ctx %d%%\n" "$ctx_pct"
+fi
+test line
