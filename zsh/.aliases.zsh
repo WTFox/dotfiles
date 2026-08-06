@@ -14,7 +14,8 @@ alias dd='lazydocker'
 # == Git ==
 alias gap="git add -p"
 alias gds="git diff --stat"
-alias gg="lazygit"
+alias gg="lazygit --use-config-file ~/.config/lazygit/config.yml"
+alias lazygit="lazygit --use-config-file ~/.config/lazygit/config.yml"
 alias gst="git status --short --branch"
 alias branch="git branch | grep -v \"^\*\" | fzf --height=20% --reverse --info=inline | xargs git switch"
 
