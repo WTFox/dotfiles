@@ -1,5 +1,5 @@
 return {
-    "wtfox/monofox.nvim",
+    "wtfox/luna.nvim",
     dev = true,
     lazy = true,
     opts = {},

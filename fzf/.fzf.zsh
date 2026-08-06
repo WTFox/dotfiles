@@ -14,7 +14,7 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#1c1c1c,bg:#060606,spinner:#a0a8b0,hl:#c2916a \
---color=fg:#dddddd,header:#c2916a,info:#7a8aa6,pointer:#a0a8b0 \
+--color=fg:#e4e4e8,header:#c2916a,info:#7fb0c2,pointer:#a0a8b0 \
 --color=marker:#a08070,fg+:#c7c7c7,prompt:#7a8aa6,hl+:#c2916a \
 --color=border:#060606 \
 --multi"

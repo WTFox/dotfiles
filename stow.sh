@@ -3,6 +3,7 @@
 directories_to_stow=(
   "audio/"
   "bashrc/"
+  "bat/"
   "bin/"
   "claude"
   "direnv/"
@@ -11,6 +12,7 @@ directories_to_stow=(
   "git/"
   "ghostty/"
   "helix/"
+  "lazygit/"
   "nvim/"
   "starship/"
   "tmux/"
