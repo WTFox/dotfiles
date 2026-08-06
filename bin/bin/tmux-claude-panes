@@ -37,16 +37,14 @@ is_claude_cmd() {
 declare -A SESSION_TITLE
 declare -A SESSION_STATUS
 
-# Reads ~/.claude/sessions/*.json (one per live Claude process) and
-# ~/.claude/projects/*/*.jsonl (chat history, whose last "ai-title" event is
-# the current chat name) to populate SESSION_TITLE/SESSION_STATUS keyed by
-# the tmux pane's pid. Falls back silently (leaving the arrays empty) if jq
-# isn't installed or no session files exist yet.
+# Reads ~/.claude/sessions/*.json (one per live Claude process, whose
+# "name" field is the current chat name) to populate SESSION_TITLE/
+# SESSION_STATUS keyed by the tmux pane's pid. Falls back silently (leaving
+# the arrays empty) if jq isn't installed or no session files exist yet.
 load_sessions() {
     command -v jq &>/dev/null || return 0
 
     local sessions_dir="$HOME/.claude/sessions"
-    local projects_dir="$HOME/.claude/projects"
     [[ -d "$sessions_dir" ]] || return 0
 
     # pid -> ppid, for walking a claude process's ancestors up to a pane's
@@ -61,19 +59,16 @@ load_sessions() {
         [[ -n "$pid" ]] && pane_pids["$pid"]=1
     done < <(tmux list-panes -a -F '#{pane_pid}')
 
-    local f pid session_id claude_status
+    local f pid title claude_status
     for f in "$sessions_dir"/*.json; do
         [[ -e "$f" ]] || continue
-        IFS=$'\t' read -r pid session_id claude_status < <(jq -r '[.pid, .sessionId, .status] | @tsv' "$f" 2>/dev/null) || continue
+        IFS=$'\t' read -r pid title claude_status < <(jq -r '[.pid, .name, .status] | @tsv' "$f" 2>/dev/null) || continue
         [[ -n "$pid" ]] || continue
 
         # Walk ancestors until we hit a live pane's pid.
         local walk="$pid"
         while [[ -n "$walk" && "$walk" != "0" && "$walk" != "1" ]]; do
             if [[ -n "${pane_pids[$walk]:-}" ]]; then
-                local title
-                title=$(grep -h '"type":"ai-title"' "$projects_dir"/*/"$session_id".jsonl 2>/dev/null \
-                    | tail -1 | jq -r '.aiTitle // empty' 2>/dev/null)
                 [[ -n "$title" ]] && SESSION_TITLE["$walk"]="$title"
                 [[ -n "$claude_status" ]] && SESSION_STATUS["$walk"]="$claude_status"
                 break
@@ -119,7 +114,7 @@ enumerate() {
             topic="($(basename "$path"))"
         fi
 
-        printf '%s\t%s  %-12s %-40s %s\n' "$pane_id" "$status" "$target" "$display_path" "$topic"
+        printf '%s\t%s  %s  %s\n' "$pane_id" "$status" "$topic" "$display_path"
     done < <(tmux list-panes -a -F '#{pane_id}	#{pane_current_command}	#{session_name}:#{window_index}.#{pane_index}	#{pane_current_path}	#{pane_title}	#{pane_pid}')
 }
 
@@ -133,8 +128,8 @@ self="$0"
 selection=$(enumerate | fzf \
     --delimiter '\t' \
     --with-nth 2.. \
-    --preview "tmux capture-pane -p -t {1} -S -50" \
-    --preview-window 'right:60%:wrap' \
+    --preview "tmux capture-pane -p -t {1} -S -200 | tail -n 50" \
+    --preview-window 'down:70%:wrap' \
     --bind "ctrl-r:reload($self --enumerate)" \
     --header 'enter: jump   ctrl-r: refresh' \
     || true)

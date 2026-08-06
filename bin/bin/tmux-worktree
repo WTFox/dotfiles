@@ -1,0 +1,136 @@
+#!/usr/bin/env bash
+#
+# Create (or reuse) a git worktree for a branch and drop into a new tmux
+# session in that directory. Worktrees live alongside the repo in
+# ../<repo>-worktrees/<branch>.
+#
+# With no argument, opens an fzf picker (in a tmux popup when run from
+# inside tmux) listing existing worktrees/branches; the typed query doubles
+# as a new branch name if it doesn't match anything.
+
+set -euo pipefail
+
+die() {
+    if [[ -n "${TMUX:-}" ]]; then
+        tmux display-message "tmux-worktree: $1"
+    else
+        echo "tmux-worktree: $1" >&2
+    fi
+    exit 1
+}
+
+if [[ -n "${TMUX:-}" ]]; then
+    pane_path=$(tmux display-message -p '#{pane_current_path}')
+else
+    pane_path="$PWD"
+fi
+
+repo_root=$(git -C "$pane_path" rev-parse --show-toplevel 2>/dev/null) || die "not inside a git repo"
+
+repo_name=$(basename "$repo_root")
+worktrees_root="$(dirname "$repo_root")/${repo_name}-worktrees"
+
+default_branch() {
+    local ref
+    ref=$(git -C "$repo_root" symbolic-ref --quiet refs/remotes/origin/HEAD 2>/dev/null) && {
+        echo "${ref#refs/remotes/origin/}"
+        return
+    }
+
+    if git -C "$repo_root" remote get-url origin &>/dev/null; then
+        ref=$(git -C "$repo_root" remote set-head origin -a 2>/dev/null &&
+            git -C "$repo_root" symbolic-ref --quiet refs/remotes/origin/HEAD 2>/dev/null) && {
+            echo "${ref#refs/remotes/origin/}"
+            return
+        }
+    fi
+
+    for candidate in main master; do
+        if git -C "$repo_root" show-ref --verify --quiet "refs/remotes/origin/$candidate" ||
+            git -C "$repo_root" show-ref --verify --quiet "refs/heads/$candidate"; then
+            echo "$candidate"
+            return
+        fi
+    done
+
+    echo "HEAD"
+}
+
+base_ref() {
+    local default
+    default=$(default_branch)
+    if git -C "$repo_root" show-ref --verify --quiet "refs/remotes/origin/$default"; then
+        echo "origin/$default"
+    elif git -C "$repo_root" show-ref --verify --quiet "refs/heads/$default"; then
+        echo "$default"
+    else
+        echo "HEAD"
+    fi
+}
+
+branch="${1:-}"
+
+if [[ -z "$branch" ]]; then
+    git -C "$repo_root" fetch origin --prune 2>/dev/null || true
+
+    candidates=$(
+        {
+            git -C "$repo_root" worktree list --porcelain |
+                awk '/^branch /{ sub("refs/heads/", "", $2); print "[wt] " $2 }'
+
+            git -C "$repo_root" for-each-ref --format='%(refname:short)' refs/heads
+
+            git -C "$repo_root" for-each-ref --format='%(refname)' refs/remotes/origin |
+                grep -v '^refs/remotes/origin/HEAD$' |
+                sed 's#^refs/remotes/origin/##'
+        } | awk '{ key = $0; sub(/^\[wt\] /, "", key); if (!(key in seen)) { seen[key] = 1; print } }'
+    )
+
+    if selection=$(printf '%s\n' "$candidates" | fzf --print-query --header "enter: select or create branch"); then
+        status=0
+    else
+        status=$?
+    fi
+    [[ $status -eq 0 || $status -eq 1 ]] || exit 0
+
+    query=$(sed -n '1p' <<<"$selection")
+    chosen=$(sed -n '2p' <<<"$selection")
+
+    if [[ -n "$chosen" ]]; then
+        branch="${chosen#\[wt\] }"
+    elif [[ -n "$query" ]]; then
+        branch=$(tr '[:upper:]' '[:lower:]' <<<"$query" | tr -c 'a-z0-9' '-' | sed -E 's/-+/-/g; s/^-|-$//g')
+    else
+        exit 0
+    fi
+fi
+
+worktree_dir="$worktrees_root/${branch}"
+
+if [[ -d "$worktree_dir" ]]; then
+    : # already there, just switch to it
+elif existing_path=$(git -C "$repo_root" worktree list --porcelain |
+    awk -v b="refs/heads/$branch" '/^worktree /{p=$2} /^branch /{if ($2==b) print p}'); [[ -n "$existing_path" ]]; then
+    worktree_dir="$existing_path"
+else
+    mkdir -p "$worktrees_root"
+    if git -C "$repo_root" show-ref --verify --quiet "refs/heads/$branch"; then
+        git -C "$repo_root" worktree add "$worktree_dir" "$branch"
+    elif git -C "$repo_root" show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+        git -C "$repo_root" worktree add --track -b "$branch" "$worktree_dir" "origin/$branch"
+    else
+        git -C "$repo_root" worktree add -b "$branch" "$worktree_dir" "$(base_ref)"
+    fi
+fi
+
+session_name=$(echo "${repo_name}-${branch}" | tr . _)
+
+if ! tmux has-session -t "$session_name" 2>/dev/null; then
+    tmux new-session -ds "$session_name" -c "$worktree_dir"
+fi
+
+if [[ -n "${TMUX:-}" ]]; then
+    tmux switch-client -t "$session_name"
+else
+    tmux attach-session -t "$session_name"
+fi
