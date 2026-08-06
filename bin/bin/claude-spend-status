@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
 
+get_token() {
+	if command -v security >/dev/null 2>&1; then
+		security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null
+	elif [ -f "$HOME/.claude/.credentials.json" ]; then
+		cat "$HOME/.claude/.credentials.json"
+	fi | jq -r '.claudeAiOauth.accessToken // empty'
+}
+
+mtime() {
+	stat -c %Y "$1" 2>/dev/null || stat -f %m "$1" 2>/dev/null
+}
+
+epoch_from_iso() {
+	date -u -d "$1" +%s 2>/dev/null \
+		|| date -j -u -f "%Y-%m-%dT%H:%M:%S" "$1" +%s 2>/dev/null
+}
+
 input=$(cat)
 
 model=$(jq -r '.model.display_name' <<<"$input")
@@ -8,7 +25,7 @@ session_id=$(jq -r '.session_id' <<<"$input")
 ctx_pct=$(jq -r '.context_window.used_percentage // 0' <<<"$input" | cut -d. -f1)
 
 git_cache="/tmp/claude-git-cache-$session_id"
-if [ ! -f "$git_cache" ] || [ $(($(date +%s) - $(stat -f %m "$git_cache" 2>/dev/null || stat -c %Y "$git_cache"))) -gt 5 ]; then
+if [ ! -f "$git_cache" ] || [ $(($(date +%s) - $(mtime "$git_cache"))) -gt 5 ]; then
 	if git -C "$dir" rev-parse --git-dir >/dev/null 2>&1; then
 		branch=$(git -C "$dir" branch --show-current 2>/dev/null)
 		added=$(git -C "$dir" diff --numstat 2>/dev/null | awk '{a+=$1} END{print a+0}')
@@ -28,37 +45,51 @@ fi
 echo "$line1"
 
 cache="/tmp/claude-spend-cache.json"
-if [ ! -f "$cache" ] || [ $(($(date +%s) - $(stat -f %m "$cache" 2>/dev/null || stat -c %Y "$cache"))) -gt 300 ]; then
-	token=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null | jq -r '.claudeAiOauth.accessToken')
+if [ ! -f "$cache" ] || [ $(($(date +%s) - $(mtime "$cache"))) -gt 300 ]; then
+	token=$(get_token)
 	resp=$(curl -s --max-time 5 -H "Authorization: Bearer $token" -H "anthropic-beta: oauth-2025-04-20" \
 		"https://api.anthropic.com/api/oauth/usage")
 	echo "$resp" | jq -e '.extra_usage != null' >/dev/null 2>&1 && echo "$resp" >"$cache"
 fi
 
-pct=$(jq -r '.extra_usage.utilization | floor' "$cache" 2>/dev/null)
+five_pct=$(jq -r '.five_hour.utilization | floor' "$cache" 2>/dev/null)
+week_pct=$(jq -r '.seven_day.utilization | floor' "$cache" 2>/dev/null)
 
-if [ -n "$pct" ] && [ "$pct" != "null" ]; then
+show_account_usage() {
+	resets_at=$(jq -r '.five_hour.resets_at' "$cache" 2>/dev/null)
+	reset_epoch=$(epoch_from_iso "${resets_at%%.*}")
+	remaining=$((reset_epoch - $(date +%s)))
+	if [ -n "$reset_epoch" ] && [ "$remaining" -gt 0 ]; then
+		reset_str=$(printf "resets %dh%dm" $((remaining / 3600)) $(((remaining % 3600) / 60)))
+	else
+		reset_str=""
+	fi
+	filled=$((five_pct / 10))
+	bar=$(printf "%${filled}s" | tr ' ' '#')$(printf "%$((10 - filled))s" | tr ' ' '.')
+	printf "5h [%s] %d%% (%s) | 7d %d%% | ctx %d%%\n" "$bar" "$five_pct" "$reset_str" "$week_pct" "$ctx_pct"
+}
+
+show_spend() {
+	pct=$(jq -r '.extra_usage.utilization | floor' "$cache" 2>/dev/null)
 	used=$(jq -r '.extra_usage.used_credits / 100' "$cache" 2>/dev/null)
 	limit=$(jq -r '.extra_usage.monthly_limit / 100' "$cache" 2>/dev/null)
 	filled=$((pct / 10))
 	bar=$(printf "%${filled}s" | tr ' ' '#')$(printf "%$((10 - filled))s" | tr ' ' '.')
 	printf "spend [%s] %d%% (\$%.2f/\$%.2f) | ctx %d%%\n" "$bar" "$pct" "$used" "$limit" "$ctx_pct"
-else
-	five_pct=$(jq -r '.five_hour.utilization | floor' "$cache" 2>/dev/null)
-	week_pct=$(jq -r '.seven_day.utilization | floor' "$cache" 2>/dev/null)
-	if [ -n "$five_pct" ] && [ "$five_pct" != "null" ]; then
-		resets_at=$(jq -r '.five_hour.resets_at' "$cache" 2>/dev/null)
-		reset_epoch=$(date -j -u -f "%Y-%m-%dT%H:%M:%S" "${resets_at%%.*}" +%s 2>/dev/null)
-		remaining=$((reset_epoch - $(date +%s)))
-		if [ -n "$reset_epoch" ] && [ "$remaining" -gt 0 ]; then
-			reset_str=$(printf "resets %dh%dm" $((remaining / 3600)) $(((remaining % 3600) / 60)))
-		else
-			reset_str=""
-		fi
-		filled=$((five_pct / 10))
-		bar=$(printf "%${filled}s" | tr ' ' '#')$(printf "%$((10 - filled))s" | tr ' ' '.')
-		printf "5h [%s] %d%% (%s) | 7d %d%% | ctx %d%%\n" "$bar" "$five_pct" "$reset_str" "$week_pct" "$ctx_pct"
+}
+
+extra_pct=$(jq -r '.extra_usage.utilization | floor' "$cache" 2>/dev/null)
+has_extra=false
+[ -n "$extra_pct" ] && [ "$extra_pct" != "null" ] && has_extra=true
+
+if [ -n "$five_pct" ] && [ "$five_pct" != "null" ]; then
+	if [ "$five_pct" -ge 100 ] || [ "${week_pct:-0}" -ge 100 ]; then
+		if $has_extra; then show_spend; else show_account_usage; fi
 	else
-		printf "ctx %d%%\n" "$ctx_pct"
+		show_account_usage
 	fi
+elif $has_extra; then
+	show_spend
+else
+	printf "ctx %d%%\n" "$ctx_pct"
 fi
