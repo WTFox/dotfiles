@@ -34,28 +34,93 @@ is_claude_cmd() {
     return 1
 }
 
+declare -A SESSION_TITLE
+declare -A SESSION_STATUS
+
+# Reads ~/.claude/sessions/*.json (one per live Claude process) and
+# ~/.claude/projects/*/*.jsonl (chat history, whose last "ai-title" event is
+# the current chat name) to populate SESSION_TITLE/SESSION_STATUS keyed by
+# the tmux pane's pid. Falls back silently (leaving the arrays empty) if jq
+# isn't installed or no session files exist yet.
+load_sessions() {
+    command -v jq &>/dev/null || return 0
+
+    local sessions_dir="$HOME/.claude/sessions"
+    local projects_dir="$HOME/.claude/projects"
+    [[ -d "$sessions_dir" ]] || return 0
+
+    # pid -> ppid, for walking a claude process's ancestors up to a pane's
+    # own pid (claude may run directly in the pane, or under a shell).
+    local -A ppid_of
+    while read -r pid ppid; do
+        ppid_of["$pid"]="$ppid"
+    done < <(ps -eo pid=,ppid=)
+
+    local -A pane_pids
+    while read -r pid; do
+        [[ -n "$pid" ]] && pane_pids["$pid"]=1
+    done < <(tmux list-panes -a -F '#{pane_pid}')
+
+    local f pid session_id claude_status
+    for f in "$sessions_dir"/*.json; do
+        [[ -e "$f" ]] || continue
+        IFS=$'\t' read -r pid session_id claude_status < <(jq -r '[.pid, .sessionId, .status] | @tsv' "$f" 2>/dev/null) || continue
+        [[ -n "$pid" ]] || continue
+
+        # Walk ancestors until we hit a live pane's pid.
+        local walk="$pid"
+        while [[ -n "$walk" && "$walk" != "0" && "$walk" != "1" ]]; do
+            if [[ -n "${pane_pids[$walk]:-}" ]]; then
+                local title
+                title=$(grep -h '"type":"ai-title"' "$projects_dir"/*/"$session_id".jsonl 2>/dev/null \
+                    | tail -1 | jq -r '.aiTitle // empty' 2>/dev/null)
+                [[ -n "$title" ]] && SESSION_TITLE["$walk"]="$title"
+                [[ -n "$claude_status" ]] && SESSION_STATUS["$walk"]="$claude_status"
+                break
+            fi
+            walk="${ppid_of[$walk]:-}"
+        done
+    done
+}
+
 enumerate() {
-    while IFS=$'\t' read -r pane_id cmd target path title; do
+    load_sessions
+
+    while IFS=$'\t' read -r pane_id cmd target path title pane_pid; do
         is_claude_cmd "$cmd" || continue
 
         # Claude prefixes the pane title with a braille spinner glyph
-        # (U+2800-U+28FF) while it's actively working.
-        status="○"
+        # (U+2800-U+28FF) while it's actively working. Prefer the session
+        # file's status when we have one for this pane.
+        if [[ -n "${SESSION_STATUS[$pane_pid]:-}" ]]; then
+            if [[ "${SESSION_STATUS[$pane_pid]}" == "busy" ]]; then
+                status="●"
+            else
+                status="○"
+            fi
+        elif [[ "$title" == [⠀-⣿]* ]]; then
+            status="●"
+        else
+            status="○"
+        fi
+
         topic="$title"
         if [[ "$title" == [⠀-⣿]* ]]; then
-            status="●"
             topic="${title#? }"
         fi
 
         display_path="${path/#$HOME/\~}"
 
-        # Claude hasn't set a topic yet; title is still just the hostname.
-        if [[ "$topic" == "$(hostname -s)" || -z "$topic" ]]; then
+        # Prefer the real chat name from Claude's own session/history files.
+        if [[ -n "${SESSION_TITLE[$pane_pid]:-}" ]]; then
+            topic="${SESSION_TITLE[$pane_pid]}"
+        elif [[ "$topic" == "$(hostname -s)" || -z "$topic" ]]; then
+            # Claude hasn't set a topic yet; title is still just the hostname.
             topic="($(basename "$path"))"
         fi
 
         printf '%s\t%s  %-12s %-40s %s\n' "$pane_id" "$status" "$target" "$display_path" "$topic"
-    done < <(tmux list-panes -a -F '#{pane_id}	#{pane_current_command}	#{session_name}:#{window_index}.#{pane_index}	#{pane_current_path}	#{pane_title}')
+    done < <(tmux list-panes -a -F '#{pane_id}	#{pane_current_command}	#{session_name}:#{window_index}.#{pane_index}	#{pane_current_path}	#{pane_title}	#{pane_pid}')
 }
 
 if [[ "${1:-}" == "--enumerate" ]]; then
