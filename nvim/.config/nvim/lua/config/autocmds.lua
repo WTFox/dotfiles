@@ -51,6 +51,16 @@ autocmd("VimResized", {
     end,
 })
 
+-- Restore a blinking block cursor for the shell on exit/suspend
+local cursor_restore_group = augroup("CursorRestore", { clear = true })
+autocmd({ "VimLeave", "VimSuspend" }, {
+    pattern = "*",
+    group = cursor_restore_group,
+    callback = function()
+        io.write("\27[0 q")
+    end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
     desc = "User: fix backdrop for lazy window",
     pattern = "lazy_backdrop",

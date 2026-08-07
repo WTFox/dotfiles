@@ -26,7 +26,8 @@ vim.diagnostic.config({
 })
 
 -- UI
-opt.guicursor = "i:block-blinkwait700-blinkoff400-blinkon250"
+opt.guicursor = "n:block-blinkwait700-blinkoff400-blinkon250,i:block-blinkwait700-blinkoff400-blinkon250,v-ve:block,"
+    .. "c:ver25,r-cr:hor20,o:hor50,sm:block-blinkwait175-blinkoff150-blinkon175"
 opt.signcolumn = "yes"
 opt.termguicolors = true
 opt.number = true
