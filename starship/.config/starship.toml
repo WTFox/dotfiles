@@ -1,5 +1,15 @@
 palette = "luna"
 
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration
+$python\
+$character
+"""
+
 [palettes.luna]
 black = "#000000"
 red = "#e08585"
@@ -18,14 +28,8 @@ bright-purple = "#c4a8d6"
 bright-cyan = "#75a1c7"
 bright-white = "#ffffff"
 
-format = """
-$directory\
-$git_branch\
-$git_state\
-$git_status\
-$cmd_duration
-$python\
-$character"""
+[fill]
+symbol = " "
 
 [directory]
 style = "blue"
@@ -39,32 +43,28 @@ error_symbol = "[λ](red)"
 vimcmd_symbol = "[λ](bright-yellow)"
 
 [git_branch]
-format = "[$branch]($style) "
+format = "[$branch]($style)"
 style = "bright-black"
 
 [git_status]
-format = "[$all_status$ahead_behind]($style) "
-style = "yellow"
-conflicted = "="
-untracked = "?$count"
-modified = "*$count"
-staged = "+$count"
-renamed = "»$count"
-deleted = "✘$count"
-stashed = "≡$count"
-ahead = "⇡$count"
-behind = "⇣$count"
-diverged = "⇕⇡$ahead_count⇣$behind_count"
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "yellow"
+style = "bright-black"
 
 [cmd_duration]
 format = "[$duration]($style) "
-style = "bright-black"
-min_time = 2000
+style = "bright-yellow"
 
 [python]
-format = "([$virtualenv]($style) )"
+format = '[($virtualenv) ]($style)'
 style = "bright-black"
