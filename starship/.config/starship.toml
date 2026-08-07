@@ -33,9 +33,10 @@ symbol = " "
 
 [directory]
 style = "blue"
-truncation_length = 3
+truncation_length = 2
 truncate_to_repo = true
 truncation_symbol = "…/"
+fish_style_pwd_dir_length = 1
 
 [character]
 success_symbol = "[λ](bright-yellow)"
