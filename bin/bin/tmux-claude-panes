@@ -78,6 +78,16 @@ load_sessions() {
     done
 }
 
+# Nerd Font glyphs + truecolor ANSI, matching the fzf/tmux2k palette
+# (busy green, idle dim gray, path in the same muted gray as the prompt).
+ICON_BUSY=$''  # nf-fa-circle
+ICON_IDLE=$''  # nf-fa-circle-thin
+COLOR_BUSY=$'\033[38;2;143;191;143m'
+COLOR_IDLE=$'\033[38;2;122;122;122m'
+COLOR_TOPIC=$'\033[1;38;2;231;231;231m'
+COLOR_PATH=$'\033[38;2;122;122;122m'
+COLOR_RESET=$'\033[0m'
+
 enumerate() {
     load_sessions
 
@@ -89,14 +99,14 @@ enumerate() {
         # file's status when we have one for this pane.
         if [[ -n "${SESSION_STATUS[$pane_pid]:-}" ]]; then
             if [[ "${SESSION_STATUS[$pane_pid]}" == "busy" ]]; then
-                status="●"
+                icon="${COLOR_BUSY}${ICON_BUSY}${COLOR_RESET}"
             else
-                status="○"
+                icon="${COLOR_IDLE}${ICON_IDLE}${COLOR_RESET}"
             fi
         elif [[ "$title" == [⠀-⣿]* ]]; then
-            status="●"
+            icon="${COLOR_BUSY}${ICON_BUSY}${COLOR_RESET}"
         else
-            status="○"
+            icon="${COLOR_IDLE}${ICON_IDLE}${COLOR_RESET}"
         fi
 
         topic="$title"
@@ -114,7 +124,8 @@ enumerate() {
             topic="($(basename "$path"))"
         fi
 
-        printf '%s\t%s  %s  %s\n' "$pane_id" "$status" "$topic" "$display_path"
+        printf '%s\t%s  %s%-28s%s  %s%s%s\n' \
+            "$pane_id" "$icon" "$COLOR_TOPIC" "$topic" "$COLOR_RESET" "$COLOR_PATH" "$display_path" "$COLOR_RESET"
     done < <(tmux list-panes -a -F '#{pane_id}	#{pane_current_command}	#{session_name}:#{window_index}.#{pane_index}	#{pane_current_path}	#{pane_title}	#{pane_pid}')
 }
 
@@ -125,13 +136,22 @@ fi
 
 self="$0"
 
+header=$(printf '%s%s%s busy    %s%s%s idle    ↵ jump    ^r refresh' \
+    "$COLOR_BUSY" "$ICON_BUSY" "$COLOR_RESET" "$COLOR_IDLE" "$ICON_IDLE" "$COLOR_RESET")
+
 selection=$(enumerate | fzf \
+    --ansi \
+    --no-separator \
     --delimiter '\t' \
     --with-nth 2.. \
-    --preview "tmux capture-pane -p -t {1} -S -200 | tail -n 50" \
-    --preview-window 'down:70%:wrap' \
+    --preview "tmux capture-pane -e -p -t {1} -S -200 | tail -n 50" \
+    --preview-window 'down:70%:wrap:border-top' \
+    --preview-label ' pane output ' \
+    --border rounded \
+    --border-label ' claude sessions ' \
+    --border-label-pos 3 \
     --bind "ctrl-r:reload($self --enumerate)" \
-    --header 'enter: jump   ctrl-r: refresh' \
+    --header "$header" \
     || true)
 
 if [[ -z "$selection" ]]; then

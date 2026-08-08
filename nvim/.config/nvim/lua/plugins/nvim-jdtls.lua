@@ -3,9 +3,27 @@ local paths = {
     linux = "/usr/lib/jvm/java-25-openjdk-amd64/bin/java",
 }
 
+-- DAP + test jars installed by mason's java-debug-adapter / java-test packages
+local function java_debug_bundles()
+    local mason_path = vim.fn.stdpath("data") .. "/mason/packages"
+    local bundles = {}
+    vim.list_extend(
+        bundles,
+        vim.split(
+            vim.fn.glob(mason_path .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"),
+            "\n"
+        )
+    )
+    vim.list_extend(bundles, vim.split(vim.fn.glob(mason_path .. "/java-test/extension/server/*.jar"), "\n"))
+    return vim.tbl_filter(function(s)
+        return s ~= ""
+    end, bundles)
+end
+
 return {
     "mfussenegger/nvim-jdtls",
     ft = "java",
+    dependencies = { "mfussenegger/nvim-dap" },
     opts = function()
         return {
             -- Use the jdtls wrapper from Mason with Java 21
@@ -85,11 +103,12 @@ return {
                 root_dir = opts.root_dir(fname),
                 settings = opts.settings,
                 init_options = {
-                    bundles = {},
+                    bundles = java_debug_bundles(),
                 },
             }
 
             require("jdtls").start_or_attach(config)
+            require("jdtls.dap").setup_dap_main_class_configs()
         end
 
         -- Attach for each java buffer

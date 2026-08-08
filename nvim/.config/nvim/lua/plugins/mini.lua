@@ -43,13 +43,13 @@ local setup_clue = function()
             -- Custom leader key groups
             { mode = "n", keys = "<Leader>b", desc = "+Buffer" },
             { mode = "n", keys = "<Leader>c", desc = "+Code" },
-            { mode = "n", keys = "<Leader>d", desc = "+Diagnostics" },
+            { mode = "n", keys = "<Leader>d", desc = "+Debug" },
             { mode = "n", keys = "<Leader>f", desc = "+Find" },
             { mode = "n", keys = "<Leader>g", desc = "+Git" },
             { mode = "n", keys = "<Leader>gh", desc = "+Git Hunks" },
             { mode = "n", keys = "<Leader>p", desc = "+Project" },
             { mode = "n", keys = "<Leader>s", desc = "+Search" },
-            { mode = "n", keys = "<Leader>t", desc = "+Tabs" },
+            { mode = "n", keys = "<Leader>t", desc = "+Test" },
             { mode = "n", keys = "<Leader>u", desc = "+UI" },
         },
     })

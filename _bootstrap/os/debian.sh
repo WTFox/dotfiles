@@ -78,6 +78,13 @@ install_apps() {
   # lazydocker
   curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
+  # difftastic
+  DIFFT_VERSION=$(curl -s "https://api.github.com/repos/Wilfred/difftastic/releases/latest" | grep -Po '"tag_name": "\K[^"]*')
+  curl -Lo difft.tar.gz "https://github.com/Wilfred/difftastic/releases/latest/download/difft-x86_64-unknown-linux-gnu.tar.gz"
+  tar xf difft.tar.gz difft
+  sudo install difft /usr/local/bin
+  rm difft.tar.gz difft
+
   # eza and fd-find
   sudo apt install -y gpg
   sudo mkdir -p /etc/apt/keyrings

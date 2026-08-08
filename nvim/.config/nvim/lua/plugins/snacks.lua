@@ -4,20 +4,6 @@ local function pick(name, opts)
     end
 end
 
--- Float terminal helper: all of <leader>td/tc/ty share the same window shape
-local function float_term(cmd)
-    return function()
-        Snacks.terminal(cmd, {
-            win = {
-                style = nil, -- Use floating window
-                backdrop = 85,
-                width = 0.9,
-                height = 0.9,
-            },
-        })
-    end
-end
-
 return {
     "folke/snacks.nvim",
     priority = 1000,
@@ -295,9 +281,6 @@ return {
             end,
             desc = "Lazygit",
         },
-        { "<leader>td", float_term("lazydocker"), desc = "Open Lazydocker" },
-        { "<leader>tc", float_term("claude"), desc = "Open Claude" },
-        { "<leader>ty", float_term("yazi"), desc = "Open Yazi" },
         {
             "<C-\\>",
             function()

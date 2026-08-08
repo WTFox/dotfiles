@@ -39,6 +39,13 @@ return {
                 "prettier",
                 "shfmt",
                 "stylua",
+                -- debug adapters
+                "debugpy",
+                "delve",
+                "codelldb",
+                "js-debug-adapter",
+                "java-debug-adapter",
+                "java-test",
             },
         },
     },

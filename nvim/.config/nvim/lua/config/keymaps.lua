@@ -28,7 +28,6 @@ map("n", "<C-k>", "<C-w>k", desc_opts("Move to top window"))
 -- Window Splits
 map("n", "<leader>|", ":vsplit<CR>", desc_opts("Vertical split"))
 map("n", "<leader>-", ":split<CR>", desc_opts("Horizontal split"))
-map("n", "<leader>ds", "<cmd>windo diffthis<cr>", desc_opts("Diff Split"))
 
 -- Buffer Navigation
 map("n", "L", ":bnext<CR>", desc_opts("Next buffer"))
@@ -60,11 +59,14 @@ map("n", "<leader>cd", function()
     vim.fn.chdir(vim.fn.expand("%:p:h"))
 end, desc_opts("Change to current file's directory"))
 
+-- Diff
+map("n", "<leader>gD", "<cmd>windo diffthis<cr>", desc_opts("Diff Split"))
+
 -- LSP keybinds for navigation are provided by Snacks.nvim
 map("n", "<leader>cr", vim.lsp.buf.rename, desc_opts("Rename symbol"))
 
 -- Diagnostics (picker versions are in snacks.lua as <leader>sd and <leader>sD)
-map("n", "<leader>do", vim.diagnostic.open_float, desc_opts("Open diagnostic float"))
+map("n", "<leader>cD", vim.diagnostic.open_float, desc_opts("Open diagnostic float"))
 map("n", "]d", function()
     vim.diagnostic.jump({ count = 1 })
 end, desc_opts("Next diagnostic"))
@@ -83,8 +85,4 @@ map("n", "<leader>cf", function()
     require("conform").format({ async = true, lsp_format = "fallback" })
 end, desc_opts("Format buffer (all sources)"))
 
--- Undo tree
-map("n", "<leader>fu", function()
-    vim.cmd("packadd nvim.undotree")
-    vim.cmd("Undotree")
-end, desc_opts("Undo tree"))
+-- Undo tree (plugin spec + keys in lua/plugins/undotree.lua)
