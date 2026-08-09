@@ -84,7 +84,8 @@ ICON_BUSY=$''  # nf-fa-circle
 ICON_IDLE=$''  # nf-fa-circle-thin
 COLOR_BUSY=$'\033[38;2;143;191;143m'
 COLOR_IDLE=$'\033[38;2;122;122;122m'
-COLOR_TOPIC=$'\033[1;38;2;231;231;231m'
+COLOR_DIR=$'\033[1;38;2;231;231;231m'
+COLOR_TOPIC=$'\033[38;2;122;122;122m'
 COLOR_PATH=$'\033[38;2;122;122;122m'
 COLOR_RESET=$'\033[0m'
 
@@ -115,17 +116,18 @@ enumerate() {
         fi
 
         display_path="${path/#$HOME/\~}"
+        dir="$(basename "$path")"
 
         # Prefer the real chat name from Claude's own session/history files.
         if [[ -n "${SESSION_TITLE[$pane_pid]:-}" ]]; then
             topic="${SESSION_TITLE[$pane_pid]}"
-        elif [[ "$topic" == "$(hostname -s)" || -z "$topic" ]]; then
+        elif [[ "$topic" == "$(hostname -s)" ]]; then
             # Claude hasn't set a topic yet; title is still just the hostname.
-            topic="($(basename "$path"))"
+            topic=""
         fi
 
-        printf '%s\t%s  %s%-28s%s  %s%s%s\n' \
-            "$pane_id" "$icon" "$COLOR_TOPIC" "$topic" "$COLOR_RESET" "$COLOR_PATH" "$display_path" "$COLOR_RESET"
+        printf '%s\t%s  %s%-20s%s  %s%-34s%s  %s%s%s\n' \
+            "$pane_id" "$icon" "$COLOR_DIR" "$dir" "$COLOR_RESET" "$COLOR_TOPIC" "$topic" "$COLOR_RESET" "$COLOR_PATH" "$display_path" "$COLOR_RESET"
     done < <(tmux list-panes -a -F '#{pane_id}	#{pane_current_command}	#{session_name}:#{window_index}.#{pane_index}	#{pane_current_path}	#{pane_title}	#{pane_pid}')
 }
 

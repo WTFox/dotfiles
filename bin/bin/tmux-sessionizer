@@ -226,15 +226,27 @@ if [[ ${#TS_EXTRA_SEARCH_PATHS[@]} -gt 0 ]]; then
     TS_SEARCH_PATHS+=("${TS_EXTRA_SEARCH_PATHS[@]}")
 fi
 
+# Nerd Font glyphs + truecolor ANSI, matching the fzf/tmux2k palette.
+ICON_SESSION=$''  # nf-oct-terminal
+ICON_DIR=$''  # nf-fa-folder
+COLOR_SESSION=$'\033[1;38;2;194;145;106m'
+COLOR_DIM=$'\033[38;2;122;122;122m'
+COLOR_VIBRANT=$'\033[1;38;2;127;176;194m'
+COLOR_RESET=$'\033[0m'
+
 # utility function to find directories
 find_dirs() {
-    # list TMUX sessions
-    if [[ -n "${TMUX}" ]]; then
-        current_session=$(tmux display-message -p '#S')
-        tmux list-sessions -F "[TMUX] #{session_name}" 2>/dev/null | grep -vFx "[TMUX] $current_session"
-    else
-        tmux list-sessions -F "[TMUX] #{session_name}" 2>/dev/null
-    fi
+    # list TMUX sessions, decorated (raw key <tab> pretty display)
+    local this_session=""
+    [[ -n "${TMUX}" ]] && this_session=$(tmux display-message -p '#S')
+    tmux list-sessions -F "#{session_name}	#{session_windows}" 2>/dev/null | {
+        while IFS=$'\t' read -r name windows; do
+            [[ -n "$this_session" && "$name" == "$this_session" ]] && continue
+            printf '[TMUX] %s\t%s  %s%s%s  %s%s window%s%s\n' \
+                "$name" "$ICON_SESSION" "$COLOR_SESSION" "$name" "$COLOR_RESET" \
+                "$COLOR_DIM" "$windows" "$([[ "$windows" == 1 ]] || echo s)" "$COLOR_RESET"
+        done
+    }
 
     # note: TS_SEARCH_PATHS is an array of paths to search for directories
     # if the path ends with :number, it will search for directories with a max depth of number ;)
@@ -248,7 +260,13 @@ find_dirs() {
             path="$entry"
         fi
 
-        [[ -d "$path" ]] && find "$path" -mindepth 1 -maxdepth "${depth:-${TS_MAX_DEPTH:-1}}" -path '*/.git' -prune -o -type d -print
+        [[ -d "$path" ]] || continue
+        while IFS= read -r dir; do
+            display_path="${dir/#$HOME/\~}"
+            printf '%s\t%s  %s%s%s  %s%s%s\n' \
+                "$dir" "$ICON_DIR" "$COLOR_DIM" "$(dirname "$display_path")" "$COLOR_RESET" \
+                "$COLOR_VIBRANT" "$(basename "$dir")" "$COLOR_RESET"
+        done < <(find "$path" -mindepth 1 -maxdepth "${depth:-${TS_MAX_DEPTH:-1}}" \( -name '.*' -o -name 'node_modules' \) -prune -o -type d -print)
     done
 }
 
@@ -319,12 +337,35 @@ handle_split_session_cmd() {
     fi
 }
 
+# Re-launch the interactive picker inside a tmux popup when run from within
+# tmux. -s/--session and direct-path invocations skip this (they're meant to
+# run instantly, not through a picker UI).
+if [[ -z $session_cmd && -z $user_selected && -n ${TMUX:-} && -z ${TS_POPUP:-} ]]; then
+    tmux display-popup -E -e TS_POPUP=1 -w 85% -h 80% -- "$0" "$@"
+    exit 0
+fi
+
 if [[ ! -z $session_cmd ]]; then
     handle_session_cmd
 elif [[ ! -z $user_selected ]]; then
     selected="$user_selected"
 else
-    selected=$(find_dirs | fzf)
+    selected=$(find_dirs | fzf \
+        --ansi \
+        --delimiter '\t' \
+        --with-nth 2.. \
+        --reverse \
+        --info=inline \
+        --border rounded \
+        --border-label ' sessions ' \
+        --border-label-pos 3 \
+        --prompt '  ' \
+        --pointer '▸' \
+        --header '↵ open' \
+        --preview 'bash -c "case \"\$1\" in \"[TMUX] \"*) tmux list-windows -t \"\${1#\[TMUX\] }\" ;; *) eza --tree --level=2 --color=always \"\$1\" 2>/dev/null || ls -la \"\$1\" ;; esac" -- {1}' \
+        --preview-window 'right:55%:border-left' \
+        || true)
+    selected="${selected%%$'\t'*}"
 fi
 
 if [[ -z $selected ]]; then
