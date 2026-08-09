@@ -67,7 +67,10 @@ session_idx=""
 session_cmd=""
 user_selected=""
 split_type=""
+internal_action=""
+internal_target=""
 VERSION="0.1.0"
+SELF="$0"
 
 while [[ "$#" -gt 0 ]]; do
     case "$1" in
@@ -111,6 +114,24 @@ while [[ "$#" -gt 0 ]]; do
         echo "tmux-sessionizer version $VERSION"
         exit 0
         ;;
+    --internal-find-dirs)
+        internal_action="find-dirs"
+        ;;
+    --internal-kill)
+        internal_action="kill"
+        internal_target="$2"
+        shift
+        ;;
+    --internal-kill-others)
+        internal_action="kill-others"
+        internal_target="$2"
+        shift
+        ;;
+    --internal-rename)
+        internal_action="rename"
+        internal_target="$2"
+        shift
+        ;;
     *)
         user_selected="$1"
         ;;
@@ -139,6 +160,12 @@ sanity_check() {
 }
 
 switch_to() {
+    if [[ -n "${TS_POPUP_RESULT:-}" ]]; then
+        log "deferring switch to $1 -- writing to $TS_POPUP_RESULT for outer process"
+        echo "$1" >"$TS_POPUP_RESULT"
+        return
+    fi
+
     if [[ -z $TMUX ]]; then
         log "attaching to session $1"
         tmux attach-session -t "$1"
@@ -241,12 +268,15 @@ find_dirs() {
     [[ -n "${TMUX}" ]] && this_session=$(tmux display-message -p '#S')
     tmux list-sessions -F "#{session_name}	#{session_windows}" 2>/dev/null | {
         while IFS=$'\t' read -r name windows; do
-            [[ -n "$this_session" && "$name" == "$this_session" ]] && continue
             printf '[TMUX] %s\t%s  %s%s%s  %s%s window%s%s\n' \
                 "$name" "$ICON_SESSION" "$COLOR_SESSION" "$name" "$COLOR_RESET" \
                 "$COLOR_DIM" "$windows" "$([[ "$windows" == 1 ]] || echo s)" "$COLOR_RESET"
         done
-    }
+    } | sort -t $'\t' -k1,1 | awk -F'\t' -v cur="[TMUX] $this_session" '
+        $1 == cur { cur_line = $0; next }
+        { print }
+        END { if (cur_line != "") print cur_line }
+    '
 
     # note: TS_SEARCH_PATHS is an array of paths to search for directories
     # if the path ends with :number, it will search for directories with a max depth of number ;)
@@ -269,6 +299,40 @@ find_dirs() {
         done < <(find "$path" -mindepth 1 -maxdepth "${depth:-${TS_MAX_DEPTH:-1}}" \( -name '.*' -o -name 'node_modules' \) -prune -o -type d -print)
     done
 }
+
+# Dispatch for actions invoked by fzf key bindings (see the fzf --bind options
+# below). These re-invoke this script with a raw picker key ("[TMUX] name" or
+# a directory path) so the logic lives in one place instead of inline in fzf's
+# bind syntax.
+if [[ -n "$internal_action" ]]; then
+    case "$internal_action" in
+    find-dirs)
+        find_dirs
+        ;;
+    kill)
+        if [[ "$internal_target" == "[TMUX] "* ]]; then
+            tmux kill-session -t "${internal_target#\[TMUX\] }" 2>/dev/null
+        fi
+        ;;
+    kill-others)
+        target_session=""
+        [[ "$internal_target" == "[TMUX] "* ]] && target_session="${internal_target#\[TMUX\] }"
+        this_session=$(tmux display-message -p '#S' 2>/dev/null)
+        tmux list-sessions -F '#{session_name}' 2>/dev/null | while read -r s; do
+            [[ "$s" == "$this_session" || "$s" == "$target_session" ]] && continue
+            tmux kill-session -t "$s" 2>/dev/null
+        done
+        ;;
+    rename)
+        if [[ "$internal_target" == "[TMUX] "* ]]; then
+            old_name="${internal_target#\[TMUX\] }"
+            read -r -p "Rename '$old_name' to: " new_name
+            [[ -n "$new_name" ]] && tmux rename-session -t "$old_name" "$new_name"
+        fi
+        ;;
+    esac
+    exit 0
+fi
 
 handle_session_cmd() {
     log "executing session command $session_cmd with index $session_idx split_type=$split_type"
@@ -341,7 +405,12 @@ handle_split_session_cmd() {
 # tmux. -s/--session and direct-path invocations skip this (they're meant to
 # run instantly, not through a picker UI).
 if [[ -z $session_cmd && -z $user_selected && -n ${TMUX:-} && -z ${TS_POPUP:-} ]]; then
-    tmux display-popup -E -e TS_POPUP=1 -w 85% -h 80% -- "$0" "$@"
+    ts_popup_result=$(mktemp)
+    tmux display-popup -E -e TS_POPUP=1 -e TS_POPUP_RESULT="$ts_popup_result" -w 85% -h 80% -- "$0" "$@"
+    if [[ -s "$ts_popup_result" ]]; then
+        switch_to "$(<"$ts_popup_result")"
+    fi
+    rm -f "$ts_popup_result"
     exit 0
 fi
 
@@ -361,9 +430,13 @@ else
         --border-label-pos 3 \
         --prompt '  ' \
         --pointer '▸' \
-        --header '↵ open' \
+        --header '↵ open  ctrl-x kill  ctrl-r rename  ctrl-alt-x kill others  ctrl-/ preview' \
         --preview 'bash -c "case \"\$1\" in \"[TMUX] \"*) tmux list-windows -t \"\${1#\[TMUX\] }\" ;; *) eza --tree --level=2 --color=always \"\$1\" 2>/dev/null || ls -la \"\$1\" ;; esac" -- {1}' \
         --preview-window 'right:55%:border-left' \
+        --bind "ctrl-x:execute-silent(\"$SELF\" --internal-kill {1})+reload(\"$SELF\" --internal-find-dirs)" \
+        --bind "ctrl-r:execute(\"$SELF\" --internal-rename {1})+reload(\"$SELF\" --internal-find-dirs)" \
+        --bind "ctrl-alt-x:execute-silent(\"$SELF\" --internal-kill-others {1})+reload(\"$SELF\" --internal-find-dirs)" \
+        --bind 'ctrl-/:toggle-preview' \
         || true)
     selected="${selected%%$'\t'*}"
 fi
