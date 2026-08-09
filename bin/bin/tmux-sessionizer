@@ -406,7 +406,7 @@ handle_split_session_cmd() {
 # run instantly, not through a picker UI).
 if [[ -z $session_cmd && -z $user_selected && -n ${TMUX:-} && -z ${TS_POPUP:-} ]]; then
     ts_popup_result=$(mktemp)
-    tmux display-popup -E -e TS_POPUP=1 -e TS_POPUP_RESULT="$ts_popup_result" -w 85% -h 80% -- "$0" "$@"
+    tmux display-popup -E -w 85% -h 80% -- env TS_POPUP=1 TS_POPUP_RESULT="$ts_popup_result" "$0" "$@"
     if [[ -s "$ts_popup_result" ]]; then
         switch_to "$(<"$ts_popup_result")"
     fi
