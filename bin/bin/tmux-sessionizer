@@ -147,8 +147,8 @@ find_dirs() {
         fi
 
         [[ -d "$path" ]] || continue
-        find "$path" -mindepth 1 -maxdepth "${depth:-${TS_MAX_DEPTH:-1}}" \( -name '.*' -o -name 'node_modules' \) -prune -o -type d -print
-    done | sed "s|^$HOME|~|" | sort -u
+        find "$path" -mindepth 1 -maxdepth "${depth:-${TS_MAX_DEPTH:-1}}" \( -name '.*' -o -name 'node_modules' \) -prune -o -type d -print | sed "s|^$HOME|~|" | sort -u
+    done | awk '!seen[$0]++'
 }
 
 # List active tmux sessions (styled, current session pinned last) followed by
