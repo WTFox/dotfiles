@@ -3,8 +3,6 @@
 CONFIG_FILE_NAME="tmux-sessionizer.conf"
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmux-sessionizer"
 CONFIG_FILE="$CONFIG_DIR/$CONFIG_FILE_NAME"
-PANE_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/tmux-sessionizer"
-PANE_CACHE_FILE="$PANE_CACHE_DIR/panes.cache"
 
 # config file example
 # ------------------------
@@ -16,20 +14,6 @@ PANE_CACHE_FILE="$PANE_CACHE_DIR/panes.cache"
 # TS_EXTRA_SEARCH_PATHS=(~/ghq:3 ~/Git:3 ~/.config:2)
 # # if set this override the TS_MAX_DEPTH (1)
 # TS_MAX_DEPTH=2
-# This is not meant to override .tmux-sessionizer.  At first i thought this
-# would be a good command, but i don't think its ackshually what i want.
-#
-# Instead, its a list of commands to run on windows who's index is way outside
-# of the first 10 windows.  This allows you to create as many windows in your
-# session as you would like without having your workflow interrupted by these
-# programatic windows
-#
-# how to use:
-# tmux-sessionizer -w 0 will execute the first command in window -t 69.
-# TS_SESSION_COMMANDS=(<cmd1> <cmd2>)
-#
-# TS_LOG=true # will write logs to ~/.local/share/tmux-sessionizer/tmux-sessionizer.logs
-# TS_LOG_FILE=<file> # will write logs to <file> Defaults to ~/.local/share/tmux-sessionizer/tmux-sessionizer.logs
 # ------------------------
 
 if [[ -f "$CONFIG_FILE" ]]; then
@@ -41,35 +25,9 @@ if [[ -f "$LOCAL_CONFIG_FILE" ]]; then
     source "$LOCAL_CONFIG_FILE"
 fi
 
-if [[ -f "$CONFIG_FILE_NAME" ]]; then
-    source "$CONFIG_FILE_NAME"
-fi
-
-if [[ $TS_LOG != "true" ]]; then
-    if [[ -z $TS_LOG_FILE ]]; then
-        TS_LOG_FILE="$HOME/.local/share/tmux-sessionizer/tmux-sessionizer.logs"
-    fi
-
-    mkdir -p "$(dirname "$TS_LOG_FILE")"
-fi
-
-log() {
-    if [[ -z $TS_LOG ]]; then
-        return
-    elif [[ $TS_LOG == "echo" ]]; then
-        echo "$*"
-    elif [[ $TS_LOG == "file" ]]; then
-        echo "$*" >>"$TS_LOG_FILE"
-    fi
-}
-
-session_idx=""
-session_cmd=""
 user_selected=""
-split_type=""
 internal_action=""
 internal_target=""
-VERSION="0.1.0"
 SELF="$0"
 
 while [[ "$#" -gt 0 ]]; do
@@ -78,44 +36,10 @@ while [[ "$#" -gt 0 ]]; do
         echo "Usage: tmux-sessionizer [OPTIONS] [SEARCH_PATH]"
         echo "Options:"
         echo "  -h, --help             Display this help message"
-        echo "  -s, --session <name>   session command index."
-        echo "  --vsplit               Create vertical split (horizontal layout) for session command"
-        echo "  --hsplit               Create horizontal split (vertical layout) for session command"
         exit 0
         ;;
-    -s | --session)
-        session_idx="$2"
-        if [[ -z $session_idx ]]; then
-            echo "Session index cannot be empty"
-            exit 1
-        fi
-
-        if [[ -z $TS_SESSION_COMMANDS ]]; then
-            echo "TS_SESSION_COMMANDS is not set.  Must have a command set to run when switching to a session"
-            exit 1
-        fi
-
-        if [[ -z "$session_idx" || "$session_idx" -lt 0 || "$session_idx" -ge "${#TS_SESSION_COMMANDS[@]}" ]]; then
-            echo "Error: Invalid index. Please provide an index between 0 and $((${#TS_SESSION_COMMANDS[@]} - 1))."
-            exit 1
-        fi
-
-        session_cmd="${TS_SESSION_COMMANDS[$session_idx]}"
-
-        shift
-        ;;
-    --vsplit)
-        split_type="vsplit"
-        ;;
-    --hsplit)
-        split_type="hsplit"
-        ;;
-    -v | --version)
-        echo "tmux-sessionizer version $VERSION"
-        exit 0
-        ;;
-    --internal-find-dirs)
-        internal_action="find-dirs"
+    --internal-list-entries)
+        internal_action="list-entries"
         ;;
     --internal-kill)
         internal_action="kill"
@@ -139,14 +63,6 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-log "tmux-sessionizer($VERSION): idx=$session_idx cmd=$session_cmd user_selected=$user_selected split_type=$split_type log=$TS_LOG log_file=$TS_LOG_FILE"
-
-# Validate split options are only used with session commands
-if [[ -n "$split_type" && -z "$session_idx" ]]; then
-    echo "Error: --vsplit and --hsplit can only be used with -s/--session option"
-    exit 1
-fi
-
 sanity_check() {
     if ! command -v tmux &>/dev/null; then
         echo "tmux is not installed. Please install it first."
@@ -161,83 +77,42 @@ sanity_check() {
 
 switch_to() {
     if [[ -n "${TS_POPUP_RESULT:-}" ]]; then
-        log "deferring switch to $1 -- writing to $TS_POPUP_RESULT for outer process"
         echo "$1" >"$TS_POPUP_RESULT"
         return
     fi
 
     if [[ -z $TMUX ]]; then
-        log "attaching to session $1"
         tmux attach-session -t "$1"
     else
-        log "switching to session $1"
         tmux switch-client -t "$1"
     fi
 }
 
 has_session() {
-    tmux list-sessions | grep -q "^$1:"
+    tmux has-session -t "=$1" 2>/dev/null
 }
 
-hydrate() {
-    if [[ ! -z $session_cmd ]]; then
-        log "skipping hydrate for $1 -- using \"$session_cmd\" instead"
-        return
-    elif [ -f "$2/.tmux-sessionizer" ]; then
-        log "sourcing(local) $2/.tmux-sessionizer"
-        tmux send-keys -t "$1" "source $2/.tmux-sessionizer" c-M
-    elif [ -f "$HOME/.tmux-sessionizer" ]; then
-        log "sourcing(global) $HOME/.tmux-sessionizer"
-        tmux send-keys -t "$1" "source $HOME/.tmux-sessionizer" c-M
+session_name_for() {
+    local name="${1##*/}"
+    echo "${name//./_}"
+}
+
+# Resolve an fzf raw key (either "[TMUX] name" or a directory path) to a
+# tmux session name.
+target_session_name() {
+    if [[ "$1" == "[TMUX] "* ]]; then
+        echo "${1#\[TMUX\] }"
+    else
+        session_name_for "$1"
     fi
 }
 
 is_tmux_running() {
-    tmux_running=$(pgrep tmux)
-
-    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-        return 1
+    if [[ -n $TMUX ]]; then
+        return 0
     fi
-    return 0
-}
-
-init_pane_cache() {
-    mkdir -p "$PANE_CACHE_DIR"
-    touch "$PANE_CACHE_FILE"
-}
-
-get_pane_id() {
-    local session_idx="$1"
-    local split_type="$2"
-    init_pane_cache
-    grep "^${session_idx}:${split_type}:" "$PANE_CACHE_FILE" | cut -d: -f3
-}
-
-set_pane_id() {
-    local session_idx="$1"
-    local split_type="$2"
-    local pane_id="$3"
-    init_pane_cache
-
-    # Remove existing entry if it exists
-    grep -v "^${session_idx}:${split_type}:" "$PANE_CACHE_FILE" >"${PANE_CACHE_FILE}.tmp" 2>/dev/null || true
-    mv "${PANE_CACHE_FILE}.tmp" "$PANE_CACHE_FILE"
-
-    # Add new entry
-    echo "${session_idx}:${split_type}:${pane_id}" >>"$PANE_CACHE_FILE"
-}
-
-cleanup_dead_panes() {
-    init_pane_cache
-    local temp_file="${PANE_CACHE_FILE}.tmp"
-
-    while IFS=: read -r idx split pane_id; do
-        if tmux list-panes -a -F "#{pane_id}" 2>/dev/null | grep -q "^${pane_id}$"; then
-            echo "${idx}:${split}:${pane_id}" >>"$temp_file"
-        fi
-    done <"$PANE_CACHE_FILE"
-
-    mv "$temp_file" "$PANE_CACHE_FILE" 2>/dev/null || touch "$PANE_CACHE_FILE"
+    pgrep tmux >/dev/null && return 0
+    return 1
 }
 
 sanity_check
@@ -253,35 +128,16 @@ if [[ ${#TS_EXTRA_SEARCH_PATHS[@]} -gt 0 ]]; then
     TS_SEARCH_PATHS+=("${TS_EXTRA_SEARCH_PATHS[@]}")
 fi
 
-# Nerd Font glyphs + truecolor ANSI, matching the fzf/tmux2k palette.
+# Nerd Font glyph + truecolor ANSI for session rows only.
 ICON_SESSION=$''  # nf-oct-terminal
-ICON_DIR=$''  # nf-fa-folder
 COLOR_SESSION=$'\033[1;38;2;194;145;106m'
-COLOR_DIM=$'\033[38;2;122;122;122m'
-COLOR_VIBRANT=$'\033[1;38;2;127;176;194m'
 COLOR_RESET=$'\033[0m'
 
 # utility function to find directories
 find_dirs() {
-    # list TMUX sessions, decorated (raw key <tab> pretty display)
-    local this_session=""
-    [[ -n "${TMUX}" ]] && this_session=$(tmux display-message -p '#S')
-    tmux list-sessions -F "#{session_name}	#{session_windows}" 2>/dev/null | {
-        while IFS=$'\t' read -r name windows; do
-            printf '[TMUX] %s\t%s  %s%s%s  %s%s window%s%s\n' \
-                "$name" "$ICON_SESSION" "$COLOR_SESSION" "$name" "$COLOR_RESET" \
-                "$COLOR_DIM" "$windows" "$([[ "$windows" == 1 ]] || echo s)" "$COLOR_RESET"
-        done
-    } | sort -t $'\t' -k1,1 | awk -F'\t' -v cur="[TMUX] $this_session" '
-        $1 == cur { cur_line = $0; next }
-        { print }
-        END { if (cur_line != "") print cur_line }
-    '
-
-    # note: TS_SEARCH_PATHS is an array of paths to search for directories
-    # if the path ends with :number, it will search for directories with a max depth of number ;)
-    # if there is no number, it will search for directories with a max depth defined by TS_MAX_DEPTH or 1 if not set
+    local entry path depth
     for entry in "${TS_SEARCH_PATHS[@]}"; do
+        depth=""
         # Check if entry as :number as suffix then adapt the maxdepth parameter
         if [[ "$entry" =~ ^([^:]+):([0-9]+)$ ]]; then
             path="${BASH_REMATCH[1]}"
@@ -291,32 +147,41 @@ find_dirs() {
         fi
 
         [[ -d "$path" ]] || continue
-        while IFS= read -r dir; do
-            display_path="${dir/#$HOME/\~}"
-            printf '%s\t%s  %s%s%s  %s%s%s\n' \
-                "$dir" "$ICON_DIR" "$COLOR_DIM" "$(dirname "$display_path")" "$COLOR_RESET" \
-                "$COLOR_VIBRANT" "$(basename "$dir")" "$COLOR_RESET"
-        done < <(find "$path" -mindepth 1 -maxdepth "${depth:-${TS_MAX_DEPTH:-1}}" \( -name '.*' -o -name 'node_modules' \) -prune -o -type d -print)
+        find "$path" -mindepth 1 -maxdepth "${depth:-${TS_MAX_DEPTH:-1}}" \( -name '.*' -o -name 'node_modules' \) -prune -o -type d -print
+    done | sed "s|^$HOME|~|" | sort -u
+}
+
+# List active tmux sessions (styled, current session pinned last) followed by
+# directories. Emits "raw_key\tdisplay" so fzf's key binds can act on the raw
+# key while --with-nth shows only the styled column.
+list_entries() {
+    local this_session=""
+    [[ -n "${TMUX}" ]] && this_session=$(tmux display-message -p '#S' 2>/dev/null)
+    tmux list-sessions -F '#{session_name}' 2>/dev/null | sort | awk -v cur="$this_session" '
+        $0 == cur { cur_line = $0; next }
+        { print }
+        END { if (cur_line != "") print cur_line }
+    ' | while IFS= read -r name; do
+        printf '[TMUX] %s\t%s  %s%s%s\n' "$name" "$ICON_SESSION" "$COLOR_SESSION" "$name" "$COLOR_RESET"
     done
+
+    find_dirs | awk -F'\t' '{print $0"\t"$0}'
 }
 
 # Dispatch for actions invoked by fzf key bindings (see the fzf --bind options
-# below). These re-invoke this script with a raw picker key ("[TMUX] name" or
-# a directory path) so the logic lives in one place instead of inline in fzf's
-# bind syntax.
+# below). These re-invoke this script with the highlighted directory so the
+# logic lives in one place instead of inline in fzf's bind syntax.
 if [[ -n "$internal_action" ]]; then
     case "$internal_action" in
-    find-dirs)
-        find_dirs
+    list-entries)
+        list_entries
         ;;
     kill)
-        if [[ "$internal_target" == "[TMUX] "* ]]; then
-            tmux kill-session -t "${internal_target#\[TMUX\] }" 2>/dev/null
-        fi
+        target_session=$(target_session_name "$internal_target")
+        tmux kill-session -t "$target_session" 2>/dev/null
         ;;
     kill-others)
-        target_session=""
-        [[ "$internal_target" == "[TMUX] "* ]] && target_session="${internal_target#\[TMUX\] }"
+        target_session=$(target_session_name "$internal_target")
         this_session=$(tmux display-message -p '#S' 2>/dev/null)
         tmux list-sessions -F '#{session_name}' 2>/dev/null | while read -r s; do
             [[ "$s" == "$this_session" || "$s" == "$target_session" ]] && continue
@@ -324,87 +189,20 @@ if [[ -n "$internal_action" ]]; then
         done
         ;;
     rename)
-        if [[ "$internal_target" == "[TMUX] "* ]]; then
-            old_name="${internal_target#\[TMUX\] }"
-            read -r -p "Rename '$old_name' to: " new_name
-            [[ -n "$new_name" ]] && tmux rename-session -t "$old_name" "$new_name"
+        target_session=$(target_session_name "$internal_target")
+        if has_session "$target_session"; then
+            read -r -p "Rename '$target_session' to: " new_name
+            [[ -n "$new_name" ]] && tmux rename-session -t "$target_session" "$new_name"
         fi
         ;;
     esac
     exit 0
 fi
 
-handle_session_cmd() {
-    log "executing session command $session_cmd with index $session_idx split_type=$split_type"
-    if ! is_tmux_running; then
-        echo "Error: tmux is not running.  Please start tmux first before using session commands."
-        exit 1
-    fi
-
-    current_session=$(tmux display-message -p '#S')
-
-    if [[ -n "$split_type" ]]; then
-        handle_split_session_cmd "$current_session"
-    else
-        handle_window_session_cmd "$current_session"
-    fi
-    exit 0
-}
-
-handle_window_session_cmd() {
-    local current_session="$1"
-    start_index=$((69 + $session_idx))
-    target="$current_session:$start_index"
-
-    log "target: $target command $session_cmd has-session=$(tmux has-session -t="$target" 2>/dev/null)"
-    if tmux has-session -t="$target" 2>/dev/null; then
-        switch_to "$target"
-    else
-        log "executing session command: tmux neww -dt $target $session_cmd"
-        tmux neww -dt $target "$session_cmd"
-        hydrate "$target" "$selected"
-        tmux select-window -t $target
-    fi
-}
-
-handle_split_session_cmd() {
-    local current_session="$1"
-    cleanup_dead_panes
-
-    # Check if pane already exists
-    local existing_pane_id=$(get_pane_id "$session_idx" "$split_type")
-
-    if [[ -n "$existing_pane_id" ]] && tmux list-panes -a -F "#{pane_id}" 2>/dev/null | grep -q "^${existing_pane_id}$"; then
-        log "switching to existing pane $existing_pane_id"
-        tmux select-pane -t "$existing_pane_id"
-        if [[ -z $TMUX ]]; then
-            tmux attach-session -t "$current_session"
-        else
-            tmux switch-client -t "$current_session"
-        fi
-    else
-        # Create new split
-        local split_flag=""
-        if [[ "$split_type" == "vsplit" ]]; then
-            split_flag="-h" # horizontal layout (vertical split)
-        else
-            split_flag="-v" # vertical layout (horizontal split)
-        fi
-
-        log "creating new split: tmux split-window $split_flag -c $(pwd) $session_cmd"
-        local new_pane_id=$(tmux split-window $split_flag -c "$(pwd)" -P -F "#{pane_id}" "$session_cmd")
-
-        if [[ -n "$new_pane_id" ]]; then
-            set_pane_id "$session_idx" "$split_type" "$new_pane_id"
-            log "created pane $new_pane_id for session_idx=$session_idx split_type=$split_type"
-        fi
-    fi
-}
-
 # Re-launch the interactive picker inside a tmux popup when run from within
-# tmux. -s/--session and direct-path invocations skip this (they're meant to
-# run instantly, not through a picker UI).
-if [[ -z $session_cmd && -z $user_selected && -n ${TMUX:-} && -z ${TS_POPUP:-} ]]; then
+# tmux. A direct-path invocation skips this (it's meant to run instantly, not
+# through a picker UI).
+if [[ -z $user_selected && -n ${TMUX:-} && -z ${TS_POPUP:-} ]]; then
     ts_popup_result=$(mktemp)
     tmux display-popup -E -w 85% -h 80% -- env TS_POPUP=1 TS_POPUP_RESULT="$ts_popup_result" "$0" "$@"
     if [[ -s "$ts_popup_result" ]]; then
@@ -414,29 +212,21 @@ if [[ -z $session_cmd && -z $user_selected && -n ${TMUX:-} && -z ${TS_POPUP:-} ]
     exit 0
 fi
 
-if [[ ! -z $session_cmd ]]; then
-    handle_session_cmd
-elif [[ ! -z $user_selected ]]; then
+if [[ ! -z $user_selected ]]; then
     selected="$user_selected"
 else
-    selected=$(find_dirs | fzf \
+    selected=$(list_entries | fzf \
         --ansi \
         --delimiter '\t' \
         --with-nth 2.. \
         --reverse \
         --info=inline \
-        --border rounded \
-        --border-label ' sessions ' \
-        --border-label-pos 3 \
         --prompt '  ' \
         --pointer '▸' \
-        --header '↵ open  ctrl-x kill  ctrl-r rename  ctrl-alt-x kill others  ctrl-/ preview' \
-        --preview 'bash -c "case \"\$1\" in \"[TMUX] \"*) tmux list-windows -t \"\${1#\[TMUX\] }\" ;; *) eza --tree --level=2 --color=always \"\$1\" 2>/dev/null || ls -la \"\$1\" ;; esac" -- {1}' \
-        --preview-window 'right:55%:border-left' \
-        --bind "ctrl-x:execute-silent(\"$SELF\" --internal-kill {1})+reload(\"$SELF\" --internal-find-dirs)" \
-        --bind "ctrl-r:execute(\"$SELF\" --internal-rename {1})+reload(\"$SELF\" --internal-find-dirs)" \
-        --bind "ctrl-alt-x:execute-silent(\"$SELF\" --internal-kill-others {1})+reload(\"$SELF\" --internal-find-dirs)" \
-        --bind 'ctrl-/:toggle-preview' \
+        --header '↵ open  ctrl-x kill  ctrl-r rename  ctrl-alt-x kill others' \
+        --bind "ctrl-x:execute-silent(\"$SELF\" --internal-kill {1})+reload(\"$SELF\" --internal-list-entries)" \
+        --bind "ctrl-r:execute(\"$SELF\" --internal-rename {1})+reload(\"$SELF\" --internal-list-entries)" \
+        --bind "ctrl-alt-x:execute-silent(\"$SELF\" --internal-kill-others {1})+reload(\"$SELF\" --internal-list-entries)" \
         || true)
     selected="${selected%%$'\t'*}"
 fi
@@ -445,20 +235,20 @@ if [[ -z $selected ]]; then
     exit 0
 fi
 
-if [[ "$selected" =~ ^\[TMUX\]\ (.+)$ ]]; then
-    selected="${BASH_REMATCH[1]}"
+if [[ "$selected" == "[TMUX] "* ]]; then
+    switch_to "${selected#\[TMUX\] }"
+    exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+selected="${selected/#\~/$HOME}"
+selected_name=$(session_name_for "$selected")
 
 if ! is_tmux_running; then
     tmux new-session -ds "$selected_name" -c "$selected"
-    hydrate "$selected_name" "$selected"
 fi
 
 if ! has_session "$selected_name"; then
     tmux new-session -ds "$selected_name" -c "$selected"
-    hydrate "$selected_name" "$selected"
 fi
 
 switch_to "$selected_name"
