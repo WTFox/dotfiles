@@ -8,6 +8,17 @@ get_token() {
 	fi | jq -r '.claudeAiOauth.accessToken // empty'
 }
 
+pct_color() {
+	if [ "$1" -ge 80 ]; then echo 31
+	elif [ "$1" -ge 50 ]; then echo 33
+	else echo 32
+	fi
+}
+
+colorize_pct() {
+	printf '\033[%sm%d%%\033[0m' "$(pct_color "$1")" "$1"
+}
+
 mtime() {
 	stat -c %Y "$1" 2>/dev/null || stat -f %m "$1" 2>/dev/null
 }
@@ -40,9 +51,9 @@ IFS='|' read -r branch added removed <"$git_cache"
 line1="[$model] ${dir##*/}"
 if [ -n "$branch" ]; then
 	line1="$line1 |  $branch"
-	[ "$added" -gt 0 ] || [ "$removed" -gt 0 ] && line1="$line1 (+$added/-$removed)"
+	[ "$added" -gt 0 ] || [ "$removed" -gt 0 ] && line1="$line1 (\033[32m+$added\033[0m/\033[31m-$removed\033[0m)"
 fi
-echo "$line1"
+printf '%b\n' "$line1"
 
 cache="/tmp/claude-spend-cache.json"
 if [ ! -f "$cache" ] || [ $(($(date +%s) - $(mtime "$cache"))) -gt 300 ]; then
@@ -66,7 +77,7 @@ show_account_usage() {
 	fi
 	filled=$((five_pct / 10))
 	bar=$(printf "%${filled}s" | tr ' ' '#')$(printf "%$((10 - filled))s" | tr ' ' '.')
-	printf "5h [%s] %d%% (%s) | 7d %d%% | ctx %d%%\n" "$bar" "$five_pct" "$reset_str" "$week_pct" "$ctx_pct"
+	printf "5h [%s] %s (%s) | 7d %s | ctx %s\n" "$bar" "$(colorize_pct "$five_pct")" "$reset_str" "$(colorize_pct "$week_pct")" "$(colorize_pct "$ctx_pct")"
 }
 
 show_spend() {
@@ -75,7 +86,7 @@ show_spend() {
 	limit=$(jq -r '.extra_usage.monthly_limit / 100' "$cache" 2>/dev/null)
 	filled=$((pct / 10))
 	bar=$(printf "%${filled}s" | tr ' ' '#')$(printf "%$((10 - filled))s" | tr ' ' '.')
-	printf "spend [%s] %d%% (\$%.2f/\$%.2f) | ctx %d%%\n" "$bar" "$pct" "$used" "$limit" "$ctx_pct"
+	printf "spend [%s] %s (\$%.2f/\$%.2f) | ctx %s\n" "$bar" "$(colorize_pct "$pct")" "$used" "$limit" "$(colorize_pct "$ctx_pct")"
 }
 
 extra_pct=$(jq -r '.extra_usage.utilization | floor' "$cache" 2>/dev/null)
@@ -91,5 +102,5 @@ if [ -n "$five_pct" ] && [ "$five_pct" != "null" ]; then
 elif $has_extra; then
 	show_spend
 else
-	printf "ctx %d%%\n" "$ctx_pct"
+	printf "ctx %s\n" "$(colorize_pct "$ctx_pct")"
 fi
