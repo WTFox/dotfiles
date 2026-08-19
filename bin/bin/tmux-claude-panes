@@ -92,6 +92,9 @@ COLOR_RESET=$'\033[0m'
 enumerate() {
     load_sessions
 
+    local current_pane="${TMUX_PANE:-$(tmux display-message -p '#{pane_id}' 2>/dev/null)}"
+    local focused_row=""
+
     while IFS=$'\t' read -r pane_id cmd target path title pane_pid; do
         is_claude_cmd "$cmd" || continue
 
@@ -126,9 +129,22 @@ enumerate() {
             topic=""
         fi
 
-        printf '%s\t%s  %s%-20s%s  %s%-34s%s  %s%s%s\n' \
-            "$pane_id" "$icon" "$COLOR_DIR" "$dir" "$COLOR_RESET" "$COLOR_TOPIC" "$topic" "$COLOR_RESET" "$COLOR_PATH" "$display_path" "$COLOR_RESET"
+        # Sink the pane this popup was launched from to the end of the list —
+        # it's the one spot we already know, so it's the least useful to jump to.
+        current_mark=""
+        [[ "$pane_id" == "$current_pane" ]] && current_mark="  ${COLOR_PATH}· current${COLOR_RESET}"
+
+        row=$(printf '%s\t%s  %s%-20s%s  %s%-34s%s  %s%s%s%s\n' \
+            "$pane_id" "$icon" "$COLOR_DIR" "$dir" "$COLOR_RESET" "$COLOR_TOPIC" "$topic" "$COLOR_RESET" "$COLOR_PATH" "$display_path" "$COLOR_RESET" "$current_mark")
+
+        if [[ "$pane_id" == "$current_pane" ]]; then
+            focused_row="$row"
+        else
+            printf '%s' "$row"
+        fi
     done < <(tmux list-panes -a -F '#{pane_id}	#{pane_current_command}	#{session_name}:#{window_index}.#{pane_index}	#{pane_current_path}	#{pane_title}	#{pane_pid}')
+
+    [[ -n "$focused_row" ]] && printf '%s' "$focused_row"
 }
 
 if [[ "${1:-}" == "--enumerate" ]]; then
@@ -138,8 +154,8 @@ fi
 
 self="$0"
 
-header=$(printf '%s%s%s busy    %s%s%s idle    ↵ jump    ^r refresh' \
-    "$COLOR_BUSY" "$ICON_BUSY" "$COLOR_RESET" "$COLOR_IDLE" "$ICON_IDLE" "$COLOR_RESET")
+header=$(printf '%s%s%s busy    %s%s%s idle    %s· current%s at bottom    ↵ jump    ^r refresh' \
+    "$COLOR_BUSY" "$ICON_BUSY" "$COLOR_RESET" "$COLOR_IDLE" "$ICON_IDLE" "$COLOR_RESET" "$COLOR_PATH" "$COLOR_RESET")
 
 selection=$(enumerate | fzf \
     --ansi \

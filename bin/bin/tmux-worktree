@@ -6,9 +6,16 @@
 #
 # With no argument, opens an fzf picker (in a tmux popup when run from
 # inside tmux) listing existing worktrees/branches; the typed query doubles
-# as a new branch name if it doesn't match anything.
+# as a new branch name if it doesn't match anything. In the picker:
+#   ctrl-x      remove the highlighted worktree (refuses if dirty/unmerged)
+#   ctrl-alt-x  force-remove it anyway
+#   ctrl-p      prune stale worktree admin entries (e.g. after `rm -rf`)
+#   ctrl-r      refresh the list
+# Removing a worktree never deletes its branch.
 
 set -euo pipefail
+
+SELF="$0"
 
 die() {
     if [[ -n "${TMUX:-}" ]]; then
@@ -68,25 +75,224 @@ base_ref() {
     fi
 }
 
+session_name_for_branch() {
+    echo "${repo_name}-${1}" | tr . _
+}
+
+main_worktree_path() {
+    git -C "$repo_root" worktree list --porcelain | awk '/^worktree /{print $2; exit}'
+}
+
+# Nerd Font glyphs + truecolor ANSI, matching the palette used by
+# tmux-claude-panes (busy/idle circles) and tmux-sessionizer (dim gray meta).
+ICON_CLEAN=$''  # nf-fa-circle-thin
+ICON_DIRTY=$''  # nf-fa-circle
+COLOR_CLEAN=$'\033[38;2;143;191;143m'
+COLOR_DIRTY=$'\033[38;2;224;108;117m'
+COLOR_BRANCH_ONLY=$'\033[38;2;122;122;122m'
+COLOR_NAME=$'\033[1;38;2;231;231;231m'
+COLOR_META=$'\033[38;2;122;122;122m'
+COLOR_RESET=$'\033[0m'
+
+# Emits one tab-delimited row: kind, branch, worktree path (empty if none),
+# then a styled display column. fzf shows only the display column
+# (--with-nth 4..) while binds act on the first three raw fields.
+row() {
+    local kind="$1" branch="$2" path="$3" icon="$4" ab="$5" pathdisp="$6"
+    printf '%s\t%s\t%s\t%s  %s%-28s%s  %s%-8s%s  %s%s%s\n' \
+        "$kind" "$branch" "$path" \
+        "$icon" "$COLOR_NAME" "$branch" "$COLOR_RESET" \
+        "$COLOR_META" "$ab" "$COLOR_RESET" \
+        "$COLOR_META" "$pathdisp" "$COLOR_RESET"
+}
+
+internal_list() {
+    local -A seen
+
+    while IFS=$'\t' read -r path branch; do
+        [[ -n "$branch" ]] || continue
+        seen["$branch"]=1
+
+        local dirty icon upstream ahead=0 behind=0 ab=""
+        dirty=$(git -C "$path" status --porcelain 2>/dev/null || true)
+        if [[ -n "$dirty" ]]; then
+            icon="${COLOR_DIRTY}${ICON_DIRTY}${COLOR_RESET}"
+        else
+            icon="${COLOR_CLEAN}${ICON_CLEAN}${COLOR_RESET}"
+        fi
+
+        upstream=$(git -C "$path" rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null || true)
+        if [[ -n "$upstream" ]]; then
+            read -r ahead behind < <(git -C "$path" rev-list --left-right --count "HEAD...$upstream" 2>/dev/null || echo "0 0")
+            [[ "$ahead" != "0" ]] && ab+="+$ahead"
+            [[ "$behind" != "0" ]] && ab+="${ab:+/}-$behind"
+        fi
+
+        local display_path="${path/#$HOME/\~}"
+        row "wt" "$branch" "$path" "$icon" "$ab" "$display_path"
+    done < <(git -C "$repo_root" worktree list --porcelain | awk '/^worktree /{p=$2} /^branch /{b=$2; sub("refs/heads/", "", b); print p"\t"b}')
+
+    while IFS= read -r branch; do
+        [[ -n "${seen[$branch]:-}" ]] && continue
+        seen["$branch"]=1
+        row "br" "$branch" "" "${COLOR_BRANCH_ONLY}·${COLOR_RESET}" "" "(no worktree)"
+    done < <(git -C "$repo_root" for-each-ref --format='%(refname:short)' refs/heads)
+
+    while IFS= read -r branch; do
+        [[ -n "${seen[$branch]:-}" ]] && continue
+        seen["$branch"]=1
+        row "rb" "$branch" "" "${COLOR_BRANCH_ONLY}·${COLOR_RESET}" "" "(remote only)"
+    done < <(git -C "$repo_root" for-each-ref --format='%(refname)' refs/remotes/origin |
+        grep -v '^refs/remotes/origin/HEAD$' |
+        sed 's#^refs/remotes/origin/##')
+}
+
+internal_preview() {
+    local kind="$1" branch="$2" path="$3"
+    case "$kind" in
+    wt)
+        git -C "$path" status -sb
+        echo
+        git -C "$path" log --oneline -10
+        ;;
+    br)
+        git -C "$repo_root" log --oneline -10 "$branch"
+        ;;
+    rb)
+        git -C "$repo_root" log --oneline -10 "origin/$branch"
+        ;;
+    esac
+}
+
+# Shared safety checks for both remove paths. Prints a message and returns
+# non-zero if removal shouldn't proceed.
+guard_removal() {
+    local branch="$1" path="$2"
+
+    if [[ -z "$path" ]]; then
+        echo "No worktree exists for branch '$branch'."
+        return 1
+    fi
+
+    local main_path
+    main_path=$(main_worktree_path)
+    if [[ "$path" == "$main_path" ]]; then
+        echo "Refusing to remove the main worktree ($path)."
+        return 1
+    fi
+
+    local current_path
+    current_path=$(git -C "$pane_path" rev-parse --show-toplevel 2>/dev/null || true)
+    if [[ -n "$current_path" && "$path" == "$current_path" ]]; then
+        echo "Refusing to remove the worktree you're currently in ($path)."
+        return 1
+    fi
+
+    return 0
+}
+
+internal_remove() {
+    local branch="$1" path="$2"
+
+    guard_removal "$branch" "$path" || { read -r -p "Press enter to continue..." _; return; }
+
+    local dirty unmerged=""
+    dirty=$(git -C "$path" status --porcelain 2>/dev/null || true)
+    if git -C "$repo_root" for-each-ref --no-merged="$(base_ref)" --format='%(refname:short)' "refs/heads/$branch" 2>/dev/null | grep -qx "$branch"; then
+        unmerged=1
+    fi
+
+    echo "Remove worktree '$branch' at $path"
+    if [[ -n "$dirty" ]]; then
+        echo "  ! has uncommitted/untracked changes:"
+        git -C "$path" status -s | sed 's/^/    /'
+    fi
+    if [[ -n "$unmerged" ]]; then
+        echo "  ! branch is not merged into $(base_ref)"
+    fi
+
+    local ans
+    read -r -p "Proceed? [y/N] " ans
+    if [[ ! "$ans" =~ ^[Yy]$ ]]; then
+        echo "Aborted."
+        return
+    fi
+
+    if git -C "$repo_root" worktree remove "$path"; then
+        tmux kill-session -t "$(session_name_for_branch "$branch")" 2>/dev/null || true
+        echo "Removed."
+    else
+        echo "Failed to remove — likely dirty/untracked files. Use ctrl-alt-x to force."
+        read -r -p "Press enter to continue..." _
+    fi
+}
+
+internal_force_remove() {
+    local branch="$1" path="$2"
+
+    guard_removal "$branch" "$path" || { read -r -p "Press enter to continue..." _; return; }
+
+    echo "FORCE remove worktree '$branch' at $path"
+    echo "  ! this discards any uncommitted/untracked changes permanently"
+    git -C "$path" status -s 2>/dev/null | sed 's/^/    /'
+
+    local ans
+    read -r -p "Proceed? [y/N] " ans
+    if [[ ! "$ans" =~ ^[Yy]$ ]]; then
+        echo "Aborted."
+        return
+    fi
+
+    git -C "$repo_root" worktree remove --force "$path"
+    tmux kill-session -t "$(session_name_for_branch "$branch")" 2>/dev/null || true
+    echo "Removed."
+}
+
+internal_prune() {
+    git -C "$repo_root" worktree prune -v
+}
+
+case "${1:-}" in
+--internal-list)
+    internal_list
+    exit 0
+    ;;
+--internal-preview)
+    internal_preview "$2" "$3" "$4"
+    exit 0
+    ;;
+--internal-remove)
+    internal_remove "$2" "$3"
+    exit 0
+    ;;
+--internal-force-remove)
+    internal_force_remove "$2" "$3"
+    exit 0
+    ;;
+--internal-prune)
+    internal_prune
+    exit 0
+    ;;
+esac
+
 branch="${1:-}"
 
 if [[ -z "$branch" ]]; then
     git -C "$repo_root" fetch origin --prune 2>/dev/null || true
 
-    candidates=$(
-        {
-            git -C "$repo_root" worktree list --porcelain |
-                awk '/^branch /{ sub("refs/heads/", "", $2); print "[wt] " $2 }'
-
-            git -C "$repo_root" for-each-ref --format='%(refname:short)' refs/heads
-
-            git -C "$repo_root" for-each-ref --format='%(refname)' refs/remotes/origin |
-                grep -v '^refs/remotes/origin/HEAD$' |
-                sed 's#^refs/remotes/origin/##'
-        } | awk '{ key = $0; sub(/^\[wt\] /, "", key); if (!(key in seen)) { seen[key] = 1; print } }'
-    )
-
-    if selection=$(printf '%s\n' "$candidates" | fzf --print-query --header "enter: select or create branch"); then
+    if selection=$(internal_list | fzf \
+        --ansi \
+        --delimiter $'\t' \
+        --with-nth 4.. \
+        --print-query \
+        --header '↵ open/create   ctrl-x remove   ctrl-alt-x force remove   ctrl-alt-p prune   ctrl-r refresh' \
+        --preview "\"$SELF\" --internal-preview {1} {2} {3}" \
+        --preview-window 'up:70%:wrap:border-bottom' \
+        --preview-label ' worktree ' \
+        --bind "ctrl-x:execute(\"$SELF\" --internal-remove {2} {3})+reload(\"$SELF\" --internal-list)" \
+        --bind "ctrl-alt-x:execute(\"$SELF\" --internal-force-remove {2} {3})+reload(\"$SELF\" --internal-list)" \
+        --bind "ctrl-alt-p:execute-silent(\"$SELF\" --internal-prune)+reload(\"$SELF\" --internal-list)" \
+        --bind "ctrl-r:reload(\"$SELF\" --internal-list)"); then
         status=0
     else
         status=$?
@@ -94,10 +300,10 @@ if [[ -z "$branch" ]]; then
     [[ $status -eq 0 || $status -eq 1 ]] || exit 0
 
     query=$(sed -n '1p' <<<"$selection")
-    chosen=$(sed -n '2p' <<<"$selection")
+    chosen_line=$(sed -n '2p' <<<"$selection")
 
-    if [[ -n "$chosen" ]]; then
-        branch="${chosen#\[wt\] }"
+    if [[ -n "$chosen_line" ]]; then
+        branch=$(cut -f2 <<<"$chosen_line")
     elif [[ -n "$query" ]]; then
         branch=$(tr '[:upper:]' '[:lower:]' <<<"$query" | tr -c 'a-z0-9' '-' | sed -E 's/-+/-/g; s/^-|-$//g')
     else
@@ -123,7 +329,7 @@ else
     fi
 fi
 
-session_name=$(echo "${repo_name}-${branch}" | tr . _)
+session_name=$(session_name_for_branch "$branch")
 
 if ! tmux has-session -t "$session_name" 2>/dev/null; then
     tmux new-session -ds "$session_name" -c "$worktree_dir"

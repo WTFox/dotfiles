@@ -1,0 +1,223 @@
+#!/usr/bin/env bash
+#
+# Interactive fzf browser for Docker containers. Shows state, name, image,
+# compose project, uptime, and ports, with a live logs preview. Modeled on
+# tmux-claude-panes / tmux-worktree (same --internal-* subcommand pattern,
+# same palette).
+
+set -euo pipefail
+
+export LC_ALL="${LC_ALL:-en_US.UTF-8}"
+
+SELF="$0"
+
+sanity_check() {
+    if ! command -v tmux &>/dev/null; then
+        echo "tmux is not installed. Please install it first."
+        exit 1
+    fi
+
+    if ! command -v fzf &>/dev/null; then
+        echo "fzf is not installed. Please install it first."
+        exit 1
+    fi
+
+    if ! command -v docker &>/dev/null; then
+        echo "docker is not installed. Please install it first."
+        exit 1
+    fi
+
+    if ! docker info &>/dev/null; then
+        echo "Docker daemon is not running."
+        exit 0
+    fi
+}
+
+# Nerd Font glyphs + truecolor ANSI, matching the palette used by
+# tmux-claude-panes and tmux-worktree.
+ICON_RUNNING=$''  # nf-fa-circle
+ICON_EXITED=$''  # nf-fa-circle
+ICON_OTHER=$''   # nf-fa-circle-thin
+COLOR_RUNNING=$'\033[38;2;143;191;143m'
+COLOR_EXITED=$'\033[38;2;224;108;117m'
+COLOR_OTHER=$'\033[38;2;122;122;122m'
+COLOR_NAME=$'\033[1;38;2;231;231;231m'
+COLOR_META=$'\033[38;2;122;122;122m'
+COLOR_RESET=$'\033[0m'
+
+short_image() {
+    # Drop a registry host prefix (contains a dot or colon before the first
+    # slash) but keep repo:tag, e.g. ghcr.io/foo/bar:latest -> foo/bar:latest.
+    local image="$1" first="${1%%/*}"
+    if [[ "$image" == */* && ( "$first" == *.* || "$first" == *:* ) ]]; then
+        echo "${image#*/}"
+    else
+        echo "$image"
+    fi
+}
+
+internal_list() {
+    local all_flag=()
+    [[ "${1:-}" == "--all" ]] && all_flag=(-a)
+
+    local id name image state status ports project icon display_image
+    while IFS=$'\t' read -r id name image state status ports project; do
+        [[ -n "$id" ]] || continue
+
+        case "$state" in
+        running) icon="${COLOR_RUNNING}${ICON_RUNNING}${COLOR_RESET}" ;;
+        exited | dead) icon="${COLOR_EXITED}${ICON_EXITED}${COLOR_RESET}" ;;
+        *) icon="${COLOR_OTHER}${ICON_OTHER}${COLOR_RESET}" ;;
+        esac
+
+        display_image=$(short_image "$image")
+
+        printf '%s\t%s\t%s  %s%-24s%s  %s%-28s%s  %s%-14s%s  %s%-20s%s  %s%s%s\n' \
+            "$id" "$name" "$icon" \
+            "$COLOR_NAME" "$name" "$COLOR_RESET" \
+            "$COLOR_META" "$display_image" "$COLOR_RESET" \
+            "$COLOR_META" "${project:--}" "$COLOR_RESET" \
+            "$COLOR_META" "$status" "$COLOR_RESET" \
+            "$COLOR_META" "$ports" "$COLOR_RESET"
+    done < <(docker ps "${all_flag[@]}" --format '{{.ID}}	{{.Names}}	{{.Image}}	{{.State}}	{{.Status}}	{{.Ports}}	{{.Label "com.docker.compose.project"}}' | sort -t$'\t' -k4,4 -r)
+}
+
+internal_preview() {
+    local id="$1"
+    local state
+    state=$(docker inspect -f '{{.State.Status}}' "$id" 2>/dev/null || true)
+
+    if [[ "$state" != "running" ]]; then
+        echo "state:       $state"
+        docker inspect -f 'exit code:   {{.State.ExitCode}}
+finished at: {{.State.FinishedAt}}
+command:     {{join .Config.Cmd " "}}' "$id" 2>/dev/null || true
+        echo
+        echo "--- logs ---"
+    fi
+
+    docker logs --tail 200 --timestamps "$id" 2>&1
+}
+
+internal_exec_shell() {
+    local id="$1" name="$2"
+    tmux new-window -n "$name" \
+        "docker exec -it '$id' sh -c 'command -v bash >/dev/null 2>&1 && exec bash || exec sh'"
+}
+
+internal_follow_logs() {
+    local id="$1" name="$2"
+    tmux new-window -n "log:$name" "docker logs -f --timestamps '$id'"
+}
+
+internal_restart() {
+    docker restart "$1" &>/dev/null || true
+}
+
+internal_start() {
+    docker start "$1" &>/dev/null || true
+}
+
+internal_stop() {
+    local id="$1" name="$2" ans
+    echo "Stop container '$name' ($id)?"
+    read -r -p "Proceed? [y/N] " ans
+    if [[ "$ans" =~ ^[Yy]$ ]]; then
+        docker stop "$id" &>/dev/null || true
+    else
+        echo "Aborted."
+    fi
+    read -r -p "Press enter to continue..." _
+}
+
+internal_remove() {
+    local id="$1" name="$2" ans
+    echo "FORCE remove container '$name' ($id)"
+    echo "  ! this stops it (if running) and discards it permanently"
+    read -r -p "Proceed? [y/N] " ans
+    if [[ "$ans" =~ ^[Yy]$ ]]; then
+        docker rm -f "$id" &>/dev/null || true
+    else
+        echo "Aborted."
+    fi
+    read -r -p "Press enter to continue..." _
+}
+
+internal_copy_id() {
+    command -v pbcopy &>/dev/null && printf '%s' "$1" | pbcopy
+}
+
+case "${1:-}" in
+--internal-list)
+    internal_list "${2:-}"
+    exit 0
+    ;;
+--internal-preview)
+    internal_preview "$2"
+    exit 0
+    ;;
+--internal-exec-shell)
+    internal_exec_shell "$2" "$3"
+    exit 0
+    ;;
+--internal-follow-logs)
+    internal_follow_logs "$2" "$3"
+    exit 0
+    ;;
+--internal-restart)
+    internal_restart "$2"
+    exit 0
+    ;;
+--internal-start)
+    internal_start "$2"
+    exit 0
+    ;;
+--internal-stop)
+    internal_stop "$2" "$3"
+    exit 0
+    ;;
+--internal-remove)
+    internal_remove "$2" "$3"
+    exit 0
+    ;;
+--internal-copy-id)
+    internal_copy_id "$2"
+    exit 0
+    ;;
+esac
+
+sanity_check
+
+header=$(printf '%s%s%s running    %s%s%s exited    ↵ shell    ^l logs    ^s start    ^r restart    ^x stop    ^alt-x rm    ^a all/running    ^g lazydocker    ^y copy id    ^f refresh' \
+    "$COLOR_RUNNING" "$ICON_RUNNING" "$COLOR_RESET" "$COLOR_EXITED" "$ICON_EXITED" "$COLOR_RESET")
+
+selection=$(internal_list | fzf \
+    --ansi \
+    --no-separator \
+    --delimiter '\t' \
+    --with-nth 3.. \
+    --preview "\"$SELF\" --internal-preview {1}" \
+    --preview-window 'up:70%:wrap:border-bottom' \
+    --preview-label ' container logs ' \
+    --border none \
+    --bind "ctrl-a:transform(if [[ \"\$FZF_PROMPT\" == *all* ]]; then echo \"reload(\\\"$SELF\\\" --internal-list)+change-prompt(containers> )\"; else echo \"reload(\\\"$SELF\\\" --internal-list --all)+change-prompt(containers(all)> )\"; fi)" \
+    --bind "ctrl-f:reload(\"$SELF\" --internal-list)" \
+    --bind "ctrl-l:execute(\"$SELF\" --internal-follow-logs {1} {2})" \
+    --bind "ctrl-r:execute-silent(\"$SELF\" --internal-restart {1})+reload(\"$SELF\" --internal-list)" \
+    --bind "ctrl-s:execute-silent(\"$SELF\" --internal-start {1})+reload(\"$SELF\" --internal-list)" \
+    --bind "ctrl-x:execute(\"$SELF\" --internal-stop {1} {2})+reload(\"$SELF\" --internal-list)" \
+    --bind "ctrl-alt-x:execute(\"$SELF\" --internal-remove {1} {2})+reload(\"$SELF\" --internal-list)" \
+    --bind "ctrl-g:execute(lazydocker)" \
+    --bind "ctrl-y:execute-silent(\"$SELF\" --internal-copy-id {1})" \
+    --prompt 'containers> ' \
+    --header "$header" \
+    || true)
+
+if [[ -z "$selection" ]]; then
+    exit 0
+fi
+
+id=$(cut -f1 <<<"$selection")
+name=$(cut -f2 <<<"$selection")
+
+internal_exec_shell "$id" "$name"
