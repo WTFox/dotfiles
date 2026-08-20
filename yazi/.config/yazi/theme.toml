@@ -108,11 +108,11 @@ rules = [
   { mime = "application/{pdf,doc,rtf,vnd.*}", fg = "#7a8aa6" },
 
   # Special files
-  { name = "*", is = "link", fg = "#a08070" },
-  { name = "*/", is = "link", fg = "#a08070" },
-  { name = "*", is = "orphan", bg = "#c95c5c" },
-  { name = "*", is = "exec", fg = "#a08070" },
+  { url = "*", is = "link", fg = "#a08070" },
+  { url = "*/", is = "link", fg = "#a08070" },
+  { url = "*", is = "orphan", bg = "#c95c5c" },
+  { url = "*", is = "exec", fg = "#a08070" },
 
   # Fallback
-  { name = "*/", fg = "#7a8aa6" },
+  { url = "*/", fg = "#7a8aa6" },
 ]
