@@ -66,3 +66,41 @@ help() {
     $cmd -h 2>&1 | bat --plain --language=help
   fi
 }
+
+m4bchapters() {
+  # Usage: m4bchapters <audiofile> [min_silence_sec] [noise_dB]
+  # Writes <basename>.chapters.txt (OGM/Audiobook-style) to the current dir.
+  local infile="$1"
+  local mindur="${2:-1.5}"       # min silence length in seconds to count as a break
+  local noise="${3:--30}"        # dB threshold; lower (e.g. -40) catches quieter gaps
+
+  if [[ -z "$infile" || ! -f "$infile" ]]; then
+    echo "usage: m4bchapters <audiofile> [noise_dB] [min_silence_sec]" >&2
+    return 1
+  fi
+
+  local base="${infile##*/}"; base="${base%.*}"
+  local out="./${base}.chapters.txt"
+
+  ffmpeg -nostdin -hide_banner -i "$infile" \
+    -af "silencedetect=noise=${noise}dB:d=${mindur}" -f null - 2>&1 \
+  | awk '
+      /silence_end/ {
+        for (i=1; i<=NF; i++) if ($i=="silence_end:") t=$(i+1)
+        print t
+      }
+    ' \
+  | python3 -c '
+import sys
+starts = [0.0] + [float(x) for x in sys.stdin.read().split()]
+def ts(s):
+    h=int(s//3600); m=int((s%3600)//60); sec=s%60
+    return f"{h:02d}:{m:02d}:{sec:06.3f}"
+for i,s in enumerate(starts,1):
+    print(f"CHAPTER{i:02d}={ts(s)}")
+    print(f"CHAPTER{i:02d}NAME=Chapter {i}")
+  ' > "$out"
+
+  echo "wrote $out ($(grep -c "^CHAPTER[0-9]*=" "$out") chapters)" >&2
+  cat "$out"
+}
